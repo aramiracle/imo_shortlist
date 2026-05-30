@@ -354,7 +354,7 @@
         <h1>IMO <em>Shortlist</em> Problems</h1>
         <p class="subtitle">Algebra · Combinatorics · Geometry · Number Theory</p>
         <div class="meta-row">
-            <span class="meta-pill">28 problems</span>
+            <span class="meta-pill">32 problems</span>
             <span class="meta-pill">4 categories</span>
             <span class="meta-pill">Olympiad Level</span>
         </div>
@@ -365,16 +365,16 @@
     <!-- ── TABS ── -->
     <div class="tabs">
         <button class="tab-btn active" data-tab="alg" onclick="switchTab(event,'alg')">
-            Algebra <span class="tab-count">A7</span>
+            Algebra <span class="tab-count">A8</span>
         </button>
         <button class="tab-btn" data-tab="cmb" onclick="switchTab(event,'cmb')">
-            Combinatorics <span class="tab-count">C7</span>
+            Combinatorics <span class="tab-count">C8</span>
         </button>
         <button class="tab-btn" data-tab="geo" onclick="switchTab(event,'geo')">
-            Geometry <span class="tab-count">G7</span>
+            Geometry <span class="tab-count">G8</span>
         </button>
         <button class="tab-btn" data-tab="nt" onclick="switchTab(event,'nt')">
-            Number Theory <span class="tab-count">N7</span>
+            Number Theory <span class="tab-count">N8</span>
         </button>
     </div>
 
@@ -385,7 +385,7 @@
             <div class="subject-meta">
                 <h2>Algebra</h2>
                 <p>
-                    <strong class="alg">7 problems</strong>
+                    <strong class="alg">8 problems</strong>
                     Functional equations · Inequalities · Polynomials
                 </p>
             </div>
@@ -437,11 +437,11 @@
         <div class="problem-card alg">
             <div class="problem-label">
                 <div class="problem-number">A4</div>
-                <span class="diff-badge medium">Medium</span>
+                <span class="diff-badge hard">Hard</span>
             </div>
             <div class="problem-text">
-                Let $a, b, c$ be positive real numbers. Prove that
-                $$\sum_{\mathrm{cyc}} \left(\frac{a^3 + abc}{b^2 + c^2}\right)^{\!2} \ge \frac{(a+b+c)^2}{3}.$$
+                Let $a, b, c$ be non-negative real numbers such that $ab + bc + ca = 1$. Prove that:
+                $$\sqrt{a^3+b+c} + \sqrt{b^3+c+a} + \sqrt{c^3+a+b} \;\ge\; \sqrt{(a+b+c)^3 + 4(a+b+c)^2 - (a+b+c) - 4}$$
             </div>
         </div>
 
@@ -480,6 +480,22 @@
         <div class="problem-card alg">
             <div class="problem-label">
                 <div class="problem-number">A7</div>
+                <span class="diff-badge hard">Hard</span>
+            </div>
+            <div class="problem-text">
+                Let $a_1, a_2, a_3, \dots$ be a sequence of positive real numbers satisfying $a_1 = 1$ and 
+                $$a_{n+1} = a_n + \frac{n}{a_1 + a_2 + \dots + a_n}$$
+                for all integers $n \ge 1$. 
+                <br><br>
+                Prove that for every positive integer $n$, 
+                $$a_n \ge \sqrt{\frac{6n^3 - 3n^2 - 3n + 2}{2n^2}}.$$
+            </div>
+        </div>
+
+        <!-- A8 -->
+        <div class="problem-card alg">
+            <div class="problem-label">
+                <div class="problem-number">A8</div>
                 <span class="diff-badge challenging">Challenging</span>
             </div>
             <div class="problem-text">
@@ -498,7 +514,7 @@
             <div class="subject-meta">
                 <h2>Combinatorics</h2>
                 <p>
-                    <strong class="cmb">7 problems</strong>
+                    <strong class="cmb">8 problems</strong>
                     Game theory · Graph theory · Sequences · Number sets
                 </p>
             </div>
@@ -614,6 +630,23 @@
                 Prove that the maximum possible value of the final pile is equal to the number of odd entries in the first $n$ rows of Pascal's triangle (consisting of the binomial coefficients $\binom{y}{x}$ where $0 \le x \le y < n$).
             </div>
         </div>
+
+        <!-- C8 -->
+        <div class="problem-card cmb">
+            <div class="problem-label">
+                <div class="problem-number">C8</div>
+                <span class="diff-badge challenging">Challenging</span>
+            </div>
+            <div class="problem-text">
+                Let $m \ge 3$ be an odd integer. A school has $m$ students and $n$ clubs, where $n \ge m + 2$. Each student can be a member of any number of clubs (including none), but no two clubs have the exact same set of members. 
+                <br><br>
+                For any two distinct clubs, their <em>discord</em> is defined as the number of students who belong to exactly one of them. Let $d_{\min}$ and $d_{\max}$ be the minimum and maximum discords among all pairs of clubs, respectively.
+                <br><br>
+                Prove that:
+                $$\frac{d_{\max}}{d_{\min}} \ge \frac{m+3}{m-1}$$
+                and show that this bound is tight for all odd integers $m \ge 3$.
+            </div>
+        </div>
     </div>
 
     <!-- ══════════ GEOMETRY ══════════ -->
@@ -623,7 +656,7 @@
             <div class="subject-meta">
                 <h2>Geometry</h2>
                 <p>
-                    <strong class="geo">7 problems</strong>
+                    <strong class="geo">8 problems</strong>
                     Euclidean · Projective · Circle geometry · Concyclicity
                 </p>
             </div>
@@ -730,6 +763,21 @@
                 are concyclic. Prove that $S$ lies on the perpendicular bisector of $BC$.
             </div>
         </div>
+
+        <!-- G8 -->
+        <div class="problem-card geo">
+            <div class="problem-label">
+                <div class="problem-number">G8</div>
+                <span class="diff-badge challenging">Challenging</span>
+            </div>
+            <div class="problem-text">
+                Let $\angle xAy$ be a given angle with vertex $A$ in the plane. Let $\Gamma$ be a given circular arc belonging to a circle $\omega$. The center $P$ of the circle is not marked, and no other tools, lengths, or points are given. The arc $\Gamma$ is simply a standalone curved segment in the plane.
+                <br><br>
+                Using only an unmarked straightedge, construct the angle bisector of $\angle xAy$.
+                <br><br>
+                Provide a step-by-step description of your construction, and prove that it is mathematically correct.
+            </div>
+        </div>
     </div>
 
     <!-- ══════════ NUMBER THEORY ══════════ -->
@@ -739,7 +787,7 @@
             <div class="subject-meta">
                 <h2>Number Theory</h2>
                 <p>
-                    <strong class="nt">7 problems</strong>
+                    <strong class="nt">8 problems</strong>
                     Diophantine equations · Arithmetic functions · Sequences
                 </p>
             </div>
@@ -820,6 +868,23 @@
         <div class="problem-card nt">
             <div class="problem-label">
                 <div class="problem-number">N6</div>
+                <span class="diff-badge hard">Hard</span>
+            </div>
+            <div class="problem-text">
+                Let $\mathbb{N}$ denote the set of positive integers. Let $\mathcal{F}$ be the set
+                of all bijective functions $f\colon \mathbb{N} \to \mathbb{N}$ satisfying
+                $f(ab) = f(a)f(b)$ for all $a, b \in \mathbb{N}$.
+                <br><br>
+                For each positive integer $n$, we define $g(n) = \min_{f \in \mathcal{F}} f(n)$.
+                <br><br>
+                Prove that $g(g(n)) = g(n)$ for all positive integers $n$.
+            </div>
+        </div>
+
+        <!-- N7 -->
+        <div class="problem-card nt">
+            <div class="problem-label">
+                <div class="problem-number">N7</div>
                 <span class="diff-badge challenging">Challenging</span>
             </div>
             <div class="problem-text">
@@ -829,10 +894,10 @@
             </div>
         </div>
 
-        <!-- N7 -->
+        <!-- N8 -->
         <div class="problem-card nt">
             <div class="problem-label">
-                <div class="problem-number">N7</div>
+                <div class="problem-number">N8</div>
                 <span class="diff-badge challenging">Challenging</span>
             </div>
             <div class="problem-text">
