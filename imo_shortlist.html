@@ -85,7 +85,7 @@
     }
 
     /* ═══════════════════════════════════════════════════
-       PAGE GRID
+       PAGE GRID — sidebar left (1fr), main right (2fr)
     ═══════════════════════════════════════════════════ */
     .page {
         position: relative; z-index: 1;
@@ -93,34 +93,61 @@
         margin: 0 auto;
         padding: 36px 24px 80px;
         display: grid;
-        grid-template-columns: 1fr 228px;
+        grid-template-columns: 1fr 2fr;
         grid-template-rows: auto 1fr auto;
         column-gap: 28px;
     }
 
-    .main  { grid-column: 1; grid-row: 1 / 4; min-width: 0; }
-    .aside { grid-column: 2; grid-row: 1 / 4; }
+    .aside { grid-column: 1; grid-row: 1 / 4; min-width: 0; }
+    .main  { grid-column: 2; grid-row: 1 / 4; min-width: 0; }
 
     @media (max-width: 980px) {
-        .page { grid-template-columns: 1fr; padding: 20px 16px 60px; }
-        .main  { grid-column: 1; grid-row: 1; }
-        .aside { display: none; }
+        .page {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            padding: 20px 16px 60px;
+            row-gap: 18px;
+        }
+
+        .main {
+            grid-column: 1;
+            grid-row: 2;
+            order: 2;
+            width: 100%;
+        }
+
+        .aside {
+            grid-column: 1;
+            grid-row: 1;
+            order: 1;
+            position: static;
+            top: auto;
+            width: 100%;
+            max-height: none;
+            height: auto;
+            overflow: visible;
+        }
     }
 
     /* ═══════════════════════════════════════════════════
        SIDEBAR
     ═══════════════════════════════════════════════════ */
     .aside {
-        position: sticky;
-        top: 32px;
-        height: fit-content;
-        max-height: calc(100vh - 64px);
-        overflow-y: auto;
         display: flex;
         flex-direction: column;
         gap: 14px;
         scrollbar-width: thin;
         scrollbar-color: var(--b1) transparent;
+    }
+
+    @media (min-width: 981px) {
+        .aside {
+            position: sticky;
+            top: 32px;
+            height: fit-content;
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+        }
     }
 
     .scard {
@@ -722,7 +749,10 @@
        RESPONSIVE — mobile
     ═══════════════════════════════════════════════════ */
     @media (max-width: 480px) {
-        .page { padding: 10px 10px 48px; }
+        .page { padding: 10px 10px 48px; row-gap: 14px; }
+
+        .aside { gap: 10px; }
+        .scard { padding: 14px; }
 
         .header {
             padding: 28px 18px 26px;
@@ -789,6 +819,7 @@
     .subject.active .pcard:nth-child(6) { animation-delay: .17s; }
     .subject.active .pcard:nth-child(7) { animation-delay: .20s; }
     .subject.active .pcard:nth-child(8) { animation-delay: .23s; }
+    .subject.active .pcard:nth-child(9) { animation-delay: .26s; }
 
     @keyframes cardIn {
         from { opacity: 0; transform: translateY(8px); }
@@ -800,14 +831,13 @@
 
 <div class="page">
 
-    <!-- ════════ SIDEBAR ════════ -->
     <aside class="aside">
 
         <div class="scard">
             <div class="slabel">Overview</div>
             <div class="stat-grid">
                 <div class="stat">
-                    <span class="stat-n">32</span>
+                    <span class="stat-n">36</span>
                     <span class="stat-l">Problems</span>
                 </div>
                 <div class="stat">
@@ -815,7 +845,7 @@
                     <span class="stat-l">Categories</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-n">8</span>
+                    <span class="stat-n">9</span>
                     <span class="stat-l">Per Topic</span>
                 </div>
                 <div class="stat">
@@ -838,6 +868,7 @@
                     <a class="ndot alg" href="#" onclick="navTo(event,'alg','a6')">A6</a>
                     <a class="ndot alg" href="#" onclick="navTo(event,'alg','a7')">A7</a>
                     <a class="ndot alg" href="#" onclick="navTo(event,'alg','a8')">A8</a>
+                    <a class="ndot alg" href="#" onclick="navTo(event,'alg','a9')">A9</a>
                 </div>
             </div>
             <div class="nav-cat">
@@ -851,6 +882,7 @@
                     <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c6')">C6</a>
                     <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c7')">C7</a>
                     <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c8')">C8</a>
+                    <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c9')">C9</a>
                 </div>
             </div>
             <div class="nav-cat">
@@ -864,6 +896,7 @@
                     <a class="ndot geo" href="#" onclick="navTo(event,'geo','g6')">G6</a>
                     <a class="ndot geo" href="#" onclick="navTo(event,'geo','g7')">G7</a>
                     <a class="ndot geo" href="#" onclick="navTo(event,'geo','g8')">G8</a>
+                    <a class="ndot geo" href="#" onclick="navTo(event,'geo','g9')">G9</a>
                 </div>
             </div>
             <div class="nav-cat">
@@ -877,6 +910,7 @@
                     <a class="ndot nt" href="#" onclick="navTo(event,'nt','n6')">N6</a>
                     <a class="ndot nt" href="#" onclick="navTo(event,'nt','n7')">N7</a>
                     <a class="ndot nt" href="#" onclick="navTo(event,'nt','n8')">N8</a>
+                    <a class="ndot nt" href="#" onclick="navTo(event,'nt','n9')">N9</a>
                 </div>
             </div>
         </div>
@@ -893,58 +927,53 @@
 
     </aside>
 
-    <!-- ════════ MAIN ════════ -->
     <main class="main">
 
-        <!-- Header -->
         <header class="header">
             <p class="eyebrow">Mathematical Olympiad · Shortlist</p>
             <h1 class="h1">IMO <em>Shortlist</em> Problems</h1>
             <p class="subtitle">Algebra · Combinatorics · Geometry · Number Theory</p>
             <div class="orn"><span class="orn-icon">◆</span></div>
             <div class="pills">
-                <span class="pill">32 problems</span>
+                <span class="pill">36 problems</span>
                 <span class="pill">4 categories</span>
                 <span class="pill">Olympiad Level</span>
             </div>
         </header>
 
-        <!-- Tabs -->
         <div class="tabs-wrap">
             <div class="tabs" role="tablist">
                 <button class="tbtn active" data-tab="alg" onclick="switchTab(event,'alg')" role="tab" aria-selected="true">
                     <span class="t-ico">∑</span>
                     <span class="t-nm">Algebra</span>
-                    <span class="t-cnt">A8</span>
+                    <span class="t-cnt">A9</span>
                 </button>
                 <button class="tbtn" data-tab="cmb" onclick="switchTab(event,'cmb')" role="tab" aria-selected="false">
                     <span class="t-ico">⬡</span>
                     <span class="t-nm">Combinatorics</span>
-                    <span class="t-cnt">C8</span>
+                    <span class="t-cnt">C9</span>
                 </button>
                 <button class="tbtn" data-tab="geo" onclick="switchTab(event,'geo')" role="tab" aria-selected="false">
                     <span class="t-ico">△</span>
                     <span class="t-nm">Geometry</span>
-                    <span class="t-cnt">G8</span>
+                    <span class="t-cnt">G9</span>
                 </button>
                 <button class="tbtn" data-tab="nt" onclick="switchTab(event,'nt')" role="tab" aria-selected="false">
                     <span class="t-ico">ℕ</span>
                     <span class="t-nm">Number Theory</span>
-                    <span class="t-cnt">N8</span>
+                    <span class="t-cnt">N9</span>
                 </button>
             </div>
         </div>
 
-        <!-- Panel -->
         <div class="panel">
 
-            <!-- ══════ ALGEBRA ══════ -->
             <div id="alg" class="subject active">
                 <div class="subhd">
                     <div class="sub-ico alg">∑</div>
                     <div class="sub-info">
                         <h2>Algebra</h2>
-                        <p><span class="sub-badge alg">8 problems</span>Functional equations · Inequalities · Polynomials</p>
+                        <p><span class="sub-badge alg">9 problems</span>Functional equations · Inequalities · Polynomials</p>
                     </div>
                 </div>
                 <div class="fbar">
@@ -967,8 +996,8 @@
                             <span class="dbadge easy">Easy</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Let $a, b, c$ be positive real numbers. Prove that
-                            $$32 \!(\sum_{\mathrm{cyc}} ab(a+b))^{\!3} \;\ge\; 27 \!(\prod_{\mathrm{cyc}}(a+b))^{\!2} \cdot(\prod_{\mathrm{cyc}}(a+b) - 4abc).$$
+                            Prove that there do not exist rational numbers $a$ and $b$ such that
+                            $$\sqrt[3]{2} \;=\; \sqrt{a} + \sqrt{b}.$$
                         </div></div>
                     </div>
 
@@ -982,8 +1011,8 @@
                             <span class="dbadge easy">Easy</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Prove that there do not exist rational numbers $a$ and $b$ such that
-                            $$\sqrt[3]{2} \;=\; \sqrt{a} + \sqrt{b}.$$
+                            Let $a, b, c$ be positive real numbers. Prove that
+                            $$32 \!(\sum_{\mathrm{cyc}} ab(a+b))^{\!3} \;\ge\; 27 \!(\prod_{\mathrm{cyc}}(a+b))^{\!2} \cdot(\prod_{\mathrm{cyc}}(a+b) - 4abc).$$
                         </div></div>
                     </div>
 
@@ -1004,18 +1033,19 @@
                         </div></div>
                     </div>
 
-                    <div id="a4" class="pcard alg" data-diff="hard">
+                    <div id="a4" class="pcard alg" data-diff="medium">
                         <div class="phd">
                             <div class="pid">
                                 <span class="pnum">A4</span>
                                 <div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
+                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
                             </div>
-                            <span class="dbadge hard">Hard</span>
+                            <span class="dbadge medium">Medium</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Let $a, b, c$ be non-negative real numbers such that $ab + bc + ca = 1$. Prove that:
-                            $$\sqrt{a^3+b+c} + \sqrt{b^3+c+a} + \sqrt{c^3+a+b} \;\ge\; \sqrt{(a+b+c)^3 + 4(a+b+c)^2 - (a+b+c) - 4}$$
+                            Find all surjective functions $f\colon \mathbb{R} \to \mathbb{R}$ satisfying
+                            $$f(x f(y)) + f(y f(x)) = f(x)f(y) + f(xy)$$
+                            for all $x, y \in \mathbb{R}$.
                         </div></div>
                     </div>
 
@@ -1029,9 +1059,10 @@
                             <span class="dbadge hard">Hard</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Find all surjective functions $f\colon \mathbb{R} \to \mathbb{R}$ satisfying
-                            $$f(x f(y)) + f(y f(x)) = f(x)f(y) + f(xy)$$
-                            for all $x, y \in \mathbb{R}$.
+                            Let $a_1, a_2, a_3, \dots$ be a sequence of positive reals with $a_1 = 1$ and
+                            $$a_{n+1} = a_n + \frac{n}{a_1 + a_2 + \dots + a_n}$$
+                            for all $n \ge 1$. Prove that for every positive integer $n$,
+                            $$a_n \ge \sqrt{\frac{6n^3 - 3n^2 - 3n + 2}{2n^2}}.$$
                         </div></div>
                     </div>
 
@@ -1045,27 +1076,25 @@
                             <span class="dbadge hard">Hard</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Determine all polynomials $P(x)$ with real coefficients for which there exists a rational function $Q(x)$ with real coefficients, not identically zero, such that
-                            $$P(x) \;=\; \frac{Q(x)}{Q\!\left(1 - \dfrac{1}{x}\right)}$$
-                            for all real numbers $x$ except finitely many where the expressions are undefined.<br><br>
-                            <em>Note: A rational function is an expression $A(x)/B(x)$, where $A,B$ are polynomials with $B \not\equiv 0$.</em>
+                            Let $a, b, c$ be non-negative real numbers such that $ab + bc + ca = 1$. Prove that:
+                            $$\sqrt{a^3+b+c} + \sqrt{b^3+c+a} + \sqrt{c^3+a+b} \;\ge\; \sqrt{(a+b+c)^3 + 4(a+b+c)^2 - (a+b+c) - 4}$$
                         </div></div>
                     </div>
 
-                    <div id="a7" class="pcard alg" data-diff="hard">
+                    <div id="a7" class="pcard alg" data-diff="challenging">
                         <div class="phd">
                             <div class="pid">
                                 <span class="pnum">A7</span>
                                 <div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
+                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
                             </div>
-                            <span class="dbadge hard">Hard</span>
+                            <span class="dbadge challenging">Challenging</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Let $a_1, a_2, a_3, \dots$ be a sequence of positive reals with $a_1 = 1$ and
-                            $$a_{n+1} = a_n + \frac{n}{a_1 + a_2 + \dots + a_n}$$
-                            for all $n \ge 1$. Prove that for every positive integer $n$,
-                            $$a_n \ge \sqrt{\frac{6n^3 - 3n^2 - 3n + 2}{2n^2}}.$$
+                            Determine all polynomials $P(x)$ with real coefficients for which there exists a rational function $Q(x)$ with real coefficients, not identically zero, such that
+                            $$P(x) \;=\; \frac{Q(x)}{Q\!\left(1 - \dfrac{1}{x}\right)}$$
+                            for all real numbers $x$ except finitely many where the expressions are undefined.<br><br>
+                            <em>Note: A rational function is an expression $A(x)/B(x)$, where $A,B$ are polynomials with $B \not\equiv 0$.</em>
                         </div></div>
                     </div>
 
@@ -1085,16 +1114,31 @@
                         </div></div>
                     </div>
 
+                    <div id="a9" class="pcard alg" data-diff="challenging">
+                        <div class="phd">
+                            <div class="pid">
+                                <span class="pnum">A9</span>
+                                <div class="psep"></div>
+                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
+                            </div>
+                            <span class="dbadge challenging">Challenging</span>
+                        </div>
+                        <div class="pbody"><div class="ptxt">
+                            Let $u$ and $v$ be integers with $1 &lt; u &lt; v$. A sequence of real numbers $(a_n)$ is defined by $a_1 = 1$ and
+                            $$a_n + a_{n/u} + a_{n/v} = 0 \quad \text{for all } n \ge 2,$$
+                            where $a_k = 0$ for any non-integer $k$. Prove that the sequence $(a_n)$ is bounded if and only if $v = u^2$.
+                        </div></div>
+                    </div>
+
                 </div>
             </div>
 
-            <!-- ══════ COMBINATORICS ══════ -->
             <div id="cmb" class="subject">
                 <div class="subhd">
                     <div class="sub-ico cmb">⬡</div>
                     <div class="sub-info">
                         <h2>Combinatorics</h2>
-                        <p><span class="sub-badge cmb">8 problems</span>Game theory · Graph theory · Sequences</p>
+                        <p><span class="sub-badge cmb">9 problems</span>Game theory · Graph theory · Sequences</p>
                     </div>
                 </div>
                 <div class="fbar">
@@ -1133,13 +1177,8 @@
                             <span class="dbadge medium">Medium</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            There are $n$ students at a university. Some students form several clubs, grouped into $s$ societies. The following conditions hold:
-                            <ol>
-                                <li>No two clubs share more than one student.</li>
-                                <li>For each student $u$ and society $S$, student $u$ belongs to exactly two clubs of $S$.</li>
-                                <li>For any society $S$, any two of its clubs share exactly one student.</li>
-                            </ol>
-                            <br>Prove that the total number of pairs of distinct clubs $\{C_a, C_b\}$ in the same society is exactly $n \cdot s$.
+                            For any integer $n \ge 2$, prove that there exists a set $S$ of $2n$ distinct triangular numbers partitionable into two subsets of size $n$ with equal sums.<br><br>
+                            <em>A triangular number is a positive integer of the form $\tfrac{k(k+1)}{2}$ for some positive integer $k$.</em>
                         </div></div>
                     </div>
 
@@ -1151,20 +1190,27 @@
                             <span class="dbadge medium">Medium</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            For any integer $n \ge 2$, prove that there exists a set $S$ of $2n$ distinct triangular numbers partitionable into two subsets of size $n$ with equal sums.<br><br>
-                            <em>A triangular number is a positive integer of the form $\tfrac{k(k+1)}{2}$ for some positive integer $k$.</em>
+                            There are $n$ students at a university. Some students form several clubs, grouped into $s$ societies. The following conditions hold:
+                            <ol>
+                                <li>No two clubs share more than one student.</li>
+                                <li>For each student $u$ and society $S$, student $u$ belongs to exactly two clubs of $S$.</li>
+                                <li>For any society $S$, any two of its clubs share exactly one student.</li>
+                            </ol>
+                            <br>Prove that the total number of pairs of distinct clubs $\{C_a, C_b\}$ in the same society is exactly $n \cdot s$.
                         </div></div>
                     </div>
 
-                    <div id="c4" class="pcard cmb" data-diff="hard">
+                    <div id="c4" class="pcard cmb" data-diff="medium">
                         <div class="phd">
                             <div class="pid"><span class="pnum">C4</span><div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
+                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
                             </div>
-                            <span class="dbadge hard">Hard</span>
+                            <span class="dbadge medium">Medium</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            In a country there is a one-way route between every pair of cities, each exclusively designated for one of three modes of transportation: car, train, or airplane. Prove that one can choose a set of three cities such that every other city in the country can reach at least one of these three cities using only a single mode of transportation.
+                            A coin is placed on each vertex of a finite simple graph $G$. In each step, select a vertex $v$ containing a coin, collect its coin, and discard coins on $v$ and all neighbors. Repeat until no coins remain.<br><br>
+                            Prove that we can always collect at least
+                            $$\sum_{v \in V} \frac{1}{\deg(v) + 1} \quad \text{coins.}$$
                         </div></div>
                     </div>
 
@@ -1176,22 +1222,21 @@
                             <span class="dbadge hard">Hard</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            A coin is placed on each vertex of a finite simple graph $G$. In each step, select a vertex $v$ containing a coin, collect its coin, and discard coins on $v$ and all neighbors. Repeat until no coins remain.<br><br>
-                            Prove that we can always collect at least
-                            $$\sum_{v \in V} \frac{1}{\deg(v) + 1} \quad \text{coins.}$$
+                            In a country there is a one-way route between every pair of cities, each exclusively designated for one of three modes of transportation: car, train, or airplane. Prove that one can choose a set of three cities such that every other city in the country can reach at least one of these three cities using only a single mode of transportation.
                         </div></div>
                     </div>
 
-                    <div id="c6" class="pcard cmb" data-diff="challenging">
+                    <div id="c6" class="pcard cmb" data-diff="hard">
                         <div class="phd">
                             <div class="pid"><span class="pnum">C6</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
+                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
                             </div>
-                            <span class="dbadge challenging">Challenging</span>
+                            <span class="dbadge hard">Hard</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            In a high council there are $m$ sages and $n$ secret truths, $n \ge m \ge 2$. Each sage knows a unique combination of the $n$ truths. The High Priest seals away one truth permanently. A truth is <em>safe</em> if, after sealing, all $m$ sages remain uniquely identifiable by their remaining knowledge.<br><br>
-                            Prove that at least $n - m + 1$ truths are individually safe to seal.
+                            There are $n$ points on a line, with the distance between the two outermost points being $L$. Each point is colored with one of $k$ colors, where $n \ge k+1 \ge 3$. The <em>span</em> of a color is the distance between its two outermost points of that color (or $0$ if the color is used at most once).<br><br>
+                            Prove that there always exists a coloring such that the sum of the spans of the $k$ colors is at least
+                            $$\frac{k+1}{2k} \cdot L.$$
                         </div></div>
                     </div>
 
@@ -1203,14 +1248,27 @@
                             <span class="dbadge challenging">Challenging</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            There are $n$ piles, each with a token of value $1$. In each step, choose two piles with values $A$ and $B$ and merge them into a pile of value $A + B + \min(A,B)$. Repeat $n-1$ times.<br><br>
-                            Prove that the maximum possible value of the final pile equals the number of odd entries in the first $n$ rows of Pascal's triangle (i.e.\ $\binom{y}{x}$ with $0 \le x \le y < n$).
+                            In a high council there are $m$ sages and $n$ secret truths, $n \ge m \ge 2$. Each sage knows a unique combination of the $n$ truths. The High Priest seals away one truth permanently. A truth is <em>safe</em> if, after sealing, all $m$ sages remain uniquely identifiable by their remaining knowledge.<br><br>
+                            Prove that at least $n - m + 1$ truths are individually safe to seal.
                         </div></div>
                     </div>
 
                     <div id="c8" class="pcard cmb" data-diff="challenging">
                         <div class="phd">
                             <div class="pid"><span class="pnum">C8</span><div class="psep"></div>
+                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
+                            </div>
+                            <span class="dbadge challenging">Challenging</span>
+                        </div>
+                        <div class="pbody"><div class="ptxt">
+                            There are $n$ piles, each with a token of value $1$. In each step, choose two piles with values $A$ and $B$ and merge them into a pile of value $A + B + \min(A,B)$. Repeat $n-1$ times.<br><br>
+                            Prove that the maximum possible value of the final pile equals the number of odd entries in the first $n$ rows of Pascal's triangle (i.e.\ $\binom{y}{x}$ with $0 \le x \le y < n$).
+                        </div></div>
+                    </div>
+
+                    <div id="c9" class="pcard cmb" data-diff="challenging">
+                        <div class="phd">
+                            <div class="pid"><span class="pnum">C9</span><div class="psep"></div>
                                 <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
                             </div>
                             <span class="dbadge challenging">Challenging</span>
@@ -1224,13 +1282,12 @@
                 </div>
             </div>
 
-            <!-- ══════ GEOMETRY ══════ -->
             <div id="geo" class="subject">
                 <div class="subhd">
                     <div class="sub-ico geo">△</div>
                     <div class="sub-info">
                         <h2>Geometry</h2>
-                        <p><span class="sub-badge geo">8 problems</span>Euclidean · Projective · Circle geometry</p>
+                        <p><span class="sub-badge geo">9 problems</span>Euclidean · Projective · Circle geometry</p>
                     </div>
                 </div>
                 <div class="fbar">
@@ -1287,7 +1344,7 @@
                             <span class="dbadge hard">Hard</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Let $\triangle ABC$ have $AB < AC$, with incircle touching $CA$ and $AB$ at $E$ and $F$. Line $EF$ meets $BC$ at $L$. Let the incircle of $\triangle LEC$ and the $L$-excircle of $\triangle LFB$ touch $EF$ at $N$ and $M$ respectively. Prove that $BM$, $CN$, and the bisector of $\angle A$ are concurrent on the incircle of $\triangle ABC$.
+                            Let $\triangle ABC$ be scalene with incenter $I$. The incircle touches $BC$ at $D$; let $AD$ meet the incircle again at $E$. Let $P$ and $Q$ be the intersections of the internal and external bisectors of $\angle A$ with $BC$, and let the circumcircle of $\triangle APQ$ and median $AM$ meet again at $N$. If $F$ lies on $AD$ with $AE = DF$, prove $A, F, I, N$ are concyclic.
                         </div></div>
                     </div>
 
@@ -1299,7 +1356,7 @@
                             <span class="dbadge hard">Hard</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Let $\triangle ABC$ be scalene with incenter $I$. The incircle touches $BC$ at $D$; let $AD$ meet the incircle again at $E$. Let $P$ and $Q$ be the intersections of the internal and external bisectors of $\angle A$ with $BC$, and let the circumcircle of $\triangle APQ$ and median $AM$ meet again at $N$. If $F$ lies on $AD$ with $AE = DF$, prove $A, F, I, N$ are concyclic.
+                            Let $\triangle ABC$ have $AB < AC$, with incircle touching $CA$ and $AB$ at $E$ and $F$. Line $EF$ meets $BC$ at $L$. Let the incircle of $\triangle LEC$ and the $L$-excircle of $\triangle LFB$ touch $EF$ at $M$ and $M$ respectively. Prove that $BM$, $CN$, and the bisector of $\angle A$ are concurrent on the incircle of $\triangle ABC$.
                         </div></div>
                     </div>
 
@@ -1323,7 +1380,8 @@
                             <span class="dbadge challenging">Challenging</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Let $\triangle ABC$ be scalene with $A$-excircle touching $BC$ at $D$. Let $M$ be the midpoint of the altitude from $A$. Line $MD$ meets the excircle again at $T$. Let $S$ be a point on line $MD$ such that $B, S, C, T$ are concyclic. Prove that $S$ lies on the perpendicular bisector of $BC$.
+                            Let $\angle xAy$ be a given angle with vertex $A$ in the plane. A circle with its center $O$ marked is also given; no other tools, lengths, or points are given.<br><br>
+                            Using only an unmarked straightedge, construct the angle bisector of $\angle xAy$.
                         </div></div>
                     </div>
 
@@ -1335,21 +1393,32 @@
                             <span class="dbadge challenging">Challenging</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Let $\angle xAy$ be a given angle with vertex $A$ in the plane. A circle with its center $O$ marked is also given; no other tools, lengths, or points are given.<br><br>
-                            Using only an unmarked straightedge, construct the angle bisector of $\angle xAy$.
+                            Let $\triangle ABC$ be scalene with $A$-excircle touching $BC$ at $D$. Let $M$ be the midpoint of the altitude from $A$. Line $MD$ meets the excircle again at $T$. Let $S$ be a point on line $MD$ such that $B, S, C, T$ are concyclic. Prove that $S$ lies on the perpendicular bisector of $BC$.
+                        </div></div>
+                    </div>
+
+                    <div id="g9" class="pcard geo" data-diff="challenging">
+                        <div class="phd">
+                            <div class="pid"><span class="pnum">G9</span><div class="psep"></div>
+                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
+                            </div>
+                            <span class="dbadge challenging">Challenging</span>
+                        </div>
+                        <div class="pbody"><div class="ptxt">
+                            Let $ABC$ be an acute, scalene triangle with circumcenter $O$. Let $K$ be the intersection of line $AO$ with side $BC$. Let $L$ be the unique point on line $AO$, distinct from $A$, such that $\angle ALB = \angle CLA$. The line through $L$ perpendicular to $AO$ intersects line $BC$ at $M$. Let $N$ be the intersection of the tangents to the circumcircle of $\triangle ABC$ at $B$ and $C$.<br><br>
+                            Prove that $OM \perp KN$.
                         </div></div>
                     </div>
 
                 </div>
             </div>
 
-            <!-- ══════ NUMBER THEORY ══════ -->
             <div id="nt" class="subject">
                 <div class="subhd">
                     <div class="sub-ico nt">ℕ</div>
                     <div class="sub-info">
                         <h2>Number Theory</h2>
-                        <p><span class="sub-badge nt">8 problems</span>Diophantine equations · Arithmetic functions</p>
+                        <p><span class="sub-badge nt">9 problems</span>Diophantine equations · Arithmetic functions</p>
                     </div>
                 </div>
                 <div class="fbar">
@@ -1388,12 +1457,12 @@
                         </div></div>
                     </div>
 
-                    <div id="n3" class="pcard nt" data-diff="hard">
+                    <div id="n3" class="pcard nt" data-diff="medium">
                         <div class="phd">
                             <div class="pid"><span class="pnum">N3</span><div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
+                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
                             </div>
-                            <span class="dbadge hard">Hard</span>
+                            <span class="dbadge medium">Medium</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
                             Let $G$ be the infinite graph with vertex set $\mathbb{Z}_{>0}$ where distinct $a, b$ are adjacent iff
@@ -1410,7 +1479,10 @@
                             <span class="dbadge hard">Hard</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Determine all positive integers $m$ with the property: there exists a positive integer $n$ such that $x^2 + my^2 = n$ is solvable in rationals, but for every positive integer $k < m$ the equation $x^2 + ky^2 = n$ is not solvable in rationals.
+                            Let $n \ge 3$ be an integer. A sequence $a_1, a_2, \dots, a_n$ of positive integers satisfies
+                            $$a_k = \frac{[a_{k-1}, a_{k-2}]}{(a_{k-1}, a_{k-2})} \quad \text{for all } 3 \le k \le n$$
+                            where $[x,y]$ and $(x,y)$ denote lcm and gcd. Prove that if the sequence is strictly decreasing, then
+                            $$a_1 \ge \frac{2^{n-2}\,a_{n-1}}{a_n}.$$
                         </div></div>
                     </div>
 
@@ -1422,10 +1494,8 @@
                             <span class="dbadge hard">Hard</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Let $n \ge 3$ be an integer. A sequence $a_1, a_2, \dots, a_n$ of positive integers satisfies
-                            $$a_k = \frac{[a_{k-1}, a_{k-2}]}{(a_{k-1}, a_{k-2})} \quad \text{for all } 3 \le k \le n$$
-                            where $[x,y]$ and $(x,y)$ denote lcm and gcd. Prove that if the sequence is strictly decreasing, then
-                            $$a_1 \ge \frac{2^{n-2}\,a_{n-1}}{a_n}.$$
+                            Let $\mathcal{F}$ be the set of all bijections $f\colon \mathbb{N} \to \mathbb{N}$ satisfying $f(ab) = f(a)f(b)$ for all $a, b \in \mathbb{N}$. Define $g(n) = \min_{f \in \mathcal{F}} f(n)$ for each positive integer $n$.<br><br>
+                            Prove that $g(g(n)) = g(n)$ for all positive integers $n$.
                         </div></div>
                     </div>
 
@@ -1437,8 +1507,7 @@
                             <span class="dbadge hard">Hard</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            Let $\mathcal{F}$ be the set of all bijections $f\colon \mathbb{N} \to \mathbb{N}$ satisfying $f(ab) = f(a)f(b)$ for all $a, b \in \mathbb{N}$. Define $g(n) = \min_{f \in \mathcal{F}} f(n)$ for each positive integer $n$.<br><br>
-                            Prove that $g(g(n)) = g(n)$ for all positive integers $n$.
+                            Determine all positive integers $m$ with the property: there exists a positive integer $n$ such that $x^2 + my^2 = n$ is solvable in rationals, but for every positive integer $k < m$ the equation $x^2 + ky^2 = n$ is not solvable in rationals.
                         </div></div>
                     </div>
 
@@ -1450,9 +1519,8 @@
                             <span class="dbadge challenging">Challenging</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            A sequence is defined by $a_1 = 2$, $a_2 = 4$, and
-                            $$a_{n+2} = \binom{a_{n+1}}{a_n} \quad \text{for all } n \ge 1.$$
-                            Prove that for every prime $p$, there exists a positive integer $n$ such that $p \mid a_n$.
+                            A lattice point $P$ is <em>visible from the origin</em> $O(0,0)$ if segment $OP$ contains no other lattice points.<br><br>
+                            Prove that for every positive integer $k$, there exists a $(2k+1)\times(2k+1)$ square of lattice points whose center is visible from the origin, while all other $(2k+1)^2 - 1$ lattice points in the square are not visible from the origin.
                         </div></div>
                     </div>
 
@@ -1464,18 +1532,29 @@
                             <span class="dbadge challenging">Challenging</span>
                         </div>
                         <div class="pbody"><div class="ptxt">
-                            A lattice point $P$ is <em>visible from the origin</em> $O(0,0)$ if segment $OP$ contains no other lattice points.<br><br>
-                            Prove that for every positive integer $k$, there exists a $(2k+1)\times(2k+1)$ square of lattice points whose center is visible from the origin, while all other $(2k+1)^2 - 1$ lattice points in the square are not visible from the origin.
+                            Determine all triples of integers $(x, y, z)$ satisfying the Diophantine equation
+                            $$x^4 + y^4 + z^4 = 4xyz(x + y + z).$$
+                        </div></div>
+                    </div>
+
+                    <div id="n9" class="pcard nt" data-diff="challenging">
+                        <div class="phd">
+                            <div class="pid"><span class="pnum">N9</span><div class="psep"></div>
+                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
+                            </div>
+                            <span class="dbadge challenging">Challenging</span>
+                        </div>
+                        <div class="pbody"><div class="ptxt">
+                            A sequence is defined by $a_1 = 2$, $a_2 = 4$, and
+                            $$a_{n+2} = \binom{a_{n+1}}{a_n} \quad \text{for all } n \ge 1.$$
+                            Prove that for every prime $p$, there exists a positive integer $n$ such that $p \mid a_n$.
                         </div></div>
                     </div>
 
                 </div>
             </div>
 
-        </div><!-- /panel -->
-
-        <!-- Footer -->
-        <footer class="footer">
+        </div><footer class="footer">
             <span>IMO · Shortlist Problem Set</span>
             <span class="orn-f">◆</span>
             <span>© International Mathematical Olympiad</span>
