@@ -276,6 +276,23 @@
     .leg-dot.hard        { background: var(--hard); }
     .leg-dot.challenging { background: var(--challenging); }
 
+    .leg-rng {
+        margin-left: auto;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: .62rem;
+        letter-spacing: .04em;
+        color: var(--muted);
+    }
+
+    .leg-note {
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid var(--b0);
+        font-size: .82rem;
+        line-height: 1.45;
+        color: var(--sec);
+    }
+
     /* ═══════════════════════════════════════════════════
        HEADER
     ═══════════════════════════════════════════════════ */
@@ -671,6 +688,67 @@
     .dbadge.medium      { color: var(--medium);      border-color: var(--cmb-d); background: var(--cmb-g); }
     .dbadge.hard        { color: var(--hard);        border-color: var(--geo-d); background: var(--geo-g); }
     .dbadge.challenging { color: var(--challenging); border-color: #5a2020;      background: rgba(224,96,96,.06); }
+    .dbadge.false       { color: #e06060; border-color: #5a2020; background: rgba(224,96,96,.10); }
+    .dbadge.open        { color: var(--gold-b); border-color: var(--gold-d); background: var(--gold-g); }
+
+    .phd-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+
+    .rscore {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: .92rem;
+        font-weight: 500;
+        letter-spacing: .02em;
+        line-height: 1;
+        display: flex;
+        align-items: baseline;
+        gap: 3px;
+    }
+
+    .rscore.easy        { color: var(--easy); }
+    .rscore.medium      { color: var(--medium); }
+    .rscore.hard        { color: var(--hard); }
+    .rscore.challenging { color: var(--challenging); }
+
+    .rscore small {
+        font-size: .58rem;
+        color: var(--muted);
+        font-weight: 400;
+        letter-spacing: .06em;
+    }
+
+    .rmeter {
+        height: 2px;
+        background: var(--b0);
+    }
+
+    .rmeter > span {
+        display: block;
+        height: 100%;
+        border-radius: 0 1px 1px 0;
+    }
+
+    .rmeter.easy > span        { background: var(--easy); }
+    .rmeter.medium > span      { background: var(--medium); }
+    .rmeter.hard > span        { background: var(--hard); }
+    .rmeter.challenging > span { background: var(--challenging); }
+
+    .why-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 14px;
+        margin-bottom: 10px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: .68rem;
+        letter-spacing: .04em;
+        color: var(--sec);
+    }
+
+    .why-meta b { color: var(--cream); font-weight: 500; }
 
     /* Card body */
     .pbody {
@@ -700,6 +778,87 @@
         overflow-x: auto;
         overflow-y: hidden;
         max-width: 100%;
+    }
+
+
+    /* ═══════════════════════════════════════════════════
+       SOLUTION TOGGLE
+    ═══════════════════════════════════════════════════ */
+    .sol { border-top: 1px solid var(--b0); }
+
+    .sol summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 22px 11px 26px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: .64rem;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        transition: color .18s, background .18s;
+        user-select: none;
+    }
+
+    .sol summary::-webkit-details-marker { display: none; }
+    .sol summary::before { content: '▸'; transition: transform .2s; }
+    .sol[open] summary::before { transform: rotate(90deg); }
+    .sol summary:hover { color: var(--cream); background: rgba(255,255,255,.025); }
+    .sol[open] summary { color: var(--gold); background: var(--s3); }
+
+    .sol-body {
+        padding: 18px 26px 22px;
+        background: var(--s3);
+        font-family: 'EB Garamond', serif;
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: var(--cream);
+    }
+
+    .sol-empty { color: var(--muted); font-style: italic; font-size: 1rem; }
+    .sol-empty code { font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: .76rem; color: var(--gold); }
+
+    .sol-body.steps { padding: 0; }
+
+    .hint { border-top: 1px solid var(--b0); }
+    .hint:first-child { border-top: none; }
+
+    .hint summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 22px 10px 26px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: .62rem;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--sec);
+        user-select: none;
+    }
+
+    .hint summary::-webkit-details-marker { display: none; }
+    .hint summary::before { content: '▸'; font-size: .7rem; transition: transform .2s; color: var(--muted); }
+    .hint[open] summary::before { transform: rotate(90deg); }
+    .hint summary:hover { color: var(--cream); background: rgba(255,255,255,.03); }
+    .hint[open] > summary { color: var(--gold-b); }
+
+    .hint-body {
+        padding: 0 26px 14px;
+        font-family: 'EB Garamond', serif;
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: var(--cream);
+    }
+
+    @media (max-width: 480px) {
+        .sol summary { padding: 10px 14px 10px 18px; }
+        .sol-body { padding: 14px 18px 16px; }
+        .hint summary { padding: 9px 14px 9px 18px; }
+        .hint-body { padding: 0 18px 12px; }
     }
 
     /* ═══════════════════════════════════════════════════
@@ -811,16 +970,6 @@
         animation: cardIn .35s ease both;
     }
 
-    .subject.active .pcard:nth-child(1) { animation-delay: .02s; }
-    .subject.active .pcard:nth-child(2) { animation-delay: .05s; }
-    .subject.active .pcard:nth-child(3) { animation-delay: .08s; }
-    .subject.active .pcard:nth-child(4) { animation-delay: .11s; }
-    .subject.active .pcard:nth-child(5) { animation-delay: .14s; }
-    .subject.active .pcard:nth-child(6) { animation-delay: .17s; }
-    .subject.active .pcard:nth-child(7) { animation-delay: .20s; }
-    .subject.active .pcard:nth-child(8) { animation-delay: .23s; }
-    .subject.active .pcard:nth-child(9) { animation-delay: .26s; }
-
     @keyframes cardIn {
         from { opacity: 0; transform: translateY(8px); }
         to   { opacity: 1; transform: translateY(0); }
@@ -835,93 +984,22 @@
 
         <div class="scard">
             <div class="slabel">Overview</div>
-            <div class="stat-grid">
-                <div class="stat">
-                    <span class="stat-n">36</span>
-                    <span class="stat-l">Problems</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-n">4</span>
-                    <span class="stat-l">Categories</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-n">9</span>
-                    <span class="stat-l">Per Topic</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-n" style="font-size:1rem; margin-top:4px; color: var(--challenging)">★★★★</span>
-                    <span class="stat-l">Olympiad</span>
-                </div>
+            <div class="stat-grid" id="stat-grid">
+                <!-- filled by app.js -->
             </div>
         </div>
 
         <div class="scard">
             <div class="slabel">Problem Navigator</div>
-            <div class="nav-cat">
-                <div class="nav-cat-lbl alg">Algebra</div>
-                <div class="nav-dots">
-                    <a class="ndot alg" href="#" onclick="navTo(event,'alg','a1')">A1</a>
-                    <a class="ndot alg" href="#" onclick="navTo(event,'alg','a2')">A2</a>
-                    <a class="ndot alg" href="#" onclick="navTo(event,'alg','a3')">A3</a>
-                    <a class="ndot alg" href="#" onclick="navTo(event,'alg','a4')">A4</a>
-                    <a class="ndot alg" href="#" onclick="navTo(event,'alg','a5')">A5</a>
-                    <a class="ndot alg" href="#" onclick="navTo(event,'alg','a6')">A6</a>
-                    <a class="ndot alg" href="#" onclick="navTo(event,'alg','a7')">A7</a>
-                    <a class="ndot alg" href="#" onclick="navTo(event,'alg','a8')">A8</a>
-                    <a class="ndot alg" href="#" onclick="navTo(event,'alg','a9')">A9</a>
-                </div>
-            </div>
-            <div class="nav-cat">
-                <div class="nav-cat-lbl cmb">Combinatorics</div>
-                <div class="nav-dots">
-                    <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c1')">C1</a>
-                    <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c2')">C2</a>
-                    <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c3')">C3</a>
-                    <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c4')">C4</a>
-                    <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c5')">C5</a>
-                    <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c6')">C6</a>
-                    <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c7')">C7</a>
-                    <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c8')">C8</a>
-                    <a class="ndot cmb" href="#" onclick="navTo(event,'cmb','c9')">C9</a>
-                </div>
-            </div>
-            <div class="nav-cat">
-                <div class="nav-cat-lbl geo">Geometry</div>
-                <div class="nav-dots">
-                    <a class="ndot geo" href="#" onclick="navTo(event,'geo','g1')">G1</a>
-                    <a class="ndot geo" href="#" onclick="navTo(event,'geo','g2')">G2</a>
-                    <a class="ndot geo" href="#" onclick="navTo(event,'geo','g3')">G3</a>
-                    <a class="ndot geo" href="#" onclick="navTo(event,'geo','g4')">G4</a>
-                    <a class="ndot geo" href="#" onclick="navTo(event,'geo','g5')">G5</a>
-                    <a class="ndot geo" href="#" onclick="navTo(event,'geo','g6')">G6</a>
-                    <a class="ndot geo" href="#" onclick="navTo(event,'geo','g7')">G7</a>
-                    <a class="ndot geo" href="#" onclick="navTo(event,'geo','g8')">G8</a>
-                    <a class="ndot geo" href="#" onclick="navTo(event,'geo','g9')">G9</a>
-                </div>
-            </div>
-            <div class="nav-cat">
-                <div class="nav-cat-lbl nt">Number Theory</div>
-                <div class="nav-dots">
-                    <a class="ndot nt" href="#" onclick="navTo(event,'nt','n1')">N1</a>
-                    <a class="ndot nt" href="#" onclick="navTo(event,'nt','n2')">N2</a>
-                    <a class="ndot nt" href="#" onclick="navTo(event,'nt','n3')">N3</a>
-                    <a class="ndot nt" href="#" onclick="navTo(event,'nt','n4')">N4</a>
-                    <a class="ndot nt" href="#" onclick="navTo(event,'nt','n5')">N5</a>
-                    <a class="ndot nt" href="#" onclick="navTo(event,'nt','n6')">N6</a>
-                    <a class="ndot nt" href="#" onclick="navTo(event,'nt','n7')">N7</a>
-                    <a class="ndot nt" href="#" onclick="navTo(event,'nt','n8')">N8</a>
-                    <a class="ndot nt" href="#" onclick="navTo(event,'nt','n9')">N9</a>
-                </div>
+            <div id="nav-cats">
+                <!-- filled by app.js -->
             </div>
         </div>
 
         <div class="scard">
             <div class="slabel">Difficulty Scale</div>
-            <div class="legend">
-                <div class="leg-row"><div class="leg-dot easy"></div> Easy</div>
-                <div class="leg-row"><div class="leg-dot medium"></div> Medium</div>
-                <div class="leg-row"><div class="leg-dot hard"></div> Hard</div>
-                <div class="leg-row"><div class="leg-dot challenging"></div> Challenging</div>
+            <div class="legend" id="legend">
+                <!-- filled by app.js -->
             </div>
         </div>
 
@@ -934,627 +1012,22 @@
             <h1 class="h1">IMO <em>Shortlist</em> Problems</h1>
             <p class="subtitle">Algebra · Combinatorics · Geometry · Number Theory</p>
             <div class="orn"><span class="orn-icon">◆</span></div>
-            <div class="pills">
-                <span class="pill">36 problems</span>
-                <span class="pill">4 categories</span>
-                <span class="pill">Olympiad Level</span>
+            <div class="pills" id="header-pills">
+                <!-- filled by app.js -->
             </div>
         </header>
 
         <div class="tabs-wrap">
-            <div class="tabs" role="tablist">
-                <button class="tbtn active" data-tab="alg" onclick="switchTab(event,'alg')" role="tab" aria-selected="true">
-                    <span class="t-ico">∑</span>
-                    <span class="t-nm">Algebra</span>
-                    <span class="t-cnt">A9</span>
-                </button>
-                <button class="tbtn" data-tab="cmb" onclick="switchTab(event,'cmb')" role="tab" aria-selected="false">
-                    <span class="t-ico">⬡</span>
-                    <span class="t-nm">Combinatorics</span>
-                    <span class="t-cnt">C9</span>
-                </button>
-                <button class="tbtn" data-tab="geo" onclick="switchTab(event,'geo')" role="tab" aria-selected="false">
-                    <span class="t-ico">△</span>
-                    <span class="t-nm">Geometry</span>
-                    <span class="t-cnt">G9</span>
-                </button>
-                <button class="tbtn" data-tab="nt" onclick="switchTab(event,'nt')" role="tab" aria-selected="false">
-                    <span class="t-ico">ℕ</span>
-                    <span class="t-nm">Number Theory</span>
-                    <span class="t-cnt">N9</span>
-                </button>
+            <div class="tabs" role="tablist" id="tabs">
+                <!-- filled by app.js -->
             </div>
         </div>
 
-        <div class="panel">
+        <div class="panel" id="panel">
+            <!-- filled by app.js -->
+        </div>
 
-            <div id="alg" class="subject active">
-                <div class="subhd">
-                    <div class="sub-ico alg">∑</div>
-                    <div class="sub-info">
-                        <h2>Algebra</h2>
-                        <p><span class="sub-badge alg">9 problems</span>Functional equations · Inequalities · Polynomials</p>
-                    </div>
-                </div>
-                <div class="fbar">
-                    <span class="fbar-lbl">Filter:</span>
-                    <button class="fbtn f-all"    onclick="filt(this,'alg','all')">All</button>
-                    <button class="fbtn"           onclick="filt(this,'alg','easy')">Easy</button>
-                    <button class="fbtn"           onclick="filt(this,'alg','medium')">Medium</button>
-                    <button class="fbtn"           onclick="filt(this,'alg','hard')">Hard</button>
-                    <button class="fbtn"           onclick="filt(this,'alg','challenging')">Challenging</button>
-                </div>
-                <div class="plist">
-
-                    <div id="a1" class="pcard alg" data-diff="easy">
-                        <div class="phd">
-                            <div class="pid">
-                                <span class="pnum">A1</span>
-                                <div class="psep"></div>
-                                <div class="stars"><div class="star e"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge easy">Easy</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Prove that there do not exist rational numbers $a$ and $b$ such that
-                            $$\sqrt[3]{2} \;=\; \sqrt{a} + \sqrt{b}.$$
-                        </div></div>
-                    </div>
-
-                    <div id="a2" class="pcard alg" data-diff="easy">
-                        <div class="phd">
-                            <div class="pid">
-                                <span class="pnum">A2</span>
-                                <div class="psep"></div>
-                                <div class="stars"><div class="star e"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge easy">Easy</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $a, b, c$ be positive real numbers. Prove that
-                            $$32 \!(\sum_{\mathrm{cyc}} ab(a+b))^{\!3} \;\ge\; 27 \!(\prod_{\mathrm{cyc}}(a+b))^{\!2} \cdot(\prod_{\mathrm{cyc}}(a+b) - 4abc).$$
-                        </div></div>
-                    </div>
-
-                    <div id="a3" class="pcard alg" data-diff="medium">
-                        <div class="phd">
-                            <div class="pid">
-                                <span class="pnum">A3</span>
-                                <div class="psep"></div>
-                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge medium">Medium</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $n \ge 3$ be an integer, and let $x_1, x_2, \dots, x_n$ be real numbers satisfying:
-                            $$\sum_{i=1}^n x_i = 0 \quad \text{and} \quad \sum_{i=1}^n x_i^2 = n(n-1).$$
-                            Prove that $\displaystyle\sum_{i=1}^n x_i^3 \le n(n-1)(n-2)$.
-                            Determine all configurations of $(x_1, \dots, x_n)$ for which equality holds.
-                        </div></div>
-                    </div>
-
-                    <div id="a4" class="pcard alg" data-diff="medium">
-                        <div class="phd">
-                            <div class="pid">
-                                <span class="pnum">A4</span>
-                                <div class="psep"></div>
-                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge medium">Medium</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Find all surjective functions $f\colon \mathbb{R} \to \mathbb{R}$ satisfying
-                            $$f(x f(y)) + f(y f(x)) = f(x)f(y) + f(xy)$$
-                            for all $x, y \in \mathbb{R}$.
-                        </div></div>
-                    </div>
-
-                    <div id="a5" class="pcard alg" data-diff="hard">
-                        <div class="phd">
-                            <div class="pid">
-                                <span class="pnum">A5</span>
-                                <div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge hard">Hard</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $a_1, a_2, a_3, \dots$ be a sequence of positive reals with $a_1 = 1$ and
-                            $$a_{n+1} = a_n + \frac{n}{a_1 + a_2 + \dots + a_n}$$
-                            for all $n \ge 1$. Prove that for every positive integer $n$,
-                            $$a_n \ge \sqrt{\frac{6n^3 - 3n^2 - 3n + 2}{2n^2}}.$$
-                        </div></div>
-                    </div>
-
-                    <div id="a6" class="pcard alg" data-diff="hard">
-                        <div class="phd">
-                            <div class="pid">
-                                <span class="pnum">A6</span>
-                                <div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge hard">Hard</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $a, b, c$ be non-negative real numbers such that $ab + bc + ca = 1$. Prove that:
-                            $$\sqrt{a^3+b+c} + \sqrt{b^3+c+a} + \sqrt{c^3+a+b} \;\ge\; \sqrt{(a+b+c)^3 + 4(a+b+c)^2 - (a+b+c) - 4}$$
-                        </div></div>
-                    </div>
-
-                    <div id="a7" class="pcard alg" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid">
-                                <span class="pnum">A7</span>
-                                <div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Determine all polynomials $P(x)$ with real coefficients for which there exists a rational function $Q(x)$ with real coefficients, not identically zero, such that
-                            $$P(x) \;=\; \frac{Q(x)}{Q\!\left(1 - \dfrac{1}{x}\right)}$$
-                            for all real numbers $x$ except finitely many where the expressions are undefined.<br><br>
-                            <em>Note: A rational function is an expression $A(x)/B(x)$, where $A,B$ are polynomials with $B \not\equiv 0$.</em>
-                        </div></div>
-                    </div>
-
-                    <div id="a8" class="pcard alg" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid">
-                                <span class="pnum">A8</span>
-                                <div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Find all functions $f\colon \mathbb{N} \to \mathbb{N}$ satisfying
-                            $$f(abc) + f\!\left(2a\,f(b)\right) + f\!\left(2b\,f(c)\right) + f\!\left(2c\,f(a)\right) = f(a)\,f(b)\,f(c)$$
-                            for all $a, b, c \in \mathbb{N}$.
-                        </div></div>
-                    </div>
-
-                    <div id="a9" class="pcard alg" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid">
-                                <span class="pnum">A9</span>
-                                <div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $u$ and $v$ be integers with $1 &lt; u &lt; v$. A sequence of real numbers $(a_n)$ is defined by $a_1 = 1$ and
-                            $$a_n + a_{n/u} + a_{n/v} = 0 \quad \text{for all } n \ge 2,$$
-                            where $a_k = 0$ for any non-integer $k$. Prove that the sequence $(a_n)$ is bounded if and only if $v = u^2$.
-                        </div></div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div id="cmb" class="subject">
-                <div class="subhd">
-                    <div class="sub-ico cmb">⬡</div>
-                    <div class="sub-info">
-                        <h2>Combinatorics</h2>
-                        <p><span class="sub-badge cmb">9 problems</span>Game theory · Graph theory · Sequences</p>
-                    </div>
-                </div>
-                <div class="fbar">
-                    <span class="fbar-lbl">Filter:</span>
-                    <button class="fbtn f-all" onclick="filt(this,'cmb','all')">All</button>
-                    <button class="fbtn"        onclick="filt(this,'cmb','easy')">Easy</button>
-                    <button class="fbtn"        onclick="filt(this,'cmb','medium')">Medium</button>
-                    <button class="fbtn"        onclick="filt(this,'cmb','hard')">Hard</button>
-                    <button class="fbtn"        onclick="filt(this,'cmb','challenging')">Challenging</button>
-                </div>
-                <div class="plist">
-
-                    <div id="c1" class="pcard cmb" data-diff="easy">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">C1</span><div class="psep"></div>
-                                <div class="stars"><div class="star e"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge easy">Easy</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Maryam and Iman play a game on a $7\times 7$ chessboard. Initially the board is empty.
-                            <ol>
-                                <li>On the first turn, Maryam places a piece on any square of her choice.</li>
-                                <li>In subsequent turns, each player must move the piece to an adjacent square (sharing a common edge) not previously visited.</li>
-                                <li>The player who cannot make a valid move loses.</li>
-                            </ol>
-                            <br>Prove that Maryam (the first player) has a winning strategy, and describe it in detail.
-                        </div></div>
-                    </div>
-
-                    <div id="c2" class="pcard cmb" data-diff="medium">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">C2</span><div class="psep"></div>
-                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge medium">Medium</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            For any integer $n \ge 2$, prove that there exists a set $S$ of $2n$ distinct triangular numbers partitionable into two subsets of size $n$ with equal sums.<br><br>
-                            <em>A triangular number is a positive integer of the form $\tfrac{k(k+1)}{2}$ for some positive integer $k$.</em>
-                        </div></div>
-                    </div>
-
-                    <div id="c3" class="pcard cmb" data-diff="medium">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">C3</span><div class="psep"></div>
-                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge medium">Medium</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            There are $n$ students at a university. Some students form several clubs, grouped into $s$ societies. The following conditions hold:
-                            <ol>
-                                <li>No two clubs share more than one student.</li>
-                                <li>For each student $u$ and society $S$, student $u$ belongs to exactly two clubs of $S$.</li>
-                                <li>For any society $S$, any two of its clubs share exactly one student.</li>
-                            </ol>
-                            <br>Prove that the total number of pairs of distinct clubs $\{C_a, C_b\}$ in the same society is exactly $n \cdot s$.
-                        </div></div>
-                    </div>
-
-                    <div id="c4" class="pcard cmb" data-diff="medium">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">C4</span><div class="psep"></div>
-                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge medium">Medium</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            A coin is placed on each vertex of a finite simple graph $G$. In each step, select a vertex $v$ containing a coin, collect its coin, and discard coins on $v$ and all neighbors. Repeat until no coins remain.<br><br>
-                            Prove that we can always collect at least
-                            $$\sum_{v \in V} \frac{1}{\deg(v) + 1} \quad \text{coins.}$$
-                        </div></div>
-                    </div>
-
-                    <div id="c5" class="pcard cmb" data-diff="hard">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">C5</span><div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge hard">Hard</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            In a country there is a one-way route between every pair of cities, each exclusively designated for one of three modes of transportation: car, train, or airplane. Prove that one can choose a set of three cities such that every other city in the country can reach at least one of these three cities using only a single mode of transportation.
-                        </div></div>
-                    </div>
-
-                    <div id="c6" class="pcard cmb" data-diff="hard">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">C6</span><div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge hard">Hard</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            There are $n$ points on a line, with the distance between the two outermost points being $L$. Each point is colored with one of $k$ colors, where $n \ge k+1 \ge 3$. The <em>span</em> of a color is the distance between its two outermost points of that color (or $0$ if the color is used at most once).<br><br>
-                            Prove that there always exists a coloring such that the sum of the spans of the $k$ colors is at least
-                            $$\frac{k+1}{2k} \cdot L.$$
-                        </div></div>
-                    </div>
-
-                    <div id="c7" class="pcard cmb" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">C7</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            In a mysterious investigation bureau, there are $m$ detectives and $n$ secret clues, where $n \ge m \ge 2$. Each detective has access to a distinct combination of these clues. One day, the chief inspector burns exactly one clue from the archives. A clue is called <em>safe</em> if, after its destruction, no two detectives become indistinguishable based on the clues they still possess.<br><br>
-                            Show that at least $n - m + 1$ clues are safe.
-                        </div></div>
-                    </div>
-
-                    <div id="c8" class="pcard cmb" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">C8</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            There are $n$ piles, each with a token of value $1$. In each step, choose two piles with values $A$ and $B$ and merge them into a pile of value $A + B + \min(A,B)$. Repeat $n-1$ times.<br><br>
-                            Prove that the maximum possible value of the final pile equals the number of odd entries in the first $n$ rows of Pascal's triangle (i.e.\ $\binom{y}{x}$ with $0 \le x \le y < n$).
-                        </div></div>
-                    </div>
-
-                    <div id="c9" class="pcard cmb" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">C9</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $m \ge 3$ be odd. A school has $m$ students and $n \ge m+2$ clubs; no two clubs share the same membership set. For two clubs, their <em>discord</em> is the number of students in exactly one of them. Let $d_{\min}$ and $d_{\max}$ be the minimum and maximum discords.<br><br>
-                            Prove that $\dfrac{d_{\max}}{d_{\min}} \ge \dfrac{m+3}{m-1}$, and show this bound is tight for all odd $m \ge 3$.
-                        </div></div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div id="geo" class="subject">
-                <div class="subhd">
-                    <div class="sub-ico geo">△</div>
-                    <div class="sub-info">
-                        <h2>Geometry</h2>
-                        <p><span class="sub-badge geo">9 problems</span>Euclidean · Projective · Circle geometry</p>
-                    </div>
-                </div>
-                <div class="fbar">
-                    <span class="fbar-lbl">Filter:</span>
-                    <button class="fbtn f-all" onclick="filt(this,'geo','all')">All</button>
-                    <button class="fbtn"        onclick="filt(this,'geo','easy')">Easy</button>
-                    <button class="fbtn"        onclick="filt(this,'geo','medium')">Medium</button>
-                    <button class="fbtn"        onclick="filt(this,'geo','hard')">Hard</button>
-                    <button class="fbtn"        onclick="filt(this,'geo','challenging')">Challenging</button>
-                </div>
-                <div class="plist">
-
-                    <div id="g1" class="pcard geo" data-diff="easy">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">G1</span><div class="psep"></div>
-                                <div class="stars"><div class="star e"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge easy">Easy</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let a <em>lune</em> be the region between two internally tangent circles. Given $N$ points in the plane, prove that for any non-negative integers $P, Q, R$ with $P+Q+R=N$, there exists a lune containing exactly $P$ points strictly inside the smaller circle, $Q$ points in the strict interior of the lune, and $R$ points strictly outside the larger circle.
-                        </div></div>
-                    </div>
-
-                    <div id="g2" class="pcard geo" data-diff="medium">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">G2</span><div class="psep"></div>
-                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge medium">Medium</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let the incircle of $\triangle ABC$ with incenter $I$ touch $BC$, $CA$, $AB$ at $D$, $E$, $F$ respectively. Let $M$ be the intersection of lines $AB$ and $DE$. The line through $M$ perpendicular to $IM$ meets lines $DF$ and $EF$ at $P$ and $Q$ respectively. Prove that $MP = MQ$.
-                        </div></div>
-                    </div>
-
-                    <div id="g3" class="pcard geo" data-diff="medium">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">G3</span><div class="psep"></div>
-                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge medium">Medium</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $ABCD$ be a cyclic quadrilateral with circumcenter $O$. Let $AB \cap CD = E$ and $AD \cap BC = F$. Let the diagonals $AC$ and $BD$ meet at $M$, and let $N$ be the reflection of $M$ across line $EF$. Prove that $N, E, O, F$ are concyclic.
-                        </div></div>
-                    </div>
-
-                    <div id="g4" class="pcard geo" data-diff="hard">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">G4</span><div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge hard">Hard</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $\triangle ABC$ be scalene with incenter $I$. The incircle touches $BC$ at $D$; let $AD$ meet the incircle again at $E$. Let $P$ and $Q$ be the intersections of the internal and external bisectors of $\angle A$ with $BC$, and let the circumcircle of $\triangle APQ$ and median $AM$ meet again at $N$. If $F$ lies on $AD$ with $AE = DF$, prove $A, F, I, N$ are concyclic.
-                        </div></div>
-                    </div>
-
-                    <div id="g5" class="pcard geo" data-diff="hard">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">G5</span><div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge hard">Hard</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $\triangle ABC$ have $AB < AC$, with incircle touching $CA$ and $AB$ at $E$ and $F$. Line $EF$ meets $BC$ at $L$. Let the incircle of $\triangle LEC$ and the $L$-excircle of $\triangle LFB$ touch $EF$ at $M$ and $M$ respectively. Prove that $BM$, $CN$, and the bisector of $\angle A$ are concurrent on the incircle of $\triangle ABC$.
-                        </div></div>
-                    </div>
-
-                    <div id="g6" class="pcard geo" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">G6</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $P$ be a set of $n \ge 6$ points on a circle with no three connecting chords concurrent in the interior. Let $S$ be the set of all interior chord-intersection points. Find, in terms of $n$, the exact number of lines containing at least three points of $S$ but no point of $P$.
-                        </div></div>
-                    </div>
-
-                    <div id="g7" class="pcard geo" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">G7</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $\angle xAy$ be a given angle with vertex $A$ in the plane. A circle with its center $O$ marked is also given; no other tools, lengths, or points are given.<br><br>
-                            Using only an unmarked straightedge, construct the angle bisector of $\angle xAy$.
-                        </div></div>
-                    </div>
-
-                    <div id="g8" class="pcard geo" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">G8</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $\triangle ABC$ be scalene with $A$-excircle touching $BC$ at $D$. Let $M$ be the midpoint of the altitude from $A$. Line $MD$ meets the excircle again at $T$. Let $S$ be a point on line $MD$ such that $B, S, C, T$ are concyclic. Prove that $S$ lies on the perpendicular bisector of $BC$.
-                        </div></div>
-                    </div>
-
-                    <div id="g9" class="pcard geo" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">G9</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $ABC$ be an acute, scalene triangle with circumcenter $O$. Let $K$ be the intersection of line $AO$ with side $BC$. Let $L$ be the unique point on line $AO$, distinct from $A$, such that $\angle ALB = \angle CLA$. The line through $L$ perpendicular to $AO$ intersects line $BC$ at $M$. Let $N$ be the intersection of the tangents to the circumcircle of $\triangle ABC$ at $B$ and $C$.<br><br>
-                            Prove that $OM \perp KN$.
-                        </div></div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div id="nt" class="subject">
-                <div class="subhd">
-                    <div class="sub-ico nt">ℕ</div>
-                    <div class="sub-info">
-                        <h2>Number Theory</h2>
-                        <p><span class="sub-badge nt">9 problems</span>Diophantine equations · Arithmetic functions</p>
-                    </div>
-                </div>
-                <div class="fbar">
-                    <span class="fbar-lbl">Filter:</span>
-                    <button class="fbtn f-all" onclick="filt(this,'nt','all')">All</button>
-                    <button class="fbtn"        onclick="filt(this,'nt','easy')">Easy</button>
-                    <button class="fbtn"        onclick="filt(this,'nt','medium')">Medium</button>
-                    <button class="fbtn"        onclick="filt(this,'nt','hard')">Hard</button>
-                    <button class="fbtn"        onclick="filt(this,'nt','challenging')">Challenging</button>
-                </div>
-                <div class="plist">
-
-                    <div id="n1" class="pcard nt" data-diff="easy">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">N1</span><div class="psep"></div>
-                                <div class="stars"><div class="star e"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge easy">Easy</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Find all pairs of positive integers $(x, y)$ satisfying
-                            $$x^y - y^x = x + y.$$
-                        </div></div>
-                    </div>
-
-                    <div id="n2" class="pcard nt" data-diff="medium">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">N2</span><div class="psep"></div>
-                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge medium">Medium</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Find all quadruples of positive integers $(a, b, c, d)$ such that
-                            $$a^2 + b^2 + c^2 + d^2 \;\mid\; (a + b + c + d)^2.$$
-                        </div></div>
-                    </div>
-
-                    <div id="n3" class="pcard nt" data-diff="medium">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">N3</span><div class="psep"></div>
-                                <div class="stars"><div class="star m"></div><div class="star m"></div><div class="star"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge medium">Medium</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $G$ be the infinite graph with vertex set $\mathbb{Z}_{>0}$ where distinct $a, b$ are adjacent iff
-                            $$\frac{\operatorname{lcm}(a,b)}{\gcd(a,b)} > a + b.$$
-                            For $n > 2$, let $G_n$ be the subgraph induced on $\{1,\dots,n\}$. Prove that the clique number of $G_n$ equals exactly the number of primes at most $n$.
-                        </div></div>
-                    </div>
-
-                    <div id="n4" class="pcard nt" data-diff="hard">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">N4</span><div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge hard">Hard</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $n \ge 3$ be an integer. A sequence $a_1, a_2, \dots, a_n$ of positive integers satisfies
-                            $$a_k = \frac{[a_{k-1}, a_{k-2}]}{(a_{k-1}, a_{k-2})} \quad \text{for all } 3 \le k \le n$$
-                            where $[x,y]$ and $(x,y)$ denote lcm and gcd. Prove that if the sequence is strictly decreasing, then
-                            $$a_1 \ge \frac{2^{n-2}\,a_{n-1}}{a_n}.$$
-                        </div></div>
-                    </div>
-
-                    <div id="n5" class="pcard nt" data-diff="hard">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">N5</span><div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge hard">Hard</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Let $\mathcal{F}$ be the set of all bijections $f\colon \mathbb{N} \to \mathbb{N}$ satisfying $f(ab) = f(a)f(b)$ for all $a, b \in \mathbb{N}$. Define $g(n) = \min_{f \in \mathcal{F}} f(n)$ for each positive integer $n$.<br><br>
-                            Prove that $g(g(n)) = g(n)$ for all positive integers $n$.
-                        </div></div>
-                    </div>
-
-                    <div id="n6" class="pcard nt" data-diff="hard">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">N6</span><div class="psep"></div>
-                                <div class="stars"><div class="star h"></div><div class="star h"></div><div class="star h"></div><div class="star"></div></div>
-                            </div>
-                            <span class="dbadge hard">Hard</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Determine all positive integers $m$ with the property: there exists a positive integer $n$ such that $x^2 + my^2 = n$ is solvable in rationals, but for every positive integer $k < m$ the equation $x^2 + ky^2 = n$ is not solvable in rationals.
-                        </div></div>
-                    </div>
-
-                    <div id="n7" class="pcard nt" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">N7</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            A lattice point $P$ is <em>visible from the origin</em> $O(0,0)$ if segment $OP$ contains no other lattice points.<br><br>
-                            Prove that for every positive integer $k$, there exists a $(2k+1)\times(2k+1)$ square of lattice points whose center is visible from the origin, while all other $(2k+1)^2 - 1$ lattice points in the square are not visible from the origin.
-                        </div></div>
-                    </div>
-
-                    <div id="n8" class="pcard nt" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">N8</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            Determine all quadruples of positive integers $(a, b, x, y)$ satisfying
-                            $$x^2 + y^2 + 1 = (a^4 + b^4 + 1)(xy + 1).$$
-                        </div></div>
-                    </div>
-
-                    <div id="n9" class="pcard nt" data-diff="challenging">
-                        <div class="phd">
-                            <div class="pid"><span class="pnum">N9</span><div class="psep"></div>
-                                <div class="stars"><div class="star c"></div><div class="star c"></div><div class="star c"></div><div class="star c"></div></div>
-                            </div>
-                            <span class="dbadge challenging">Challenging</span>
-                        </div>
-                        <div class="pbody"><div class="ptxt">
-                            A sequence is defined by $a_1 = 2$, $a_2 = 4$, and
-                            $$a_{n+2} = \binom{a_{n+1}}{a_n} \quad \text{for all } n \ge 1.$$
-                            Prove that for every prime $p$, there exists a positive integer $n$ such that $p \mid a_n$.
-                        </div></div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div><footer class="footer">
+        <footer class="footer">
             <span>IMO · Shortlist Problem Set</span>
             <span class="orn-f">◆</span>
             <span>© International Mathematical Olympiad</span>
@@ -1563,68 +1036,9 @@
     </main>
 </div>
 
-<script>
-    /* ─── Tab switching ─── */
-    function switchTab(event, id) {
-        document.querySelectorAll('.subject').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.tbtn').forEach(btn => {
-            btn.classList.remove('active');
-            btn.setAttribute('aria-selected', 'false');
-        });
-        document.getElementById(id).classList.add('active');
-        const btn = event.currentTarget;
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-        if (window.MathJax) MathJax.typesetPromise();
-    }
+<script src="problems.js"></script>
+<script src="app.js"></script>
 
-    /* ─── Sidebar navigator ─── */
-    function navTo(event, tab, problemId) {
-        event.preventDefault();
-        // activate tab
-        document.querySelectorAll('.subject').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.tbtn').forEach(btn => {
-            btn.classList.remove('active');
-            btn.setAttribute('aria-selected', 'false');
-        });
-        document.getElementById(tab).classList.add('active');
-        const tBtn = document.querySelector(`[data-tab="${tab}"]`);
-        tBtn.classList.add('active');
-        tBtn.setAttribute('aria-selected', 'true');
-
-        const scrollTo = () => {
-            const el = document.getElementById(problemId);
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        };
-
-        if (window.MathJax) MathJax.typesetPromise().then(scrollTo);
-        else setTimeout(scrollTo, 60);
-    }
-
-    /* ─── Difficulty filter ─── */
-    function filt(btn, tab, diff) {
-        const panel = document.getElementById(tab);
-        panel.querySelectorAll('.fbtn').forEach(b => {
-            b.className = 'fbtn';
-        });
-        btn.className = diff === 'all' ? 'fbtn f-all' : `fbtn f-${diff}`;
-        panel.querySelectorAll('.pcard').forEach(card => {
-            const show = diff === 'all' || card.dataset.diff === diff;
-            card.classList.toggle('hidden', !show);
-        });
-    }
-
-    /* ─── Keyboard navigation ─── */
-    document.addEventListener('keydown', e => {
-        const order = ['alg', 'cmb', 'geo', 'nt'];
-        const cur = document.querySelector('.tbtn.active')?.dataset.tab;
-        const i = order.indexOf(cur);
-        if (e.key === 'ArrowRight' && i < order.length - 1)
-            document.querySelector(`[data-tab="${order[i+1]}"]`).click();
-        if (e.key === 'ArrowLeft' && i > 0)
-            document.querySelector(`[data-tab="${order[i-1]}"]`).click();
-    });
-</script>
 
 </body>
 </html>
