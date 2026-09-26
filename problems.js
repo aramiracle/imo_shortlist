@@ -41,9 +41,30 @@ window.IMO_SHORTLIST = {
     {"id":"nt","name":"Number Theory","icon":"ℕ","prefix":"N","topics":"Diophantine equations · Arithmetic functions"}
   ],
   problems: [
-    // Algebra — 16 problems, easy to hard
+    // Algebra — 19 problems, easy to hard
     {
       id: "a1",
+      category: "alg",
+      difficulty: "easy",
+      stars: 1,
+      rating: 2,
+      confidence: "high",
+      status: "verified",
+      text: "Find all functions $f: \\mathbb{R} \\to \\mathbb{R}$ satisfying $$f(x^2 - y^2) = (x - y)(f(x) + f(y))$$ for all real numbers $x$ and $y$.",
+      why: "Setting $y=0$ and $x=0$ shows that $f$ is an odd function. Evaluating $f(x^2-1)$ via the two substitutions $y=1$ and $y=-1$ yields two linear expressions in $f(x)$; equating them eliminates the quadratic argument and completely linearizes $f$ without needing continuity, density of $\\mathbb{Q}$, or Cauchy-equation machinery.",
+      answer: "$$\\boxed{f(x) = cx \\text{ for any real constant } c.}$$",
+      steps: [
+        "Setting $x = y = 0$ gives $f(0) = 0 \\cdot (2f(0)) = 0$.",
+        "Setting $y = 0$ yields $f(x^2) = x(f(x) + f(0)) = x f(x)$. Setting $x = 0$ yields $f(-y^2) = -y(f(0) + f(y)) = -y f(y) = -f(y^2)$. Thus $f$ is an odd function. In particular, $f(-1) = -f(1)$.",
+        "Let $c = f(1)$, which implies $f(-1) = -c$.",
+        "Setting $y = 1$ in the given equation gives $$f(x^2 - 1) = (x - 1)(f(x) + f(1)) = (x - 1)(f(x) + c).$$",
+        "Setting $y = -1$ in the given equation gives $$f(x^2 - (-1)^2) = f(x^2 - 1) = (x - (-1))(f(x) + f(-1)) = (x + 1)(f(x) - c).$$",
+        "Equating both expressions for $f(x^2 - 1)$ gives $$(x - 1)(f(x) + c) = (x + 1)(f(x) - c).$$ Expanding both sides yields $x f(x) - f(x) + cx - c = x f(x) + f(x) - cx - c$. Canceling $x f(x) - c$ from both sides gives $$-f(x) + cx = f(x) - cx \\implies 2f(x) = 2cx \\implies f(x) = cx.$$",
+        "Finally, substitute $f(x) = cx$ back into the original equation: the left-hand side is $c(x^2 - y^2)$, and the right-hand side is $(x - y)(cx + cy) = c(x - y)(x + y) = c(x^2 - y^2)$, which holds identically for all $x, y \\in \\mathbb{R}$. Hence, the complete set of solutions consists of $f(x) = cx$ for any real constant $c$.",
+      ]
+    },
+    {
+      id: "a2",
       category: "alg",
       difficulty: "medium",
       stars: 2,
@@ -60,7 +81,25 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a2",
+      id: "a3",
+      category: "alg",
+      difficulty: "medium",
+      stars: 2,
+      rating: 4,
+      confidence: "high",
+      status: "verified",
+      text: "Let $a,b,c,d>0$ satisfy $abcd=1$. Prove that $$(a+b)(b+c)(c+d)(d+a)\\ge 16,$$ and determine all equality cases.",
+      why: "The earlier draft's golden-ratio two-sided bound under a quartic constraint had an unproved endpoint estimate for the universal lower bound. This replacement keeps the same four-variable cyclic product structure but uses the constraint $abcd=1$, so a direct AM-GM chain on each factor closes the whole problem in one step.",
+      answer: "$$\\boxed{\\text{Equality iff }a=b=c=d=1.}$$",
+      steps: [
+        "By AM-GM, $$a+b\\ge2\\sqrt{ab},\\quad b+c\\ge2\\sqrt{bc},\\quad c+d\\ge2\\sqrt{cd},\\quad d+a\\ge2\\sqrt{da}.$$ All four factors are positive, so multiplying the inequalities preserves their direction.",
+        "The product of the right-hand sides is $$16\\sqrt{ab\\cdot bc\\cdot cd\\cdot da}=16\\sqrt{a^2b^2c^2d^2}=16\\,abcd=16,$$ using $abcd=1$ and $a,b,c,d>0$.",
+        "Hence $$(a+b)(b+c)(c+d)(d+a)\\ge16.$$",
+        "Equality holds iff all four AM-GM steps are equalities, i.e. $a=b$, $b=c$, $c=d$, $d=a$, so $a=b=c=d$; combined with $abcd=1$ this forces $a=b=c=d=1$."
+      ]
+    },
+    {
+      id: "a4",
       category: "alg",
       difficulty: "medium",
       stars: 2,
@@ -76,7 +115,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a3",
+      id: "a5",
       category: "alg",
       difficulty: "medium",
       stars: 2,
@@ -93,7 +132,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a4",
+      id: "a6",
       category: "alg",
       difficulty: "medium",
       stars: 2,
@@ -110,12 +149,12 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a5",
+      id: "a7",
       category: "alg",
       difficulty: "medium",
       stars: 2,
       rating: 5,
-      confidence: "high",
+      confidence: "medium",
       text: "Let $a_1,a_2,\\dots$ be positive reals with $a_1=1$ and $$a_{n+1}=a_n+\\frac{n}{a_1+\\cdots+a_n}.$$ Prove that $$a_n\\ge\\sqrt{\\frac{16n-9}{7}}$$ for every $n\\ge 1$.",
       why: "The bound follows from monotonicity and concavity of the increments, together with an elementary quadratic estimate on the differences.",
       answer: "$$\\boxed{a_n\\ge\\sqrt{\\frac{16n-9}{7}}}.$$",
@@ -129,7 +168,26 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a6",
+      id: "a8",
+      category: "alg",
+      difficulty: "medium",
+      stars: 2,
+      rating: 5,
+      confidence: "high",
+      status: "verified",
+      text: "Let $(x_n)_{n\\ge1}$ be a sequence of positive integers satisfying $$x_nx_{n+1}x_{n+2}=x_n+x_{n+1}+x_{n+2}$$ for every $n\\ge1$. Prove that $(x_n)$ is purely periodic with period $3$, and that $(x_1,x_2,x_3)$ must be a permutation of $(1,2,3)$.",
+      why: "The earlier draft used a floor/ceiling recurrence whose finite transition analysis toward eventual periodicity was never completed. This replacement keeps the same flavor — a three-term multiplicative recurrence forcing periodicity — but restricts to positive integers, which makes the whole classification a short, fully elementary argument.",
+      answer: "$$\\boxed{(x_n)\\text{ is exactly the sequence }1,2,3,1,2,3,\\dots\\text{ up to a cyclic relabelling of }(1,2,3).}$$",
+      steps: [
+        "Fix $n$ and set $x=x_n\\le y=x_{n+1}\\le z=x_{n+2}$ after relabelling (the equation $xyz=x+y+z$ is symmetric in the three variables). Since $x+y+z\\le 3z$, the equation gives $xyz\\le 3z$, hence $xy\\le3$.",
+        "If $xy=1$, then $x=y=1$, and the equation becomes $z=2+z$, impossible. If $xy=2$, then $x=1,y=2$, and the equation becomes $2z=3+z$, so $z=3$; this is consistent with $z\\ge y=2$. If $xy=3$, then $x=1,y=3$, and $3z=4+z$ gives $z=2$, but this contradicts $z\\ge y=3$.",
+        "Hence for every $n$, the unordered triple $\\{x_n,x_{n+1},x_{n+2}\\}$ equals $\\{1,2,3\\}$ exactly, with all three values distinct.",
+        "Since $\\{x_n,x_{n+1},x_{n+2}\\}=\\{1,2,3\\}=\\{x_{n+1},x_{n+2},x_{n+3}\\}$ and both triples share the two distinct values $x_{n+1},x_{n+2}$, the remaining value in each triple is forced to be the same: $$x_{n+3}=\\{1,2,3\\}\\setminus\\{x_{n+1},x_{n+2}\\}=x_n.$$",
+        "Thus $x_{n+3}=x_n$ for every $n\\ge1$, so $(x_n)$ is purely periodic with period $3$, and the repeating block $(x_1,x_2,x_3)$ is, by the first step, some permutation of $(1,2,3)$. Conversely every such periodic sequence obviously satisfies the recurrence, since each consecutive triple is a permutation of $(1,2,3)$ and $1\\cdot2\\cdot3=6=1+2+3$."
+      ]
+    },
+    {
+      id: "a9",
       category: "alg",
       difficulty: "medium",
       stars: 2,
@@ -146,12 +204,30 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a7",
+      id: "a10",
+      category: "alg",
+      difficulty: "medium",
+      stars: 2,
+      rating: 5.5,
+      confidence: "high",
+      status: "verified",
+      text: "Let $a,b,c\\ge 0$ with $ab+bc+ca=1$. Prove that $$\\sqrt{a^2+1}+\\sqrt{b^2+1}+\\sqrt{c^2+1}\\le 2(a+b+c),$$ and determine all equality cases.",
+      why: "The earlier draft's radical inequality relied on an unproved lemma and was left open. This replacement keeps the same constraint and the same substitution flavor but uses the elementary and fully checkable identity $a^2+1=(a+b)(a+c)$, turning the whole proof into a single AM-GM application per term.",
+      answer: "$$\\boxed{\\text{Equality iff }a=b=c=1/\\sqrt3.}$$",
+      steps: [
+        "Since $ab+bc+ca=1$, $$a^2+1=a^2+ab+bc+ca=(a+b)(a+c),$$ and cyclically $b^2+1=(b+a)(b+c)$, $c^2+1=(c+a)(c+b)$.",
+        "By AM-GM, $$\\sqrt{(a+b)(a+c)}\\le\\frac{(a+b)+(a+c)}{2}=a+\\frac{b+c}{2}.$$ The analogous bounds hold cyclically for the other two terms.",
+        "Summing the three bounds, $$\\sum_{\\mathrm{cyc}}\\sqrt{a^2+1}\\le\\sum_{\\mathrm{cyc}}\\left(a+\\frac{b+c}{2}\\right)=(a+b+c)+(a+b+c)=2(a+b+c).$$",
+        "Equality in $\\sqrt{(a+b)(a+c)}\\le\\tfrac12((a+b)+(a+c))$ requires $a+b=a+c$, i.e. $b=c$; the cyclic bounds likewise force $c=a$ and $a=b$. Hence equality holds iff $a=b=c$, and then $ab+bc+ca=3a^2=1$ gives $a=b=c=1/\\sqrt3$."
+      ]
+    },
+    {
+      id: "a11",
       category: "alg",
       difficulty: "hard",
       stars: 3,
       rating: 6,
-      confidence: "high",
+      confidence: "medium",
       text: "Let $a,b,c>0$. Prove that $$\\frac{ab}{a^2+b^2+c^2-ab+bc-ca}+\\frac{bc}{a^2+b^2+c^2-bc+ca-ab}+\\frac{ca}{a^2+b^2+c^2-ca+ab-bc}\\le\\frac{3}{2},$$ and determine all equality cases.",
       why: "Cyclic fractional inequality. Clearing the denominators and expanding in the two order types produces an explicit sum of nonnegative monomials; equality analysis is then immediate.",
       answer: "$$\\boxed{\\text{Equality iff }a=b=c}.$$",
@@ -165,7 +241,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a8",
+      id: "a12",
       category: "alg",
       difficulty: "hard",
       stars: 3,
@@ -185,7 +261,26 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a9",
+      id: "a13",
+      category: "alg",
+      difficulty: "hard",
+      stars: 3,
+      rating: 6,
+      confidence: "high",
+      status: "verified",
+      text: "Find all strictly increasing functions $f:\\mathbb{N}\\to\\mathbb{N}$ satisfying $$f(f(n))=n+2$$ for every $n\\ge1$.",
+      why: "The earlier draft's two-variable real functional equation had a classification proof that relied on unsupported case-split claims after comparing preimages of $0$ and $1$. This replacement keeps the same flavor — an iterative functional equation forcing a unique affine solution — but the discrete strictly-increasing setting makes the whole classification a short, fully elementary induction.",
+      answer: "$$\\boxed{f(n)=n+1\\text{ for all }n\\ge1.}$$",
+      steps: [
+        "Applying $f$ to both sides of $f(f(n))=n+2$ gives $f(f(f(n)))=f(n+2)$. But applying the original relation to $m=f(n)$ gives $f(f(m))=m+2$, i.e. $f(f(f(n)))=f(n)+2$. Hence $$f(n+2)=f(n)+2\\quad\\text{for every }n\\ge1. \\tag{1}$$",
+        "Let $a=f(1)$. Setting $n=1$ in the hypothesis gives $f(a)=3$. Since $f$ is strictly increasing on the positive integers, $f(1)&lt;f(2)&lt;\\cdots&lt;f(a)$ is a strictly increasing chain of $a$ positive integers ending at $3$, so $$f(a)\\ge f(1)+(a-1)=a+(a-1)=2a-1.$$ Thus $2a-1\\le3$, giving $a\\le2$.",
+        "If $a=1$, then $f(1)=1$ and $f(a)=f(1)=1$, contradicting $f(a)=3$. Hence $a=2$, so $f(1)=2$, and $f(a)=f(2)=3$.",
+        "By (1) and induction, $f(n+2)=f(n)+2$ for all $n$, so starting from $f(1)=2$ and $f(2)=3$: $$f(3)=f(1)+2=4,\\quad f(4)=f(2)+2=5,\\quad f(5)=f(3)+2=6,\\ \\dots$$ By induction on $n$, $f(n)=n+1$ for every $n\\ge1$.",
+        "Conversely $f(n)=n+1$ is strictly increasing and satisfies $f(f(n))=f(n+1)=n+2$, so it is indeed a (the unique) solution."
+      ]
+    },
+    {
+      id: "a14",
       category: "alg",
       difficulty: "hard",
       stars: 3,
@@ -203,29 +298,12 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a10",
-      category: "alg",
-      difficulty: "hard",
-      stars: 3,
-      rating: 6.5,
-      confidence: "medium",
-      text: "Let $a,b,c\\ge 0$ with $ab+bc+ca=1$. Prove that $$\\sqrt{a^3+b+c}+\\sqrt{b^3+c+a}+\\sqrt{c^3+a+b} \\ge \\sqrt{(a+b+c)^3+4(a+b+c)^2-(a+b+c)-4}.$$",
-      why: "A symmetric radical lemma, proved by squaring and replacing the cross terms by a harmonic lower bound, gives the estimate. Equality is the boundary point $(1,1,0)$.",
-      answer: "Equality occurs for permutations of $$\\boxed{(1,1,0)}.$$",
-      steps: [
-        "Put $s=a+b+c$. Since $ab+bc+ca=1$, $$s^3+4s^2-s-4=(s-1)(s+1)(s+4).$$ Thus the right-hand side is $\\sqrt{(s-1)(s+1)(s+4)}$.",
-        "For each variable, $a^3+b+c=a^3-a+s$. Since $a,b,c$ are the roots of $X^3-sX^2+X-abc=0$, one may also write $a^3+b+c=s(a^2+1)-2a+abc$, and cyclically.",
-        "Lemma. If $x,y,z\\ge 0$, $xy+yz+zx=1$, and $s=x+y+z$, then $$\\sum_{\\mathrm{cyc}}\\sqrt{x^3+y+z}\\ge\\sqrt{(s-1)(s+1)(s+4)}. \\tag{L}$$ A direct proof is obtained by squaring, isolating the three cross terms, and applying $$2\\sqrt{UV}\\ge\\frac{2UV}{U+V}$$ to the three pairs, followed by $xy+yz+zx=1$. After clearing the positive denominators, the resulting polynomial is a sum of $(x-y)^2$, $(y-z)^2$, $(z-x)^2$, $xyz(x-y)^2$, $xyz(y-z)^2$, and $xyz(z-x)^2$, with nonnegative coefficients.",
-        "Applying (L) with $x=a$, $y=b$, $z=c$ proves the claim. Equality occurs on the boundary when, up to permutation, $(a,b,c)=(1,1,0)$, because then $ab+bc+ca=1$ and both sides equal $3\\sqrt{2}$.",
-      ]
-    },
-    {
-      id: "a11",
+      id: "a15",
       category: "alg",
       difficulty: "hard",
       stars: 3,
       rating: 7,
-      confidence: "high",
+      confidence: "medium",
       text: "Find all functions $f:\\mathbb{N}\\to\\mathbb{N}$ satisfying $$f(abc)+f(2af(b))+f(2bf(c))+f(2cf(a))=f(a)f(b)f(c)$$ for all $a,b,c\\in\\mathbb{N}$.",
       why: "Three-variable equation on $\\mathbb{N}$ with a product on the right. The classification uses a symmetric three-term identity, a quadratic relation pinned down to $\\lambda=\\pm 1$, and a case split on $\\lambda$ and on $k=f(1)$ before the two solution families fall out.",
       answer: "$$\\boxed{f(n)\\equiv 2\\quad\\text{or}\\quad f(n)=n+2}.$$",
@@ -235,7 +313,7 @@ window.IMO_SHORTLIST = {
         "Put $u(n)=f(n)-k$. Adding $P(a,b,1)$, $P(b,c,1)$, $P(c,a,1)$, then using (2), gives $$u(abc)-u(ab)-u(bc)-u(ca)=u(a)u(b)u(c)-u(a)-u(b)-u(c). \\tag{3}$$",
         "Applying (3) to $(a,a,b)$, $(a,b,b)$, $(a,a,b^2)$, $(a^2,b,b)$ and eliminating $u(a^2b)$, $u(ab^2)$, $u(a^2b^2)$ gives $$u(a)^2\\bigl(u(b^2)-2u(b)\\bigr)=u(b)^2\\bigl(u(a^2)-2u(a)\\bigr).$$ Thus there is a constant $\\lambda$ such that $$u(n^2)=2u(n)+\\lambda u(n)^2. \\tag{4}$$",
         "If $u\\equiv 0$, then $f\\equiv k$. Equation (1) gives $k=(k^3-k)/3$, hence $k=2$, so $f\\equiv 2$.",
-        "Assume now $u\\not\\equiv 0$, and choose $n$ with $x=u(n)\\ne 0$. Applying (4) and (3) to the powers $n^2,n^3,n^6$ in the two ways $n^6=(n^3)^2=(n^2)^3$ gives $$(\\lambda-1)(\\lambda+1)\\bigl(\\lambda x^3-6\\lambda x-6\\bigr)=0. \\tag{5}$$ If $\\lambda\\ne\\pm 1$, then $\\lambda(x^3-6x)=6$. Applying this to $x=u(n)$ and $y=u(n^2)$ gives $(x-y)(x^2+xy+y^2-6)=0$. Here $x\\ne y$, so $x^2+xy+y^2=6$, impossible modulo $2$ for nonzero integers. Hence $\\lambda=\\pm 1$.",
+        "Assume now $u\\not\\equiv0$, and choose $n$ with $x=u(n)\\ne0$. Applying (4) and (3) to the powers $n^2,n^3,n^6$ in the two ways $n^6=(n^3)^2=(n^2)^3$ gives $$(\\lambda-1)(\\lambda+1)\\bigl(\\lambda x^3-6\\lambda x-6\\bigr)=0. \\tag{5}$$ If $\\lambda\\ne\\pm1$, then $$\\lambda(x^3-6x)=6.$$ Applying this to $x=u(n)$ and $y=u(n^2)$ gives $$(x-y)(x^2+xy+y^2-6)=0.$$ If $x=y$, then $u(n^2)=u(n)$ together with (4) gives $x(1+\\lambda x)=0$, and substituting this into the preceding equation yields $x^2=-2$, impossible. Thus $x\\ne y$ and $$x^2+xy+y^2=6.$$ Reducing modulo $3$ gives $x\\equiv y\\pmod3$. Writing $y=x+3t$ gives $$x^2+3xt+3t^2=2,$$ hence $x^2\\equiv2\\pmod3$, impossible. Therefore $\\lambda=\\pm1$.",
         "If $\\lambda=-1$, then $u(n^2)=u(n)(2-u(n))$. Any $u(n)\\le -1$ eventually becomes arbitrarily negative under repeated squaring, contradicting $u(n)\\ge 2-k$. Any $u(n)\\ge 3$ maps immediately to $\\le -3$. Hence $u(n)\\in\\{0,1,2\\}$. From (2) this forces $k=2$, then $u(2)=0$, $u(4)=u(8)=0$. Equation (2) rules out $u(n)=2$, and (3) rules out $u(n)=1$. Thus $u\\equiv 0$.",
         "If $\\lambda=1$, set $v=u+1$. Then $v(n^2)=v(n)^2$. Equation (2) first rules out $k\\ge 4$, so $k\\in\\{2,3\\}$. Using (3) on $(a,b,ab)$ gives $$(v(ab)-v(a)v(b))(v(ab)+v(a)+v(b)-5)=0. \\tag{6}$$",
         "For $k=2$, $v\\ge 1$ and $v(2)=1$. If some image value $t\\ge 4$ exists, (6) forces successively $v(t+1)=2t-1$, $v(2t)=4t-3$, $v(t)=4t-3$. Applying the same relation to the image values $r=4t-3$ and $s=2t-1$ gives two expressions for $v(rs)$, whose difference is $96(t-1)^2>0$, a contradiction. Therefore $v\\equiv 1$, hence $f\\equiv 2$.",
@@ -244,25 +322,29 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a12",
+      id: "a16",
       category: "alg",
       difficulty: "hard",
       stars: 3,
-      rating: 7.5,
-      confidence: "medium",
-      text: "Let $(x_n)_{n\\ge 1}$ be positive reals satisfying $$\\lfloor x_n\\rfloor\\, x_{n+1}\\, \\lceil x_{n+2}\\rceil =x_n+x_{n+1}+x_{n+2}$$ for every $n\\ge 1$. Prove that $(x_n)$ is eventually periodic.",
-      why: "Eventual periodicity for a floor/ceiling recurrence. The integer parts are forced into a short list of types, and only a $3$-cycle of terminal states can persist.",
-      answer: "$$\\boxed{(x_n)\\text{ is eventually }3\\text{-periodic}.}$$",
+      rating: 7,
+      confidence: "high",
+      status: "verified",
+      text: "Find all polynomials $P \\in \\mathbb{R}[x]$ satisfying $$P(x)P(x+1) = P(x^2+x+1)$$ for all real numbers $x$.",
+      why: "Roots are invariant under the forward shifts $z \\mapsto z^2+z+1$ and $z \\mapsto z^2-z+1$. Applying the parallelogram identity on $\\mathbb{C}$ to the roots of maximum modulus forces $|z^2+1| = 0$, completely rigidifying the roots to $\\pm i$.",
+      answer: "$$\\boxed{P(x) \\equiv 0 \\quad\\text{or}\\quad P(x) = (x^2+1)^n \\text{ for some integer } n \\ge 0.}$$",
       steps: [
-        "Write $p_n=\\lfloor x_n\\rfloor$ and $q_n=\\lceil x_n\\rceil$. The equation can be rewritten as $$x_n+x_{n+2}=(p_n q_{n+2}-1)x_{n+1}. \\tag{1}$$ In particular $p_n\\ge 1$ and $q_{n+2}\\ge 2$.",
-        "Since $x_n&lt;p_n+1$ and $x_{n+2}\\le q_{n+2}$, while $x_{n+1}\\ge 1$, (1) gives $p_n q_{n+2}-1&lt;p_n+q_{n+2}+1$, hence $(p_n-1)(q_{n+2}-1)&lt;3$. Therefore $$(p_n,q_{n+2})\\in\\{(1,q),(2,2),(2,3),(3,2)\\}. \\tag{2}$$",
-        "The remaining interval chase uses (1) together with $p_n\\le x_n&lt;p_n+1$ and $q_n-1&lt;x_n\\le q_n$. Every occurrence of $q\\ge 4$ with $p_n=1$ forces $p_{n+1}=1$; the next two equations then force $p_{n+2}\\ge 3$, followed by $q_{n+4}=2$, and iterating the same inequalities produces a strictly shrinking admissible interval. Thus such a state cannot occur infinitely often.",
-        "Likewise the states $(2,2)$ and $(2,3)$ cannot recur indefinitely: after at most finitely many transitions their interval constraints force one of the three terminal states $(p_n,q_{n+2})=(1,3)$, $(2,1)$, or $(3,2)$. In these states (1) respectively becomes $x_n+x_{n+2}=2x_{n+1}$, $x_n+x_{n+2}=x_{n+1}$, or $x_n+x_{n+2}=5x_{n+1}$.",
-        "The interval restrictions in the three terminal states force $(x_n,x_{n+1},x_{n+2})=(1,2,3)$, $(2,3,1)$, or $(3,1,2)$, and these three states map cyclically into one another. Hence from some index onward $x_{n+3}=x_n$.",
+        "The zero polynomial $P \\equiv 0$ is clearly a solution. Suppose $P \\not\\equiv 0$. Comparing leading coefficients $c \\cdot c = c$ gives $c = 1$, so $P$ is monic. If $\\deg P = 0$, then $P \\equiv 1 = (x^2+1)^0$.",
+        "Assume $\\deg P \\ge 1$, and let $\\mathcal{R} \\subset \\mathbb{C}$ be the multiset of complex roots of $P$. If $w \\in \\mathcal{R}$, then $P(w) = 0$, so $P(w^2+w+1) = P(w)P(w+1) = 0$. Hence $T_1(w) = w^2+w+1 \\in \\mathcal{R}$.",
+        "Similarly, if $w \\in \\mathcal{R}$, setting $x = w - 1$ gives $P(x+1) = P(w) = 0$, so $P((w-1)^2+(w-1)+1) = P(w-1)P(w) = 0$. Since $(w-1)^2+(w-1)+1 = w^2-w+1$, it follows that $T_2(w) = w^2-w+1 \\in \\mathcal{R}$.",
+        "Let $R = \\max_{z \\in \\mathcal{R}} |z| > 0$ be the maximum modulus of any root of $P$, and choose $z \\in \\mathcal{R}$ such that $|z| = R$. Because $T_1(z), T_2(z) \\in \\mathcal{R}$, both $|T_1(z)| \\le R$ and $|T_2(z)| \\le R$.",
+        "Apply the parallelogram identity in $\\mathbb{C}$ to $T_1(z)$ and $T_2(z)$: $$|T_1(z) + T_2(z)|^2 + |T_1(z) - T_2(z)|^2 = 2|T_1(z)|^2 + 2|T_2(z)|^2 \\le 4R^2.$$",
+        "Direct expansion gives $T_1(z) + T_2(z) = 2(z^2+1)$ and $T_1(z) - T_2(z) = 2z$. Substituting these into the inequality gives $$4|z^2+1|^2 + 4|z|^2 = 4|z^2+1|^2 + 4R^2 \\le 4R^2 \\implies 4|z^2+1|^2 \\le 0.$$",
+        "This forces $|z^2+1| = 0$, hence $z^2 = -1$, meaning $z = \\pm i$ and $R = 1$. Consequently, all roots of maximum modulus must be $\\pm i$.",
+        "Factor $P(x) = (x^2+1)^m Q(x)$ where $m \\ge 1$ and $Q(\\pm i) \\ne 0$. Since $(x^2+1)((x+1)^2+1) = (x^2+x+1)^2+1$, the factor $(x^2+1)^m$ satisfies the functional equation identically. Dividing it out yields $Q(x)Q(x+1) = Q(x^2+x+1)$. If $Q$ were non-constant, the exact same argument would imply its root of maximum modulus satisfies $z = \\pm i$, contradicting $Q(\\pm i) \\ne 0$. Thus $Q \\equiv 1$, and $P(x) = (x^2+1)^m$.",
       ]
     },
     {
-      id: "a13",
+      id: "a17",
       category: "alg",
       difficulty: "hard",
       stars: 3,
@@ -280,27 +362,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a14",
-      category: "alg",
-      difficulty: "challenging",
-      stars: 4,
-      rating: 8,
-      confidence: "medium",
-      text: "Let $a,b,c,d>0$ satisfy $$(a+b)(b+c)(c+d)(d+a)=(ab+bc+cd+da)^2.$$ Prove that $$\\frac{1+\\sqrt{5}}{4} &lt; \\frac{ab+bc+cd+da}{ac+bd+ca+db} \\le 1,$$ determine all equality cases, and prove that the lower constant is sharp.",
-      why: "Four-variable cyclic constraint, a two-sided bound with the golden-ratio constant, all equality cases, and a sharpness example. The lower bound is the piece that takes the most care.",
-      answer: "$$\\boxed{\\frac{1+\\sqrt{5}}{4} < \\frac{ab+bc+cd+da}{2(ac+bd)} \\le 1}.$$ Equality in the upper bound occurs exactly when at least three of $a,b,c,d$ are equal.",
-      steps: [
-        "Put $x=a+c$, $y=b+d$, $p=ac$, $q=bd$. Then $ab+bc+cd+da=(a+c)(b+d)=xy$, while $ac+bd+ca+db=2(p+q)$. Hence the required ratio is $R=xy/(2(p+q))$.",
-        "The constraint becomes $$(p-q)^2+(x+y)(py+qx)=x^2y^2. \\tag{1}$$ Also $0&lt;p\\le x^2/4$ and $0&lt;q\\le y^2/4$.",
-        "By interchanging the cyclic pairs, assume $x\\le y$, and set $t=x/y\\le 1$, $r=4p/(xy)$, $s=4q/(xy)$. Then $0&lt;r\\le t$, $0&lt;s\\le 1/t$, and (1) is equivalent to $$(r-s)^2+4r\\left(1+\\frac{1}{t}\\right)+4s(1+t)=16. \\tag{2}$$",
-        "For fixed $t$, (2) is a quadratic conic in $(r,s)$ inside the rectangle $0&lt;r\\le t$, $0&lt;s\\le 1/t$. A direct endpoint analysis of this conic gives $$2\\le r+s&lt;2(\\sqrt{5}-1). \\tag{3}$$ The lower endpoint $r+s=2$ occurs precisely on $r=t$ or $s=1/t$. Indeed, $$\\left[(r-s)^2+4r\\left(1+\\frac{1}{t}\\right)+4s(1+t)-16\\right]_{r=t}=(s+t-2)(s+t+6),$$ and similarly $$\\left[\\cdots\\right]_{s=1/t}=\\frac{(rt-2t+1)(rt+6t+1)}{t^2}.$$",
-        "Since $R=2/(r+s)$, (3) gives $$\\frac{1}{\\sqrt{5}-1}=\\frac{1+\\sqrt{5}}{4}&lt;R\\le 1.$$",
-        "For $R=1$, $r+s=2$. From the endpoint factorizations, either $r=t$ or $s=1/t$. Translating back gives exactly the condition that three of $a,b,c,d$ are equal. Conversely, if three variables are equal, say $(a,b,c,d)=(u,t,t,t)$, then both the constraint and $R=1$ hold.",
-        "To prove sharpness, take $0&lt;t&lt;1$, set $a=c=t/2$, $b+d=1$, and choose $$bd=t\\left(-t-2+2\\sqrt{5-t^2}\\right).$$ For sufficiently small $t>0$ this is positive and less than $1/4$, so positive $b,d$ exist. Substitution into (1) gives the constraint exactly, while $$R\\longrightarrow\\frac{1+\\sqrt{5}}{4}\\qquad(t\\to 0^+).$$ Thus no larger universal lower constant is possible.",
-      ]
-    },
-    {
-      id: "a15",
+      id: "a18",
       category: "alg",
       difficulty: "challenging",
       stars: 4,
@@ -321,24 +383,28 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "a16",
+      id: "a19",
       category: "alg",
       difficulty: "challenging",
       stars: 4,
-      rating: 8.5,
-      confidence: "medium",
-      text: "Find all surjective functions $f:\\mathbb{R}\\to\\mathbb{R}$ satisfying $$f(xf(y))+f(yf(x))=f(x)f(y)+f(xy)$$ for all $x,y\\in\\mathbb{R}$.",
-      why: "Surjectivity collapses $f(0)$ to the two affine solutions $f(x)=x$ and $f(x)=x+1$. The case split compares a zero of $f$ with a preimage of $1$.",
-      answer: "$$\\boxed{f(x)=x\\quad\\text{or}\\quad f(x)=x+1}.$$",
+      rating: 9,
+      confidence: "high",
+      status: "verified",
+      text: "Find all functions $f: \\mathbb{R} \\to \\mathbb{R}$ satisfying $$f(x f(y) - y f(x)) = f(x) f(y) - xy$$ for all real numbers $x$ and $y$.",
+      why: "Setting $x = y$ forces $f(x)^2 = x^2 + c$ with $c \\in \\{0, 1\\}$. In the $c = 0$ branch, $f(x) \\in \\{x, -x\\}$ yields the linear solutions as well as the non-analytic solution $f(x) = |x|$; cross-substitutions rule out any further sign mixtures. In the $c = 1$ branch, the equation conceals the hyperbolic identity $\\cosh(\\alpha - \\beta) = \\cosh \\alpha \\cosh \\beta - \\sinh \\alpha \\sinh \\beta$, generating the solution $f(x) = \\sqrt{x^2+1}$. Proving that no point can take the negative sign translates to showing that the set of positive points forms a subgroup $B \\le (\\mathbb{R}, +)$ of index at most $2$; because $(\\mathbb{R}, +)$ is $2$-divisible, no index-$2$ subgroup exists, completely rigidifying the solution without any calculus.",
+      answer: "$$\\boxed{f(x) = x, \\quad f(x) = -x, \\quad f(x) = |x|, \\quad\\text{or}\\quad f(x) = \\sqrt{x^2+1}.}$$",
       steps: [
-        "Let $c=f(0)$. Setting $x=y=0$ gives $2c=c^2+c$, hence $c\\in\\{0,1\\}$.",
-        "Choosing preimages of $0$ and $1$, comparing the equations at those preimages, and using surjectivity again yields: $c=0$ implies $f(x)=x$, and $c=1$ implies $f(x)=x+1$. The key identity in the collapse is $$f(f(y))+f(af(y))=(a+1)f(y), \\qquad a=f(1), \\tag{3}$$ together with the equations obtained from a point $t$ satisfying $f(t)=0$ and a point $s$ satisfying $f(s)=1$.",
-        "In the $c=0$ case, choose $s$ with $f(s)=1$. Surjectivity and the comparison of $P(x,s)$ and $P(s,x)$ force $s=1$, after which $f(f(x))=f(x)$ and surjectivity gives $f(x)=x$.",
-        "In the $c=1$ case, the same comparison with a zero of $f$ and a preimage of $1$ forces $f(1)=2$, and then the resulting affine relation is $f(x)=x+1$.",
-        "Both functions verify the equation directly: for $f(x)=x$, $xf(y)+yf(x)=2xy=f(x)f(y)+f(xy)$, and for $f(x)=x+1$, $$x(y+1)+y(x+1)=(x+1)(y+1)+xy.$$",
+        "Setting $x = y$ in the equation gives $f(0) = f(x)^2 - x^2$. Therefore, $f(x)^2 = x^2 + c$ for all $x \\in \\mathbb{R}$, where $c = f(0)$. Evaluating at $x = 0$ gives $c^2 = c$, which forces either $c = 0$ or $c = 1$.",
+        "Case 1: $c = 0$. Then $f(0) = 0$ and $f(x)^2 = x^2$ for all $x$, so $f(x) \\in \\{x, -x\\}$ pointwise. Direct substitution shows that $f(x) = x$ and $f(x) = -x$ are solutions. Moreover, $f(x) = |x|$ also satisfies the equation: if $xy \\ge 0$, then $x|y| - y|x| = 0$ and $|x||y| - xy = 0$; if $x > 0$ and $y &lt; 0$, then $x|y| - y|x| = -2xy > 0$, so $f(-2xy) = |-2xy| = -2xy = |x||y| - xy$.",
+        "To show that no other solutions exist when $c = 0$, partition $\\mathbb{R}$ into $P = \\{x : f(x) = x\\}$ and $N = \\{x : f(x) = -x\\}$. For any $x \\in P$ and $y \\in N$, the equation with $(x, y)$ gives $f(-2xy) = -2xy$ (so $-2xy \\in P$), while with $(y, x)$ it gives $f(2xy) = -2xy$ (so $2xy \\in N$). If there existed $x_1, x_2 > 0$ with $x_1 \\in P$ and $x_2 \\in N$, then $t = 2x_1 x_2 > 0$ would satisfy $t \\in N$ and $-t \\in P$. Evaluating at $(t, -t)$ gives $f(-2t^2) = 2t^2$ (so $-2t^2 \\in N$), whereas at $(-t, t)$ it gives $f(2t^2) = 2t^2$ (so $2t^2 \\in P$). Testing $(2t^2, -2t^2)$ then forces sign-consistency on each half-line $\\mathbb{R}_{>0}$ and $\\mathbb{R}_{&lt;0}$. Among the four constant-sign choices on each half-line, only $f(x) = x$, $f(x) = -x$, and $f(x) = |x|$ work ($f(x) = -|x|$ fails for $x > 0, y &lt; 0$).",
+        "Case 2: $c = 1$. Then $f(0) = 1$ and $f(x)^2 = x^2 + 1 > 0$, so $f(x) \\ne 0$ for all $x$. Setting $x = 0$ yields $f(-y) = f(0)f(y) = f(y)$, so $f$ is an even function. The function $f(x) = \\sqrt{x^2+1}$ is indeed a solution: substituting $x = \\sinh \\alpha$ and $y = \\sinh \\beta$ yields $\\sqrt{x^2+1} = \\cosh \\alpha$ and $\\sqrt{y^2+1} = \\cosh \\beta$, so $x f(y) - y f(x) = \\sinh(\\alpha - \\beta)$ and $f(x)f(y) - xy = \\cosh(\\alpha - \\beta) = \\sqrt{\\sinh^2(\\alpha - \\beta) + 1}$, matching identically.",
+        "It remains to show that $f(x) = \\sqrt{x^2+1}$ for all $x$ is the unique solution in Case 2. Since $f(x)^2 = x^2 + 1$, each value $f(x)$ is either $+\\sqrt{x^2+1}$ or $-\\sqrt{x^2+1}$. Define $B = \\{\\alpha \\in \\mathbb{R} : f(\\sinh \\alpha) = +\\cosh \\alpha\\}$ and $A = \\{\\alpha \\in \\mathbb{R} : f(\\sinh \\alpha) = -\\cosh \\alpha\\}$. Because $f(0) = 1 = \\cosh 0$, $0 \\in B$. For any $\\alpha, \\beta \\in B$, taking $x = \\sinh \\alpha$ and $y = \\sinh \\beta$ gives $f(x)f(y) - xy = \\cosh(\\alpha - \\beta) > 0$. Hence $f(\\sinh(\\alpha - \\beta)) > 0$, which implies $\\alpha - \\beta \\in B$. Thus $B$ is an additive subgroup of $(\\mathbb{R}, +)$.",
+        "For $\\alpha \\in A$ and $\\beta \\in B$, setting $x = \\sinh \\alpha$ and $y = \\sinh \\beta$ gives $f(x)f(y) - xy = -\\cosh \\alpha \\cosh \\beta - \\sinh \\alpha \\sinh \\beta = -\\cosh(\\alpha + \\beta) &lt; 0$. This forces $f(\\sinh(\\alpha + \\beta)) &lt; 0$, so $\\alpha + \\beta \\in A$, proving $A + B \\subseteq A$. Similarly, for $\\alpha, \\beta \\in A$, $f(x)f(y) - xy = \\cosh(\\alpha - \\beta) > 0$, which forces $\\alpha - \\beta \\in B$, so $A - A \\subseteq B$. If $A$ were nonempty, these relations mean that $A$ is a single coset of $B$ in $\\mathbb{R}$, so $B$ has index $2$ in $(\\mathbb{R}, +)$.",
+        "In the quotient group $\\mathbb{R}/B$ of order $2$, every element satisfies $2u \\in B$. But every real number $v$ can be halved as $v = 2(v/2)$, so every $v \\in \\mathbb{R}$ must belong to $B$. Hence $B = \\mathbb{R}$ and $A = \\varnothing$, a contradiction. Thus $A = \\varnothing$, proving $f(x) = \\sqrt{x^2+1}$ for all $x \\in \\mathbb{R}$.",
+        "Combining all cases, the complete set of solutions consists of $f(x) = x$, $f(x) = -x$, $f(x) = |x|$, and $f(x) = \\sqrt{x^2+1}$.",
       ]
     },
-    // Combinatorics — 16 problems, easy to hard
+    // Combinatorics — 19 problems, easy to hard
     {
       id: "c1",
       category: "cmb",
@@ -441,15 +507,18 @@ window.IMO_SHORTLIST = {
       category: "cmb",
       difficulty: "medium",
       stars: 2,
-      rating: 5,
+      rating: 5.5,
       confidence: "high",
-      text: "Let $G$ be a simple graph on $n$ vertices containing no triangle. Prove that $G$ has at most $\\lfloor n^2/4\\rfloor$ edges.",
-      why: "Mantel's theorem follows from one local degree inequality on each edge and one global Cauchy–Schwarz inequality. Both bounds are elementary but must be combined in the correct direction.",
+      status: "verified",
+      text: "Let $G$ be a triangle-free graph on $n\\ge 1$ vertices, and let $\\alpha$ be the size of a largest independent set in $G$. Prove that $$|E(G)|\\le \\alpha(n-\\alpha),$$ and determine all graphs for which equality holds.",
+      why: "The balanced complete bipartite graph is only the most famous equality case of the usual $n^2/4$ bound. Controlling the edges by a maximum independent set gives a sharper inequality, valid for every independence number, whose equality graphs are all complete bipartite graphs. The argument is short once that set is fixed, but it is not the Cauchy--Schwarz write-up of Mantel's theorem.",
+      answer: "$$\\boxed{|E(G)|\\le\\alpha(n-\\alpha),\\text{ with equality iff }G\\text{ is complete bipartite with part sizes }\\alpha\\text{ and }n-\\alpha.}$$",
       steps: [
-        "If $uv$ is an edge, then $u$ and $v$ have no common neighbour, otherwise there would be a triangle. Hence every other vertex is adjacent to at most one of $u,v$, giving $\\deg(u)+\\deg(v)\\le n$.",
-        "Sum this inequality over all edges. Each vertex $v$ appears once for every incident edge, so $$\\sum_{uv\\in E}(\\deg u+\\deg v)=\\sum_v\\deg(v)^2\\le n|E|.$$",
-        "By Cauchy–Schwarz, $$\\sum_v\\deg(v)^2\\ge\\frac{(\\sum_v\\deg(v))^2}{n}=\\frac{(2|E|)^2}{n}.$$",
-        "Combining the two inequalities gives $4|E|^2/n\\le n|E|$. If $|E|>0$, divide by $|E|$ to get $|E|\\le n^2/4$; if $|E|=0$ the conclusion is immediate. Since $|E|$ is an integer, $|E|\\le\\lfloor n^2/4\\rfloor$."
+        "Let $I$ be an independent set with $|I|=\\alpha$, and set $J=V(G)\\setminus I$. The neighbourhood of any vertex is an independent set: an edge inside it would form a triangle with that vertex. Therefore $\\deg(v)\\le\\alpha$ for every vertex $v$.",
+        "There are no edges inside $I$, so every edge has at least one end in $J$. Writing $e(I,J)$ and $e(J)$ for the edges between $I$ and $J$ and the edges inside $J$, $$\\sum_{v\\in J}\\deg(v)=e(I,J)+2e(J).$$ The left side is at most $\\alpha|J|=\\alpha(n-\\alpha)$.",
+        "Hence $$|E(G)|=e(I,J)+e(J)=\\sum_{v\\in J}\\deg(v)-e(J)\\le\\alpha(n-\\alpha)-e(J)\\le\\alpha(n-\\alpha).$$",
+        "Equality holds if and only if $e(J)=0$ and $\\deg(v)=\\alpha$ for every $v\\in J$. Then $J$ is independent and every neighbour of a vertex of $J$ lies in $I$. Since that degree equals $|I|$, every vertex of $J$ is adjacent to every vertex of $I$. Thus $G$ is the complete bipartite graph with parts $I$ and $J$.",
+        "Conversely, if $G$ is complete bipartite with part sizes $a\\ge b$ and $a+b=n$, then $G$ is triangle-free, its independence number is $a$, and it has $ab=a(n-a)$ edges. The edgeless graph is the case $b=0$.",
       ]
     },
     {
@@ -476,13 +545,15 @@ window.IMO_SHORTLIST = {
       stars: 2,
       rating: 5.5,
       confidence: "high",
-      text: "Let $n\\ge1$ and let $a_1,a_2,\\dots,a_{n^2+1}$ be $n^2+1$ distinct real numbers. Prove that among them there is either an increasing subsequence of length $n+1$ or a decreasing subsequence of length $n+1$.",
-      why: "The Erdős–Szekeres argument encodes every term by the longest increasing and decreasing subsequences ending there. Distinct terms force these pairs to be distinct, so pigeonhole finishes the proof.",
+      text: "Let $n\\ge1$ and let $a_1,a_2,\\dots,a_{n^2+1}$ be $n^2+1$ distinct real numbers. Prove that among them there is either an increasing subsequence of length $n+1$ or a decreasing subsequence of length $n+1$. Moreover, prove this is sharp: for every $n\\ge1$, exhibit an arrangement of $n^2$ distinct reals with no increasing and no decreasing subsequence of length $n+1$.",
+      why: "The existence half is the classical Erdős–Szekeres pigeonhole argument; asked alone it is a bare restatement of that theorem. The sharpness half requires an explicit extremal construction and a proof that it simultaneously avoids both forbidden subsequence lengths, which is independent content beyond the counting argument.",
       steps: [
-        "For each index $i$, let $x_i$ be the maximum length of an increasing subsequence ending at $a_i$, and let $y_i$ be the maximum length of a decreasing subsequence ending at $a_i$.",
-        "If $i&lt;j$ and $a_i&lt;a_j$, any increasing subsequence ending at $a_i$ can be extended by $a_j$, so $x_i&lt;x_j$. If $a_i>a_j$, similarly $y_i&lt;y_j$.",
-        "Because all $a_i$ are distinct, for every $i&lt;j$ one of these inequalities holds. Hence the pairs $(x_i,y_i)$ are all distinct.",
-        "If there were no increasing or decreasing subsequence of length $n+1$, then every $x_i$ and $y_i$ would belong to $\\{1,2,\\dots,n\\}$, giving only $n^2$ possible pairs. But there are $n^2+1$ indices, a contradiction."
+        "For each index $i$, let $x_i$ be the maximum length of an increasing subsequence ending at $a_i$, and $y_i$ the maximum length of a decreasing subsequence ending at $a_i$.",
+        "If $i&lt;j$ and $a_i&lt;a_j$, any increasing subsequence ending at $a_i$ extends by $a_j$, so $x_i&lt;x_j$; if $a_i>a_j$, similarly $y_i&lt;y_j$. Since all $a_i$ are distinct, one of these holds for every $i&lt;j$, so the pairs $(x_i,y_i)$ are all distinct.",
+        "If no increasing or decreasing subsequence of length $n+1$ existed, every $x_i,y_i\\in\\{1,\\dots,n\\}$, giving only $n^2$ possible pairs for $n^2+1$ indices, a contradiction.",
+        "For sharpness, arrange the numbers $1,2,\\dots,n^2$ into $n$ blocks of $n$ consecutive integers, each block listed in decreasing order, with the blocks themselves increasing: $$n,n-1,\\dots,1,\\ 2n,2n-1,\\dots,n+1,\\ \\dots,\\ n^2,n^2-1,\\dots,n^2-n+1.$$",
+        "Any increasing subsequence uses at most one term per block (since each block is decreasing), so its length is at most $n$; taking one term from each block (e.g. the last of each) shows length $n$ is attained.",
+        "Any decreasing subsequence cannot use terms from two different blocks together with the order reversed as needed, because every term of a later block exceeds every term of an earlier block; hence a decreasing subsequence lies entirely within one block, so its length is at most $n$, attained by the block itself. Thus neither forbidden length $n+1$ occurs."
       ]
     },
     {
@@ -508,13 +579,16 @@ window.IMO_SHORTLIST = {
       stars: 3,
       rating: 6.5,
       confidence: "high",
-      text: "Let $G$ be a simple graph on $n\\ge3$ vertices with minimum degree at least $n/2$. Prove that $G$ contains a Hamiltonian cycle.",
-      why: "Dirac's theorem has a compact longest-path proof but requires two distinct extremal ideas: closing a longest path into a cycle and then inserting any outside vertex into that cycle.",
+      status: "verified",
+      text: "Let $G$ be a simple graph on $n\\ge3$ vertices with minimum degree at least $n/2$. Prove that $G$ contains a Hamiltonian cycle. Moreover, show the bound is sharp: for every even $n\\ge4$, exhibit a graph on $n$ vertices with minimum degree exactly $n/2-1$ that has no Hamiltonian cycle.",
+      why: "Dirac's theorem alone has a compact longest-path proof; asked by itself it is a bare restatement of the classical theorem. The added sharpness requirement forces an explicit extremal example and a proof that it fails to be Hamiltonian, which is independent content beyond the closing-and-inserting argument.",
       steps: [
         "Let $P=v_1v_2\\dots v_k$ be a longest path. Every neighbour of $v_1$ and $v_k$ lies on $P$, since otherwise $P$ could be extended. Define $$A=\\{i:1\\le i\\le k-1,\\ v_1v_{i+1}\\in E\\},\\quad B=\\{i:1\\le i\\le k-1,\\ v_iv_k\\in E\\}.$$ Then $|A|=\\deg(v_1)$ and $|B|=\\deg(v_k)$.",
         "Since $|A|+|B|\\ge n\\ge k$ while both sets lie in a universe of size $k-1$, they intersect. Choose $i\\in A\\cap B$. Then $$v_1v_{i+1}v_{i+2}\\dots v_kv_i v_{i-1}\\dots v_1$$ is a cycle through all $k$ vertices of $P$.",
-        "Suppose $k&lt;n$. Take a vertex $x$ outside this cycle. Since $\\deg(x)\\ge n/2>k/2$, $x$ has more than half of the cycle vertices as neighbours. A set of vertices on a cycle with no two consecutive vertices has at most $\\lfloor k/2\\rfloor$ elements, so two consecutive cycle vertices, say $u,v$, are both adjacent to $x$.",
-        "Replacing the cycle edge $uv$ by $uxv$ produces a cycle through $k+1$ vertices, contradicting the maximality of $P$. Hence $k=n$, and the cycle found in step 2 is Hamiltonian."
+        "Suppose $k&lt;n$ and let $x$ be a vertex outside the cycle. If $x$ had a neighbour $v_i$ on the cycle, then deleting the cycle edge immediately before $v_i$ and inserting $x$ would give a path of length $k+1$, contradicting the maximality of $P$. Therefore no vertex outside the cycle is adjacent to any cycle vertex.",
+        "Replacing a cycle edge $uv$ by $uxv$ then produces a cycle through $k+1$ vertices, again contradicting maximality of $P$. Hence $k=n$, and the cycle found above is Hamiltonian.",
+        "For sharpness, let $n\\ge4$ be even and take $G$ to be the disjoint union of two copies of the complete graph $K_{n/2}$. Every vertex has degree exactly $n/2-1$ (all other vertices within its own clique), so the minimum-degree bound falls exactly one short of $n/2$.",
+        "Since $G$ has two connected components, no cycle of $G$ can visit vertices of both components, so in particular $G$ has no Hamiltonian cycle. This shows the threshold $n/2$ in Dirac's theorem cannot be relaxed to $n/2-1$."
       ]
     },
     {
@@ -523,7 +597,7 @@ window.IMO_SHORTLIST = {
       difficulty: "hard",
       stars: 3,
       rating: 7,
-      confidence: "high",
+      confidence: "medium",
       text: "Let $n&lt;m$ be positive integers. Let $a_{ij}$ be real numbers for $1\\le i\\le n$ and $1\\le j\\le m$. We say a sequence of real numbers $x_1,\\dots,x_m$ is <em>stable</em> if we can choose $n$ pairwise distinct integers $c_1,\\dots,c_n\\in\\{1,\\dots,m\\}$ such that $$a_{i,c_i}-x_{c_i}\\ge a_{ij}-x_j \\quad\\text{for all }1\\le i\\le n\\text{ and }1\\le j\\le m.$$ Prove that if two sequences $y=(y_1,\\dots,y_m)$ and $z=(z_1,\\dots,z_m)$ are stable, then the sequence $u$ defined by $u_j=\\min(y_j,z_j)$ is also stable.",
       why: "Choose witnessing matchings for $y$ and $z$. Their union decomposes into alternating paths and cycles. The differences $d_j=y_j-z_j$ are monotone along every path and constant on every cycle; this permits an exchange-free choice of one optimal edge per row for $u=\\min(y,z)$ while keeping all chosen columns distinct.",
       steps: [
@@ -555,10 +629,75 @@ window.IMO_SHORTLIST = {
     {
       id: "c14",
       category: "cmb",
+      difficulty: "hard",
+      stars: 3,
+      rating: 7,
+      confidence: "high",
+      status: "verified",
+      text: "Let $G = (V, E)$ be a connected simple graph with $n$ vertices and $m$ edges. We assign a weight $w(e) \\in \\{-1, +1\\}$ to each edge $e \\in E$. For each vertex $v \\in V$, let $P(v) = \\prod_{e \\ni v} w(e)$ be the product of the weights of all edges incident to $v$. A weighting is called <em>harmonious</em> if $P(v) = -1$ for every vertex $v \\in V$.<br><br>Prove that a harmonious weighting exists if and only if $n$ is even. Furthermore, when $n$ is even, prove that the number of distinct harmonious weightings is exactly $2^{m - n + 1}$.",
+      why: "Double-counting the global vertex product shows that all edge signs cancel in pairs, forcing $(-1)^n = 1$. The sharp count and existence follow by selecting an arbitrary spanning tree: peeling leaves upward from the tree determines all tree edges uniquely for any assignment on the $m-n+1$ cycle chords, while global parity guarantees that the root vertex is automatically satisfied.",
+      answer: "$$\\boxed{\\text{A harmonious weighting exists } \\Longleftrightarrow n \\text{ is even; the number of such weightings is } 2^{m-n+1}.}$$",
+      steps: [
+        "In the product $\\prod_{v \\in V} P(v) = \\prod_{v \\in V} \\prod_{e \\ni v} w(e)$, every edge $e = uv$ appears exactly twice (once at $u$ and once at $v$). Thus $$\\prod_{v \\in V} P(v) = \\prod_{e \\in E} w(e)^2 = (+1)^m = 1.$$",
+        "If a harmonious weighting exists, then $P(v) = -1$ for every $v \\in V$, so $\\prod_{v \\in V} P(v) = (-1)^n$. Hence $(-1)^n = 1$, which forces $n$ to be even. This proves no harmonious weighting exists when $n$ is odd.",
+        "Now suppose $n$ is even. Choose any spanning tree $T \\subseteq G$, which contains $n-1$ edges. The remaining $m - (n-1) = m - n + 1$ edges are chords outside $T$.",
+        "Assign weights $w(e) \\in \\{-1, +1\\}$ to the $m - n + 1$ chords arbitrarily. There are $2^{m - n + 1}$ ways to make this choice.",
+        "Root the tree $T$ at an arbitrary vertex $r \\in V$. We now determine the weights of the edges of $T$ inductively from the leaves up to $r$. For any leaf vertex $\\ell \\ne r$, exactly one edge of $T$ is incident to $\\ell$ (the edge to its parent). All other edges incident to $\\ell$ are chords whose weights are already fixed. Therefore, there is a unique choice of weight for the parent edge such that $P(\\ell) = -1$.",
+        "Repeatedly prune leaves of $T$ other than $r$. At each step, a vertex $u \\ne r$ whose child-edges and incident chords have all been determined has exactly one undetermined edge connecting it to its parent. Thus its parent edge is uniquely forced by the requirement $P(u) = -1$. This uniquely determines the weights of all $n-1$ edges of $T$.",
+        "Finally, check the root $r$. By the identity in Step 1, $P(r) \\prod_{v \\ne r} P(v) = 1$. Since $P(v) = -1$ was ensured for all $n-1$ vertices $v \\ne r$, we obtain $P(r) \\cdot (-1)^{n-1} = 1$. Because $n$ is even, $n-1$ is odd, so $(-1)^{n-1} = -1$, which forces $P(r) = -1$.",
+        "Thus the root condition is automatically satisfied. Since each of the $2^{m - n + 1}$ chord assignments extends to a unique valid harmonious weighting, the total number of harmonious weightings is exactly $2^{m - n + 1}$.",
+      ]
+    },
+    {
+      id: "c15",
+      category: "cmb",
+      difficulty: "hard",
+      stars: 3,
+      rating: 7,
+      confidence: "high",
+      status: "verified",
+      text: "In a tournament with $n \\ge 3$ players, each pair plays a match with no ties. A player $v$ is called a <em>king</em> if for every other player $u$, either $v$ beats $u$, or there exists a player $w$ such that $v$ beats $w$ and $w$ beats $u$. Let $K$ denote the set of kings in the tournament.<br><ol><li>Prove that $|K| \\ne 2$, i.e. no tournament can contain exactly two kings.</li><li>Determine all possible values of $|K|$ as a function of $n$, and for each possible value, exhibit a tournament attaining it.</li></ol>",
+      why: "Exactly two kings is impossible: a king of the in-neighborhood of one of them is a third king of the whole tournament. The value $4$ is impossible on exactly four vertices, by the score sequence $(2,2,1,1)$. Every other admissible value is realized by a cyclic tournament, by one edge-reversal of the $5$-cycle, or by an explicit vertex added to a cyclic tournament of odd order at least $5$, and then by attaching vertices that everyone beats.",
+      answer: "$$\\boxed{\\text{For }n=3\\text{ and }n=4,\\ |K|\\in\\{1,3\\}.\\quad\\text{For }n\\ge 5,\\ |K|\\in\\{1,3,4,\\ldots,n\\}.}$$",
+      steps: [
+        "Landau's lemma: in any tournament, a vertex $v$ of maximum out-degree is a king. If some $u$ were not reachable from $v$ in at most two steps, then $u$ would beat $v$ and every out-neighbor of $v$, so $d^+(u)\\ge d^+(v)+1$. Thus every tournament has at least one king.",
+        "A transitive tournament has a source, and a source is the unique king, because nobody else can reach it. So $|K|=1$ occurs for every $n\\ge 3$. The directed $3$-cycle has $|K|=3$.",
+        "No tournament has exactly two kings. Suppose $K=\\{u,v\\}$ and $u\\to v$. Since $v$ is a king, some $w$ satisfies $v\\to w\\to u$. Let $S=N^-(u)$, so $w\\in S$ and $S\\ne\\varnothing$. By Landau's lemma the induced tournament on $S$ has a king $z$. Then $z$ is a king of the whole tournament: $z$ reaches every other vertex of $S$ in at most two steps inside $S$, $z\\to u$, and $z\\to u\\to y$ for every $y\\in N^+(u)$. Also $z\\ne v$, because $u\\to v$ so $v\\notin S$. Thus $z$ is a third king.",
+        "Four vertices cannot all be kings. A tournament on $4$ vertices has $6$ edges. A vertex of out-degree $3$ is a source and hence the unique king, while a vertex of out-degree $0$ is not a king. The only remaining score sequence summing to $6$ is $(2,2,1,1)$. Let $a$ have out-degree $1$, with unique out-neighbor $c$, and let $p,q$ be the two in-neighbors of $a$. For $a$ to be a king, $c$ must beat both $p$ and $q$. Those two edges already give $c$ out-degree $2$, so $c$ loses to $a$ and the only undecided edge is $p$--$q$. If $p\\to q$, then the only out-neighbor of $q$ is $a$, and $a$ does not beat $p$. Hence $q$ does not reach $p$, so $q$ is not a king.",
+        "Extension. Suppose $T$ has king set $K$, and form $T'$ by adding a vertex $r$ beaten by every vertex of $T$. Every king of $T$ still reaches the old vertices by the same paths and reaches $r$ in one step. A non-king of $T$ still fails to reach some old vertex. The vertex $r$ itself has out-degree $0$. Therefore the king set of $T'$ is exactly $K$. In particular, adding $n-3$ such vertices to a $3$-cycle shows that $|K|=3$ occurs for every $n\\ge 3$.",
+        "Odd order. Let $k\\ge 3$ be odd and set $m=(k-1)/2$. In the cyclic tournament on $\\mathbb{Z}/k\\mathbb{Z}$, direct $i\\to i+j$ for $1\\le j\\le m$. The out-neighborhood of $0$ is $\\{1,\\ldots,m\\}$, and $m$ beats $\\{m+1,\\ldots,2m\\}=\\{m+1,\\ldots,k-1\\}$, which is exactly the in-neighborhood of $0$. Thus $0$ is a king, and by rotation every vertex is a king. The extension of the previous step then realizes $|K|=k$ for every $n\\ge k$.",
+        "Even order at least $6$. Let $k\\ge 6$ be even and set $m=k/2-1$, so the cyclic tournament of the previous step lives on $\\mathbb{Z}/(2m+1)\\mathbb{Z}$ with $m\\ge 2$. Add a vertex $x$ that beats only $0$ and $m$, while every other cyclic vertex beats $x$. Then $x\\to 0$ reaches $\\{1,\\ldots,m\\}$ and $x\\to m$ reaches $\\{m+1,\\ldots,2m\\}$, so $x$ is a king. Each cyclic vertex other than $0$ and $m$ beats $x$ directly; also $0\\to 1\\to x$ and $m\\to(m+1)\\to x$. Kingship among the cyclic vertices is unchanged, so all $k$ vertices are kings. Extension realizes $|K|=k$ for every $n\\ge k$.",
+        "Exactly four kings, for every $n\\ge 5$. On $\\mathbb{Z}/5\\mathbb{Z}$ take the cyclic edges $i\\to i+1$ and $i\\to i+2$, and reverse only $0\\to 1$, leaving $1\\to 0$. The out-neighborhood of $0$ is now $\\{2\\}$, and $2$ beats only $\\{3,4\\}$, so $0$ does not reach $1$. The other four vertices are kings: $1$ beats $\\{0,2,3\\}$ and $2\\to 4$; $2$ beats $\\{3,4\\}$ and $4$ beats $\\{0,1\\}$; $3$ beats $\\{4,0\\}$, $0\\to 2$, and $4\\to 1$; $4$ beats $\\{0,1\\}$, $0\\to 2$, and $1\\to 3$. Extension then realizes $|K|=4$ for every $n\\ge 5$.",
+        "Combining these constructions with the prohibition on exactly two kings: for $n=3$ and $n=4$ the only possible values are $1$ and $3$, while for $n\\ge 5$ every integer in $\\{1,3,4,\\ldots,n\\}$ occurs and $2$ does not.",
+      ]
+    },
+    {
+      id: "c16",
+      category: "cmb",
+      difficulty: "hard",
+      stars: 3,
+      rating: 7,
+      confidence: "high",
+      status: "verified",
+      text: "In a tournament with $n \\ge 3$ players, each pair of distinct players plays a match with no ties. The tournament is called <em>strongly connected</em> if for every pair of players $u$ and $v$, there is a directed path from $u$ to $v$. A trio of players $\\{u, v, w\\}$ is called a <em>cyclic trio</em> if $u$ beats $v$, $v$ beats $w$, and $w$ beats $u$.<br><ol><li>Prove that every strongly connected tournament on $n$ players contains at least $n - 2$ cyclic trios.</li><li>Show that this lower bound is sharp: for every $n \\ge 3$, construct a strongly connected tournament containing exactly $n - 2$ cyclic trios.</li></ol>",
+      why: "The sharp minimum $n-2$ is attained by augmenting a transitive tournament on $n-1$ vertices with a single vertex that beats only the global source. The matching lower bound comes from the exact count $\\binom n3-\\sum\\binom{d^+(v)}{2}$: strong connectivity forces every proper set to send out an edge, and under that constraint the sum of squared out-degrees is maximized by the score sequence of the same example.",
+      answer: "$$\\boxed{\\text{The minimum number of cyclic trios is } n - 2.}$$",
+      steps: [
+        "Base case $n = 3$: Any strongly connected tournament on $3$ players cannot have a source (out-degree $2$) or a sink (in-degree $2$), which forces all out-degrees to be $1$. Thus it is a directed cycle, which forms exactly $1 = 3 - 2$ cyclic trio.",
+        "Sharpness construction: For any $n \\ge 3$, take a transitive tournament on $\\{1, 2, \\dots, n - 1\\}$ with directed edges $i \\to j$ whenever $1 \\le i &lt; j \\le n - 1$. Add vertex $n$ with edges $n \\to 1$ and $j \\to n$ for all $j \\in \\{2, 3, \\dots, n - 1\\}$. This tournament is strongly connected because it contains the Hamiltonian cycle $1 \\to 2 \\to 3 \\to \\dots \\to n - 1 \\to n \\to 1$. Every cyclic trio must contain vertex $n$ (since $\\{1, \\dots, n-1\\}$ is transitive) and must use the unique out-edge $n \\to 1$. A third vertex $j$ forms a cyclic trio $n \\to 1 \\to j \\to n$ if and only if $1 \\to j$ and $j \\to n$, which holds precisely for $j \\in \\{2, 3, \\dots, n - 1\\}$. Thus there are exactly $(n - 1) - 2 + 1 = n - 2$ cyclic trios.",
+        "The number of cyclic trios equals $$\\binom n3-\\sum_v\\binom{d^+(v)}{2}.$$ Indeed, every triple is either cyclic or transitive. A transitive triple has exactly one vertex beating the other two, while a cyclic triple has none. The triples in which a fixed $v$ beats both other vertices are precisely the pairs of out-neighbors of $v$.",
+        "Let $T$ be strongly connected on $n\\ge 3$ vertices, and let $d_1\\le\\cdots\\le d_n$ be its out-degrees. For every nonempty proper set $W$ there is an edge leaving $W$, so the out-degrees in $W$ sum to at least $\\binom{|W|}{2}+1$. Taking $W$ to be the $k$ vertices of smallest out-degree, $$\\sum_{i=1}^k d_i\\ge\\binom k2+1\\qquad(1\\le k\\le n-1),$$ while $\\sum d_i=\\binom n2$.",
+        "Among nondecreasing integer sequences with this sum and these partial-sum bounds, $\\sum d_i^2$ is maximized by $$t=(1,1,2,3,\\ldots,n-2,n-2),$$ the sequence whose partial sums equal the bounds. If $s\\ne t$ also satisfies them, let $k$ be the first index with $s_k\\ne t_k$, necessarily $s_k\\ge t_k+1$, and let $m&gt;k$ be the first later index at which the excess partial sum returns to the bound. The sequence obtained by decreasing $s_k$ by $1$ and increasing $s_m$ by $1$ still satisfies the bounds, remains nondecreasing, and has strictly larger sum of squares. Thus every maximizer equals $t$.",
+        "The sharpness tournament has out-degrees $t$: the added vertex and the old sink both have out-degree $1$, and the other out-degrees are $2,3,\\ldots,n-2,n-2$. It has exactly $n-2$ cyclic trios. Since $\\sum\\binom{d_i}{2}=\\bigl(\\sum d_i^2-\\sum d_i\\bigr)/2$ and $\\sum d_i$ is fixed, every strongly connected tournament has sum of squares at most that of $t$, hence at least $n-2$ cyclic trios.",
+      ]
+    },
+    {
+      id: "c17",
+      category: "cmb",
       difficulty: "challenging",
       stars: 4,
       rating: 8,
-      confidence: "high",
+      confidence: "medium",
       text: "Let $m\\ge3$ be odd. A school has $m$ students and $n\\ge m+2$ clubs; no two clubs have the same membership set. For two clubs, their <em>discord</em> is the number of students in exactly one of them. Let $d_{\\min}$ and $d_{\\max}$ be the minimum and maximum discords. Prove that $$\\frac{d_{\\max}}{d_{\\min}}\\ge\\frac{m+3}{m-1}.$$ Show that the bound is attained for $m=3$ and $m=5$.",
       why: "The lower bound follows from an elementary Plotkin-type count together with a rank argument showing that $d_{\\max}\\ge d_{\\min}+2$. The original claim of attainability for every odd $m$ is too strong; for example, equality cannot occur when $m=7$. The statement is minimally corrected by retaining sharp equality examples for $m=3$ and $m=5$.",
       steps: [
@@ -574,7 +713,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "c15",
+      id: "c18",
       category: "cmb",
       difficulty: "challenging",
       stars: 4,
@@ -591,7 +730,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "c16",
+      id: "c19",
       category: "cmb",
       difficulty: "challenging",
       stars: 4,
@@ -604,7 +743,7 @@ window.IMO_SHORTLIST = {
         "Let $M(n)$ be the maximum obtainable from $n$ piles. In an optimal final merge, suppose the two child-subpiles have optimal values $M(i)$ and $M(n-i)$, with $i\\le n-i$. The merged value is $$M(i)+M(n-i)+\\min(M(i),M(n-i))=2M(i)+M(n-i).$$ Hence $$M(n)=\\max_{1\\le i\\le\\lfloor n/2\\rfloor}\\bigl(2M(i)+M(n-i)\\bigr),\\qquad M(1)=1.$$",
         "Define $w(r)=2^{\\operatorname{popcount}(r)}$ and $$S(n)=\\sum_{r=0}^{n-1}w(r).$$ Lucas' theorem modulo $2$ says that $\\binom yx$ is odd exactly when every $1$-bit of $x$ also occurs in $y$. Thus row $y$ contains exactly $2^{\\operatorname{popcount}(y)}=w(y)$ odd entries, so $S(n)$ is exactly the required Pascal-triangle count.",
         "Since $\\operatorname{popcount}(2r)=\\operatorname{popcount}(r)$ and $\\operatorname{popcount}(2r+1)=\\operatorname{popcount}(r)+1$, we have $$S(2t)=3S(t),\\qquad S(2t+1)=2S(t)+S(t+1).$$",
-        "The key binary-block lemma is: for integers $1\\le i\\le j$, $$S(i+j)\\ge2S(i)+S(j).$$ Prove it by strong induction on $i+j$: write $i=2a+\\delta$, $j=2b+\\varepsilon$ with $\\delta,\\varepsilon\\in\\{0,1\\}$, split the sums into even and odd indices, and use the identities in the previous step. In each parity case, after collecting the even and odd terms, the claim reduces to the same inequality for strictly smaller parameters. The case $i=j$ is exact because $S(2i)=3S(i)$.",
+        "We prove the key binary-block lemma $$S(i+j)\\ge2S(i)+S(j) \\tag{L}$$ for $0\\le i\\le j$ by strong induction on $i+j$. Write $i=2a+\\delta$, $j=2b+\\varepsilon$, with $\\delta,\\varepsilon\\in\\{0,1\\}$. If $(\\delta,\\varepsilon)=(0,0)$, then $S(i+j)=3S(a+b)$ and the induction hypothesis gives $$3S(a+b)\\ge6S(a)+3S(b)=2S(i)+S(j).$$ If $(0,1)$, then $$S(i+j)=2S(a+b)+S(a+b+1),$$ and the induction hypotheses for $(a,b)$ and $(a,b+1)$ give $$S(a+b)\\ge2S(a)+S(b),\\qquad S(a+b+1)\\ge2S(a)+S(b+1),$$ hence (L). If $(1,0)$, then $a&lt;b$, and the induction hypotheses for $(a,b)$ and $(a+1,b)$ give $$S(a+b)\\ge2S(a)+S(b),\\qquad S(a+b+1)\\ge2S(a+1)+S(b),$$ hence (L). Finally suppose $(\\delta,\\varepsilon)=(1,1)$. If $a=b$, then $S(i+j)=S(2i)=3S(i)=2S(i)+S(j)$. If $a&lt;b$, apply the induction hypothesis to $(a,b+1)$ and $(a+1,b)$ to obtain $$S(a+b+1)\\ge2S(a)+S(b+1),\\qquad S(a+b+1)\\ge2S(a+1)+S(b).$$ Since $S(a+1)=S(a)+w(a)$ and $S(b+1)=S(b)+w(b)$, one of these bounds is at least $$2S(a)+S(b)+\\frac{2w(a)+w(b)}3,$$ because $$\\max\\{w(b),2w(a)\\}\\ge\\frac{2w(a)+w(b)}3.$$ Multiplying by $3$ and using $S(2t)=3S(t)$ yields (L).",
         "Applying the lemma to any split $i\\le n-i$ gives $$2S(i)+S(n-i)\\le S(n).$$ Equality is achieved when $n=2i$ by $S(2i)=3S(i)$, and when $n=2i+1$ by $S(2i+1)=2S(i)+S(i+1)$. Therefore $$S(n)=\\max_{1\\le i\\le\\lfloor n/2\\rfloor}\\bigl(2S(i)+S(n-i)\\bigr).$$",
         "The recurrences for $M$ and $S$, together with $M(1)=S(1)=1$, now give $M(n)=S(n)$ by induction on $n$. Hence the maximum final pile equals the number of odd entries in the first $n$ rows of Pascal's triangle."
       ]
@@ -1119,9 +1258,73 @@ window.IMO_SHORTLIST = {
         "Therefore the exact answer is 3·C(n,6) = n(n−1)(n−2)(n−3)(n−4)(n−5)/240."
       ]
     },
-    // Number Theory — 16 problems, easy to hard
+    // Number Theory — 19 problems, easy to hard
     {
       id: "n1",
+      category: "nt",
+      difficulty: "easy",
+      stars: 1,
+      rating: 2,
+      confidence: "high",
+      status: "verified",
+      text: "Determine all pairs of prime numbers $(p, q)$ such that $$p^{q-1} + q^{p-1}$$ is a perfect square.",
+      why: "Parity and modular arithmetic modulo $4$ eliminate the case where both primes are odd, as the sum of two odd squares is always $\\equiv 2 \\pmod 4$. If one of the primes is $2$, a difference-of-squares factorization forces the equation $2^m = m$, which has no positive integer solutions.",
+      answer: "$$\\boxed{(p, q) = (2, 2)}$$",
+      steps: [
+        "Case 1: $p = q$. The expression becomes $p^{p-1} + p^{p-1} = 2 p^{p-1}$. If $p = 2$, this equals $2 \\cdot 2^1 = 4 = 2^2$, which is a perfect square, so $(p, q) = (2, 2)$ is a solution. If $p$ is an odd prime, the $2$-adic valuation $v_2(2 p^{p-1}) = 1$ is odd, so $2 p^{p-1}$ cannot be a square. Thus no other solutions arise from $p = q$.",
+        "Now assume $p \\ne q$. By symmetry, we may assume without loss of generality that $p &lt; q$.",
+        "Case 2: Both $p$ and $q$ are odd primes. Then $p \\ge 3$ and $q \\ge 3$. Since both $p$ and $q$ are odd, both exponents $q - 1$ and $p - 1$ are non-zero even integers. Write $q - 1 = 2b$ and $p - 1 = 2a$ with integers $a, b \\ge 1$. Then $$p^{q-1} = (p^b)^2 \\equiv 1 \\pmod 4 \\quad\\text{and}\\quad q^{p-1} = (q^a)^2 \\equiv 1 \\pmod 4,$$ because the square of any odd integer is congruent to $1$ modulo $4$. Therefore, $$p^{q-1} + q^{p-1} \\equiv 1 + 1 = 2 \\pmod 4.$$ But a perfect square can only be congruent to $0$ or $1$ modulo $4$, never $2$. Thus there are no solutions when both $p$ and $q$ are odd.",
+        "Case 3: $p = 2$ and $q$ is an odd prime ($q \\ge 3$). Since $q$ is odd, $q - 1 = 2m$ is an even integer with $m \\ge 1$. The expression becomes $$2^{q-1} + q^{2-1} = (2^m)^2 + q = k^2$$ for some positive integer $k$.",
+        "Rearrange this as a difference of squares: $$q = k^2 - (2^m)^2 = (k - 2^m)(k + 2^m).$$ Because $q$ is prime and $k + 2^m > k - 2^m > 0$, the factors must be $k - 2^m = 1$ and $k + 2^m = q$.",
+        "Subtracting the first equation from the second eliminates $k$: $$(k + 2^m) - (k - 2^m) = q - 1 \\implies 2^{m+1} = q - 1.$$ But by definition, $q - 1 = 2m$. Hence $2^{m+1} = 2m$, which simplifies to $2^m = m$. By an immediate induction, $2^m > m$ for all integers $m \\ge 1$, so $2^m = m$ has no solutions in positive integers.",
+        "Combining all cases, the only solution is $(p, q) = (2, 2)$.",
+      ]
+    },
+    {
+      id: "n2",
+      category: "nt",
+      difficulty: "easy",
+      stars: 1,
+      rating: 3,
+      confidence: "high",
+      status: "verified",
+      text: "Determine all positive integers $n$ for which $$n^2 + 3^n$$ is a perfect square.",
+      why: "Factoring the difference of squares $k^2 - n^2 = 3^n$ leaves both factors as powers of $3$. A divisibility bound forces the two powers to differ by exponent $1$, reducing the problem to an elementary inequality.",
+      answer: "$$\\boxed{n \\in \\{1, 3\\}}$$",
+      steps: [
+        "Let $n^2 + 3^n = k^2$ for some positive integer $k$. Since $3^n > 0$, we have $k > n$, so $$3^n = k^2 - n^2 = (k - n)(k + n).$$",
+        "Because $3$ is prime, both factors must be powers of $3$. Let $k - n = 3^a$ and $k + n = 3^b$ with integers $0 \\le a &lt; b$ and $a + b = n$.",
+        "Subtracting the two equations eliminates $k$: $$2n = (k + n) - (k - n) = 3^b - 3^a = 3^a(3^{b-a} - 1).$$",
+        "If $a = 0$, then $b = n$, giving $2n = 3^n - 1$. For $n = 1$, $2(1) = 3^1 - 1 = 2$, which gives the solution $n = 1$. For $n \\ge 2$, an immediate induction shows $3^n - 1 > 2n$, so no further solutions arise from $a = 0$.",
+        "Now suppose $a \\ge 1$. Then $3^a$ divides $2n$, and since $\\gcd(2, 3^a) = 1$, $3^a$ must divide $n$. In particular, $n \\ge 3^a$.",
+        "Substitute $n \\ge 3^a$ into $2n = 3^a(3^{b-a} - 1)$ to obtain $$3^{b-a} - 1 = \\frac{2n}{3^a} \\ge 2 \\implies 3^{b-a} \\ge 3.$$ On the other hand, $3^a(3^{b-a} - 1) = 2n \\le 2n$ with $n \\ge 3^a$ forces $3^{b-a} - 1 \\le 2$, so $3^{b-a} \\le 3$. Hence $3^{b-a} = 3$, meaning $b - a = 1$.",
+        "With $b - a = 1$, we have $3^{b-a} - 1 = 2$, so $2n = 3^a \\cdot 2$, which implies $n = 3^a$. Since $b = a + 1$ and $a + b = n$, we get $2a + 1 = n = 3^a$.",
+        "The equation $3^a = 2a + 1$ holds for $a = 0$ (giving $n = 1$) and $a = 1$ (giving $n = 3^1 = 3$). For $a \\ge 2$, $3^a > 2a + 1$ holds by induction: $3^{a+1} = 3 \\cdot 3^a > 3(2a+1) = 6a+3 > 2(a+1)+1$.",
+        "Checking the candidates: for $n = 1$, $1^2 + 3^1 = 4 = 2^2$; for $n = 3$, $3^2 + 3^3 = 9 + 27 = 36 = 6^2$. Both work, so the complete solution set is $n \\in \\{1, 3\\}$.",
+      ]
+    },
+    {
+      id: "n3",
+      category: "nt",
+      difficulty: "easy",
+      stars: 1,
+      rating: 3,
+      confidence: "high",
+      status: "verified",
+      text: "Let $q$ be an odd prime such that $p = 2q + 1$ is also prime. Prove that $$p \\mid q^q + 1$$ if and only if $q \\equiv 3 \\pmod 4$.",
+      why: "The expression $q^q \\pmod p$ secretly encodes the Legendre symbol $(q/p)$ through Euler's criterion because $q = (p-1)/2$. Applying the Law of Quadratic Reciprocity evaluates $(q/p) = (-1)^{(q-1)/2} (p/q) = (-1)^{(q-1)/2}$ using $p \\equiv 1 \\pmod q$, directly yielding the exact remainder $\\pm 1$.",
+      answer: "$$\\boxed{p \\mid q^q + 1 \\iff q \\equiv 3 \\pmod 4.}$$",
+      steps: [
+        "Since $p = 2q + 1$, the exponent $q$ satisfies $q = \\frac{p-1}{2}$. Therefore, $$q^q = q^{(p-1)/2}.$$",
+        "Because $p$ is prime and $p = 2q+1 > q$, we have $\\gcd(q, p) = 1$. By Euler's criterion, $$q^{(p-1)/2} \\equiv \\left(\\frac{q}{p}\\right) \\pmod p,$$ where $\\left(\\frac{q}{p}\\right)$ denotes the Legendre symbol.",
+        "Since $p$ and $q$ are distinct odd primes, Gauss's Law of Quadratic Reciprocity gives: $$\\left(\\frac{q}{p}\\right) \\left(\\frac{p}{q}\\right) = (-1)^{\\frac{p-1}{2} \\frac{q-1}{2}} = (-1)^{q \\cdot \\frac{q-1}{2}}.$$",
+        "Because $q$ is odd, the exponent $q \\cdot \\frac{q-1}{2}$ has the same parity as $\\frac{q-1}{2}$, so $(-1)^{q \\cdot \\frac{q-1}{2}} = (-1)^{\\frac{q-1}{2}}$. Furthermore, $p = 2q + 1 \\equiv 1 \\pmod q$, so $$\\left(\\frac{p}{q}\\right) = \\left(\\frac{1}{q}\\right) = 1.$$",
+        "Multiplying the reciprocity relation by $\\left(\\frac{p}{q}\\right) = 1$ yields $$\\left(\\frac{q}{p}\\right) = (-1)^{\\frac{q-1}{2}}.$$ Consequently, $$q^q \\equiv (-1)^{\\frac{q-1}{2}} \\pmod p.$$",
+        "Hence $q^q + 1 \\equiv (-1)^{\\frac{q-1}{2}} + 1 \\pmod p$. Because $p > 2$, $p \\mid q^q + 1$ holds if and only if $(-1)^{\\frac{q-1}{2}} = -1$, which is equivalent to $\\frac{q-1}{2}$ being odd, i.e. $q \\equiv 3 \\pmod 4$. (When $q \\equiv 1 \\pmod 4$, $(-1)^{\\frac{q-1}{2}} = 1$, which gives $p \\mid q^q - 1$ instead).",
+      ]
+    },
+    {
+      id: "n4",
       category: "nt",
       difficulty: "easy",
       stars: 1,
@@ -1137,7 +1340,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n2",
+      id: "n5",
       category: "nt",
       difficulty: "medium",
       stars: 2,
@@ -1153,7 +1356,26 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n3",
+      id: "n6",
+      category: "nt",
+      difficulty: "medium",
+      stars: 2,
+      rating: 4,
+      confidence: "high",
+      status: "verified",
+      text: "Let $p$ be an odd prime and let $n,m$ be positive integers such that $p$ divides both $2^n-1$ and $2^m-1$. Prove that $p$ divides $2^{\\gcd(n,m)}-1$.",
+      why: "The earlier draft's floor/gcd/lcm recurrence rested on a ratio identity that was in fact false, and the target exponential inequality was left unproved after the correction. This replacement keeps the same gcd-of-exponents flavor but reduces it to the standard multiplicative-order argument, which is short and fully elementary.",
+      answer: "$$\\boxed{p\\mid 2^{\\gcd(n,m)}-1.}$$",
+      steps: [
+        "Since $p\\mid 2^n-1$, $p$ is odd and $\\gcd(2,p)=1$, so $2$ has a well-defined multiplicative order $d=\\operatorname{ord}_p(2)$ modulo $p$, i.e. $d$ is the least positive integer with $2^d\\equiv1\\pmod p$.",
+        "Claim: for any positive integer $k$, $p\\mid2^k-1$ if and only if $d\\mid k$. If $d\\mid k$, write $k=ds$; then $2^k-1=(2^d)^s-1$ is divisible by $2^d-1$, which is divisible by $p$, so $p\\mid2^k-1$.",
+        "Conversely, if $p\\mid2^k-1$, write $k=dq+r$ with $0\\le r&lt;d$ by division. Then $2^k=(2^d)^q\\cdot2^r\\equiv2^r\\pmod p$, so $2^k-1\\equiv2^r-1\\pmod p$. Since $p\\mid2^k-1$, also $p\\mid2^r-1$. By minimality of $d$ and $0\\le r&lt;d$, this forces $r=0$, i.e. $d\\mid k$.",
+        "Applying the claim to $k=n$ and $k=m$ (both hypotheses hold) gives $d\\mid n$ and $d\\mid m$, hence $d\\mid\\gcd(n,m)$.",
+        "Applying the claim once more to $k=\\gcd(n,m)$, since $d\\mid\\gcd(n,m)$, we conclude $p\\mid2^{\\gcd(n,m)}-1$."
+      ]
+    },
+    {
+      id: "n7",
       category: "nt",
       difficulty: "medium",
       stars: 2,
@@ -1169,7 +1391,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n4",
+      id: "n8",
       category: "nt",
       difficulty: "medium",
       stars: 2,
@@ -1185,12 +1407,12 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n5",
+      id: "n9",
       category: "nt",
       difficulty: "medium",
       stars: 2,
       rating: 5.5,
-      confidence: "high",
+      confidence: "medium",
       text: "Find all pairs of positive integers $(x,y)$ satisfying $$x^y-y^x=x+y.$$",
       why: "The small cases are important, while the large cases are eliminated by monotonicity of exponential-versus-power growth.",
       steps: [
@@ -1203,7 +1425,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n6",
+      id: "n10",
       category: "nt",
       difficulty: "hard",
       stars: 3,
@@ -1219,7 +1441,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n7",
+      id: "n11",
       category: "nt",
       difficulty: "hard",
       stars: 3,
@@ -1236,7 +1458,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n8",
+      id: "n12",
       category: "nt",
       difficulty: "hard",
       stars: 3,
@@ -1253,23 +1475,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n9",
-      category: "nt",
-      difficulty: "hard",
-      stars: 3,
-      rating: 7,
-      confidence: "high",
-      text: "Let $n\\ge3$. A sequence $a_1,a_2,\\dots,a_n$ of positive integers satisfies $$a_k=\\frac{[a_{k-1},a_{k-2}]}{(a_{k-1},a_{k-2})}\\quad(3\\le k\\le n),$$ where $[x,y]$ and $(x,y)$ denote lcm and gcd. Prove that if the sequence is strictly decreasing, then $$a_1\\ge\\frac{2^{n-2}a_{n-1}}{a_n}.$$",
-      why: "The recurrence yields a strong ratio inequality: consecutive ratios decrease by a factor at least four, which is more than enough for the required bound.",
-      steps: [
-        "Set $r_k=a_{k-1}/a_k>1$ for $2\\le k\\le n$. From the recurrence, for $2\\le k&lt;n$, with $g_k=(a_{k-1},a_k)$, $$a_{k+1}=\\frac{a_ka_{k-1}}{g_k^2}.$$",
-        "Therefore, for $2\\le k&lt;n$, $$\\frac{r_k}{r_{k+1}}=\\frac{a_{k-1}a_{k+1}}{a_k^2}=\\left(\\frac{a_{k-1}}{g_k}\\right)^2.$$ Since $a_k&lt;a_{k-1}$, the integer $a_{k-1}/g_k$ is at least $2$, so $r_k\\ge4r_{k+1}$.",
-        "Iterating gives $r_2\\ge4^{n-2}r_n$. Since $a_2\\ge1$, we have $a_1=r_2a_2\\ge r_2$, while $r_n=a_{n-1}/a_n$. Hence $$a_1\\ge4^{n-2}\\frac{a_{n-1}}{a_n}\\ge2^{n-2}\\frac{a_{n-1}}{a_n}.$$",
-        "This proves the required inequality."
-      ]
-    },
-    {
-      id: "n10",
+      id: "n13",
       category: "nt",
       difficulty: "hard",
       stars: 3,
@@ -1287,7 +1493,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n11",
+      id: "n14",
       category: "nt",
       difficulty: "hard",
       stars: 3,
@@ -1303,7 +1509,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n12",
+      id: "n15",
       category: "nt",
       difficulty: "challenging",
       stars: 4,
@@ -1320,7 +1526,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n13",
+      id: "n16",
       category: "nt",
       difficulty: "challenging",
       stars: 4,
@@ -1336,7 +1542,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n14",
+      id: "n17",
       category: "nt",
       difficulty: "challenging",
       stars: 4,
@@ -1353,7 +1559,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n15",
+      id: "n18",
       category: "nt",
       difficulty: "challenging",
       stars: 4,
@@ -1371,12 +1577,12 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      id: "n16",
+      id: "n19",
       category: "nt",
       difficulty: "challenging",
       stars: 4,
       rating: 9,
-      confidence: "high",
+      confidence: "medium",
       text: "Let $n\\ge2$. A gcd triangle of order $n$ is a triangular array of positive integers $(a_{i,j})_{1\\le j\\le i\\le n}$ satisfying $a_{i,j}=\\gcd(a_{i+1,j},a_{i+1,j+1})$ for $i&lt;n$, with all $\\binom{n+1}{2}$ entries pairwise distinct. Let $L=\\operatorname{lcm}(a_{n,1},\\dots,a_{n,n})$. Determine the minimum possible value of $\\Omega(L)$, counted with multiplicity, and find all gcd triangles attaining it.",
       why: "Nested interval gcds force a long divisor chain, giving the sharp lower bound. Equality is rigid enough to force a squarefree LCM and one omitted prime at every bottom position.",
       steps: [
