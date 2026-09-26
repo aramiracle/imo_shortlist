@@ -33,17 +33,20 @@ function formatRating(r) {
     if (r == null || r === '') return null;
     const n = Number(r);
     if (Number.isNaN(n)) return String(r);
-    return n.toFixed(1);
+    return (Math.round(n * 2) / 2).toFixed(1);
 }
 
 function stepsHtml(p) {
     const steps = Array.isArray(p.steps)
         ? p.steps.map(s => String(s).trim()).filter(Boolean)
         : [];
+    const answer = p.answer && String(p.answer).trim()
+        ? `<div class="sol-answer"><span class="sol-answer-lbl">Answer</span><p>${escapeHtml(p.answer)}</p></div>`
+        : '';
     if (!steps.length) {
-        return '<span class="sol-empty">No steps yet — add a <code>steps</code> array of hints in problems.js.</span>';
+        return answer || '<span class="sol-empty">No steps yet — add a <code>steps</code> array of hints in problems.js.</span>';
     }
-    return steps.map((s, i) => `
+    return answer + steps.map((s, i) => `
                     <details class="hint">
                         <summary>Step ${i + 1}</summary>
                         <div class="hint-body">${s}</div>
