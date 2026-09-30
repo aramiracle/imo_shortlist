@@ -7,7 +7,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <script>
         window.MathJax = {
@@ -16,8 +16,17 @@
                 displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 processEscapes: true
             },
-            svg: { fontCache: 'global' },
-            options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+            chtml: { fontCache: 'global' },
+            options: { skipHtmlTags: ['script','noscript','style','textarea'] },
+            startup: {
+                /* Never auto-typeset the whole document — app.js typesets
+                   only the tab that is actually shown. */
+                typeset: false,
+                pageReady() {
+                    return MathJax.startup.defaultPageReady()
+                        .then(() => window.__mjFlush && window.__mjFlush());
+                }
+            }
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -764,8 +773,9 @@
 
     .ptxt em { color: var(--sec); font-size: 1.02rem; }
 
-    .ptxt ol {
+    .ptxt ol, .ptxt ul {
         margin: 14px 0 0 1.4em;
+        padding-left: 1.4em;
         display: flex;
         flex-direction: column;
         gap: 6px;

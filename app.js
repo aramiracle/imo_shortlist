@@ -8,6 +8,22 @@ const DIFF_LABEL = {
     challenging: 'Challenging'
 };
 
+/* MathJax is loaded async and may not be ready when a tab renders.
+   Queue roots until it is; pageReady (see HTML) drains the queue. */
+const mjPending = [];
+
+function typesetTab(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (window.MathJax?.typesetPromise) MathJax.typesetPromise([el]);
+    else mjPending.push(el);
+}
+
+window.__mjFlush = function () {
+    const els = mjPending.splice(0);
+    if (els.length && window.MathJax?.typesetPromise) MathJax.typesetPromise(els);
+};
+
 function escapeHtml(s) {
     return String(s)
         .replace(/&/g, '&amp;')
@@ -73,10 +89,10 @@ function problemCard(p, index) {
     const conf = p.confidence ? escapeHtml(p.confidence) : '';
     const whyBody = p.why
         ? `<p>${escapeHtml(p.why)}</p>`
-        : '<span class="sol-empty">No difficulty note yet.</span>';
+        : '<span class="sol-empty">No content note yet.</span>';
     const analysisHtml = `
             <details class="sol">
-                <summary>Difficulty analysis</summary>
+                <summary>Mathematical content</summary>
                 <div class="sol-body">
                     <div class="why-meta">
                         ${rating ? `<span>Rating <b>${rating}</b> / 10</span>` : ''}
@@ -208,7 +224,6 @@ function render() {
     document.getElementById('panel').innerHTML = categories.map((c, i) => {
         const list = byCat[c.id];
         const active = i === 0 ? ' active' : '';
-        const cards = list.map((p, i) => problemCard(p, i)).join('');
         return `
             <div id="${escapeHtml(c.id)}" class="subject${active}">
                 <div class="subhd">
@@ -226,13 +241,27 @@ function render() {
                     <button class="fbtn" onclick="filt(this,'${escapeHtml(c.id)}','hard')">Hard</button>
                     <button class="fbtn" onclick="filt(this,'${escapeHtml(c.id)}','challenging')">Challenging</button>
                 </div>
-                <div class="plist">${cards}</div>
+                <div class="plist"></div>
             </div>`;
     }).join('');
 
-    if (window.MathJax?.typesetPromise) {
-        MathJax.typesetPromise();
-    }
+    byCatRef = byCat;
+    ensureTab(categories[0].id);
+}
+
+/* Cards for a tab are built only the first time that tab is shown —
+   initial DOM stays at one quarter of the problem set. */
+const renderedTabs = new Set();
+let byCatRef = null;
+
+function ensureTab(id) {
+    if (!byCatRef || renderedTabs.has(id)) return;
+    renderedTabs.add(id);
+    const list = byCatRef[id] || [];
+    const plist = document.querySelector(`#${CSS.escape(id)} .plist`);
+    if (!plist) return;
+    plist.innerHTML = list.map((p, i) => problemCard(p, i)).join('');
+    typesetTab(id);
 }
 
 function switchTab(event, id) {
@@ -241,11 +270,11 @@ function switchTab(event, id) {
         btn.classList.remove('active');
         btn.setAttribute('aria-selected', 'false');
     });
+    ensureTab(id);
     document.getElementById(id).classList.add('active');
     const btn = event.currentTarget;
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
-    if (window.MathJax?.typesetPromise) MathJax.typesetPromise();
 }
 
 function navTo(event, tab, problemId) {
@@ -255,6 +284,7 @@ function navTo(event, tab, problemId) {
         btn.classList.remove('active');
         btn.setAttribute('aria-selected', 'false');
     });
+    ensureTab(tab);
     document.getElementById(tab).classList.add('active');
     const tBtn = document.querySelector(`[data-tab="${tab}"]`);
     if (tBtn) {
@@ -267,7 +297,7 @@ function navTo(event, tab, problemId) {
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
-    if (window.MathJax?.typesetPromise) MathJax.typesetPromise().then(scrollTo);
+    if (window.MathJax?.typesetPromise) MathJax.typesetPromise([document.getElementById(tab)]).then(scrollTo);
     else setTimeout(scrollTo, 60);
 }
 

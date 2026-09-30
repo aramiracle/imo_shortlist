@@ -1,0 +1,650 @@
+{
+ "rule": "U1: no two confirmed/planned items share (primary,secondary); U2: redesigned primary must differ from the known original first-move code; statuses: planned|confirmed|screen-extract",
+ "items": {
+  "a13": {
+   "primary": "S05",
+   "secondary": "M6",
+   "status": "confirmed",
+   "raw": "S05+M6",
+   "note": "shipped 2026-09-29"
+  },
+  "a5": {
+   "primary": "S12",
+   "secondary": "M1",
+   "status": "confirmed",
+   "raw": "S12+M1",
+   "note": "shipped 2026-09-29"
+  },
+  "a12": {
+   "primary": "S10",
+   "secondary": "M12",
+   "status": "confirmed",
+   "raw": "S10+M12",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "a24": {
+   "primary": "S43",
+   "secondary": "M17",
+   "status": "confirmed",
+   "raw": "S43+M17",
+   "note": "shipped 2026-09-29"
+  },
+  "c10": {
+   "primary": "S46",
+   "secondary": "M4",
+   "status": "confirmed",
+   "raw": "S46+M4",
+   "note": "redesigned 2026-09-30 (late): non-existence of triangle-free >=2-edges-per-4-set network on 8 cities; max-side (Wagner) and min-side variants killed as classical, see CHANGELOG + c8-screen.md"
+  },
+  "c13": {
+   "primary": "S30",
+   "secondary": "M10",
+   "status": "confirmed",
+   "raw": "S30+M10",
+   "note": "shipped 2026-09-29"
+  },
+  "c8": {
+   "primary": "R1",
+   "secondary": "M10",
+   "status": "confirmed",
+   "raw": "M10+R1",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "c17": {
+   "primary": "S27",
+   "secondary": "M11",
+   "status": "confirmed",
+   "raw": "S27+M11",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "c18": {
+   "primary": "S28",
+   "secondary": "M11",
+   "status": "confirmed",
+   "raw": "S28+M11",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "c24": {
+   "primary": "R13",
+   "secondary": "M14",
+   "status": "confirmed",
+   "raw": "M14+R13+Fibonacci-core",
+   "note": "shipped 2026-09-29; reformulated 2026-09-30 RUN-20260930-02 as self-contained light-up process (graph-theoretic parking terminology removed); core pair R13+M14 unchanged, raw string extended with Fibonacci-core marker"
+  },
+  "n5": {
+   "primary": "S13",
+   "secondary": "M8",
+   "status": "confirmed",
+   "raw": "S13+M8",
+   "note": "shipped 2026-09-29"
+  },
+  "n6": {
+   "primary": "S14",
+   "secondary": "M10",
+   "status": "confirmed",
+   "raw": "M10/S14",
+   "note": "W1 2026-09-29; redesigned statement shipped as n8"
+  },
+  "n14": {
+   "primary": "S64",
+   "secondary": "M18",
+   "status": "confirmed",
+   "raw": "S64+M18",
+   "note": "shipped 2026-09-29"
+  },
+  "n17": {
+   "primary": "S16",
+   "secondary": null,
+   "status": "confirmed",
+   "raw": "S16",
+   "note": "shipped 2026-09-29"
+  },
+  "n15": {
+   "primary": "S17",
+   "secondary": "M9",
+   "status": "planned",
+   "raw": "M9/S17"
+  },
+  "n22": {
+   "primary": "S18",
+   "secondary": "M8",
+   "status": "confirmed",
+   "raw": "S18+M8",
+   "note": "shipped 2026-09-29"
+  },
+  "a20": {
+   "primary": "S02",
+   "secondary": "M15",
+   "status": "confirmed",
+   "raw": "S02+M15",
+   "note": "shipped 2026-09-29"
+  },
+  "a17": {
+   "primary": "S12",
+   "secondary": "M13",
+   "status": "confirmed",
+   "raw": "S12+M13",
+   "note": "shipped 2026-09-29"
+  },
+  "c2": {
+   "primary": "S42",
+   "secondary": "M5",
+   "status": "confirmed",
+   "raw": "S42+M5",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "a1": {
+   "primary": "S03",
+   "secondary": "M2",
+   "status": "confirmed",
+   "raw": "S03+M2",
+   "note": "shipped 2026-09-29 (Lagrange identity redesign)"
+  },
+  "a7": {
+   "primary": "S02",
+   "secondary": "M7",
+   "status": "confirmed",
+   "raw": "S02+M7",
+   "note": "shipped 2026-09-29"
+  },
+  "a2": {
+   "primary": "S44",
+   "secondary": "M3",
+   "status": "confirmed",
+   "raw": "S44+M3",
+   "note": "shipped 2026-09-29"
+  },
+  "a4": {
+   "primary": "S52",
+   "secondary": "M9",
+   "status": "confirmed",
+   "raw": "S52+M9",
+   "note": "redesigned 2026-09-30: functional-inequality iterate-bound propagation; S04+M13 retired with radical core"
+  },
+  "a9": {
+   "primary": "S06",
+   "secondary": null,
+   "status": "confirmed",
+   "raw": "S06",
+   "note": "shipped 2026-09-29"
+  },
+  "a6": {
+   "primary": "S09",
+   "secondary": "M7",
+   "status": "confirmed",
+   "raw": "S09+M7",
+   "note": "shipped 2026-09-29"
+  },
+  "n18": {
+   "primary": "S45",
+   "secondary": "M4",
+   "status": "confirmed",
+   "raw": "S45+M4",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "n13": {
+   "primary": "S20",
+   "secondary": "M4",
+   "status": "confirmed",
+   "raw": "S20+M4",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "n20": {
+   "primary": "S21",
+   "secondary": "M8",
+   "status": "confirmed",
+   "raw": "S21+M8",
+   "note": "shipped 2026-09-29"
+  },
+  "a11": {
+   "primary": "S12",
+   "secondary": "M7",
+   "status": "confirmed",
+   "raw": "S12+M7",
+   "note": "shipped 2026-09-29"
+  },
+  "a19": {
+   "primary": "S11",
+   "secondary": "M13",
+   "status": "confirmed",
+   "raw": "S11+M13",
+   "note": "shipped 2026-09-29"
+  },
+  "n1": {
+   "primary": "S13",
+   "secondary": "M13",
+   "status": "confirmed",
+   "raw": "S13+M13",
+   "note": "shipped 2026-09-29"
+  },
+  "n2": {
+   "primary": "S14",
+   "secondary": "M13",
+   "status": "confirmed",
+   "raw": "S14+M13",
+   "note": "shipped 2026-09-29"
+  },
+  "n10": {
+   "primary": "S15",
+   "secondary": "M8",
+   "status": "confirmed",
+   "raw": "S15+M8",
+   "note": "shipped 2026-09-29"
+  },
+  "g1": {
+   "primary": "S45",
+   "secondary": null,
+   "status": "confirmed",
+   "raw": "S45",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "g3": {
+   "primary": "S44",
+   "secondary": null,
+   "status": "confirmed",
+   "raw": "S44",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "g2": {
+   "primary": "S46",
+   "secondary": null,
+   "status": "confirmed",
+   "raw": "S46",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "g9": {
+   "primary": "S49",
+   "secondary": null,
+   "status": "confirmed",
+   "raw": "S49",
+   "note": "redesigned 2026-09-30: shadow/power dichotomy (Brahmagupta converse); S35+M15 retired with Brocard package"
+  },
+  "g4": {
+   "primary": "S47",
+   "secondary": null,
+   "status": "confirmed",
+   "raw": "S47",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "g7": {
+   "primary": "S37",
+   "secondary": null,
+   "status": "confirmed",
+   "raw": "S37",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "g5": {
+   "primary": "S48",
+   "secondary": null,
+   "status": "confirmed",
+   "raw": "S48",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "c5": {
+   "primary": "S39",
+   "secondary": "M16",
+   "status": "confirmed",
+   "raw": "S39+M16",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "c25": {
+   "primary": "S24",
+   "secondary": "M13",
+   "status": "confirmed",
+   "raw": "S24+M13",
+   "note": "claim+proof replaced 2026-09-30 RUN-20260930-02 (cubic/quadratic weighted Caro-Wei-type rule; old cave signature S23+M11 retired with the claim it described)"
+  },
+  "c9": {
+   "primary": "S40",
+   "secondary": "M5",
+   "status": "confirmed",
+   "raw": "S40+M5",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "c16": {
+   "primary": "S25",
+   "secondary": null,
+   "status": "hold",
+   "raw": "S25",
+   "note": "2-adic redesign direction falsified exhaustively (combiW3-BATTERY sec 5); escalated to tools/redesign-queue.json"
+  },
+  "c11": {
+   "primary": "S26",
+   "secondary": null,
+   "status": "confirmed",
+   "raw": "S26",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "c20": {
+   "primary": "S41",
+   "secondary": "M15",
+   "status": "confirmed",
+   "raw": "S41+M15",
+   "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
+  },
+  "a8": {
+   "status": "screen-extract",
+   "firstMove": "Set $s=a+b+c$, $t=ab+bc+ca$, $p=abc$. Then $$\\sum_{\\mathrm{cyc}}ab(a+b)=st-3p, \\qquad (a+b",
+   "primary": null,
+   "secondary": null
+  },
+  "a3": {
+   "status": "screen-extract",
+   "firstMove": "Fix $n$ and set $x=x_n\\le y=x_{n+1}\\le z=x_{n+2}$ after relabelling (the equation $xyz=x+y",
+   "primary": null,
+   "secondary": null
+  },
+  "a10": {
+   "status": "screen-extract",
+   "firstMove": "Write $P(m,n)$ for the stated equation, and set $c=f(1)\\ge 1$. Substituting $n=1$ gives $f",
+   "primary": null,
+   "secondary": null
+  },
+  "a14": {
+   "status": "screen-extract",
+   "firstMove": "The product $abc=1>0$ and the sum $a+b+c=0$ forbid three positive numbers and also forbid ",
+   "primary": null,
+   "secondary": null
+  },
+  "a18": {
+   "status": "screen-extract",
+   "firstMove": "Put $S_n=a_1+\\cdots+a_n$ and $d_n=a_{n+1}-a_n=n/S_n$. Since $a_1&lt;a_2&lt;\\cdots&lt;a_{n+",
+   "primary": null,
+   "secondary": null
+  },
+  "a16": {
+   "status": "screen-extract",
+   "firstMove": "Put $$Q=\\frac{(a-b)^2+(b-c)^2+(c-a)^2}{2}=a^2+b^2+c^2-ab-bc-ca.$$(Each cross term appears ",
+   "primary": null,
+   "secondary": null
+  },
+  "a15": {
+   "status": "screen-extract",
+   "firstMove": "Let $d=\\deg P\\ge 0$ and write $P(x)=c_d x^d+c_{d-1}x^{d-1}+\\cdots+c_0$ with each $c_k\\in\\m",
+   "primary": null,
+   "secondary": null
+  },
+  "a21": {
+   "status": "screen-extract",
+   "firstMove": "Fix $x$. If $f(y_1) = f(y_2)$, then $x f(x)^2 - y_1 = f(x^3 - f(y_1)) = f(x^3 - f(y_2)) = ",
+   "primary": null,
+   "secondary": null
+  },
+  "a22": {
+   "status": "screen-extract",
+   "firstMove": "\\textbf{Word formula.} For $n\\ge1$, $a_n=\\sum_w(-1)^{|w|}$, summed over all finite words $",
+   "primary": null,
+   "secondary": null
+  },
+  "a25": {
+   "status": "screen-extract",
+   "firstMove": "Let $P(a,b,c)$ denote the given equation. At $a=b=c=n$: $$f(n)^3=f(n^3)+3f(2nf(n))\\ge 4,$$",
+   "primary": null,
+   "secondary": null
+  },
+  "a23": {
+   "status": "screen-extract",
+   "firstMove": "Setting $x=y$ gives $f(0)=f(x)^2-x^2$, so $f(x)^2=x^2+c$ with $c=f(0)$. At $x=0$: $c=c^2$,",
+   "primary": null,
+   "secondary": null
+  },
+  "c1": {
+   "status": "screen-extract",
+   "firstMove": "Colour the two outermost points with the same colour. That colour has span exactly $L$, so",
+   "primary": null,
+   "secondary": null
+  },
+  "c12": {
+   "status": "screen-extract",
+   "firstMove": "Let $d_v$ be the number of constellations containing star $v$. Because two constellations ",
+   "primary": null,
+   "secondary": null
+  },
+  "c14": {
+   "status": "screen-extract",
+   "firstMove": "Represent the $m$ distinct clue-sets by their $0$–$1$ incidence vectors in $\\{0,1\\}^n$. A ",
+   "primary": null,
+   "secondary": null
+  },
+  "c3": {
+   "status": "screen-extract",
+   "firstMove": "Direct enumeration gives one $3$-shy climb of $1$, namely $(1)$; two of $2$, namely $(2)$ ",
+   "primary": null,
+   "secondary": null
+  },
+  "c15": {
+   "status": "screen-extract",
+   "firstMove": "Write $T_r=r(r+1)/2$. For $n=2$, $$T_1+T_5=T_3+T_4=16,$$ so four distinct triangular numbe",
+   "primary": null,
+   "secondary": null
+  },
+  "c6": {
+   "status": "screen-extract",
+   "firstMove": "Write each interval as $[L,R]=\\{L,L+1,\\dots,R\\}$ with $1\\le L\\le R\\le n$. Let $L_\\ast$ be ",
+   "primary": null,
+   "secondary": null
+  },
+  "c4": {
+   "status": "screen-extract",
+   "firstMove": "Let $S(n)$ be the total score of any complete decomposition of a pile of size $n$, once in",
+   "primary": null,
+   "secondary": null
+  },
+  "c7": {
+   "status": "screen-extract",
+   "firstMove": "A partial sum congruent to $0$ modulo $3$ is forbidden, including after the first letter, ",
+   "primary": null,
+   "secondary": null
+  },
+  "c21": {
+   "status": "screen-extract",
+   "firstMove": "Let $M_y$ and $M_z$ be witnessing matchings for the stability of $y$ and $z$: each row ver",
+   "primary": null,
+   "secondary": null
+  },
+  "c22": {
+   "status": "screen-extract",
+   "firstMove": "Let $M(n)$ be the maximum obtainable from $n$ piles; $M(1)=1$, and every achievable pile v",
+   "primary": null,
+   "secondary": null
+  },
+  "c23": {
+   "status": "screen-extract",
+   "firstMove": "Represent each club by its incidence vector in $\\{0,1\\}^m$. Let $\\delta=d_{\\min}$ and $\\De",
+   "primary": null,
+   "secondary": null
+  },
+  "c19": {
+   "status": "screen-extract",
+   "firstMove": "Relabel the cells $0,1,\\dots,n-1$ modulo $n$, so the token starts at $0$ and a cell is vis",
+   "primary": null,
+   "secondary": null
+  },
+  "g8": {
+   "status": "screen-extract",
+   "firstMove": "Choose a unit vector $n$ not perpendicular to any difference of two given points. Take $T=",
+   "primary": null,
+   "secondary": null
+  },
+  "g11": {
+   "status": "screen-extract",
+   "firstMove": "Use coordinates with the incircle $x^2+y^2=1$ and $F=(1,0)$. Parametrize a point on the in",
+   "primary": null,
+   "secondary": null
+  },
+  "g12": {
+   "status": "screen-extract",
+   "firstMove": "Let $K$ be the foot of the altitude from $A$ to $BC$. Since $\\psi$ has diameter $AM$, its ",
+   "primary": null,
+   "secondary": null
+  },
+  "g14": {
+   "status": "screen-extract",
+   "firstMove": "Let $\\theta=\\tfrac12\\angle A$, $u=\\cos\\theta$, $v=\\sin\\theta$, $b=AC$, $c=AB$ with $b>c$, ",
+   "primary": null,
+   "secondary": null
+  },
+  "g17": {
+   "status": "screen-extract",
+   "firstMove": "Throughout, all angles are directed modulo $\\pi$ and all length ratios are directed. Let $",
+   "primary": null,
+   "secondary": null
+  },
+  "g18": {
+   "status": "screen-extract",
+   "firstMove": "We first prove a lemma for the construction at $A$. Let $T_A$ be the intersection of the t",
+   "primary": null,
+   "secondary": null
+  },
+  "g19": {
+   "status": "screen-extract",
+   "firstMove": "<b>Coordinates.</b> Take the circumcircle as the unit circle centered at $O=0$, with compl",
+   "primary": null,
+   "secondary": null
+  },
+  "g23": {
+   "status": "screen-extract",
+   "firstMove": "<b>Setup.</b> Let $a,b,c$ be the side lengths, $\\alpha,\\beta,\\gamma=A/2,B/2,C/2$, $\\delta=",
+   "primary": null,
+   "secondary": null
+  },
+  "g20": {
+   "status": "screen-extract",
+   "firstMove": "Throughout, angles between lines are directed modulo $\\pi$, and $\\angle A,\\angle B,\\angle ",
+   "primary": null,
+   "secondary": null
+  },
+  "g6": {
+   "status": "screen-extract",
+   "firstMove": "Let $K$ be the foot of the altitude from $A$ to $BC$. Since $\\psi$ has diameter $AM$, its ",
+   "primary": null,
+   "secondary": null
+  },
+  "g10": {
+   "status": "screen-extract",
+   "firstMove": "Since $A,L,K,O$ are collinear, the hypothesis $$\\angle ALB=\\angle CLA$$ is exactly $$\\angl",
+   "primary": null,
+   "secondary": null
+  },
+  "g13": {
+   "status": "screen-extract",
+   "firstMove": "<b>Notation.</b> Put $a=EA$, $b=EB$, $c=EC$, $d=ED$ (all positive). $ABCD$ is convex, so $",
+   "primary": null,
+   "secondary": null
+  },
+  "g15": {
+   "status": "screen-extract",
+   "firstMove": "<b>Well-definedness.</b> $A$ lies outside the incircle and $D$ on it, so line $AD$ (not ta",
+   "primary": null,
+   "secondary": null
+  },
+  "g21": {
+   "status": "screen-extract",
+   "firstMove": "Let a = BC, b = CA, c = AB and s = (a+b+c)/2. Put x = s−a, y = s−b, z = s−c. Then a = y+z,",
+   "primary": null,
+   "secondary": null
+  },
+  "g24": {
+   "status": "screen-extract",
+   "firstMove": "Let $H$ be the foot of the altitude from $A$ to $BC$, let $h=AH$, and let $I_a,r_a$ be the",
+   "primary": null,
+   "secondary": null
+  },
+  "g22": {
+   "status": "screen-extract",
+   "firstMove": "<b>Preliminaries.</b> Write $\\alpha,\\beta,\\gamma$ for $\\angle A,\\angle B,\\angle C$, so $\\b",
+   "primary": null,
+   "secondary": null
+  },
+  "g25": {
+   "status": "screen-extract",
+   "firstMove": "Invert about the circle centered at S with radius SU. Since SU is tangent to Γ at U, SU² =",
+   "primary": null,
+   "secondary": null
+  },
+  "g16": {
+   "status": "screen-extract",
+   "firstMove": "Let κ be the circumcircle of XBC. Since P lies on BC and PA is tangent to ω at A, the tang",
+   "primary": null,
+   "secondary": null
+  },
+  "n9": {
+   "status": "screen-extract",
+   "firstMove": "Suppose $n^2+3^n=k^2$ with $k$ a positive integer. Since $3^n>0$, $k>n$, and $$3^n=(k-n)(k",
+   "primary": null,
+   "secondary": null
+  },
+  "n11": {
+   "status": "screen-extract",
+   "firstMove": "Since $p = 2q + 1$, the exponent $q$ satisfies $q = \\frac{p-1}{2}$. Therefore, $$q^q = q^{",
+   "primary": null,
+   "secondary": null
+  },
+  "n3": {
+   "status": "screen-extract",
+   "firstMove": "In a clique every two vertices are coprime, so the clique vertices are pairwise coprime. A",
+   "primary": null,
+   "secondary": null
+  },
+  "n12": {
+   "status": "screen-extract",
+   "firstMove": "A multiplicative bijection fixes $1$: $f(1)=f(1\\cdot1)=f(1)^2$ and $f(1)>0$, so $f(1)=1$. ",
+   "primary": null,
+   "secondary": null
+  },
+  "n4": {
+   "status": "screen-extract",
+   "firstMove": "Lemma. For positive integers $a$ and $b$, the integer $2^a+1$ divides $2^b+1$ if and only ",
+   "primary": null,
+   "secondary": null
+  },
+  "n7": {
+   "status": "screen-extract",
+   "firstMove": "By Cauchy–Schwarz, $S^2\\le4Q$. Since $a,b,c,d>0$, we also have $S^2>Q$. Therefore the posi",
+   "primary": null,
+   "secondary": null
+  },
+  "n19": {
+   "status": "screen-extract",
+   "firstMove": "Suppose $n$ satisfies the condition. Let $a$ be any integer such that $\\gcd(a, n) = 1$. Th",
+   "primary": null,
+   "secondary": null
+  },
+  "n23": {
+   "status": "screen-extract",
+   "firstMove": "Case 1: $n$ is odd. Then $2^n + 1 = (2 + 1)(2^{n-1} - 2^{n-2} + \\dots + 1)$ is divisible b",
+   "primary": null,
+   "secondary": null
+  },
+  "n21": {
+   "status": "screen-extract",
+   "firstMove": "Let $K=a^4+b^4+1$. Since $a,b$ are odd, $K\\equiv3\\pmod{16}$ and in particular $K\\ge3$. The",
+   "primary": null,
+   "secondary": null
+  },
+  "n8": {
+   "status": "screen-extract",
+   "firstMove": "If $n=p$ is prime, then $\\sigma(p)=p+1$ and $\\varphi(p)+\\tau(p)=p-1+2=p+1$. If $n=1$, then",
+   "primary": null,
+   "secondary": null
+  },
+  "n16": {
+   "status": "screen-extract",
+   "firstMove": "For $x^2\\equiv1\\pmod{p^e}$ with odd prime $p$, there are exactly two roots, $\\pm1$. Thus f",
+   "primary": null,
+   "secondary": null
+  },
+  "n24": {
+   "status": "screen-extract",
+   "firstMove": "Because $a_n\\mid a_{n+1}$ we have $\\varphi(a_n)\\mid\\varphi(a_{n+1})$: it suffices to adjoi",
+   "primary": null,
+   "secondary": null
+  },
+  "n25": {
+   "status": "screen-extract",
+   "firstMove": "Let the bottom row be $b_1,\\dots,b_n$, and define suffix gcds $d_i=\\gcd(b_i,\\dots,b_n)$. T",
+   "primary": null,
+   "secondary": null
+  }
+ }
+}

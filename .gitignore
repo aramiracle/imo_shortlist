@@ -1,0 +1,11 @@
+tools/screens/*
+!tools/screens/n13.json
+tools/baseline_*.json
+tools/lanes-run-*.json
+*.db
+__pycache__/
+*.pyc
+*.o
+*.obj
+tools/proofs/build/
+.kilo/
