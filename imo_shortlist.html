@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07090f">
     <title>IMO Shortlist — Problem Set</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1020,9 +1021,104 @@
         from { opacity: 0; transform: translateY(8px); }
         to   { opacity: 1; transform: translateY(0); }
     }
+
+    /* ═══════════════════════════════════════════════════
+       POLISH LAYER
+    ═══════════════════════════════════════════════════ */
+    :root { --muted: #7683a3; --gold-d: #8a6a2c; color-scheme: dark; }
+    ::selection { background: rgba(207,164,76,.32); }
+    :focus-visible { outline: 2px solid var(--gold-b); outline-offset: 2px; border-radius: 6px; }
+    * { scrollbar-width: thin; scrollbar-color: var(--b1) transparent; }
+
+    body {
+        background:
+            radial-gradient(1100px 560px at 12% -8%, rgba(95,184,232,.11), transparent 60%),
+            radial-gradient(900px 520px at 92% 0%, rgba(168,126,220,.11), transparent 60%),
+            radial-gradient(800px 500px at 50% 110%, rgba(207,164,76,.07), transparent 60%),
+            var(--bg);
+        background-attachment: fixed;
+    }
+
+    .progress {
+        position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 100;
+        background: linear-gradient(90deg, var(--alg), var(--nt), var(--gold-b));
+        box-shadow: 0 0 12px rgba(207,164,76,.6);
+    }
+
+    .header {
+        background: linear-gradient(160deg, rgba(207,164,76,.08), transparent 45%), var(--s1);
+        box-shadow: 0 40px 90px -50px #000, inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .eyebrow { color: var(--gold); }
+    .subtitle { color: var(--sec); }
+    .h1 {
+        background: linear-gradient(180deg, #fff6dc, #e6dfd0 55%, #b9a06a);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .h1 em {
+        background: linear-gradient(90deg, #cfa44c, #f3dba0, #cfa44c, #f3dba0);
+        background-size: 200% 100%;
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+        animation: shine 8s linear infinite;
+    }
+    @keyframes shine { to { background-position: -200% 0; } }
+
+    .scard {
+        background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 50%), var(--s1);
+        box-shadow: 0 18px 40px -28px #000;
+    }
+    .stat { border: 1px solid var(--b0); transition: border-color .2s, transform .2s; }
+    .stat:hover { border-color: var(--gold-d); transform: translateY(-1px); }
+
+    .tabs-wrap { background: rgba(15,19,32,.80); backdrop-filter: blur(14px) saturate(1.3); -webkit-backdrop-filter: blur(14px) saturate(1.3); }
+    .tbtn.active .t-ico { filter: drop-shadow(0 0 8px currentColor); }
+    .tbtn::after { height: 3px; box-shadow: 0 0 12px currentColor; }
+
+    .pcard.alg { --c: var(--alg); } .pcard.cmb { --c: var(--cmb); }
+    .pcard.geo { --c: var(--geo); } .pcard.nt  { --c: var(--nt); }
+    .pcard {
+        background: linear-gradient(180deg, rgba(255,255,255,.028), transparent 38%), var(--s2);
+        box-shadow: 0 10px 30px -22px #000;
+    }
+    .pcard::before { width: 4px; background: var(--c); box-shadow: 0 0 18px var(--c); }
+    .pcard::after {
+        content: ''; position: absolute; inset: 0 0 auto 0; height: 90px; pointer-events: none;
+        background: linear-gradient(180deg, color-mix(in srgb, var(--c) 9%, transparent), transparent);
+    }
+    .phd, .pbody { position: relative; z-index: 1; }
+    .pnum {
+        font-size: 1.05rem; letter-spacing: .04em; padding: 2px 11px; border-radius: 8px;
+        background: color-mix(in srgb, var(--c) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--c) 35%, transparent);
+    }
+    .star { width: 8px; height: 8px; }
+    .star.e, .star.m, .star.h, .star.c { box-shadow: 0 0 8px currentColor; }
+    .star.e { color: var(--easy); } .star.m { color: var(--medium); }
+    .star.h { color: var(--hard); } .star.c { color: var(--challenging); }
+    .ptxt { font-size: 1.17rem; line-height: 1.85; }
+    .ptxt li::marker { color: var(--gold); }
+
+    .sol summary { border-radius: 0; }
+    .sol[open] > summary { border-bottom: 1px solid var(--b0); }
+    .sol-body, .hint-body { animation: rise .25s ease both; }
+    .hint[open] { background: rgba(207,164,76,.035); }
+    .fbtn { transition: all .18s; }
+    .fbtn:hover { transform: translateY(-1px); }
+    .footer { box-shadow: 0 18px 40px -28px #000; }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+    @media print {
+        body::before, .aside, .tabs-wrap, .fbar, .progress { display: none !important; }
+        .page { display: block; } .subject { display: block !important; }
+        details > * { display: block !important; }
+    }
     </style>
 </head>
 <body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<noscript><p style="padding:24px;color:#e6dfd0">This page needs JavaScript to display the problems.</p></noscript>
 
 <div class="page">
 
@@ -1069,14 +1165,14 @@
             </div>
         </div>
 
-        <div class="panel" id="panel">
+        <div class="panel" id="panel" aria-live="polite">
             <!-- filled by app.js -->
         </div>
 
         <footer class="footer">
-            <span>IMO · Shortlist Problem Set</span>
+            <span>IMO Shortlist-style problem set</span>
             <span class="orn-f">◆</span>
-            <span>© International Mathematical Olympiad</span>
+            <span>Candidate problems · not official IMO material</span>
         </footer>
 
     </main>

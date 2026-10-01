@@ -217,7 +217,7 @@ function render() {
         const active = i === 0 ? ' active' : '';
         const selected = i === 0 ? 'true' : 'false';
         return `
-            <button class="tbtn${active}" data-tab="${escapeHtml(c.id)}" onclick="switchTab(event,'${escapeHtml(c.id)}')" role="tab" aria-selected="${selected}">
+            <button class="tbtn${active}" data-tab="${escapeHtml(c.id)}" onclick="switchTab(event,'${escapeHtml(c.id)}')" role="tab" id="tab-${escapeHtml(c.id)}" aria-controls="${escapeHtml(c.id)}" aria-selected="${selected}" tabindex="${i === 0 ? 0 : -1}">
                 <span class="t-ico">${c.icon}</span>
                 <span class="t-nm">${escapeHtml(c.name)}</span>
                 <span class="t-cnt">${escapeHtml(c.prefix)}${n}</span>
@@ -228,7 +228,7 @@ function render() {
         const list = byCat[c.id];
         const active = i === 0 ? ' active' : '';
         return `
-            <div id="${escapeHtml(c.id)}" class="subject${active}">
+            <div id="${escapeHtml(c.id)}" class="subject${active}" role="tabpanel" aria-labelledby="tab-${escapeHtml(c.id)}">
                 <div class="subhd">
                     <div class="sub-ico ${escapeHtml(c.id)}">${c.icon}</div>
                     <div class="sub-info">
@@ -272,12 +272,14 @@ function switchTab(event, id) {
     document.querySelectorAll('.tbtn').forEach(btn => {
         btn.classList.remove('active');
         btn.setAttribute('aria-selected', 'false');
+        btn.tabIndex = -1;
     });
     ensureTab(id);
     document.getElementById(id).classList.add('active');
     const btn = event.currentTarget;
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
+    btn.tabIndex = 0;
 }
 
 function navTo(event, tab, problemId) {
@@ -297,6 +299,10 @@ function navTo(event, tab, problemId) {
 
     const scrollTo = () => {
         const el = document.getElementById(problemId);
+        if (el && el.classList.contains('hidden')) {
+            const all = document.querySelector(`#${CSS.escape(tab)} .fbtn`);
+            if (all) filt(all, tab, 'all');
+        }
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
@@ -332,3 +338,17 @@ document.addEventListener('toggle', e => {
         MathJax.typesetPromise([e.target]);
     }
 }, true);
+
+// reading-progress bar
+(() => {
+    const bar = document.getElementById('progress');
+    if (!bar) return;
+    const upd = () => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    };
+    addEventListener('scroll', upd, { passive: true });
+    addEventListener('resize', upd);
+    upd();
+})();
