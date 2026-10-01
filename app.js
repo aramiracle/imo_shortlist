@@ -76,6 +76,8 @@ function hintsHtml(p) {
 function problemCard(p, index) {
     const delay = Math.min(index * 0.03, 0.6);
     const diff = p.difficulty || 'medium';
+    const hasRating = Number.isFinite(p.rating);
+    const rating = hasRating ? p.rating.toFixed(1) : null;
 
     const conf = p.confidence ? escapeHtml(p.confidence) : '';
     const whyBody = p.why
@@ -90,6 +92,7 @@ function problemCard(p, index) {
                 <div class="sol-body">
                     <div class="why-meta">
                         ${conf ? `<span>Confidence <b>${conf}</b></span>` : ''}
+                        ${hasRating ? `<span>Rating <b>${rating}/10</b></span>` : ''}
                         <span>Tier <b>${escapeHtml(DIFF_LABEL[diff] || diff)}</b></span>
                     </div>
                     ${whyBody}
@@ -113,9 +116,11 @@ function problemCard(p, index) {
                     <div class="stars">${starsHtml(diff, p.stars)}</div>
                 </div>
                 <div class="phd-right">
+                    ${hasRating ? `<span class="rscore ${escapeHtml(diff)}" title="Difficulty rating out of 10">${rating}<small>/10</small></span>` : ''}
                     <span class="dbadge ${escapeHtml(diff)}">${DIFF_LABEL[diff] || diff}</span>
                 </div>
-            </div>
+            </div>${hasRating ? `
+            <div class="rmeter ${escapeHtml(diff)}" aria-hidden="true"><span style="width:${(p.rating * 10).toFixed(0)}%"></span></div>` : ''}
             <div class="pbody"><div class="ptxt">${p.text}</div></div>
             ${analysisHtml}
             <details class="sol">
@@ -179,7 +184,8 @@ function render() {
         const dots = byCat[c.id].slice().sort((a, b) => problemNumber(a.id) - problemNumber(b.id)).map(p => {
             const label = escapeHtml(p.id.toUpperCase());
             const tier = escapeHtml(DIFF_LABEL[p.difficulty] || p.difficulty || '');
-            const tip = tier ? `${label} · ${tier}` : label;
+            const rt = Number.isFinite(p.rating) ? ` · ${p.rating.toFixed(1)}/10` : '';
+            const tip = tier ? `${label} · ${tier}${rt}` : label;
             return `<a class="ndot ${escapeHtml(c.id)}" href="#${escapeHtml(p.id)}" title="${tip}" onclick="navTo(event,'${escapeHtml(c.id)}','${escapeHtml(p.id)}')">${label}</a>`;
         }).join('');
         return `
@@ -210,7 +216,8 @@ function render() {
     document.getElementById('header-pills').innerHTML = `
         <span class="pill">${total} problems</span>
         <span class="pill">${catCount} categories</span>
-        <span class="pill">Easy – Challenging</span>`;
+        <span class="pill">Easy – Challenging</span>
+        <span class="pill">Rated 1–10 · set avg 5–5.5</span>`;
 
     document.getElementById('tabs').innerHTML = categories.map((c, i) => {
         const n = byCat[c.id].length;
@@ -226,6 +233,8 @@ function render() {
 
     document.getElementById('panel').innerHTML = categories.map((c, i) => {
         const list = byCat[c.id];
+        const rated = list.filter(p => Number.isFinite(p.rating));
+        const avg = rated.length ? (rated.reduce((a, p) => a + p.rating, 0) / rated.length) : null;
         const active = i === 0 ? ' active' : '';
         return `
             <div id="${escapeHtml(c.id)}" class="subject${active}" role="tabpanel" aria-labelledby="tab-${escapeHtml(c.id)}">
@@ -233,7 +242,7 @@ function render() {
                     <div class="sub-ico ${escapeHtml(c.id)}">${c.icon}</div>
                     <div class="sub-info">
                         <h2>${escapeHtml(c.name)}</h2>
-                        <p><span class="sub-badge ${escapeHtml(c.id)}">${list.length} problems</span>${escapeHtml(c.topics)}</p>
+                        <p><span class="sub-badge ${escapeHtml(c.id)}">${list.length} problems</span>${avg != null ? `<span class="set-avg">set avg <b>${avg.toFixed(2)}</b>/10</span>` : ''}${escapeHtml(c.topics)}</p>
                     </div>
                 </div>
                 <div class="fbar">

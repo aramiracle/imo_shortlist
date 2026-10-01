@@ -1,5 +1,5 @@
 window.IMO_SHORTLIST = {
-  "ratedOn": "2026-09-30",
+  "ratedOn": "2026-10-01",
   "criterion": "Difficulty of finding and completing a proof from scratch for a strong olympiad contestant, not how complicated the statement looks.",
   "scale": [
     {
@@ -63,47 +63,7 @@ window.IMO_SHORTLIST = {
       "category": "alg",
       "difficulty": "easy",
       "stars": 1,
-      "confidence": "high",
-      "text": "Let $a,b,c,d>0$. Prove that $$(a^{2}+1)(b^{2}+1)(c^{2}+1)(d^{2}+1)\\ge (a+b)(b+c)(c+d)(d+a),$$ and determine all equality cases.",
-      "why": "The engine is the Brahmagupta--Fibonacci identity $(a^{2}+1)(b^{2}+1)=(ab-1)^{2}+(a+b)^{2}$, i.e. multiplicativity of the norm on $\\mathbb{C}$ via $(a+i)(b+i)=(ab-1)+i(a+b)$. Pairing $[(a,b),(c,d)]$ and $[(b,c),(d,a)]$ and multiplying the two squared inequalities gives the claim after taking square roots. Equality forces $ab=bc=cd=da=1$, a one-parameter family $a=c$, $b=d$, $ab=1$. The same norm identity underlies Fermat's two-square theorem through the Gaussian integers $\\mathbb{Z}[i]$, a Euclidean domain.",
-      "hints": [
-        "Pair adjacent factors and use $(a^2+1)(b^2+1)=(ab-1)^2+(a+b)^2$."
-      ],
-      "steps": [
-        "Pair the factors: $[(a^2+1)(b^2+1)]\\cdot[(c^2+1)(d^2+1)]$ and $[(b^2+1)(c^2+1)]\\cdot[(d^2+1)(a^2+1)]$; the product of all four pair-products is LHS$^2$.",
-        "Lagrange identity: $(a^2+1)(b^2+1)=(ab-1)^2+(a+b)^2\\ge(a+b)^2$, and likewise for $(b,c)$, $(c,d)$, $(d,a)$.",
-        "Multiply all four inequalities: LHS$^2\\ge(a+b)^2(b+c)^2(c+d)^2(d+a)^2=$ RHS$^2$; take square roots.",
-        "Equality iff $ab=bc=cd=da=1$ simultaneously, i.e. $a=c$, $b=d$, $ab=1$; then $abcd=1$ holds automatically.",
-        "Sharpness: $a=c=t$, $b=d=1/t$ attains equality for every $t>0$."
-      ],
-      "remark": "The engine is the Brahmagupta-Fibonacci identity, equivalently multiplicativity of the norm on the Gaussian integers $\\mathbb{Z}[i]$, since $(a+i)(b+i)=(ab-1)+i(a+b)$; the same identity underlies Fermat's two-square theorem. The construction grows out of the classical olympiad motif of pairing adjacent factors so each pair dominates a square $(a+b)^2$, multiplying the four bounds, and extracting a root. The inequality needs no normalization such as $abcd=1$; it holds for all positive reals, and the equality family automatically has $abcd=1$."
-    },
-    {
-      "id": "a2",
-      "category": "alg",
-      "difficulty": "easy",
-      "stars": 1,
-      "confidence": "high",
-      "text": "Let $a,b,c\\ge 0$ satisfy $a+b+c=1$.\n\n<ol><li>Find the largest real number $\\lambda$ such that $$\\sqrt{a+bc}+\\sqrt{b+ca}+\\sqrt{c+ab}\\;\\ge\\;1+\\lambda\\,(ab+bc+ca)$$ holds for every admissible triple $(a,b,c)$.</li>\n<li>For that $\\lambda$, determine all equality cases.</li></ol>",
-      "why": "Under $a+b+c=1$ the key factorization is $a+bc=(a+b)(a+c)$. Expanding $S^2$ exactly and bounding cross terms by $\\sqrt{(a+c)(b+c)}\\ge c+\\sqrt{ab}$, whose defect is the square $c(\\sqrt a-\\sqrt b)^2$, then $(a+b)\\sqrt{ab}\\ge2ab$, gives $S^2\\ge1+9q\\ge(1+3q)^2$ since $q=ab+bc+ca\\le1/3$. The centroid has $S=2=1+3q$, forcing $\\lambda\\le3$; equality holds iff centroid or vertex, since $S=1+3q$ forces $q\\in\\{0,\\tfrac13\\}$. The whole proof is a sum-of-squares certificate in the elementary symmetric functions $(s,t,p)$ - the mechanism behind the uvw method and the discriminant description of the real-rooted region.",
-      "hints": [
-        "Factor $a+bc=(a+b)(a+c)$ under $a+b+c=1$; set $q=ab+bc+ca$.",
-        "Expand $S^2$ exactly and bound cross terms via $(a+c)(b+c)\\ge(c+\\sqrt{ab})^2$."
-      ],
-      "steps": [
-        "Set $q=ab+bc+ca\\le\\tfrac13$ and note $a+bc=(a+b)(a+c)$ for $a+b+c=1$.",
-        "Expand exactly: $S^2=(1+q)+2\\big[(a+b)\\sqrt{(a+c)(b+c)}+(b+c)\\sqrt{(b+a)(c+a)}+(c+a)\\sqrt{(c+b)(a+b)}\\big]$.",
-        "Bound each cross term: $(a+c)(b+c)\\ge(c+\\sqrt{ab})^2$; with $\\sum_{pairs}(a+b)c=2q$ this gives $S^2\\ge1+5q+2\\sum_{pairs}(a+b)\\sqrt{ab}\\ge1+9q$ (AM-GM).",
-        "Close: $1+9q-(1+3q)^2=3q(1-3q)\\ge0\\Rightarrow S\\ge1+3q$. At the centroid $S=2$, $q=\\tfrac13$, so no $\\lambda>3$ works.",
-        "Equality needs $q\\in\\{0,\\tfrac13\\}$: $q=\\tfrac13\\Rightarrow a=b=c$; $q=0\\Rightarrow$ two coordinates vanish. Both check; trap check: the shortcut $S\\ge1+\\sum\\sqrt{bc}\\ge1+3q$ is INVALID (second step fails on $19\\%$ of samples - CAS w3f_a3.py)."
-      ],
-      "remark": "The proof is a sum-of-squares certificate in the elementary symmetric functions, the mechanism behind the uvw method and the discriminant description of the real-rooted region for symmetric three-variable inequalities. It grows out of the staple olympiad factorization $a+bc=(a+b)(a+c)$ under $a+b+c=1$, combined with the sharpness test at the centroid and the vertices that fixes the optimal constant. The equality analysis shows $S=1+3q$ forces $q\\in\\{0,\\tfrac13\\}$."
-    },
-    {
-      "id": "a3",
-      "category": "alg",
-      "difficulty": "easy",
-      "stars": 1,
+      "rating": 2.5,
       "confidence": "high",
       "text": "Let $(x_n)_{n\\ge1}$ be a sequence of positive integers satisfying $$x_nx_{n+1}x_{n+2}=x_n+x_{n+1}+x_{n+2}$$ for every $n\\ge1$. Prove that $(x_n)$ is purely periodic with period $3$, and that $(x_1,x_2,x_3)$ must be a permutation of $(1,2,3)$.",
       "why": "Solving for $x_{n+2}$ gives the third-order Lyness recurrence $x_{n+2}=\\dfrac{x_n+x_{n+1}}{x_nx_{n+1}-1}$, a periodic case of the Lyness-type recurrences arising as mutations in rank-3 cluster algebras (Fomin--Zelevinsky), where the Laurent phenomenon and a $\\mathbb{Z}_3$ symmetry of the exchange matrix force $x_{n+3}=x_n$; direct verification: $x_{n+3}=x_n$ follows from the identity satisfied by the recurrence on the positive domain where it is defined. Positivity forces each pair $x_nx_{n+1}\\gt1$, and among positive integers the map $a\\,b\\,c=a+b+c$ must hold with $\\{a,b,c\\}$ a solution set of the descent; the only positive-integer 3-orbit is $\\{1,2,3\\}$, since $x_n\\ge3$ for all large terms contradicts the fixed sum-product balance.",
@@ -120,30 +80,11 @@ window.IMO_SHORTLIST = {
       "remark": "Solving for $x_{n+2}$ exhibits the recurrence as the Lyness recurrence $x_{n+2}=\\frac{x_n+x_{n+1}}{x_nx_{n+1}-1}$, the periodic rank-three instance of cluster-algebra mutations in the sense of Fomin and Zelevinsky, where the Laurent phenomenon underlies such global periodicity. Origin: the classical olympiad descent of ordering the three variables to squeeze $xy\\le3$ from $xyz=x+y+z$, so integrality plus symmetry leaves a single three-element orbit."
     },
     {
-      "id": "a4",
+      "id": "a2",
       "category": "alg",
       "difficulty": "easy",
       "stars": 1,
-      "confidence": "high",
-      "text": "Let $f:\\mathbb{R}\\to\\mathbb{R}$ be a function such that, for every real number $x$, $$f(x)\\le x\\qquad\\text{and}\\qquad f(f(x))\\ge x-1.$$ Prove that $f(x)\\ge x-1$ for every real $x$.",
-      "why": "One quantifier move turns a two-step hypothesis into a one-step conclusion: if $f(a)\\lt a-1$, then at $u:=f(a)$ the hypothesis at $x=a$ gives $f(u)=f(f(a))\\ge a-1\\gt u$, so $f$ steps up at $u$, forbidden by $f\\le\\mathrm{id}$; the bound propagates from the second iterate to the first along every orbit. Hence a violation can never be paid for two steps later. The constant is exact: $f=\\mathrm{id}$, $f=x-\\tfrac12$ work, and the parity staircase $f(x)=x-1$ on $\\bigcup_k[2k,2k+1)$, $f(x)=x$ on $\\bigcup_k[2k+1,2k+2)$ saturates both bounds - an orbit picture with mean displacement $-\\tfrac12$ per step, the rotation-number mechanism behind bounded-displacement arguments for iterated maps. The whole proof works verbatim with $x-1$ replaced by $x-c$, so the propagation is structural.",
-      "hints": [
-        "Assume $f(a)<a-1$ for some $a$ and set $u=f(a)$."
-      ],
-      "steps": [
-        "Non-vacuity check: $f(x)=x$ satisfies $f(x)\\le x$ with equality and $f(f(x))=x\\ge x-1$; $f(x)=x-\\tfrac12$ satisfies $f(x)\\le x$ and $f(f(x))=x-1\\ge x-1$ with equality. So the class of functions is nonempty.",
-        "Claim. Suppose for contradiction that $f(a)\\lt a-1$ for some real $a$. Put $u:=f(a)$, so $u\\lt a-1$.",
-        "Apply the second hypothesis at $x=a$: $f(u)=f(f(a))\\ge a-1$. Since $a-1\\gt u$, this says $f(u)\\gt u$, contradicting the first hypothesis applied at $x=u$ ($f(u)\\le u$). Hence $f(x)\\ge x-1$ for all $x$.",
-        "Sharpness of the conclusion: define $f(x)=x-1$ for $x\\in[2k,2k+1)$, $f(x)=x$ for $x\\in[2k+1,2k+2)$ ($k\\in\\mathbb{Z}$). Check $f(x)\\le x$: clear. Check $f(f(x))\\ge x-1$: if $x\\in[2k+1,2k+2)$ then $f(x)=x$ and $f(f(x))=x\\ge x-1$; if $x\\in[2k,2k+1)$ then $f(x)=x-1\\in[2k-1,2k)$, an interval where $f$ is the identity, so $f(f(x))=x-1$, again exactly at the boundary. This admissible $f$ satisfies $f(x)=x-1$ on half the line, so no bound $f(x)\\ge x-1+\\varepsilon$ can replace the conclusion: the theorem is tight.",
-        "Remark generalizing the proof: for any fixed $c\\in\\mathbb{R}$, $f(x)\\le x$ and $f(f(x))\\ge x-c$ for all $x$ imply $f(x)\\ge x-c$ - the same three lines. The constant $c$ propagates from the second iterate to the first unchanged."
-      ],
-      "remark": "The argument propagates the displacement bound from the second iterate to the first along orbits of $f$, the same bounded-displacement mechanism behind rotation-number theory for iterated maps, and it works verbatim with $x-c$ for any constant $c$. Origin: a single quantifier move, applying the hypothesis at the new point $u=f(a)$ rather than $a$, the standard olympiad device for converting $f(f(x))$ bounds into $f(x)$ bounds; the parity staircase is the sharp extremal model."
-    },
-    {
-      "id": "a5",
-      "category": "alg",
-      "difficulty": "easy",
-      "stars": 1,
+      "rating": 2.5,
       "confidence": "high",
       "text": "Find all functions $f:\\mathbb{R}\\to\\mathbb{R}$ satisfying $$f(f(x)+y)=f(x+y)+f(y)\\qquad\\text{for all real }x,y.$$",
       "why": "Put $x=0$, $c:=f(0)$: $f(c+y)=2f(y)$ for all $y$, so translation by $c$ acts as doubling of $f$, and iterating gives $f(2c+y)=4f(y)$. But evaluating at $x=c$, using $f(c)=2c$, gives $f(2c+y)=f(c+y)+f(y)=3f(y)$; hence $f\\equiv0$. Equivalently: the left side $f(f(x)+y)$ is invariant under replacing $x$ by $f(x)$, so the right side must be too, which on an orbit $y\\mapsto y+kc$ of the translation action forces $f(k c)$ to grow like $2^k$ and like $3^k$ at once - only zero survives. With $c=0$ idempotence $f(f(x))=f(x)$ closes the same bookkeeping.",
@@ -160,10 +101,52 @@ window.IMO_SHORTLIST = {
       "remark": "On the orbit $y\\mapsto y+kc$ of the translation action the shift identity forces growth like $2^k$, while the second computation demands growth like $3^k$; only zero survives, a cocycle-style rigidity argument for functional equations on groups. Origin: the classical olympiad motif of extracting a translation identity at $x=0$, then feeding the special value $f(0)$ back into the equation and comparing the two bookkeepings; no regularity or surjectivity is needed."
     },
     {
-      "id": "a6",
+      "id": "a3",
       "category": "alg",
       "difficulty": "easy",
       "stars": 1,
+      "rating": 3,
+      "confidence": "high",
+      "text": "Let $a,b,c\\ge 0$ be real numbers with $a^{2}+b^{2}+c^{2}=3$. Prove that $$\\frac{1}{a^{2}+a+1}+\\frac{1}{b^{2}+b+1}+\\frac{1}{c^{2}+c+1}\\ \\ge\\ 1\\,, $$ and determine all cases of equality.",
+      "why": "Two Cauchy--Schwarz applications in the correct order: the Engel (Bergstrom) form $\\sum 1/D_a\\ge9/\\sum D_a=9/(6+a+b+c)$ - Cauchy--Schwarz with vectors $(\\sqrt{D_a})$ and $(1/\\sqrt{D_a})$, equality iff all $D_a$ equal - and then $a+b+c\\le\\sqrt{3\\cdot3}=3$, the RMS-AM inequality, again Cauchy--Schwarz with the all-ones vector. The equality analysis threads through both stages simultaneously; no per-term minorant $\\alpha-\\beta x^{2}$ of $1/D_a$ survives at both endpoints, so the termwise route fails and only the global inner-product route works.",
+      "hints": [
+        "Engel form of Cauchy-Schwarz: $\\sum 1/D_a\\ge9/(D_a+D_b+D_c)$."
+      ],
+      "steps": [
+        "Write $D_a=a^{2}+a+1$. Engel's form of Cauchy-Schwarz: $\\sum 1/D_a\\ge(1+1+1)^{2}/(D_a+D_b+D_c)=9/(\\sum a^{2}+\\sum a+3)=9/(6+a+b+c)$.",
+        "Cauchy-Schwarz: $a+b+c\\le\\sqrt{3(a^{2}+b^{2}+c^{2})}=3$, so the denominator is at most $9$ and the sum is at least $1$.",
+        "Equality throughout: the second step forces $a=b=c$; combined with $\\sum a^2=3$ this gives $a=b=c=1$, where the sum is $3\\cdot\\tfrac13=1$. (Engel equality $D_a=D_b=D_c$ is then automatic.)",
+        "Remark: a per-term tangent-line bound of the form $1/(x^{2}+x+1)\\ge\\alpha-\\beta x^{2}$ touching at $x=1$ fails near $x=\\sqrt3$, so the global argument above is the way to proceed."
+      ],
+      "remark": "Both stages are Cauchy-Schwarz, first in the Bergstrom Engel form, with equality when the three denominators agree, then against the all-ones vector, an instance of bounding reciprocal sums through the harmonic-arithmetic mean chain. The problem is a known olympiad lesson in inequality architecture: no per-term minorant $\\alpha-\\beta x^2$ survives at both endpoints of the domain, so only the global two-step chain works; equality forces $a=b=c=1$."
+    },
+    {
+      "id": "a4",
+      "category": "alg",
+      "difficulty": "easy",
+      "stars": 1,
+      "rating": 3.5,
+      "confidence": "high",
+      "text": "Let $a,b,c,d>0$. Prove that $$(a^{2}+1)(b^{2}+1)(c^{2}+1)(d^{2}+1)\\ge (a+b)(b+c)(c+d)(d+a),$$ and determine all equality cases.",
+      "why": "The engine is the Brahmagupta--Fibonacci identity $(a^{2}+1)(b^{2}+1)=(ab-1)^{2}+(a+b)^{2}$, i.e. multiplicativity of the norm on $\\mathbb{C}$ via $(a+i)(b+i)=(ab-1)+i(a+b)$. Pairing $[(a,b),(c,d)]$ and $[(b,c),(d,a)]$ and multiplying the two squared inequalities gives the claim after taking square roots. Equality forces $ab=bc=cd=da=1$, a one-parameter family $a=c$, $b=d$, $ab=1$. The same norm identity underlies Fermat's two-square theorem through the Gaussian integers $\\mathbb{Z}[i]$, a Euclidean domain.",
+      "hints": [
+        "Pair adjacent factors and use $(a^2+1)(b^2+1)=(ab-1)^2+(a+b)^2$."
+      ],
+      "steps": [
+        "Pair the factors: $[(a^2+1)(b^2+1)]\\cdot[(c^2+1)(d^2+1)]$ and $[(b^2+1)(c^2+1)]\\cdot[(d^2+1)(a^2+1)]$; the product of all four pair-products is LHS$^2$.",
+        "Lagrange identity: $(a^2+1)(b^2+1)=(ab-1)^2+(a+b)^2\\ge(a+b)^2$, and likewise for $(b,c)$, $(c,d)$, $(d,a)$.",
+        "Multiply all four inequalities: LHS$^2\\ge(a+b)^2(b+c)^2(c+d)^2(d+a)^2=$ RHS$^2$; take square roots.",
+        "Equality iff $ab=bc=cd=da=1$ simultaneously, i.e. $a=c$, $b=d$, $ab=1$; then $abcd=1$ holds automatically.",
+        "Sharpness: $a=c=t$, $b=d=1/t$ attains equality for every $t>0$."
+      ],
+      "remark": "The engine is the Brahmagupta-Fibonacci identity, equivalently multiplicativity of the norm on the Gaussian integers $\\mathbb{Z}[i]$, since $(a+i)(b+i)=(ab-1)+i(a+b)$; the same identity underlies Fermat's two-square theorem. The construction grows out of the classical olympiad motif of pairing adjacent factors so each pair dominates a square $(a+b)^2$, multiplying the four bounds, and extracting a root. The inequality needs no normalization such as $abcd=1$; it holds for all positive reals, and the equality family automatically has $abcd=1$."
+    },
+    {
+      "id": "a5",
+      "category": "alg",
+      "difficulty": "easy",
+      "stars": 1,
+      "rating": 3.5,
       "confidence": "high",
       "text": "Find all polynomials $P:\\mathbb{R}\\to\\mathbb{R}$ satisfying $$P(P(x))=\\bigl(P(x)\\bigr)^{3}\\qquad\\text{for all }x\\in\\mathbb R.$$",
       "why": "Degree comparison in $P\\circ P=P^{3}$ leaves $n\\in\\{0,3\\}$. For $P=x^{3}+ax^{2}+bx+c$ the $x^{8}$ coefficients of $P\\circ P$ and $P^{3}$ agree (both $3a$, the outer quadratic term $a\\,P(x)^{2}$ having degree $6$), so the first decisive comparison is at $x^{6}$, where $P\\circ P$ carries an extra $+a$ that $P^{3}$ lacks: $a=0$; then $P\\circ P-P^{3}$ equals exactly $b\\,P(x)+c$, which a nonconstant cubic cannot absorb, killing $b$ and $c$: the classification is $\\{0,\\pm1,x^{3}\\}$. Conceptually $P\\circ P=(\\cdot)^{3}\\circ P$ says $P$ is an intertwiner between its own dynamics and the cube power map - a question in the Ritt--Julia theory of polynomial composition, where the monomials $z^{d}$ and Chebyshev polynomials are the rigid, highly symmetric members of the monoid $(\\mathbb{C}[x],\\circ)$.",
@@ -180,31 +163,11 @@ window.IMO_SHORTLIST = {
       "remark": "The identity $P\\circ P=(\\cdot)^3\\circ P$ asks $P$ to intertwine its own dynamics with the cubing power map, a question in the Ritt-Julia theory of polynomial composition, where monomials $z^d$ and Chebyshev polynomials are the rigid, highly symmetric members of the composition monoid. Origin: the standard olympiad template for polynomial functional equations, degree comparison followed by coefficient matching, here with the trap that the first information sits at $x^6$, not $x^8$."
     },
     {
-      "id": "a7",
+      "id": "a6",
       "category": "alg",
-      "difficulty": "medium",
-      "stars": 2,
-      "confidence": "high",
-      "text": "Find all polynomials $P:\\mathbb{R}\\to\\mathbb{R}$ such that $$P(x)^{3}-P(y)^{3}=P(x-y)\\,P\\left(x^{2}+xy+y^{2}\\right)\\qquad\\text{for all real }x,y.$$",
-      "why": "Substitutions dismantle the identity: $x=y=0$ gives $P(0)=0$; then $y=0$ gives $P(x)^{3}=P(x)P(x^{2})$, so $P\\equiv0$ or $P(x)^{2}=P(x^{2})$ - $P$ intertwines the squaring power map with itself, $P\\circ(\\cdot^{2})=(\\cdot^{2})\\circ P$. Intertwiners of a power map are monomials $P=x^{m}$: along each root orbit $r\\mapsto r^{2}$ of the squaring map the multiplicities obey the doubling law $m(r^{2})=2m(r)$, and orbit finiteness kills every nonzero complex root, leaving only $x^{m}$ (leading coefficient forced to $1$); this is the first case of the Ritt theory of commuting polynomials, where only monomials and Chebyshev polynomials admit such symmetries. The probe $(x,y)=(2,1)$ forces $8^{m}-1=7^{m}$, hence $m=1$; $P=x^{2}$ satisfies the reduced equation but not the original one.",
-      "hints": [
-        "Root multiplicities along $r\\mapsto r^2$ obey $m(r^2)=2m(r)$; orbit finiteness kills all nonzero roots.",
-        "Probe $P=x^m$ at $(x,y)=(2,1)$: only $m=1$ survives, plus $P\\equiv0$."
-      ],
-      "steps": [
-        "Set $x=y=0$: $0=P(0)\\cdot P(0)$, so $P(0)=0$.",
-        "Set $y=0$: $P(x)^{3}=P(x)\\,P(x^{2})$ identically. If $P\\not\\equiv0$, cancel $P(x)$ to obtain $P(x)^{2}=P(x^{2})$.",
-        "Idempotents of squaring. Compare leading coefficients in $P(x)^{2}=P(x^{2})$: $c^{2}=c$, and $c\\ne0$ since $P\\not\\equiv0$, so $c=1$. The identity is over $\\mathbb R[x]$ but we argue in $\\mathbb C[x]$, where $P$ splits. Let $m(r)$ denote the multiplicity of a (possibly complex) root $r\\ne0$ of $P$. Compare the order of vanishing at $x=r$ on both sides: the left side vanishes to order $2m(r)$, while $P(x^{2})$ vanishes to order $m(r^{2})$, because $x^{2}-r^{2}=(x-r)(x+r)$ is a simple factor at $r\\ne0$. Hence $m(r^{2})=2m(r)$, and iterating, $m(r^{2^{k}})=2^{k}m(r)$ for every $k\\ge1$. Since $P$ has finitely many roots, two orbit points coincide, $r^{2^{i}}=r^{2^{j}}$ with $i&lt;j$, so $2^{i}m(r)=2^{j}m(r)$ forces $m(r)=0$: contradiction. Thus $P$ has no nonzero complex root at all, and being monic with $P(0)=0$ it is exactly $P(x)=x^{m}$ for some $m\\ge1$.",
-        "Test $P(x)=x^{m}$ in the original at $(x,y)=(2,1)$: $2^{3m}-1=7^{m}$. For $m=1$ equality; for $m\\ge2$, $8^{m}-1>7^{m}$ by induction (base $m=2$: $63>49$). Note the trap: $m=2$ passes the reduced idempotent step but fails here.",
-        "Verify $P=x$: $x^{3}-y^{3}=(x-y)(x^{2}+xy+y^{2})$ holds identically. Machine closure: full sympy coefficient solve through degree 4 returns only $\\{0,x\\}$ (2026-09-29)."
-      ],
-      "remark": "The reduced relation $P\\circ(\\cdot^2)=(\\cdot^2)\\circ P$ makes $P$ an intertwiner of the squaring power map, the first case of Ritt's theory of commuting polynomials, where only monomials and Chebyshev polynomials admit such symmetries; the proof compares vanishing orders along root orbits in $\\mathbb{C}[x]$, a standard move in complex dynamics. Origin: dismantling the identity by $x=y=0$ and $y=0$, then pinning the exponent with a single clever probe, the classic polynomial FE recipe."
-    },
-    {
-      "id": "a8",
-      "category": "alg",
-      "difficulty": "medium",
-      "stars": 2,
+      "difficulty": "easy",
+      "stars": 1,
+      "rating": 3.5,
       "confidence": "high",
       "text": "Let $a,b,c>0$. Prove that $$32\\!\\left(\\sum_{\\mathrm{cyc}}ab(a+b)\\right)^3 \\ge 27\\!\\left(\\prod_{\\mathrm{cyc}}(a+b)\\right)^2 \\left(\\prod_{\\mathrm{cyc}}(a+b)-4abc\\right).$$",
       "why": "A homogeneous symmetric inequality in three variables is a polynomial in the elementary symmetric functions $s=a+b+c$, $t=ab+bc+ca$, $p=abc$ by the fundamental theorem of symmetric polynomials. The feasible region in $(s,t,p)$ is carved out by the cubic discriminant $\\Delta\\ge0$ (the condition that $z^{3}-sz^{2}+tz-p$ has three real roots), so the extremum reduces to one-variable analysis on the boundary where two roots coincide. The factorization and equality case are then elementary; this is the uvw method, a quantifier-elimination principle for symmetric polynomial constraints.",
@@ -221,29 +184,77 @@ window.IMO_SHORTLIST = {
       "remark": "A textbook uvw example: the fundamental theorem of symmetric polynomials writes the inequality as a polynomial in $(s,t,p)$, whose feasible region is carved by the cubic discriminant, so extremal analysis collapses to one variable on the double-root boundary; this is quantifier elimination for symmetric constraints. Origin: the classical AM-GM bound $(a+b+c)(ab+bc+ca)\\ge9abc$ plus the exact factorization with double root $u=9$, whose equality condition is $a=b=c$."
     },
     {
+      "id": "a7",
+      "category": "alg",
+      "difficulty": "easy",
+      "stars": 1,
+      "rating": 3.5,
+      "confidence": "high",
+      "text": "Let $a,b,c$ be real numbers satisfying $a+b+c=0$ and $abc=1$. Prove that $$a^4+b^4+c^4\\ge \\dfrac{9}{\\sqrt[3]{2}},$$ and determine all equality cases.",
+      "why": "The product condition forces the sign pattern: exactly one variable is positive. The other two are then nonnegative numbers with fixed sum and product, so they are the real roots of a quadratic whose discriminant is nonnegative - root-location theory via the discriminant supplies a lower bound on the positive root, and convexity of $t\\mapsto t^{4}$ upgrades that bound to the fourth-power sum by Jensen's inequality, the prototype of majorization arguments (Karamata). The same mechanism - symmetric constraints, extrema on the double-root boundary of the real-rooted region - is the uvw/discriminant principle.",
+      "hints": [
+        "From $(p-q)^2\\ge0$ deduce $c^3\\ge4$, so $c\\ge2^{2/3}$."
+      ],
+      "steps": [
+        "The product $abc=1>0$ and the sum $a+b+c=0$ forbid three positive numbers and also forbid exactly two positive numbers. Hence exactly one of $a,b,c$ is positive; call it $c$, and write $a=-p$, $b=-q$ with $p,q>0$.",
+        "Then $p+q=c$ and $pq=1/c$. The inequality $(p-q)^2\\ge 0$ becomes $c^2\\ge 4/c$. Since $c>0$, this is $c^3\\ge 4$, so $c\\ge 4^{1/3}=2^{2/3}$.",
+        "By convexity of $t\\mapsto t^4$, or equivalently by the power-mean inequality, $$\\frac{p^4+q^4}2\\ge \\left(\\frac{p+q}2\\right)^4,$$ so $p^4+q^4\\ge \\tfrac18 c^4$, with equality if and only if $p=q$.",
+        "Therefore $a^4+b^4+c^4=p^4+q^4+c^4\\ge \\tfrac98 c^4\\ge \\tfrac98\\,(2^{2/3})^4=\\tfrac98\\cdot 2^{8/3}=9\\cdot 2^{-1/3}$.",
+        "Equality requires $c=2^{2/3}$ and $p=q$. Then $p+q=c$ and $pq=1/c$ give $p=q=2^{-1/3}$. Thus equality holds exactly at the permutations of $\\bigl(2^{2/3},\\,-2^{-1/3},\\,-2^{-1/3}\\bigr)$."
+      ],
+      "remark": "The mechanism is the uvw-discriminant principle: with symmetric constraints, extrema sit on the double-root boundary of the real-rooted region, here expressed elementarily as $(p-q)^2\\ge0$ for the two negative roots of a quadratic. Convexity of $t^4$ then upgrades the bound via Jensen's inequality, the prototype of majorization and Karamata arguments. Origin: the classical sign-pattern reduction under $abc>0$ with $a+b+c=0$, a well-known olympiad opening move."
+    },
+    {
+      "id": "a8",
+      "category": "alg",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4,
+      "confidence": "high",
+      "text": "Let $P(x)$ be a polynomial with real coefficients of degree at most $2$ such that $P(n)\\ge 0$ for every integer $n$. Prove that, for every real number $x$, $$P(x)+P(x+1)\\ \\ge\\ 0 .$$",
+      "why": "Write $P=a(x-v)^2+m$, $a\\gt 0$. The lattice-root condition forces $m\\ge-a/4$: if $m\\lt -a/4$, then the open interval $\\{P\\lt 0\\}$ has length $\\gt 1$ and therefore contains an integer. The shift sum is $$P(x)+P(x+1)=2a\\bigl(x-v+\\tfrac12\\bigr)^2+2m+\\tfrac a2,$$ so its minimum is at least $2m+\\tfrac a2\\ge0$. Equality occurs either for $P\\equiv0$, or for a quadratic $P=a(x-k)(x-k-1)$ with $a\\gt 0$, $k\\in\\mathbb Z$, at $x=k$.",
+      "hints": [
+        "Write $P=a(x-v)^2+m$; the dip $\\{P<0\\}$ has length at most one, so $m\\ge-a/4$."
+      ],
+      "steps": [
+        "Degenerate degrees. $P\\equiv c$: the lattice condition gives $c\\ge0$ and $P(x)+P(x+1)=2c\\ge0$ (equality ⟺ $c=0$, consistent with the ⟺). If $P$ were linear nonconstant, its values on $\\mathbb Z$ run to $-\\infty$ in one direction, contradicting the hypothesis. Hence $P(x)=a(x-v)^2+m$ with $a\\gt 0$, vertex value $m$, negative region (if $m\\lt 0$) the open interval $I=(v-\\rho,\\,v+\\rho)$ with half-width $\\rho=\\sqrt{-m/a}$.",
+        "Dip lemma. Every open interval of length $\\gt 1$ contains an integer: if $J=(r,s)$ with $s-r\\gt 1$, then $\\lfloor r\\rfloor+1\\in J$. Consequence: $m\\lt -a/4$ would give $|I|=2\\rho\\gt 1$, an integer $k\\in I$, $P(k)\\lt 0$ - impossible. So $m\\ge -a/4$.",
+        "Shift-square identity (verified by sympy): substituting $P=a(x-v)^2+m$, $$P(x)+P(x+1)=a(x-v)^2+a(x-v+1)^2+2m=2a\\bigl(x-v+\\tfrac12\\bigr)^2+2m+\\tfrac a2 .$$",
+        "Combine: $P(x)+P(x+1)\\ge 2m+\\tfrac a2\\ge -\\tfrac a2+\\tfrac a2=0$ for every real $x$. This is the claim.",
+        "Equality characterization. If $P\\equiv0$, then $P(x)+P(x+1)\\equiv0$, so equality occurs for every $x$. Now suppose $P$ is quadratic and $S(x_0):=P(x_0)+P(x_0+1)=0$. Then both inequalities in step 4 are equalities: $m=-a/4$ and $x_0=v-\\tfrac12$. Hence $P=a(x-r)(x-s)$ with $s-r=1$ and $x_0=r$, $x_0+1=s$. Since $P(n)\\ge0$ for every integer $n$, the open interval $(r,s)$ contains no integer. An open interval of length $1$ contains no integer only when its endpoints are consecutive integers, so $r=k$ and $s=k+1$ for some $k\\in\\mathbb Z$. Thus $P=a(x-k)(x-k-1)$ and equality occurs at $x=k$. Conversely, every such quadratic satisfies $P(k)=P(k+1)=0$, hence gives equality. Therefore equality occurs exactly for $P\\equiv0$, or $P=a(x-k)(x-k-1)$ with $a&gt;0$, $k\\in\\mathbb Z$, at $x=k$."
+      ],
+      "remark": "The quantity $\\inf_x(P(x)+P(x+1))$ is an inhomogeneous minimum of a quadratic form, a classical object in Markov-Hurwitz geometry of numbers, while the dip lemma uses the covering property that every open interval of length greater than one contains an integer. Origin: completing the square combined with root-location bookkeeping for a parabola constrained on the lattice $\\mathbb{Z}$; the vertex penalty $a/2$ exactly cancels the worst admissible dip $2m=-a/2$."
+    },
+    {
       "id": "a9",
       "category": "alg",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 4.5,
       "confidence": "high",
-      "text": "Let $a,b,c\\ge 0$ be real numbers with $a^{2}+b^{2}+c^{2}=3$. Prove that $$\\frac{1}{a^{2}+a+1}+\\frac{1}{b^{2}+b+1}+\\frac{1}{c^{2}+c+1}\\ \\ge\\ 1\\,, $$ and determine all cases of equality.",
-      "why": "Two Cauchy--Schwarz applications in the correct order: the Engel (Bergstrom) form $\\sum 1/D_a\\ge9/\\sum D_a=9/(6+a+b+c)$ - Cauchy--Schwarz with vectors $(\\sqrt{D_a})$ and $(1/\\sqrt{D_a})$, equality iff all $D_a$ equal - and then $a+b+c\\le\\sqrt{3\\cdot3}=3$, the RMS-AM inequality, again Cauchy--Schwarz with the all-ones vector. The equality analysis threads through both stages simultaneously; no per-term minorant $\\alpha-\\beta x^{2}$ of $1/D_a$ survives at both endpoints, so the termwise route fails and only the global inner-product route works.",
+      "text": "Find all polynomials $P\\in\\mathbb R[x]$ satisfying $$P(x^2+x)+P(x^2-x)=2P(x)^2-2P(0)\\qquad\\text{for all }x\\in\\mathbb R.$$",
+      "why": "The right-hand side is even, so $P(x)^2$ is even; hence $P$ is either even or odd. The even case is killed from the lowest nonzero term at the origin, while the odd case is forced to have degree $1$ by a single high-degree coefficient comparison. The surviving solutions are $P\\equiv0$, $P\\equiv2$, and $P(x)=x$.",
       "hints": [
-        "Engel form of Cauchy-Schwarz: $\\sum 1/D_a\\ge9/(D_a+D_b+D_c)$."
+        "The equation makes $P(x)^2$ an even polynomial. What does that say about $P$?",
+        "In the even case compare the lowest nonzero degree at $x=0$; in the odd case compare the coefficients of $x^{2d}$ and $x^{2d-2}$."
       ],
       "steps": [
-        "Write $D_a=a^{2}+a+1$. Engel's form of Cauchy-Schwarz: $\\sum 1/D_a\\ge(1+1+1)^{2}/(D_a+D_b+D_c)=9/(\\sum a^{2}+\\sum a+3)=9/(6+a+b+c)$.",
-        "Cauchy-Schwarz: $a+b+c\\le\\sqrt{3(a^{2}+b^{2}+c^{2})}=3$, so the denominator is at most $9$ and the sum is at least $1$.",
-        "Equality throughout: the second step forces $a=b=c$; combined with $\\sum a^2=3$ this gives $a=b=c=1$, where the sum is $3\\cdot\\tfrac13=1$. (Engel equality $D_a=D_b=D_c$ is then automatic.)",
-        "Remark: a per-term tangent-line bound of the form $1/(x^{2}+x+1)\\ge\\alpha-\\beta x^{2}$ touching at $x=1$ fails near $x=\\sqrt3$, so the global argument above is the way to proceed."
+        "Put $c=P(0)$. Setting $x=0$ gives $2c=2c^2-2c$, hence $c\\in\\{0,2\\}$.",
+        "The left side is unchanged by $x\\mapsto-x$, so the equation implies $P(x)^2$ is even. Thus $P(-x)=P(x)$ or $P(-x)=-P(x)$ as polynomials; hence $P$ is either even or odd.",
+        "Suppose $P$ is even and nonconstant. Let $m\\ge2$ be the least degree occurring in $P(x)-c$, and write $P(x)-c=kx^m+O(x^{m+2})$ with $k\\ne0$. If $c=0$, the coefficient of $x^m$ in the equation is $2k$ on the left and $0$ on the right, impossible. If $c=2$, after writing $P=2+q$ the equation becomes $$q(x^2+x)+q(x^2-x)=8q(x)+2q(x)^2,$$ so the coefficient of $x^m$ gives $2k=8k$, again impossible. Therefore every nonconstant solution is odd.",
+        "Now let $P$ be odd of degree $d\\ge1$, with leading coefficient $a$. Comparing the coefficient of $x^{2d}$ gives $2a=2a^2$, hence $a=1$.",
+        "Because $P$ is odd, the coefficients of $x^{d-1}$ and $x^{d-2}$ vanish. Compare the coefficient of $x^{2d-2}$. On the left, the leading term contributes $$[x^{2d-2}]\\bigl((x^2+x)^d+(x^2-x)^d\\bigr)=d(d-1),$$ while no lower term of $P$ can contribute to that degree because the $x^{d-1}$ coefficient is $0$. On the right, the coefficient is $0$ because the $x^{d-1}$ and $x^{d-2}$ coefficients of the odd polynomial vanish. Hence $d(d-1)=0$, so $d=1$.",
+        "Thus $P(x)=x$ in the nonconstant case. The constants $P\\equiv0$ and $P\\equiv2$ are obtained from $c\\in\\{0,2\\}$ and directly satisfy the equation.",
+        "Therefore the complete solution set is $$\\boxed{P\\equiv0,\\quad P\\equiv2,\\quad P(x)=x}.$$"
       ],
-      "remark": "Both stages are Cauchy-Schwarz, first in the Bergstrom Engel form, with equality when the three denominators agree, then against the all-ones vector, an instance of bounding reciprocal sums through the harmonic-arithmetic mean chain. The problem is a known olympiad lesson in inequality architecture: no per-term minorant $\\alpha-\\beta x^2$ survives at both endpoints of the domain, so only the global two-step chain works; equality forces $a=b=c=1$."
+      "remark": "The decisive structure is parity forced by an identity of squares, followed by a local lowest-degree argument and one sharp coefficient comparison at the top. The problem is deliberately built so that neither a routine substitution chain nor brute-force coefficient solving is enough without first finding the parity dichotomy."
     },
     {
       "id": "a10",
       "category": "alg",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 4.5,
       "confidence": "high",
       "text": "Find all functions $f:\\mathbb{N}\\to\\mathbb{N}$ such that $$f(m+n)+f(mn)=f(m)f(n)+1$$ for all positive integers $m$ and $n$.",
       "why": "The two operations of the semiring $(\\mathbb{N},+,\\times)$ are tied together: with $g:=f-1$ the equation reads $g(mn)=g(m)g(n)+g(m+n)$, a multiplicative law corrected by the additive structure. Setting $n=1$ gives a linear recurrence in $g$ along translates of value $g(1)$; the solutions $f\\equiv1$ and $f(n)=n+1$ correspond to $g\\equiv0$ and $g(n)=n$. For $g(1)\\gt1$ two independent evaluations of $f(4)$ disagree, closing the classification without growth estimates. Such hybrid additive-multiplicative functional equations mirror the rigidity of endomorphisms of arithmetic semirings, where the two operations already force the map.",
@@ -266,6 +277,51 @@ window.IMO_SHORTLIST = {
       "category": "alg",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5,
+      "confidence": "high",
+      "text": "Let $a,b,c\\ge 0$ satisfy $a+b+c=1$.\n\n<ol><li>Find the largest real number $\\lambda$ such that $$\\sqrt{a+bc}+\\sqrt{b+ca}+\\sqrt{c+ab}\\;\\ge\\;1+\\lambda\\,(ab+bc+ca)$$ holds for every admissible triple $(a,b,c)$.</li>\n<li>For that $\\lambda$, determine all equality cases.</li></ol>",
+      "why": "Under $a+b+c=1$ the key factorization is $a+bc=(a+b)(a+c)$. Expanding $S^2$ exactly and bounding cross terms by $\\sqrt{(a+c)(b+c)}\\ge c+\\sqrt{ab}$, whose defect is the square $c(\\sqrt a-\\sqrt b)^2$, then $(a+b)\\sqrt{ab}\\ge2ab$, gives $S^2\\ge1+9q\\ge(1+3q)^2$ since $q=ab+bc+ca\\le1/3$. The centroid has $S=2=1+3q$, forcing $\\lambda\\le3$; equality holds iff centroid or vertex, since $S=1+3q$ forces $q\\in\\{0,\\tfrac13\\}$. The whole proof is a sum-of-squares certificate in the elementary symmetric functions $(s,t,p)$ - the mechanism behind the uvw method and the discriminant description of the real-rooted region.",
+      "hints": [
+        "Factor $a+bc=(a+b)(a+c)$ under $a+b+c=1$; set $q=ab+bc+ca$.",
+        "Expand $S^2$ exactly and bound cross terms via $(a+c)(b+c)\\ge(c+\\sqrt{ab})^2$."
+      ],
+      "steps": [
+        "Set $q=ab+bc+ca\\le\\tfrac13$ and note $a+bc=(a+b)(a+c)$ for $a+b+c=1$.",
+        "Expand exactly: $S^2=(1+q)+2\\big[(a+b)\\sqrt{(a+c)(b+c)}+(b+c)\\sqrt{(b+a)(c+a)}+(c+a)\\sqrt{(c+b)(a+b)}\\big]$.",
+        "Bound each cross term: $(a+c)(b+c)\\ge(c+\\sqrt{ab})^2$; with $\\sum_{pairs}(a+b)c=2q$ this gives $S^2\\ge1+5q+2\\sum_{pairs}(a+b)\\sqrt{ab}\\ge1+9q$ (AM-GM).",
+        "Close: $1+9q-(1+3q)^2=3q(1-3q)\\ge0\\Rightarrow S\\ge1+3q$. At the centroid $S=2$, $q=\\tfrac13$, so no $\\lambda>3$ works.",
+        "Equality needs $q\\in\\{0,\\tfrac13\\}$: $q=\\tfrac13\\Rightarrow a=b=c$; $q=0\\Rightarrow$ two coordinates vanish. Both check; trap check: the shortcut $S\\ge1+\\sum\\sqrt{bc}\\ge1+3q$ is INVALID (second step fails on $19\\%$ of samples - CAS w3f_a3.py)."
+      ],
+      "remark": "The proof is a sum-of-squares certificate in the elementary symmetric functions, the mechanism behind the uvw method and the discriminant description of the real-rooted region for symmetric three-variable inequalities. It grows out of the staple olympiad factorization $a+bc=(a+b)(a+c)$ under $a+b+c=1$, combined with the sharpness test at the centroid and the vertices that fixes the optimal constant. The equality analysis shows $S=1+3q$ forces $q\\in\\{0,\\tfrac13\\}$."
+    },
+    {
+      "id": "a12",
+      "category": "alg",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 5,
+      "confidence": "high",
+      "text": "Find all polynomials $P:\\mathbb{R}\\to\\mathbb{R}$ such that $$P(x)^{3}-P(y)^{3}=P(x-y)\\,P\\left(x^{2}+xy+y^{2}\\right)\\qquad\\text{for all real }x,y.$$",
+      "why": "Substitutions dismantle the identity: $x=y=0$ gives $P(0)=0$; then $y=0$ gives $P(x)^{3}=P(x)P(x^{2})$, so $P\\equiv0$ or $P(x)^{2}=P(x^{2})$ - $P$ intertwines the squaring power map with itself, $P\\circ(\\cdot^{2})=(\\cdot^{2})\\circ P$. Intertwiners of a power map are monomials $P=x^{m}$: along each root orbit $r\\mapsto r^{2}$ of the squaring map the multiplicities obey the doubling law $m(r^{2})=2m(r)$, and orbit finiteness kills every nonzero complex root, leaving only $x^{m}$ (leading coefficient forced to $1$); this is the first case of the Ritt theory of commuting polynomials, where only monomials and Chebyshev polynomials admit such symmetries. The probe $(x,y)=(2,1)$ forces $8^{m}-1=7^{m}$, hence $m=1$; $P=x^{2}$ satisfies the reduced equation but not the original one.",
+      "hints": [
+        "Root multiplicities along $r\\mapsto r^2$ obey $m(r^2)=2m(r)$; orbit finiteness kills all nonzero roots.",
+        "Probe $P=x^m$ at $(x,y)=(2,1)$: only $m=1$ survives, plus $P\\equiv0$."
+      ],
+      "steps": [
+        "Set $x=y=0$: $0=P(0)\\cdot P(0)$, so $P(0)=0$.",
+        "Set $y=0$: $P(x)^{3}=P(x)\\,P(x^{2})$ identically. If $P\\not\\equiv0$, cancel $P(x)$ to obtain $P(x)^{2}=P(x^{2})$.",
+        "Idempotents of squaring. Compare leading coefficients in $P(x)^{2}=P(x^{2})$: $c^{2}=c$, and $c\\ne0$ since $P\\not\\equiv0$, so $c=1$. The identity is over $\\mathbb R[x]$ but we argue in $\\mathbb C[x]$, where $P$ splits. Let $m(r)$ denote the multiplicity of a (possibly complex) root $r\\ne0$ of $P$. Compare the order of vanishing at $x=r$ on both sides: the left side vanishes to order $2m(r)$, while $P(x^{2})$ vanishes to order $m(r^{2})$, because $x^{2}-r^{2}=(x-r)(x+r)$ is a simple factor at $r\\ne0$. Hence $m(r^{2})=2m(r)$, and iterating, $m(r^{2^{k}})=2^{k}m(r)$ for every $k\\ge1$. Since $P$ has finitely many roots, two orbit points coincide, $r^{2^{i}}=r^{2^{j}}$ with $i&lt;j$, so $2^{i}m(r)=2^{j}m(r)$ forces $m(r)=0$: contradiction. Thus $P$ has no nonzero complex root at all, and being monic with $P(0)=0$ it is exactly $P(x)=x^{m}$ for some $m\\ge1$.",
+        "Test $P(x)=x^{m}$ in the original at $(x,y)=(2,1)$: $2^{3m}-1=7^{m}$. For $m=1$ equality; for $m\\ge2$, $8^{m}-1>7^{m}$ by induction (base $m=2$: $63>49$). Note the trap: $m=2$ passes the reduced idempotent step but fails here.",
+        "Verify $P=x$: $x^{3}-y^{3}=(x-y)(x^{2}+xy+y^{2})$ holds identically. Machine closure: full sympy coefficient solve through degree 4 returns only $\\{0,x\\}$ (2026-09-29)."
+      ],
+      "remark": "The reduced relation $P\\circ(\\cdot^2)=(\\cdot^2)\\circ P$ makes $P$ an intertwiner of the squaring power map, the first case of Ritt's theory of commuting polynomials, where only monomials and Chebyshev polynomials admit such symmetries; the proof compares vanishing orders along root orbits in $\\mathbb{C}[x]$, a standard move in complex dynamics. Origin: dismantling the identity by $x=y=0$ and $y=0$, then pinning the exponent with a single clever probe, the classic polynomial FE recipe."
+    },
+    {
+      "id": "a13",
+      "category": "alg",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 5,
       "confidence": "high",
       "text": "Find all polynomials $P:\\mathbb{R}\\to\\mathbb{R}$ such that $$P(x^{2}+y^{2})=P(x+y)^{2}-2P(xy)\\qquad\\text{for all real }x,y.$$",
       "why": "$x^{2}+y^{2}$ is the power sum $p_2=e_1^{2}-2e_2$ expressed through the elementary symmetric functions of $\\{x,y\\}$ - Newton's identities - so the equation asks $P$ to commute with transporting a pair to its invariants. Plugging $y=0$ gives $P(x^2)=P(x)^2-2P(0)$, and $x=y=0$ forces $P(0)\\in\\{0,3\\}$, the first surprise (the constant solution $3$, since $9=4\\cdot9-3\\cdot9$). The substitution $y\\mapsto-y$ compares right-hand sides to give $P(x+y)^2-2P(xy)=P(x-y)^2-2P(-xy)$; at $y=-x$ this collapses to $P(2x^2)=-2P(-x^2)+P(0)^2-2P(0)$, and degree comparison $2^{n}=-2(-1)^{n}$ leaves only $n=1$. Then $P=ax+b$ must survive the original identity: $b\\in\\{0,3\\}$, $a=a^{2}$, and the residue kills everything except $0,x,3$.",
@@ -283,30 +339,148 @@ window.IMO_SHORTLIST = {
       "remark": "The left side $x^2+y^2$ is the Newton-sum expression $p_2=e_1^2-2e_2$ in the elementary symmetric functions of $\\{x,y\\}$, so the equation asks $P$ to commute with passing a pair to its invariants, a symmetric-function-theoretic reading. Origin: the standard dismantling substitutions $y=0$ and $y=-x$ for symmetric polynomial identities, plus the decisive degree comparison that leaves only $n=1$; the constant solution $P=3$ is the classic surprise."
     },
     {
-      "id": "a12",
+      "id": "a14",
       "category": "alg",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5,
       "confidence": "high",
-      "text": "Let $P(x)$ be a polynomial with real coefficients of degree at most $2$ such that $P(n)\\ge 0$ for every integer $n$. Prove that, for every real number $x$, $$P(x)+P(x+1)\\ \\ge\\ 0 .$$",
-      "why": "Write $P=a(x-v)^2+m$, $a&gt;0$. The lattice-root condition forces $m\\ge-a/4$: if $m&lt;-a/4$, then the open interval $\\{P&lt;0\\}$ has length $&gt;1$ and therefore contains an integer. The shift sum is $$P(x)+P(x+1)=2a\\bigl(x-v+\\tfrac12\\bigr)^2+2m+\\tfrac a2,$$ so its minimum is at least $2m+\\tfrac a2\\ge0$. Equality occurs either for $P\\equiv0$, or for a quadratic $P=a(x-k)(x-k-1)$ with $a&gt;0$, $k\\in\\mathbb Z$, at $x=k$.",
+      "text": "Let $T(x)=1-\\dfrac1x$ (so $T(T(T(x)))=x$ for all $x\\notin\\{0,1\\}$). Determine all real polynomials $P$ of degree at most $2$ for which there exists a nonzero polynomial $Q$ with $$P(x)=\\frac{Q(x)}{Q(T(x))}\\qquad\\text{for all real }x\\text{ where both sides are defined.}$$ (Bonus part 1: prove that any such $P$ must satisfy $P(x)\\,P(T(x))\\,P(T(T(x)))\\equiv 1$; part 2 decides which of the resulting candidates actually lift.)",
+      "why": "$T:x\\mapsto1-\\tfrac1x$ has order three on $\\mathbb P^1$. Iterating the lift identity gives the norm condition $$P(x)P(Tx)P(T^2x)\\equiv1.$$ Rather than solving a coefficient system, use its divisor structure: any root of $P$ must lie in the special orbit $\\{0,1,\\infty\\}$, so a polynomial $P$ of degree at most $2$ has the form $C x^r(x-1)^s$ with $r,s\\ge0$ and $r+s\\le2$. Direct computation of the norm gives $N(P)=C^3(-1)^r$, hence $C=(-1)^r$. This yields exactly $$1,\\ x-1,\\ -x,\\ x^2,\\ x-x^2,\\ (x-1)^2.$$ The polynomial lift then has to be checked separately; exactly $1,x^2,x-x^2$ lift.",
       "hints": [
-        "Write $P=a(x-v)^2+m$; the dip $\\{P<0\\}$ has length at most one, so $m\\ge-a/4$."
+        "Iterate along the cycle: any solution obeys $P(x)P(Tx)P(T^2x)\\equiv1$.",
+        "Solve that norm equation for $\\deg P\\le2$; six real candidates appear.",
+        "Compare vanishing orders along $0\\mapsto\\infty\\mapsto1\\mapsto0$ to kill non-lifters."
       ],
       "steps": [
-        "Degenerate degrees. $P\\equiv c$: the lattice condition gives $c\\ge0$ and $P(x)+P(x+1)=2c\\ge0$ (equality ⟺ $c=0$, consistent with the ⟺). If $P$ were linear nonconstant, its values on $\\mathbb Z$ run to $-\\infty$ in one direction, contradicting the hypothesis. Hence $P(x)=a(x-v)^2+m$ with $a\\gt 0$, vertex value $m$, negative region (if $m\\lt 0$) the open interval $I=(v-\\rho,\\,v+\\rho)$ with half-width $\\rho=\\sqrt{-m/a}$.",
-        "Dip lemma. Every open interval of length $\\gt 1$ contains an integer: if $J=(r,s)$ with $s-r\\gt 1$, then $\\lfloor r\\rfloor+1\\in J$. Consequence: $m\\lt -a/4$ would give $|I|=2\\rho\\gt 1$, an integer $k\\in I$, $P(k)\\lt 0$ - impossible. So $m\\ge -a/4$.",
-        "Shift-square identity (verified by sympy): substituting $P=a(x-v)^2+m$, $$P(x)+P(x+1)=a(x-v)^2+a(x-v+1)^2+2m=2a\\bigl(x-v+\\tfrac12\\bigr)^2+2m+\\tfrac a2 .$$",
-        "Combine: $P(x)+P(x+1)\\ge 2m+\\tfrac a2\\ge -\\tfrac a2+\\tfrac a2=0$ for every real $x$. This is the claim.",
-        "Equality characterization. If $P\\equiv0$, then $P(x)+P(x+1)\\equiv0$, so equality occurs for every $x$. Now suppose $P$ is quadratic and $S(x_0):=P(x_0)+P(x_0+1)=0$. Then both inequalities in step 4 are equalities: $m=-a/4$ and $x_0=v-\\tfrac12$. Hence $P=a(x-r)(x-s)$ with $s-r=1$ and $x_0=r$, $x_0+1=s$. Since $P(n)\\ge0$ for every integer $n$, the open interval $(r,s)$ contains no integer. An open interval of length $1$ contains no integer only when its endpoints are consecutive integers, so $r=k$ and $s=k+1$ for some $k\\in\\mathbb Z$. Thus $P=a(x-k)(x-k-1)$ and equality occurs at $x=k$. Conversely, every such quadratic satisfies $P(k)=P(k+1)=0$, hence gives equality. Therefore equality occurs exactly for $P\\equiv0$, or $P=a(x-k)(x-k-1)$ with $a&gt;0$, $k\\in\\mathbb Z$, at $x=k$."
+        "Compute $T^{2}(x)=-\\frac1{x-1}$ and check $T^{3}=\\mathrm{id}$.",
+        "Necessity: $Q(x)=P(x)Q(Tx)=P(x)P(Tx)Q(T^{2}x)=P(x)P(Tx)P(T^{2}x)Q(x)$, and $Q\\not\\equiv0$ gives the norm identity.",
+        "Solve the norm identity without a machine computation. Since $P$ is nonzero and $$P(x)P(Tx)P(T^2x)\\equiv1,$$ if $\\alpha$ is a root of $P$ with $\\alpha\\notin\\{0,1\\}$, then $T(\\alpha)$ and $T^2(\\alpha)$ are finite and all three factors are regular at $\\alpha$, so the left side vanishes at $\\alpha$, a contradiction. Hence every complex root of $P$ is $0$ or $1$. Thus $$P(x)=C\\,x^r(x-1)^s,\\qquad r,s\\ge0,\\quad r+s\\le2,$$ with $C\\ne0$ real. Now $$T(x)=\\frac{x-1}{x},\\qquad T(x)-1=-\\frac1x,\\qquad T^2(x)=\\frac1{1-x},\\qquad T^2(x)-1=-\\frac{x}{x-1}.$$ Therefore \\[ \\begin{aligned} P(Tx)&amp;=C(-1)^s\\frac{(x-1)^r}{x^{r+s}},\\\\ P(T^2x)&amp;=C(-1)^{r+s}\\frac{x^s}{(x-1)^{r+s}}, \\end{aligned} \\] and hence $$P(x)P(Tx)P(T^2x)=C^3(-1)^r.$$ The norm identity forces $C^3(-1)^r=1$, so, because $C\\in\\mathbb R$, $C=(-1)^r$. For $r+s\\le2$ this gives exactly $$P\\equiv1,\\quad P=x-1,\\quad P=-x,\\quad P=x^2,\\quad P=x-x^2,\\quad P=(x-1)^2.$$",
+        "Lift test: for $P=1$: $Q\\equiv1$. For $P=x^{2}$: show $Q=x^{2}-x+1$ works ($Q\\circ T=Q/x^{2}$). For $P=x-x^{2}$: $Q=x-1$: $Q\\circ T=-1/x$, ratio $-x(x-1)=x-x^{2}$.",
+        "Kill the three non-lifting candidates by order bookkeeping along the $T$-orbit $0\\mapsto\\infty\\mapsto1\\mapsto0$ (directly: $T(0)=\\infty$, $T(\\infty)=1$, $T(1)=0$). Suppose $Q$ is a nonzero polynomial lift, $Q(x)=P(x)\\,Q(Tx)$, of degree $m=\\deg Q$. A Mobius transformation is locally invertible on $\\mathbb P^{1}$ (local degree $1$ everywhere), so $v_\\zeta(Q\\circ T)=v_{T(\\zeta)}(Q)$; comparing orders at each orbit point $\\zeta$ gives $v_\\zeta(Q)-v_{T(\\zeta)}(Q)=v_\\zeta(P)$. Write $a=v_0(Q)$, $b=v_\\infty(Q)=-m$, $c=v_1(Q)$, with $a,c\\ge0$. The three equations are $a-b=v_0(P)$, $b-c=v_\\infty(P)$, $c-a=v_1(P)$ (their left sides sum to $0$, matching $v_0(P)+v_\\infty(P)+v_1(P)=0$ in each case).\n(i) $P=x-1$, orders $(v_0,v_\\infty,v_1)=(0,-1,1)$: $a=b=-m$ forces $m=0$, hence $a=b=0$ and then $c=a+1=1$, i.e. a nonzero constant $Q$ with $Q(1)=0$ - impossible.\n(ii) $P=(x-1)^{2}$, orders $(0,-2,2)$: again $a=b=-m$ gives $m=0$, then $c=a+2=2$, a nonzero constant vanishing at $1$ to order $2$ - impossible.\n(iii) $P=-x$, orders $(1,-1,0)$: $a=b+1=1-m$ and $c=a=1-m$, so $m\\le1$. $m=0$ makes a nonzero constant vanish at both $0$ and $1$; $m=1$ makes $a=c=0$, so the single zero $r$ of $Q$ lies off the orbit, but then $v_r(Q)-v_{T(r)}(Q)=v_r(P)=0$ propagates along the full $T$-orbit of $r$, and $T$ has no real fixed point ($T(x)=x\\iff x^{2}-x+1=0$, discriminant $-3$), so $r,T(r),T^{2}(r)$ are three distinct zeros of a linear polynomial. Both impossible. (Independently: sympy coefficient-solve for a lift up to $\\deg Q\\le8$ returns none for $x-1$, $-x$, $(x-1)^{2}$ and the stated $Q$ for $1$, $x^{2}$, $x-x^{2}$.)",
+        "Cohomological remark for the why-field readers: the classification is $H^{1}(\\langle T\\rangle,\\ \\Bbbk[x]^{\\times})$-flavored; the failure of the norm condition to be sufficient over polynomials (but sufficiency over the function field) is the content of the three dead candidates $x-1$, $-x$, $(x-1)^{2}$."
       ],
-      "remark": "The quantity $\\inf_x(P(x)+P(x+1))$ is an inhomogeneous minimum of a quadratic form, a classical object in Markov-Hurwitz geometry of numbers, while the dip lemma uses the covering property that every open interval of length greater than one contains an integer. Origin: completing the square combined with root-location bookkeeping for a parabola constrained on the lattice $\\mathbb{Z}$; the vertex penalty $a/2$ exactly cancels the worst admissible dip $2m=-a/2$."
+      "remark": "$T$ generates a cyclic group of order three of Mobius transformations of $\\mathbb{P}^1$, and the condition $P=Q/(Q\\circ T)$ is a Hilbert-Theorem-90 statement for $\\mathbb{R}(x)/\\mathbb{R}(x)^{C_3}$: norm-one elements are exactly coboundaries in the function field, so the only obstruction to a polynomial lift is divisor bookkeeping along the orbit $0\\mapsto\\infty\\mapsto1\\mapsto0$. Origin: the classical olympiad motif of iterating a substitution of order three, as in $x\\mapsto1-1/x$ systems, to force norm identities."
     },
     {
-      "id": "a13",
+      "id": "a15",
       "category": "alg",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5.5,
+      "confidence": "medium",
+      "text": "Let $a,b,c>0$. Prove that $$\\frac{ab}{a^2+b^2+c^2-ab+bc-ca}+\\frac{bc}{a^2+b^2+c^2-bc+ca-ab}+\\frac{ca}{a^2+b^2+c^2-ca+ab-bc}\\le\\frac{3}{2},$$ and determine all equality cases.",
+      "why": "The denominators are cyclic, not symmetric: each equals $a^{2}+b^{2}+c^{2}-(a-b)(b-c)-\\dots$-type expressions preserved by the 3-cycle. Clearing denominators turns the inequality into positivity of a single cyclic polynomial, and splitting into the two order types (chambers of the $a\\ge b\\ge c$ decomposition of $\\mathbb{R}^{3}$ modulo the cyclic group) makes each chamber piece symmetric, where direct expansion yields an explicit sum of nonnegative monomials - a positivity certificate. Equality analysis is then immediate. The chamber-splitting-and-substitution procedure is the standard method of difference substitutions for cyclic inequalities, an explicit instance of the Positivstellensatz philosophy behind Hilbert's 17th problem: prove nonnegativity by exhibiting a sum of manifestly nonnegative terms.",
+      "hints": [
+        "Write the denominators as $Q+2bc$, $Q+2ca$, $Q+2ab$ with $Q=\\tfrac12\\sum(a-b)^2\\ge0$.",
+        "Split the two orderings and substitute $c=x$, $b=x+y$, $a=x+y+z$."
+      ],
+      "steps": [
+        "Put $$Q=\\frac{(a-b)^2+(b-c)^2+(c-a)^2}{2}=a^2+b^2+c^2-ab-bc-ca.$$(Each cross term appears twice with a minus sign in the expansion of the three squares, each halved.) The three denominators are then exactly $D_1=Q+2bc$, $D_2=Q+2ca$, $D_3=Q+2ab$, since e.g. $Q+2bc=a^2+b^2+c^2-ab+bc-ca$. As $Q\\ge 0$ and $a,b,c>0$, all three denominators are strictly positive.",
+        "Because $D_1D_2D_3>0$, multiplying the inequality by $2D_1D_2D_3$ and collecting is reversible, so the assertion is equivalent to $$P:=3D_1D_2D_3-2(abD_2D_3+bcD_3D_1+caD_1D_2)\\ge 0,$$ with equality cases in bijection.",
+        "$P$ is invariant under the cyclic relabeling $(a,b,c)\\mapsto(b,c,a)$: $Q$ is symmetric, the factors $D_1\\to D_2\\to D_3\\to D_1$ and $ab\\to bc\\to ca\\to ab$ cycle together, so $P$ maps to itself. A cyclic relabeling therefore lets us assume $a$ is maximal. But $P$ is *not* symmetric under swapping $b$ and $c$, so after that normalization both order types $a\\ge b\\ge c$ and $a\\ge c\\ge b$ must still be treated separately.",
+        "If $a\\ge b\\ge c$, write $c=x$, $b=x+y$, $a=x+y+z$ with $x>0$ and $y,z\\ge 0$. Then $Q=y^2+yz+z^2$, and $$D_1=2x^2+2xy+y^2+yz+z^2,\\quad D_2=D_1+2xz,\\quad D_3=D_1+2xy+2xz+2y^2+2yz.$$ Substituting these three explicit quadratics into $P=3D_1D_2D_3-2(abD_2D_3+bcD_3D_1+caD_1D_2)$ and collecting in descending powers of $x$ gives exactly $$\\begin{aligned} P={}&amp;4x^4(y^2+yz+z^2)+8x^3(y^3+y^2z+2yz^2+z^3)\\\\ &amp;+12x^2y^4+16x^2y^3z+36x^2y^2z^2+32x^2yz^3+12x^2z^4\\\\ &amp;+8xy^5+16xy^4z+40xy^3z^2+48xy^2z^3+32xyz^4+8xz^5\\\\ &amp;+3y^6+9y^5z+22y^4z^2+29y^3z^3+26y^2z^4+13yz^5+3z^6\\ge 0, \\end{aligned}$$ every one of whose 25 monomial coefficients being strictly positive makes the inequality immediate for $x>0$, $y,z\\ge 0$.",
+        "If $a\\ge c\\ge b$, write $b=x$, $c=x+y$, $a=x+y+z$. Again $Q=y^2+yz+z^2$, now with $$D_1=2x^2+2xy+y^2+yz+z^2,\\quad D_2=D_1+2xy+2xz+2y^2+2yz,\\quad D_3=D_1+2xz,$$ which is the previous parametrization with the roles of $D_2$ and $D_3$ exchanged. Collecting the resulting $P$ gives $$\\begin{aligned} P={}&amp;4x^4(y^2+yz+z^2)+8x^3y^3+16x^3y^2z+24x^3yz^2+8x^3z^3\\\\ &amp;+12x^2y^4+32x^2y^3z+60x^2y^2z^2+40x^2yz^3+12x^2z^4\\\\ &amp;+8xy^5+24xy^4z+56xy^3z^2+56xy^2z^3+32xyz^4+8xz^5\\\\ &amp;+3y^6+9y^5z+22y^4z^2+29y^3z^3+26y^2z^4+13yz^5+3z^6\\ge 0, \\end{aligned}$$ again with all 25 coefficients strictly positive.",
+        "Conversely, equality needs both displayed polynomials to vanish. Since $x>0$, the two $x^2$-terms $12x^2y^4$ and $12x^2z^4$ force $y=z=0$, hence $a=b=c$ in either order type. Checking the original inequality at $a=b=c$: each denominator is $0+2a^2$ and each term is $a^2/2a^2=\\tfrac12$, so the sum is exactly $\\tfrac32$. Equality holds precisely when $a=b=c$."
+      ],
+      "remark": "The proof produces an explicit positivity certificate: after splitting into the two order chambers of the cyclic group action and applying the difference substitution $b=a+y$, $a=b+z$, the cleared polynomial has only positive coefficients, an instance of the Positivstellensatz philosophy behind Hilbert's seventeenth problem. Origin: the standard method for cyclic non-symmetric inequalities, clear denominators, normalize an order, run the difference substitution that makes each chamber elementary."
+    },
+    {
+      "id": "a16",
+      "category": "alg",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 5.5,
+      "confidence": "low",
+      "text": "Let $a_1,a_2,\\dots$ be positive reals with $a_1=1$ and $$a_{n+1}=a_n+\\frac{n}{a_1+\\cdots+a_n}.$$ Prove that $$a_n\\ge\\sqrt{\\frac{16n-9}{7}}$$ for every $n\\ge 1$.",
+      "why": "With $S_n=a_1+\\cdots+a_n$ the recurrence says $a_{n+1}-a_n=n/S_n$: the increments are positive and decreasing (concavity of the sequence), so $a_n$ grows like $\\sqrt{n}$ by a self-similar balance $a\\cdot a\\approx 1$. The proof runs a comparison (barrier) argument for the discrete Riccati-type flow: the ansatz $a_n^2\\ge(16n-9)/7$ is a subsolution checked by substituting the recurrence and reducing to an elementary quadratic estimate on the differences. Comparison principles for difference inequalities - the discrete analogue of upper/lower solutions for ODEs - are the general framework; asymptotically $a_n\\sim c\\sqrt n$ with the exact constant $c=4/\\sqrt7$ selected by the barrier touching at $n=1$.",
+      "hints": [
+        "Set $S_n=a_1+\\cdots+a_n$; concavity yields $2<a_{n+1}^2-a_n^2<4$ for $n\\ge2$.",
+        "Bound $d_n\\ge2/(a_n+\\sqrt{a_n^2-2(n-1)})$ via $1\\le a_nd_n-\\tfrac{n-1}2d_n^2$.",
+        "Then $a_{n+1}^2-a_n^2>16/7$ for $n\\ge3$; check $n=1,2$ by hand."
+      ],
+      "steps": [
+        "Put $S_n=a_1+\\cdots+a_n$ and $d_n=a_{n+1}-a_n=n/S_n$. Since $a_1&lt;a_2&lt;\\cdots&lt;a_{n+1}$ we have $S_n&lt;n\\,a_{n+1}$, and $d_{n+1}&lt;d_n\\iff\\frac{n+1}{S_{n+1}}&lt;\\frac{n}{S_n}\\iff S_n&lt;n\\,a_{n+1}$: the last inequality is exactly $a_1+\\cdots+a_n&lt;n\\,a_{n+1}$, true because every $a_i\\le a_n&lt;a_{n+1}$. Hence $(a_n)$ is concave (strictly increasing is already in the hypotheses).",
+        "For $n\\ge 2$, concavity gives $S_n\\ge \\frac n2(1+a_n)$, hence $d_n\\le 2/(a_n+1)$. Therefore $$a_{n+1}^2-a_n^2=2a_nd_n+d_n^2&lt;4.$$ Thus $a_n^2&lt;4n-3$ for $n\\ge 2$.",
+        "Also $S_n\\le na_n$, so $d_n\\ge 1/a_n$, and therefore $a_{n+1}^2-a_n^2>2$. Hence $a_n^2>2n-1$, which in particular makes $a_n^2-2(n-1)>0$.",
+        "Since $d_j\\ge d_n$ for $j&lt;n$, $a_j\\le a_n-(n-j)d_n$. Summing, $$S_n\\le na_n-\\frac{n(n-1)}{2}d_n.$$ Because $S_n=n/d_n$, $$1\\le a_nd_n-\\frac{n-1}{2}d_n^2.$$ Thus $d_n$ lies between the two roots, so $$d_n\\ge\\frac{2}{a_n+\\sqrt{a_n^2-2(n-1)}}.$$",
+        "For $n\\ge 3$, from $a_n^2&lt;4n-3$, $7a_n^2&lt;32(n-1)$. If $t=\\sqrt{a_n^2-2(n-1)}$, this implies $3a_n>4t$. Hence $$2a_nd_n\\ge\\frac{4a_n}{a_n+t}>\\frac{16}{7}.$$ Therefore $a_{n+1}^2-a_n^2>16/7$ for $n\\ge 3$.",
+        "The first two increments are $$a_2^2-a_1^2=3>\\frac{16}{7}, \\qquad a_3=\\frac83,\\quad a_3^2-a_2^2=\\frac{28}{9}>\\frac{16}{7}.$$ Thus for $n\\ge 2$, $$a_n^2>1+\\frac{16(n-1)}{7}=\\frac{16n-9}{7},$$ while equality holds at $n=1$."
+      ],
+      "remark": "The recurrence is a discrete Riccati-type flow with decreasing increments $n/S_n$, so $a_n$ grows like a constant times $\\sqrt n$; the proof is a comparison-barrier argument verifying the quadratic ansatz $a_n^2\\ge(16n-9)/7$ as a subsolution, the finite-difference analogue of lower solutions for ODEs, the exact constant $4/\\sqrt7$ being selected by the barrier touching at $n=1$. Origin: sandwiching $d_n=n/S_n$ between concavity bounds, then telescoping increment inequalities."
+    },
+    {
+      "id": "a17",
+      "category": "alg",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6,
+      "confidence": "high",
+      "text": "Find all nonzero polynomials $P\\in\\mathbb{Q}[x]$ such that $P(n)$ is an integer for every positive integer $n$, and $P(a)$ divides $P(b)$ whenever $a$ and $b$ are positive integers with $a\\mid b$.",
+      "why": "Divisibility along multiples forces $P(mn)/P(n)$ to be an integer for all $m,n$; for each fixed $m$ that integer tends to $m^{\\deg P}$ as $n\\to\\infty$, so it is eventually constant and $P(mx)=m^{\\deg P}P(x)$ holds as a polynomial identity: $P$ is a simultaneous eigenfunction of every dilation pullback $x\\mapsto mx$. Decomposing $\\mathbb{R}[x]$ into weight spaces for the $\\mathbb{Q}_{\\gt0}$-action, each monomial $x^{k}$ has weight $m^{k}$, and distinct weights are linearly independent, so only monomials survive; integrality then pins the leading coefficient. This is the standard character/weight-space rigidity that makes multiplicative constraints along an infinite semigroup of scalars force homogeneity.",
+      "hints": [
+        "For fixed $m$, $P(mn)/P(n)$ is an integer tending to $m^d$; eventually it equals $m^d$."
+      ],
+      "steps": [
+        "Let $d=\\deg P\\ge 0$ and write $P(x)=c_d x^d+c_{d-1}x^{d-1}+\\cdots+c_0$ with each $c_k\\in\\mathbb{Q}$ and $c_d\\ne 0$. Take any positive integers $m,n$ with $P(n)\\ne 0$. Both $P(n)$ and $P(mn)$ are integers by the integrality hypothesis, and $n\\mid mn$, so the divisibility hypothesis gives $P(n)\\mid P(mn)$ in $\\mathbb{Z}$: the ratio $P(mn)/P(n)$ is a well-defined integer.",
+        "A nonzero polynomial of degree $d$ has at most $d$ real roots, so $P(n)\\ne 0$ for every $n\\ge n_0$ once $n_0$ is large enough. For $x\\ge 1$ factor $$P(x)=c_d x^d\\bigl(1+r(x)\\bigr),\\qquad r(x)=\\sum_{j=1}^{d}\\frac{c_{d-j}}{c_d}\\,x^{-j},$$ where the sum is empty (so $r\\equiv 0$) when $d=0$. With $C=\\sum_{j=1}^d |c_{d-j}/c_d|$ we have $|r(x)|\\le C/x$ for $x\\ge 1$, hence $r(x)\\to 0$. Therefore, for each fixed $m$, $$\\frac{P(mn)}{P(n)}=m^d\\cdot\\frac{1+r(mn)}{1+r(n)}\\longrightarrow m^d,$$ since $1+r(n)\\to 1$ makes the fraction legal for large $n$. An integer-valued sequence converging to the integer $m^d$ is eventually constant: for all large $n$ the ratio is within $\\tfrac12$ of $m^d$, hence equal to $m^d$.",
+        "Fix $m\\ge 1$ and consider $Q_m(x):=P(mx)-m^d P(x)\\in\\mathbb{Q}[x]$. By the previous step $Q_m(n)=0$ for every sufficiently large integer $n$ — infinitely many roots — and a nonzero polynomial has only finitely many roots, so $Q_m\\equiv 0$. Thus $P(mx)=m^d P(x)$ holds as a polynomial identity. The argument works for every fixed $m$, so the identity is valid for all positive integers $m$ simultaneously.",
+        "Substituting $P(x)=\\sum_k c_k x^k$ into $P(mx)=m^d P(x)$ and comparing the coefficient of $x^k$ gives $c_k m^k=m^d c_k$, i.e. $c_k(m^k-m^d)=0$ for every $k$ and every $m\\ge 1$. Taking $m=2$: $2^k-2^d\\ne 0$ whenever $k\\ne d$, so $c_k=0$ for all $k\\ne d$, and $P(x)=c_d x^d$.",
+        "Integrality at $n=1$ forces $P(1)=c_d\\in\\mathbb{Z}$, and $P\\not\\equiv 0$ gives $c_d\\ne 0$. Conversely, every $P(x)=c\\,x^d$ with $c\\in\\mathbb{Z}\\setminus\\{0\\}$, $d\\ge 0$, satisfies both hypotheses: $P(n)=c\\,n^d\\in\\mathbb{Z}$ for all $n$; and if $a\\mid b$, writing $b=at$ with $t\\in\\mathbb{Z}_{>0}$ gives $P(b)=c\\,(at)^d=(c\\,a^d)\\,t^d=P(a)\\,t^d$ with $t^d\\in\\mathbb{Z}$ — here the conclusion that $t^d$ is an integer uses $d\\ge 0$, which is why negative exponents (non-polynomial $P$) never arise. Constant polynomials $d=0$ are included and check out in both conditions.",
+        "Therefore the polynomials are exactly $P(x)=c\\,x^d$ with $c\\in\\mathbb{Z}\\setminus\\{0\\}$ and $d\\ge 0$."
+      ],
+      "remark": "The identity $P(mx)=m^{\\deg P}P(x)$ makes $P$ a simultaneous eigenfunction of every dilation pullback; decomposing $\\mathbb{Q}[x]$ into weight spaces for the $\\mathbb{Q}_{>0}$-action, monomials carry distinct characters $m^k$, and this weight-space rigidity forces homogeneity. Origin: the standard olympiad combination of asymptotics with the finiteness of polynomial roots, converting an integer quotient that converges to a limit into an exact polynomial identity, then verifying divisibility."
+    },
+    {
+      "id": "a18",
+      "category": "alg",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6,
+      "confidence": "high",
+      "text": "Find all strictly increasing functions $f:\\mathbb{N}_0\\to\\mathbb{N}_0$ such that $$f(a^{2}+b^{2}+c^{2}+d^{2})=f(a)^{2}+f(b)^{2}+f(c)^{2}+f(d)^{2}\\qquad\\text{for all }a,b,c,d\\in\\mathbb{N}_0.$$",
+      "why": "The bootstrap: four zeros give $f(0)=4f(0)^{2}$, so $f(0)=0$; three zeros give $f(a^{2})=f(a)^{2}$; then $f(1)=f(1)^2$ with strict increase ($f(1)\\ge1$) forces $f(1)=1$, and $(1,1,1,1)$, $(1,1,1,0)$, $(1,1,0,0)$ seed $f(2)=2$, $f(3)=3$, $f(4)=4$. Strong induction is one line by Lagrange's four-square theorem: $n=a^{2}+b^{2}+c^{2}+d^{2}$ with each variable $\\le\\sqrt n\\lt n$. Lagrange's theorem itself rests on Euler's four-square identity - multiplicativity of the norm on Hamilton's quaternions, the $n=4$ case of the Hurwitz theorem on composition algebras (dimensions $1,2,4,8$) - and the representation count $r_4(n)=8\\sum_{d\\mid n}d$ is a modular-form identity for the theta series of $\\mathbb{Z}^{4}$. Without strict increase the $f(a^{2})=f(a)^{2}$ bootstrap admits $f(1)\\in\\{0,1\\}$ and $f\\equiv0$ sneaks in.",
+      "hints": [
+        "Three zeros give $f(a^2)=f(a)^2$; four give $f(0)=0$; strict increase forces $f(1)=1$.",
+        "Induct using Lagrange's four-square theorem: each part is below $n$."
+      ],
+      "steps": [
+        "f(0): plug a=b=c=d=0: f(0) = 4f(0)^2; f(0) in N0 forces f(0)=0.",
+        "Plug three zeros: f(a^2) = f(a)^2 + 3f(0)^2 = f(a)^2 for all a.",
+        "a=1: f(1) = f(1)^2 and strict increase from f(0)=0 gives f(1)>=1: f(1)=1.",
+        "Seeds: f(2) = f(1+1+0+0) [as sum of squares 1+1+0+0] = 1+1+0+0 = 2; f(3): 1+1+1+0 gives f(3)=3; f(4): 4 = f(2^2) = f(2)^2 = 4 - consistent, and strict increase pins ordering.",
+        "Induction: assume $f(k)=k$ for all $k&lt;n$, with $n\\ge5$. By Lagrange's four-square theorem, there exist nonnegative integers $a,b,c,d$ such that $$n=a^2+b^2+c^2+d^2.$$ Because $a,b,c,d\\le\\sqrt n&lt;n$, the induction hypothesis gives $f(a)=a$, $f(b)=b$, $f(c)=c$, $f(d)=d$. Applying the defining equation, $$f(n)=f(a)^2+f(b)^2+f(c)^2+f(d)^2=a^2+b^2+c^2+d^2=n.$$ Hence the induction closes.",
+        "Verify: f = id satisfies the equation; strict increase used at step 3 (killing f(1)=0) and implicitly to exclude any post-Lagrange ambiguity."
+      ],
+      "remark": "Behind the induction lies Lagrange's four-square theorem, itself a consequence of Euler's four-square identity, multiplicativity of the norm on Hamilton's quaternions, the $n=4$ case of the Hurwitz theorem on composition algebras; the count $r_4(n)=8\\sum_{d\\mid n}d$ is a modular-form identity for the theta series of $\\mathbb{Z}^4$. Origin: the classical functional-equation bootstrap, where small specializations seed a strong induction finished by a representation theorem."
+    },
+    {
+      "id": "a19",
+      "category": "alg",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6,
+      "confidence": "high",
+      "text": "Find all polynomials $P:\\mathbb{R}\\to\\mathbb{R}$ satisfying $$P(x)^{2}-P(x+1)\\,P(x-1)=1\\qquad\\text{for all real }x.$$",
+      "why": "The expression $P^{2}-P(x+1)P(x-1)$ is the Casoratian (discrete Wronskian) of $P$ against its shift. Expanding $P(x\\pm1)=P\\pm P'+\\tfrac12P''\\pm\\cdots$ (finite-difference/Taylor calculus, the Newton-series picture) gives $P(x+1)P(x-1)=P^{2}-(P')^{2}+PP''+O(x^{2n-3})$, so the difference $P^{2}-P(x+1)P(x-1)$ has leading term $n\\,a^{2}\\,x^{2n-2}\\ne0$ when $\\deg P=n\\ge2$ and cannot equal $1$; the continuous counterpart $(P')^{2}-PP''=-P^{2}(P'/P)'$ is the quantity in Laguerre's inequality for real-rooted polynomials. Linear $P=ax+b$ gives $a^{2}=1$; the constant case must be dispatched separately and the negated family $P=-x+c$ is easily dropped.",
+      "hints": [
+        "For $\\deg P=n\\ge2$ the difference has leading term $na^2x^{2n-2}$, impossible."
+      ],
+      "steps": [
+        "Constant $P\\equiv c$: $c^{2}-c^{2}=0\\ne1$ - no constants.",
+        "Let $\\deg P=n\\ge1$ and write $$P(x)=a x^n+b x^{n-1}+c x^{n-2}+\\cdots,\\qquad a\\ne0.$$ For $P(x+1)$, the coefficients of $x^n,x^{n-1},x^{n-2}$ are $$a,\\qquad an+b,\\qquad \\frac{a n(n-1)}2+b(n-1)+c,$$ while for $P(x-1)$ they are $$a,\\qquad -an+b,\\qquad \\frac{a n(n-1)}2-b(n-1)+c.$$ Hence $$[x^{2n-2}]\\,P(x)^2=b^2+2ac,$$ whereas \\[ \\begin{aligned} [x^{2n-2}]\\,P(x+1)P(x-1) &amp;=a\\!\\left(an(n-1)+2c\\right)+(an+b)(-an+b)\\\\ &amp;=b^2+2ac-na^2. \\end{aligned} \\] Thus the coefficient of $x^{2n-2}$ in $$P(x)^2-P(x+1)P(x-1)$$ is $na^2\\ne0$. Since $2n-2\\ge2$, this polynomial cannot be identically equal to the constant $1$. Therefore $n\\le1$.",
+        "Linear case: $P=ax+b$: the residual is $a^{2}-1$ (sympy-verified), so $a=\\pm1$, $b$ arbitrary.",
+        "Verify both families by substitution: $(\\pm x+c)^{2}-(\\pm(x+1)+c)(\\pm(x-1)+c)=1$. Machine closure: coefficient solve for degrees 2-4 gives none (2026-09-29).",
+        "Perspective: $P^2-P_+P_-$ is the discrete analogue of the Wronskian $(P')^2-PP''$; the argument upgrading 'no $x^{2n-2}$ term' is the same one that proves the classical Laguerre inequality for real-rooted polynomials - a modern-flavored lemma reached elementarily."
+      ],
+      "remark": "The expression $P(x)^2-P(x+1)P(x-1)$ is the Casoratian, the discrete Wronskian of $P$ against its shift, and the leading-term computation is the finite-difference cousin of Laguerre's inequality $(P')^2-PP''$ for real-rooted polynomials within the Newton-series calculus of difference operators. Origin: the standard polynomial FE technique of degree comparison dressed in Taylor expansion $P(x\\pm1)=P\\pm P'+\\cdots$; the negated family $P=-x+c$ is the easy trap."
+    },
+    {
+      "id": "a20",
+      "category": "alg",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6.5,
       "confidence": "high",
       "text": "Let $n\\ge4$ and let real numbers $x_1,\\dots,x_n$ satisfy $$x_1+\\cdots+x_n=0,\\qquad x_1^{2}+\\cdots+x_n^{2}=n(n-1),$$ with indices read cyclically ($x_{n+1}=x_1$).<ol><li>Prove $$\\sum_{i=1}^{n}x_ix_{i+1}\\le n(n-1)\\cos\\frac{2\\pi}{n},$$ with equality if and only if $x_i=\\sqrt{2(n-1)}\\,\\sin\\!\\big(\\tfrac{2\\pi i}{n}+\\varphi\\big)$ for some phase $\\varphi$.</li><li>Determine the minimum of $\\sum x_ix_{i+1}$ under the same constraints, and characterize the minimizers.</li></ol>",
       "why": "Both parts are one spectral computation: $\\sum(x_i-x_{i+1})^2=2S-2q$ and $\\sum(x_i+x_{i+1})^2=2S+2q$, so bounding $q$ is the sharp range of a quadratic form of the circulant matrix $I+\\sigma$, $\\sigma$ the cyclic shift. Diagonalizing by Fourier modes on $\\mathbb{Z}/n\\mathbb{Z}$ gives eigenvalues $1+\\cos(2\\pi k/n)$ and $1-\\cos(2\\pi k/n)$; the discrete Wirtinger (Poincare) inequality $\\sum(x_i-x_{i+1})^2\\ge4\\sin^2(\\pi/n)\\sum x_i^2$ for zero-mean $x$ - the spectral gap of the cycle graph Laplacian - yields $q\\le S\\cos(2\\pi/n)$, and the minimum reads off the lowest nontrivial eigenvalue (even $n$: the alternating vector, eigenvalue $-1$, achieves $-S$; odd $n$: mode $k=\\tfrac{n-1}{2}$ gives $S\\cos(\\tfrac{\\pi(n-1)}{n})$). Equality spaces are exactly the $\\sin$/$\\cos$ eigenspaces, the harmonics that solve the heat equation on the cycle.",
@@ -327,161 +501,11 @@ window.IMO_SHORTLIST = {
       "remark": "Both parts are one spectral computation: $q$ is a quadratic form of the circulant $I+\\sigma$ with $\\sigma$ the cyclic shift, diagonalized by Fourier modes on $\\mathbb{Z}/n\\mathbb{Z}$, and part (a) is exactly the discrete Wirtinger inequality, the spectral gap of the cycle graph Laplacian in spectral graph theory. Origin: Lagrange multipliers plus the standard olympiad device of solving a cyclic second-order difference equation by sine and cosine modes, the harmonics on the cycle."
     },
     {
-      "id": "a14",
-      "category": "alg",
-      "difficulty": "medium",
-      "stars": 2,
-      "confidence": "high",
-      "text": "Let $a,b,c$ be real numbers satisfying $a+b+c=0$ and $abc=1$. Prove that $$a^4+b^4+c^4\\ge \\dfrac{9}{\\sqrt[3]{2}},$$ and determine all equality cases.",
-      "why": "The product condition forces the sign pattern: exactly one variable is positive. The other two are then nonnegative numbers with fixed sum and product, so they are the real roots of a quadratic whose discriminant is nonnegative - root-location theory via the discriminant supplies a lower bound on the positive root, and convexity of $t\\mapsto t^{4}$ upgrades that bound to the fourth-power sum by Jensen's inequality, the prototype of majorization arguments (Karamata). The same mechanism - symmetric constraints, extrema on the double-root boundary of the real-rooted region - is the uvw/discriminant principle.",
-      "hints": [
-        "From $(p-q)^2\\ge0$ deduce $c^3\\ge4$, so $c\\ge2^{2/3}$."
-      ],
-      "steps": [
-        "The product $abc=1>0$ and the sum $a+b+c=0$ forbid three positive numbers and also forbid exactly two positive numbers. Hence exactly one of $a,b,c$ is positive; call it $c$, and write $a=-p$, $b=-q$ with $p,q>0$.",
-        "Then $p+q=c$ and $pq=1/c$. The inequality $(p-q)^2\\ge 0$ becomes $c^2\\ge 4/c$. Since $c>0$, this is $c^3\\ge 4$, so $c\\ge 4^{1/3}=2^{2/3}$.",
-        "By convexity of $t\\mapsto t^4$, or equivalently by the power-mean inequality, $$\\frac{p^4+q^4}2\\ge \\left(\\frac{p+q}2\\right)^4,$$ so $p^4+q^4\\ge \\tfrac18 c^4$, with equality if and only if $p=q$.",
-        "Therefore $a^4+b^4+c^4=p^4+q^4+c^4\\ge \\tfrac98 c^4\\ge \\tfrac98\\,(2^{2/3})^4=\\tfrac98\\cdot 2^{8/3}=9\\cdot 2^{-1/3}$.",
-        "Equality requires $c=2^{2/3}$ and $p=q$. Then $p+q=c$ and $pq=1/c$ give $p=q=2^{-1/3}$. Thus equality holds exactly at the permutations of $\\bigl(2^{2/3},\\,-2^{-1/3},\\,-2^{-1/3}\\bigr)$."
-      ],
-      "remark": "The mechanism is the uvw-discriminant principle: with symmetric constraints, extrema sit on the double-root boundary of the real-rooted region, here expressed elementarily as $(p-q)^2\\ge0$ for the two negative roots of a quadratic. Convexity of $t^4$ then upgrades the bound via Jensen's inequality, the prototype of majorization and Karamata arguments. Origin: the classical sign-pattern reduction under $abc>0$ with $a+b+c=0$, a well-known olympiad opening move."
-    },
-    {
-      "id": "a15",
-      "category": "alg",
-      "difficulty": "medium",
-      "stars": 2,
-      "confidence": "high",
-      "text": "Find all nonzero polynomials $P\\in\\mathbb{Q}[x]$ such that $P(n)$ is an integer for every positive integer $n$, and $P(a)$ divides $P(b)$ whenever $a$ and $b$ are positive integers with $a\\mid b$.",
-      "why": "Divisibility along multiples forces $P(mn)/P(n)$ to be an integer for all $m,n$; for each fixed $m$ that integer tends to $m^{\\deg P}$ as $n\\to\\infty$, so it is eventually constant and $P(mx)=m^{\\deg P}P(x)$ holds as a polynomial identity: $P$ is a simultaneous eigenfunction of every dilation pullback $x\\mapsto mx$. Decomposing $\\mathbb{R}[x]$ into weight spaces for the $\\mathbb{Q}_{\\gt0}$-action, each monomial $x^{k}$ has weight $m^{k}$, and distinct weights are linearly independent, so only monomials survive; integrality then pins the leading coefficient. This is the standard character/weight-space rigidity that makes multiplicative constraints along an infinite semigroup of scalars force homogeneity.",
-      "hints": [
-        "For fixed $m$, $P(mn)/P(n)$ is an integer tending to $m^d$; eventually it equals $m^d$."
-      ],
-      "steps": [
-        "Let $d=\\deg P\\ge 0$ and write $P(x)=c_d x^d+c_{d-1}x^{d-1}+\\cdots+c_0$ with each $c_k\\in\\mathbb{Q}$ and $c_d\\ne 0$. Take any positive integers $m,n$ with $P(n)\\ne 0$. Both $P(n)$ and $P(mn)$ are integers by the integrality hypothesis, and $n\\mid mn$, so the divisibility hypothesis gives $P(n)\\mid P(mn)$ in $\\mathbb{Z}$: the ratio $P(mn)/P(n)$ is a well-defined integer.",
-        "A nonzero polynomial of degree $d$ has at most $d$ real roots, so $P(n)\\ne 0$ for every $n\\ge n_0$ once $n_0$ is large enough. For $x\\ge 1$ factor $$P(x)=c_d x^d\\bigl(1+r(x)\\bigr),\\qquad r(x)=\\sum_{j=1}^{d}\\frac{c_{d-j}}{c_d}\\,x^{-j},$$ where the sum is empty (so $r\\equiv 0$) when $d=0$. With $C=\\sum_{j=1}^d |c_{d-j}/c_d|$ we have $|r(x)|\\le C/x$ for $x\\ge 1$, hence $r(x)\\to 0$. Therefore, for each fixed $m$, $$\\frac{P(mn)}{P(n)}=m^d\\cdot\\frac{1+r(mn)}{1+r(n)}\\longrightarrow m^d,$$ since $1+r(n)\\to 1$ makes the fraction legal for large $n$. An integer-valued sequence converging to the integer $m^d$ is eventually constant: for all large $n$ the ratio is within $\\tfrac12$ of $m^d$, hence equal to $m^d$.",
-        "Fix $m\\ge 1$ and consider $Q_m(x):=P(mx)-m^d P(x)\\in\\mathbb{Q}[x]$. By the previous step $Q_m(n)=0$ for every sufficiently large integer $n$ — infinitely many roots — and a nonzero polynomial has only finitely many roots, so $Q_m\\equiv 0$. Thus $P(mx)=m^d P(x)$ holds as a polynomial identity. The argument works for every fixed $m$, so the identity is valid for all positive integers $m$ simultaneously.",
-        "Substituting $P(x)=\\sum_k c_k x^k$ into $P(mx)=m^d P(x)$ and comparing the coefficient of $x^k$ gives $c_k m^k=m^d c_k$, i.e. $c_k(m^k-m^d)=0$ for every $k$ and every $m\\ge 1$. Taking $m=2$: $2^k-2^d\\ne 0$ whenever $k\\ne d$, so $c_k=0$ for all $k\\ne d$, and $P(x)=c_d x^d$.",
-        "Integrality at $n=1$ forces $P(1)=c_d\\in\\mathbb{Z}$, and $P\\not\\equiv 0$ gives $c_d\\ne 0$. Conversely, every $P(x)=c\\,x^d$ with $c\\in\\mathbb{Z}\\setminus\\{0\\}$, $d\\ge 0$, satisfies both hypotheses: $P(n)=c\\,n^d\\in\\mathbb{Z}$ for all $n$; and if $a\\mid b$, writing $b=at$ with $t\\in\\mathbb{Z}_{>0}$ gives $P(b)=c\\,(at)^d=(c\\,a^d)\\,t^d=P(a)\\,t^d$ with $t^d\\in\\mathbb{Z}$ — here the conclusion that $t^d$ is an integer uses $d\\ge 0$, which is why negative exponents (non-polynomial $P$) never arise. Constant polynomials $d=0$ are included and check out in both conditions.",
-        "Therefore the polynomials are exactly $P(x)=c\\,x^d$ with $c\\in\\mathbb{Z}\\setminus\\{0\\}$ and $d\\ge 0$."
-      ],
-      "remark": "The identity $P(mx)=m^{\\deg P}P(x)$ makes $P$ a simultaneous eigenfunction of every dilation pullback; decomposing $\\mathbb{Q}[x]$ into weight spaces for the $\\mathbb{Q}_{>0}$-action, monomials carry distinct characters $m^k$, and this weight-space rigidity forces homogeneity. Origin: the standard olympiad combination of asymptotics with the finiteness of polynomial roots, converting an integer quotient that converges to a limit into an exact polynomial identity, then verifying divisibility."
-    },
-    {
-      "id": "a16",
-      "category": "alg",
-      "difficulty": "medium",
-      "stars": 2,
-      "confidence": "medium",
-      "text": "Let $a,b,c>0$. Prove that $$\\frac{ab}{a^2+b^2+c^2-ab+bc-ca}+\\frac{bc}{a^2+b^2+c^2-bc+ca-ab}+\\frac{ca}{a^2+b^2+c^2-ca+ab-bc}\\le\\frac{3}{2},$$ and determine all equality cases.",
-      "why": "The denominators are cyclic, not symmetric: each equals $a^{2}+b^{2}+c^{2}-(a-b)(b-c)-\\dots$-type expressions preserved by the 3-cycle. Clearing denominators turns the inequality into positivity of a single cyclic polynomial, and splitting into the two order types (chambers of the $a\\ge b\\ge c$ decomposition of $\\mathbb{R}^{3}$ modulo the cyclic group) makes each chamber piece symmetric, where direct expansion yields an explicit sum of nonnegative monomials - a positivity certificate. Equality analysis is then immediate. The chamber-splitting-and-substitution procedure is the standard method of difference substitutions for cyclic inequalities, an explicit instance of the Positivstellensatz philosophy behind Hilbert's 17th problem: prove nonnegativity by exhibiting a sum of manifestly nonnegative terms.",
-      "hints": [
-        "Write the denominators as $Q+2bc$, $Q+2ca$, $Q+2ab$ with $Q=\\tfrac12\\sum(a-b)^2\\ge0$.",
-        "Split the two orderings and substitute $c=x$, $b=x+y$, $a=x+y+z$."
-      ],
-      "steps": [
-        "Put $$Q=\\frac{(a-b)^2+(b-c)^2+(c-a)^2}{2}=a^2+b^2+c^2-ab-bc-ca.$$(Each cross term appears twice with a minus sign in the expansion of the three squares, each halved.) The three denominators are then exactly $D_1=Q+2bc$, $D_2=Q+2ca$, $D_3=Q+2ab$, since e.g. $Q+2bc=a^2+b^2+c^2-ab+bc-ca$. As $Q\\ge 0$ and $a,b,c>0$, all three denominators are strictly positive.",
-        "Because $D_1D_2D_3>0$, multiplying the inequality by $2D_1D_2D_3$ and collecting is reversible, so the assertion is equivalent to $$P:=3D_1D_2D_3-2(abD_2D_3+bcD_3D_1+caD_1D_2)\\ge 0,$$ with equality cases in bijection.",
-        "$P$ is invariant under the cyclic relabeling $(a,b,c)\\mapsto(b,c,a)$: $Q$ is symmetric, the factors $D_1\\to D_2\\to D_3\\to D_1$ and $ab\\to bc\\to ca\\to ab$ cycle together, so $P$ maps to itself. A cyclic relabeling therefore lets us assume $a$ is maximal. But $P$ is *not* symmetric under swapping $b$ and $c$, so after that normalization both order types $a\\ge b\\ge c$ and $a\\ge c\\ge b$ must still be treated separately.",
-        "If $a\\ge b\\ge c$, write $c=x$, $b=x+y$, $a=x+y+z$ with $x>0$ and $y,z\\ge 0$. Then $Q=y^2+yz+z^2$, and $$D_1=2x^2+2xy+y^2+yz+z^2,\\quad D_2=D_1+2xz,\\quad D_3=D_1+2xy+2xz+2y^2+2yz.$$ Substituting these three explicit quadratics into $P=3D_1D_2D_3-2(abD_2D_3+bcD_3D_1+caD_1D_2)$ and collecting in descending powers of $x$ gives exactly $$\\begin{aligned} P={}&amp;4x^4(y^2+yz+z^2)+8x^3(y^3+y^2z+2yz^2+z^3)\\\\ &amp;+12x^2y^4+16x^2y^3z+36x^2y^2z^2+32x^2yz^3+12x^2z^4\\\\ &amp;+8xy^5+16xy^4z+40xy^3z^2+48xy^2z^3+32xyz^4+8xz^5\\\\ &amp;+3y^6+9y^5z+22y^4z^2+29y^3z^3+26y^2z^4+13yz^5+3z^6\\ge 0, \\end{aligned}$$ every one of whose 25 monomial coefficients being strictly positive makes the inequality immediate for $x>0$, $y,z\\ge 0$.",
-        "If $a\\ge c\\ge b$, write $b=x$, $c=x+y$, $a=x+y+z$. Again $Q=y^2+yz+z^2$, now with $$D_1=2x^2+2xy+y^2+yz+z^2,\\quad D_2=D_1+2xy+2xz+2y^2+2yz,\\quad D_3=D_1+2xz,$$ which is the previous parametrization with the roles of $D_2$ and $D_3$ exchanged. Collecting the resulting $P$ gives $$\\begin{aligned} P={}&amp;4x^4(y^2+yz+z^2)+8x^3y^3+16x^3y^2z+24x^3yz^2+8x^3z^3\\\\ &amp;+12x^2y^4+32x^2y^3z+60x^2y^2z^2+40x^2yz^3+12x^2z^4\\\\ &amp;+8xy^5+24xy^4z+56xy^3z^2+56xy^2z^3+32xyz^4+8xz^5\\\\ &amp;+3y^6+9y^5z+22y^4z^2+29y^3z^3+26y^2z^4+13yz^5+3z^6\\ge 0, \\end{aligned}$$ again with all 25 coefficients strictly positive.",
-        "Conversely, equality needs both displayed polynomials to vanish. Since $x>0$, the two $x^2$-terms $12x^2y^4$ and $12x^2z^4$ force $y=z=0$, hence $a=b=c$ in either order type. Checking the original inequality at $a=b=c$: each denominator is $0+2a^2$ and each term is $a^2/2a^2=\\tfrac12$, so the sum is exactly $\\tfrac32$. Equality holds precisely when $a=b=c$."
-      ],
-      "remark": "The proof produces an explicit positivity certificate: after splitting into the two order chambers of the cyclic group action and applying the difference substitution $b=a+y$, $a=b+z$, the cleared polynomial has only positive coefficients, an instance of the Positivstellensatz philosophy behind Hilbert's seventeenth problem. Origin: the standard method for cyclic non-symmetric inequalities, clear denominators, normalize an order, run the difference substitution that makes each chamber elementary."
-    },
-    {
-      "id": "a17",
-      "category": "alg",
-      "difficulty": "medium",
-      "stars": 2,
-      "confidence": "high",
-      "text": "Find all strictly increasing functions $f:\\mathbb{N}_0\\to\\mathbb{N}_0$ such that $$f(a^{2}+b^{2}+c^{2}+d^{2})=f(a)^{2}+f(b)^{2}+f(c)^{2}+f(d)^{2}\\qquad\\text{for all }a,b,c,d\\in\\mathbb{N}_0.$$",
-      "why": "The bootstrap: four zeros give $f(0)=4f(0)^{2}$, so $f(0)=0$; three zeros give $f(a^{2})=f(a)^{2}$; then $f(1)=f(1)^2$ with strict increase ($f(1)\\ge1$) forces $f(1)=1$, and $(1,1,1,1)$, $(1,1,1,0)$, $(1,1,0,0)$ seed $f(2)=2$, $f(3)=3$, $f(4)=4$. Strong induction is one line by Lagrange's four-square theorem: $n=a^{2}+b^{2}+c^{2}+d^{2}$ with each variable $\\le\\sqrt n\\lt n$. Lagrange's theorem itself rests on Euler's four-square identity - multiplicativity of the norm on Hamilton's quaternions, the $n=4$ case of the Hurwitz theorem on composition algebras (dimensions $1,2,4,8$) - and the representation count $r_4(n)=8\\sum_{d\\mid n}d$ is a modular-form identity for the theta series of $\\mathbb{Z}^{4}$. Without strict increase the $f(a^{2})=f(a)^{2}$ bootstrap admits $f(1)\\in\\{0,1\\}$ and $f\\equiv0$ sneaks in.",
-      "hints": [
-        "Three zeros give $f(a^2)=f(a)^2$; four give $f(0)=0$; strict increase forces $f(1)=1$.",
-        "Induct using Lagrange's four-square theorem: each part is below $n$."
-      ],
-      "steps": [
-        "f(0): plug a=b=c=d=0: f(0) = 4f(0)^2; f(0) in N0 forces f(0)=0.",
-        "Plug three zeros: f(a^2) = f(a)^2 + 3f(0)^2 = f(a)^2 for all a.",
-        "a=1: f(1) = f(1)^2 and strict increase from f(0)=0 gives f(1)>=1: f(1)=1.",
-        "Seeds: f(2) = f(1+1+0+0) [as sum of squares 1+1+0+0] = 1+1+0+0 = 2; f(3): 1+1+1+0 gives f(3)=3; f(4): 4 = f(2^2) = f(2)^2 = 4 - consistent, and strict increase pins ordering.",
-        "Induction: assume $f(k)=k$ for all $k&lt;n$, with $n\\ge5$. By Lagrange's four-square theorem, there exist nonnegative integers $a,b,c,d$ such that $$n=a^2+b^2+c^2+d^2.$$ Because $a,b,c,d\\le\\sqrt n&lt;n$, the induction hypothesis gives $f(a)=a$, $f(b)=b$, $f(c)=c$, $f(d)=d$. Applying the defining equation, $$f(n)=f(a)^2+f(b)^2+f(c)^2+f(d)^2=a^2+b^2+c^2+d^2=n.$$ Hence the induction closes.",
-        "Verify: f = id satisfies the equation; strict increase used at step 3 (killing f(1)=0) and implicitly to exclude any post-Lagrange ambiguity."
-      ],
-      "remark": "Behind the induction lies Lagrange's four-square theorem, itself a consequence of Euler's four-square identity, multiplicativity of the norm on Hamilton's quaternions, the $n=4$ case of the Hurwitz theorem on composition algebras; the count $r_4(n)=8\\sum_{d\\mid n}d$ is a modular-form identity for the theta series of $\\mathbb{Z}^4$. Origin: the classical functional-equation bootstrap, where small specializations seed a strong induction finished by a representation theorem."
-    },
-    {
-      "id": "a18",
-      "category": "alg",
-      "difficulty": "hard",
-      "stars": 3,
-      "confidence": "low",
-      "text": "Let $a_1,a_2,\\dots$ be positive reals with $a_1=1$ and $$a_{n+1}=a_n+\\frac{n}{a_1+\\cdots+a_n}.$$ Prove that $$a_n\\ge\\sqrt{\\frac{16n-9}{7}}$$ for every $n\\ge 1$.",
-      "why": "With $S_n=a_1+\\cdots+a_n$ the recurrence says $a_{n+1}-a_n=n/S_n$: the increments are positive and decreasing (concavity of the sequence), so $a_n$ grows like $\\sqrt{n}$ by a self-similar balance $a\\cdot a\\approx 1$. The proof runs a comparison (barrier) argument for the discrete Riccati-type flow: the ansatz $a_n^2\\ge(16n-9)/7$ is a subsolution checked by substituting the recurrence and reducing to an elementary quadratic estimate on the differences. Comparison principles for difference inequalities - the discrete analogue of upper/lower solutions for ODEs - are the general framework; asymptotically $a_n\\sim c\\sqrt n$ with the exact constant $c=4/\\sqrt7$ selected by the barrier touching at $n=1$.",
-      "hints": [
-        "Set $S_n=a_1+\\cdots+a_n$; concavity yields $2<a_{n+1}^2-a_n^2<4$ for $n\\ge2$.",
-        "Bound $d_n\\ge2/(a_n+\\sqrt{a_n^2-2(n-1)})$ via $1\\le a_nd_n-\\tfrac{n-1}2d_n^2$.",
-        "Then $a_{n+1}^2-a_n^2>16/7$ for $n\\ge3$; check $n=1,2$ by hand."
-      ],
-      "steps": [
-        "Put $S_n=a_1+\\cdots+a_n$ and $d_n=a_{n+1}-a_n=n/S_n$. Since $a_1&lt;a_2&lt;\\cdots&lt;a_{n+1}$ we have $S_n&lt;n\\,a_{n+1}$, and $d_{n+1}&lt;d_n\\iff\\frac{n+1}{S_{n+1}}&lt;\\frac{n}{S_n}\\iff S_n&lt;n\\,a_{n+1}$: the last inequality is exactly $a_1+\\cdots+a_n&lt;n\\,a_{n+1}$, true because every $a_i\\le a_n&lt;a_{n+1}$. Hence $(a_n)$ is concave (strictly increasing is already in the hypotheses).",
-        "For $n\\ge 2$, concavity gives $S_n\\ge \\frac n2(1+a_n)$, hence $d_n\\le 2/(a_n+1)$. Therefore $$a_{n+1}^2-a_n^2=2a_nd_n+d_n^2&lt;4.$$ Thus $a_n^2&lt;4n-3$ for $n\\ge 2$.",
-        "Also $S_n\\le na_n$, so $d_n\\ge 1/a_n$, and therefore $a_{n+1}^2-a_n^2>2$. Hence $a_n^2>2n-1$, which in particular makes $a_n^2-2(n-1)>0$.",
-        "Since $d_j\\ge d_n$ for $j&lt;n$, $a_j\\le a_n-(n-j)d_n$. Summing, $$S_n\\le na_n-\\frac{n(n-1)}{2}d_n.$$ Because $S_n=n/d_n$, $$1\\le a_nd_n-\\frac{n-1}{2}d_n^2.$$ Thus $d_n$ lies between the two roots, so $$d_n\\ge\\frac{2}{a_n+\\sqrt{a_n^2-2(n-1)}}.$$",
-        "For $n\\ge 3$, from $a_n^2&lt;4n-3$, $7a_n^2&lt;32(n-1)$. If $t=\\sqrt{a_n^2-2(n-1)}$, this implies $3a_n>4t$. Hence $$2a_nd_n\\ge\\frac{4a_n}{a_n+t}>\\frac{16}{7}.$$ Therefore $a_{n+1}^2-a_n^2>16/7$ for $n\\ge 3$.",
-        "The first two increments are $$a_2^2-a_1^2=3>\\frac{16}{7}, \\qquad a_3=\\frac83,\\quad a_3^2-a_2^2=\\frac{28}{9}>\\frac{16}{7}.$$ Thus for $n\\ge 2$, $$a_n^2>1+\\frac{16(n-1)}{7}=\\frac{16n-9}{7},$$ while equality holds at $n=1$."
-      ],
-      "remark": "The recurrence is a discrete Riccati-type flow with decreasing increments $n/S_n$, so $a_n$ grows like a constant times $\\sqrt n$; the proof is a comparison-barrier argument verifying the quadratic ansatz $a_n^2\\ge(16n-9)/7$ as a subsolution, the finite-difference analogue of lower solutions for ODEs, the exact constant $4/\\sqrt7$ being selected by the barrier touching at $n=1$. Origin: sandwiching $d_n=n/S_n$ between concavity bounds, then telescoping increment inequalities."
-    },
-    {
-      "id": "a19",
-      "category": "alg",
-      "difficulty": "hard",
-      "stars": 3,
-      "confidence": "high",
-      "text": "Let $T(x)=1-\\dfrac1x$ (so $T(T(T(x)))=x$ for all $x\\notin\\{0,1\\}$). Determine all real polynomials $P$ of degree at most $2$ for which there exists a nonzero polynomial $Q$ with $$P(x)=\\frac{Q(x)}{Q(T(x))}\\qquad\\text{for all real }x\\text{ where both sides are defined.}$$ (Bonus part 1: prove that any such $P$ must satisfy $P(x)\\,P(T(x))\\,P(T(T(x)))\\equiv 1$; part 2 decides which of the resulting candidates actually lift.)",
-      "why": "$T:x\\mapsto1-\\tfrac1x$ has order three on $\\mathbb P^1$. Iterating the lift identity gives the norm condition $$P(x)P(Tx)P(T^2x)\\equiv1.$$ Rather than solving a coefficient system, use its divisor structure: any root of $P$ must lie in the special orbit $\\{0,1,\\infty\\}$, so a polynomial $P$ of degree at most $2$ has the form $C x^r(x-1)^s$ with $r,s\\ge0$ and $r+s\\le2$. Direct computation of the norm gives $N(P)=C^3(-1)^r$, hence $C=(-1)^r$. This yields exactly $$1,\\ x-1,\\ -x,\\ x^2,\\ x-x^2,\\ (x-1)^2.$$ The polynomial lift then has to be checked separately; exactly $1,x^2,x-x^2$ lift.",
-      "hints": [
-        "Iterate along the cycle: any solution obeys $P(x)P(Tx)P(T^2x)\\equiv1$.",
-        "Solve that norm equation for $\\deg P\\le2$; six real candidates appear.",
-        "Compare vanishing orders along $0\\mapsto\\infty\\mapsto1\\mapsto0$ to kill non-lifters."
-      ],
-      "steps": [
-        "Compute $T^{2}(x)=-\\frac1{x-1}$ and check $T^{3}=\\mathrm{id}$.",
-        "Necessity: $Q(x)=P(x)Q(Tx)=P(x)P(Tx)Q(T^{2}x)=P(x)P(Tx)P(T^{2}x)Q(x)$, and $Q\\not\\equiv0$ gives the norm identity.",
-        "Solve the norm identity without a machine computation. Since $P$ is nonzero and $$P(x)P(Tx)P(T^2x)\\equiv1,$$ if $\\alpha$ is a root of $P$ with $\\alpha\\notin\\{0,1\\}$, then $T(\\alpha)$ and $T^2(\\alpha)$ are finite and all three factors are regular at $\\alpha$, so the left side vanishes at $\\alpha$, a contradiction. Hence every complex root of $P$ is $0$ or $1$. Thus $$P(x)=C\\,x^r(x-1)^s,\\qquad r,s\\ge0,\\quad r+s\\le2,$$ with $C\\ne0$ real. Now $$T(x)=\\frac{x-1}{x},\\qquad T(x)-1=-\\frac1x,\\qquad T^2(x)=\\frac1{1-x},\\qquad T^2(x)-1=-\\frac{x}{x-1}.$$ Therefore \\[ \\begin{aligned} P(Tx)&amp;=C(-1)^s\\frac{(x-1)^r}{x^{r+s}},\\\\ P(T^2x)&amp;=C(-1)^{r+s}\\frac{x^s}{(x-1)^{r+s}}, \\end{aligned} \\] and hence $$P(x)P(Tx)P(T^2x)=C^3(-1)^r.$$ The norm identity forces $C^3(-1)^r=1$, so, because $C\\in\\mathbb R$, $C=(-1)^r$. For $r+s\\le2$ this gives exactly $$P\\equiv1,\\quad P=x-1,\\quad P=-x,\\quad P=x^2,\\quad P=x-x^2,\\quad P=(x-1)^2.$$",
-        "Lift test: for $P=1$: $Q\\equiv1$. For $P=x^{2}$: show $Q=x^{2}-x+1$ works ($Q\\circ T=Q/x^{2}$). For $P=x-x^{2}$: $Q=x-1$: $Q\\circ T=-1/x$, ratio $-x(x-1)=x-x^{2}$.",
-        "Kill the three non-lifting candidates by order bookkeeping along the $T$-orbit $0\\mapsto\\infty\\mapsto1\\mapsto0$ (directly: $T(0)=\\infty$, $T(\\infty)=1$, $T(1)=0$). Suppose $Q$ is a nonzero polynomial lift, $Q(x)=P(x)\\,Q(Tx)$, of degree $m=\\deg Q$. A Mobius transformation is locally invertible on $\\mathbb P^{1}$ (local degree $1$ everywhere), so $v_\\zeta(Q\\circ T)=v_{T(\\zeta)}(Q)$; comparing orders at each orbit point $\\zeta$ gives $v_\\zeta(Q)-v_{T(\\zeta)}(Q)=v_\\zeta(P)$. Write $a=v_0(Q)$, $b=v_\\infty(Q)=-m$, $c=v_1(Q)$, with $a,c\\ge0$. The three equations are $a-b=v_0(P)$, $b-c=v_\\infty(P)$, $c-a=v_1(P)$ (their left sides sum to $0$, matching $v_0(P)+v_\\infty(P)+v_1(P)=0$ in each case).\n(i) $P=x-1$, orders $(v_0,v_\\infty,v_1)=(0,-1,1)$: $a=b=-m$ forces $m=0$, hence $a=b=0$ and then $c=a+1=1$, i.e. a nonzero constant $Q$ with $Q(1)=0$ - impossible.\n(ii) $P=(x-1)^{2}$, orders $(0,-2,2)$: again $a=b=-m$ gives $m=0$, then $c=a+2=2$, a nonzero constant vanishing at $1$ to order $2$ - impossible.\n(iii) $P=-x$, orders $(1,-1,0)$: $a=b+1=1-m$ and $c=a=1-m$, so $m\\le1$. $m=0$ makes a nonzero constant vanish at both $0$ and $1$; $m=1$ makes $a=c=0$, so the single zero $r$ of $Q$ lies off the orbit, but then $v_r(Q)-v_{T(r)}(Q)=v_r(P)=0$ propagates along the full $T$-orbit of $r$, and $T$ has no real fixed point ($T(x)=x\\iff x^{2}-x+1=0$, discriminant $-3$), so $r,T(r),T^{2}(r)$ are three distinct zeros of a linear polynomial. Both impossible. (Independently: sympy coefficient-solve for a lift up to $\\deg Q\\le8$ returns none for $x-1$, $-x$, $(x-1)^{2}$ and the stated $Q$ for $1$, $x^{2}$, $x-x^{2}$.)",
-        "Cohomological remark for the why-field readers: the classification is $H^{1}(\\langle T\\rangle,\\ \\Bbbk[x]^{\\times})$-flavored; the failure of the norm condition to be sufficient over polynomials (but sufficiency over the function field) is the content of the three dead candidates $x-1$, $-x$, $(x-1)^{2}$."
-      ],
-      "remark": "$T$ generates a cyclic group of order three of Mobius transformations of $\\mathbb{P}^1$, and the condition $P=Q/(Q\\circ T)$ is a Hilbert-Theorem-90 statement for $\\mathbb{R}(x)/\\mathbb{R}(x)^{C_3}$: norm-one elements are exactly coboundaries in the function field, so the only obstruction to a polynomial lift is divisor bookkeeping along the orbit $0\\mapsto\\infty\\mapsto1\\mapsto0$. Origin: the classical olympiad motif of iterating a substitution of order three, as in $x\\mapsto1-1/x$ systems, to force norm identities."
-    },
-    {
-      "id": "a20",
-      "category": "alg",
-      "difficulty": "hard",
-      "stars": 3,
-      "confidence": "high",
-      "text": "Find all polynomials $P:\\mathbb{R}\\to\\mathbb{R}$ satisfying $$P(x)^{2}-P(x+1)\\,P(x-1)=1\\qquad\\text{for all real }x.$$",
-      "why": "The expression $P^{2}-P(x+1)P(x-1)$ is the Casoratian (discrete Wronskian) of $P$ against its shift. Expanding $P(x\\pm1)=P\\pm P'+\\tfrac12P''\\pm\\cdots$ (finite-difference/Taylor calculus, the Newton-series picture) gives $P(x+1)P(x-1)=P^{2}-(P')^{2}+PP''+O(x^{2n-3})$, so the difference $P^{2}-P(x+1)P(x-1)$ has leading term $n\\,a^{2}\\,x^{2n-2}\\ne0$ when $\\deg P=n\\ge2$ and cannot equal $1$; the continuous counterpart $(P')^{2}-PP''=-P^{2}(P'/P)'$ is the quantity in Laguerre's inequality for real-rooted polynomials. Linear $P=ax+b$ gives $a^{2}=1$; the constant case must be dispatched separately and the negated family $P=-x+c$ is easily dropped.",
-      "hints": [
-        "For $\\deg P=n\\ge2$ the difference has leading term $na^2x^{2n-2}$, impossible."
-      ],
-      "steps": [
-        "Constant $P\\equiv c$: $c^{2}-c^{2}=0\\ne1$ - no constants.",
-        "Let $\\deg P=n\\ge1$ and write $$P(x)=a x^n+b x^{n-1}+c x^{n-2}+\\cdots,\\qquad a\\ne0.$$ For $P(x+1)$, the coefficients of $x^n,x^{n-1},x^{n-2}$ are $$a,\\qquad an+b,\\qquad \\frac{a n(n-1)}2+b(n-1)+c,$$ while for $P(x-1)$ they are $$a,\\qquad -an+b,\\qquad \\frac{a n(n-1)}2-b(n-1)+c.$$ Hence $$[x^{2n-2}]\\,P(x)^2=b^2+2ac,$$ whereas \\[ \\begin{aligned} [x^{2n-2}]\\,P(x+1)P(x-1) &amp;=a\\!\\left(an(n-1)+2c\\right)+(an+b)(-an+b)\\\\ &amp;=b^2+2ac-na^2. \\end{aligned} \\] Thus the coefficient of $x^{2n-2}$ in $$P(x)^2-P(x+1)P(x-1)$$ is $na^2\\ne0$. Since $2n-2\\ge2$, this polynomial cannot be identically equal to the constant $1$. Therefore $n\\le1$.",
-        "Linear case: $P=ax+b$: the residual is $a^{2}-1$ (sympy-verified), so $a=\\pm1$, $b$ arbitrary.",
-        "Verify both families by substitution: $(\\pm x+c)^{2}-(\\pm(x+1)+c)(\\pm(x-1)+c)=1$. Machine closure: coefficient solve for degrees 2-4 gives none (2026-09-29).",
-        "Perspective: $P^2-P_+P_-$ is the discrete analogue of the Wronskian $(P')^2-PP''$; the argument upgrading 'no $x^{2n-2}$ term' is the same one that proves the classical Laguerre inequality for real-rooted polynomials - a modern-flavored lemma reached elementarily."
-      ],
-      "remark": "The expression $P(x)^2-P(x+1)P(x-1)$ is the Casoratian, the discrete Wronskian of $P$ against its shift, and the leading-term computation is the finite-difference cousin of Laguerre's inequality $(P')^2-PP''$ for real-rooted polynomials within the Newton-series calculus of difference operators. Origin: the standard polynomial FE technique of degree comparison dressed in Taylor expansion $P(x\\pm1)=P\\pm P'+\\cdots$; the negated family $P=-x+c$ is the easy trap."
-    },
-    {
       "id": "a21",
       "category": "alg",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 7,
       "confidence": "high",
       "text": "Find all functions $f: \\mathbb{R} \\to \\mathbb{R}$ satisfying $$f(x^3 - f(y)) = x f(x)^2 - y$$ for all real numbers $x$ and $y$.",
       "why": "The equation forces $f$ bijective and yields the involution identity $f(-f(y))=-y$; translating by $c=-f(0)$ reduces the relation to Cauchy additivity $g(u+w)=g(u)+g(w)$, and substituting back into the cubic equation produces an odd polynomial in $x$ whose cross-terms survive unless $c=0$. The remaining condition $f(x^{3})=xf(x)^{2}$ enforces non-negativity on $\\mathbb{R}_{\\gt0}$, which locks the additive map to $f(x)=x$. The rigidity input is that every field endomorphism of $\\mathbb{R}$ is the identity (Artin--Schreier: the order is definable from squares), and additive maps nonnegative on a cone are linear - the automatic-continuity theorem of Banach (measurable or locally bounded additive maps, via Steinhaus' density theorem). The structural analogue in algebra is Herstein's theorem on Jordan derivations, where identities of this shape collapse to the additive derivation.",
@@ -508,6 +532,7 @@ window.IMO_SHORTLIST = {
       "category": "alg",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 7.5,
       "confidence": "high",
       "text": "Let $1&lt;u&lt;v$ be integers. Define $a_1=1$ and $$a_n+a_{n/u}+a_{n/v}=0\\qquad(n\\ge 2),$$ where $a_k=0$ whenever $k$ is not an integer. Prove that $(a_n)$ is bounded if and only if $v=u^2$.",
       "why": "Iterating the recurrence expresses $a_n$ as a signed count of words in $\\{u,v\\}$ with product $n$. If $u,v$ are multiplicatively independent this gives $|a_{u^mv^m}|=\\binom{2m}{m}$, unbounded by Stirling's asymptotics for the central binomial coefficient. If dependent, $u=d^r$, $v=d^s$ with $\\gcd(r,s)=1$, the sequence lives on powers of $d$ with rational generating function $1/(1+z^r+z^s)$; boundedness of a rational generating function with simple poles forces every pole on the unit circle, hence every root of $1+z^r+z^s$ is a root of unity by Kronecker's theorem on algebraic integers, and the equilateral-triangle argument on $|1+\\zeta^{r}|=|\\zeta^{s}|$ leaves only cube roots of unity; simplicity of the roots ($r\\ne s$) then forces $(r,s)=(1,2)$, i.e. $v=u^{2}$.",
@@ -531,8 +556,33 @@ window.IMO_SHORTLIST = {
     {
       "id": "a23",
       "category": "alg",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 7.5,
+      "confidence": "low",
+      "text": "Find all functions $f:\\mathbb{R}\\to\\mathbb{R}$ that are bounded above on some non-degenerate interval and satisfy $$f\\bigl(2x-f(y)\\bigr)=2f(x)-y\\qquad\\text{for all real }x,y.$$",
+      "why": "Two one-variable linearizations (the doubling branch through $y=f(0)$ and the antipode branch in $x=t$) cascade into anti-periodicity $f(x+t)=-f(x)+2f(0)$, then a surjectivity-picked inner argument forces the cocycle identity $f(u+y)=f(u)+f(y)-t$: $g:=f-f(0)$ is additive and an involution. Additive involutions of $\\mathbb{R}$ are classified by $\\mathbb{Q}$-linear algebra - $g=2p-\\mathrm{id}$ for a projection $p$ of the Hamel $\\mathbb{Q}$-vector space $\\mathbb{R}$ - and without any regularity the Hamel-conjugate solutions (even with $t\\ne0$) satisfy the equation; bounded-above-on-an-interval kills exactly those, by the automatic-continuity theorem for additive functions. The translation branch $f=x+c$ dies on a residual $-2c$ while the reflection branch $f=-x+c$ survives with the same $t=f(0)$.",
+      "hints": [
+        "Cocycle $f(u+y)=f(u)+f(y)-t$: $g=f-t$ is additive with $g(g(y))=y$.",
+        "Bounded on an interval makes $g$ linear: $f(x)=x$ or $f(x)=-x+c$."
+      ],
+      "steps": [
+        "Injective: $f(y_1)=f(y_2)$ collapses the two RHS of (E). Surjective: the $x=0$ line $f(-f(y))=2t-y$ covers $\\mathbb{R}$ (t=f(0)). With $f(y_0)=0$: $x=0$ gives $t=2t-y_0$, so the unique zero is $y_0=t$.",
+        "Two linearizations: $y=t$: $f(2x)=2f(x)-t$; $x=t$: $f(2t-f(y))=-y$. Composing the second at $z=2t-f(y)$ gives the anti-periodicity $f(y+2t)=f(y)-2t$ (orbits unbounded below, consistent with the $f=-x+c$ branch where $t=c$ - so this does not force $t=0$).",
+        "Cocycle identity: pick $z$ with $f(z)=-y$ and substitute $y\\mapsto z$ in (E): $f(u+y)=f(u)+t-z$ for every $u$; $u=0$ resolves $z=2t-f(y)$, hence $f(u+y)=f(u)+f(y)-t$.",
+        "Conjugation $g(x):=f(x)-t$: $g$ is additive, $g(t)=-t$, and (E) becomes $g(g(y))=y$: an additive involution. Conversely every such $g,t$ solves (E) (checked line by line), so (E) is *classified*, not merely narrowed.",
+        "Regularity lemma. Let $g$ be additive and bounded above by $M$ on a non-degenerate interval. Choose $x_0$ in its interior and $\\delta&gt;0$ such that $(x_0-\\delta,x_0+\\delta)$ lies inside that interval. For every $|h|&lt;\\delta$, both $x_0+h$ and $x_0-h$ belong to the interval, so $$g(h)=g(x_0+h)-g(x_0)\\le M-g(x_0),$$ and $$-g(h)=g(x_0-h)-g(x_0)\\le M-g(x_0).$$ Thus $|g(h)|\\le C:=M-g(x_0)$ for $|h|&lt;\\delta$. Given $\\varepsilon&gt;0$, choose $N$ with $C/N&lt;\\varepsilon$. If $|x|&lt;\\delta/N$, then $|Nx|&lt;\\delta$, so by additivity $$|g(x)|=\\frac{|g(Nx)|}{N}\\le\\frac CN&lt;\\varepsilon.$$ Hence $g$ is continuous at $0$, and therefore continuous everywhere. Since $g(q)=qg(1)$ for rational $q$, continuity and density of $\\mathbb Q$ give $$g(x)=xg(1)$$ for all real $x$.",
+        "Dichotomy: $g(x)=cx$ with $c^2=1$. $c=1$: $g(t)=-t$ forces $t=0$, so $f(x)=x$ (equivalently, plugging $x+t$ into (E) leaves residual $-2t$). $c=-1$: $g(t)=-t$ is automatic and $f(x)=-x+c$ with $t=c\\in\\mathbb{R}$ free.",
+        "Check: $f=x$: $2x-y=2x-y$. $f=-x+c$: LHS $=-(2x+y-c)+c=-2x-y+2c$ and RHS $=2(-x+c)-y=-2x-y+2c$ - equal. Sympy residuals for both branches are identically 0 (and for the affine ansatz the identity system $\\{1-a^2,-b(a+1)\\}$ returns exactly the two claimed branches)."
+      ],
+      "remark": "Without regularity the solutions are $\\mathbb{Q}$-linear involutions $g=2p-\\mathrm{id}$ for projections $p$ of the Hamel $\\mathbb{Q}$-vector space structure of $\\mathbb{R}$, so the classification is genuinely linear-algebraic; boundedness above on an interval deletes these by the automatic-continuity theorem for additive functions. Origin: the standard olympiad machinery of one-variable linearizations, bijectivity, and a translation cocycle that conjugates $f$ to an additive involution, followed by a dichotomy $c^2=1$."
+    },
+    {
+      "id": "a24",
+      "category": "alg",
       "difficulty": "challenging",
       "stars": 4,
+      "rating": 8.5,
       "confidence": "high",
       "text": "Find all functions $f: \\mathbb{R} \\to \\mathbb{R}$ satisfying $$f(x f(y) - y f(x)) = f(x) f(y) - xy$$ for all real numbers $x$ and $y$.",
       "why": "Setting $x=y$ forces $f(x)^2=x^2+c$ with $c\\in\\{0,1\\}$. For $c=0$ write $f(x)=\\sigma(x)x$, $\\sigma=\\pm1$: the equation reduces to a sign rule, and a type analysis of $(\\sigma(p),\\sigma(-p))$ shows the sign is constant ($f=\\pm x$) or defines a multiplicative $\\pm1$-valued character on $\\mathbb{R}_{\\gt0}$ - trivial since every positive real is a square ($\\mathbb{R}_{\\gt0}$ is a divisible abelian group, hence has no index-2 subgroups), giving $f=|x|$. For $c=1$ the identity $\\cosh(\\alpha-\\beta)=\\cosh\\alpha\\cosh\\beta-\\sinh\\alpha\\sinh\\beta$ is exactly what the equation encodes after the hyperbolic substitution $x=\\sinh\\alpha$, $\\sqrt{x^2+1}=\\cosh\\alpha$; the set of  parameters is a subgroup $B\\le(\\mathbb{R},+)$ whose complement, if nonempty, is a single coset, impossible for the divisible group $\\mathbb{R}$. This leaves $f=\\sqrt{x^2+1}$.",
@@ -556,33 +606,11 @@ window.IMO_SHORTLIST = {
       "remark": "For $c=1$ the verification rests on the hyperbolic identity $\\cosh(\\alpha-\\beta)=\\cosh\\alpha\\cosh\\beta-\\sinh\\alpha\\sinh\\beta$ under $x=\\sinh\\alpha$, and the sign bookkeeping shows a subgroup of $(\\mathbb{R},+)$ whose complement is a single coset, impossible because $\\mathbb{R}$ is divisible; the same divisibility of $\\mathbb{R}_{>0}$ kills sign characters when $c=0$. Origin: the classical olympiad move of extracting $f(x)^2$ from the diagonal $x=y$, then classifying the surviving sign patterns."
     },
     {
-      "id": "a24",
-      "category": "alg",
-      "difficulty": "challenging",
-      "stars": 4,
-      "confidence": "low",
-      "text": "Find all functions $f:\\mathbb{R}\\to\\mathbb{R}$ that are bounded above on some non-degenerate interval and satisfy $$f\\bigl(2x-f(y)\\bigr)=2f(x)-y\\qquad\\text{for all real }x,y.$$",
-      "why": "Two one-variable linearizations (the doubling branch through $y=f(0)$ and the antipode branch in $x=t$) cascade into anti-periodicity $f(x+t)=-f(x)+2f(0)$, then a surjectivity-picked inner argument forces the cocycle identity $f(u+y)=f(u)+f(y)-t$: $g:=f-f(0)$ is additive and an involution. Additive involutions of $\\mathbb{R}$ are classified by $\\mathbb{Q}$-linear algebra - $g=2p-\\mathrm{id}$ for a projection $p$ of the Hamel $\\mathbb{Q}$-vector space $\\mathbb{R}$ - and without any regularity the Hamel-conjugate solutions (even with $t\\ne0$) satisfy the equation; bounded-above-on-an-interval kills exactly those, by the automatic-continuity theorem for additive functions. The translation branch $f=x+c$ dies on a residual $-2c$ while the reflection branch $f=-x+c$ survives with the same $t=f(0)$.",
-      "hints": [
-        "Cocycle $f(u+y)=f(u)+f(y)-t$: $g=f-t$ is additive with $g(g(y))=y$.",
-        "Bounded on an interval makes $g$ linear: $f(x)=x$ or $f(x)=-x+c$."
-      ],
-      "steps": [
-        "Injective: $f(y_1)=f(y_2)$ collapses the two RHS of (E). Surjective: the $x=0$ line $f(-f(y))=2t-y$ covers $\\mathbb{R}$ (t=f(0)). With $f(y_0)=0$: $x=0$ gives $t=2t-y_0$, so the unique zero is $y_0=t$.",
-        "Two linearizations: $y=t$: $f(2x)=2f(x)-t$; $x=t$: $f(2t-f(y))=-y$. Composing the second at $z=2t-f(y)$ gives the anti-periodicity $f(y+2t)=f(y)-2t$ (orbits unbounded below, consistent with the $f=-x+c$ branch where $t=c$ - so this does not force $t=0$).",
-        "Cocycle identity: pick $z$ with $f(z)=-y$ and substitute $y\\mapsto z$ in (E): $f(u+y)=f(u)+t-z$ for every $u$; $u=0$ resolves $z=2t-f(y)$, hence $f(u+y)=f(u)+f(y)-t$.",
-        "Conjugation $g(x):=f(x)-t$: $g$ is additive, $g(t)=-t$, and (E) becomes $g(g(y))=y$: an additive involution. Conversely every such $g,t$ solves (E) (checked line by line), so (E) is *classified*, not merely narrowed.",
-        "Regularity lemma. Let $g$ be additive and bounded above by $M$ on a non-degenerate interval. Choose $x_0$ in its interior and $\\delta&gt;0$ such that $(x_0-\\delta,x_0+\\delta)$ lies inside that interval. For every $|h|&lt;\\delta$, both $x_0+h$ and $x_0-h$ belong to the interval, so $$g(h)=g(x_0+h)-g(x_0)\\le M-g(x_0),$$ and $$-g(h)=g(x_0-h)-g(x_0)\\le M-g(x_0).$$ Thus $|g(h)|\\le C:=M-g(x_0)$ for $|h|&lt;\\delta$. Given $\\varepsilon&gt;0$, choose $N$ with $C/N&lt;\\varepsilon$. If $|x|&lt;\\delta/N$, then $|Nx|&lt;\\delta$, so by additivity $$|g(x)|=\\frac{|g(Nx)|}{N}\\le\\frac CN&lt;\\varepsilon.$$ Hence $g$ is continuous at $0$, and therefore continuous everywhere. Since $g(q)=qg(1)$ for rational $q$, continuity and density of $\\mathbb Q$ give $$g(x)=xg(1)$$ for all real $x$.",
-        "Dichotomy: $g(x)=cx$ with $c^2=1$. $c=1$: $g(t)=-t$ forces $t=0$, so $f(x)=x$ (equivalently, plugging $x+t$ into (E) leaves residual $-2t$). $c=-1$: $g(t)=-t$ is automatic and $f(x)=-x+c$ with $t=c\\in\\mathbb{R}$ free.",
-        "Check: $f=x$: $2x-y=2x-y$. $f=-x+c$: LHS $=-(2x+y-c)+c=-2x-y+2c$ and RHS $=2(-x+c)-y=-2x-y+2c$ - equal. Sympy residuals for both branches are identically 0 (and for the affine ansatz the identity system $\\{1-a^2,-b(a+1)\\}$ returns exactly the two claimed branches)."
-      ],
-      "remark": "Without regularity the solutions are $\\mathbb{Q}$-linear involutions $g=2p-\\mathrm{id}$ for projections $p$ of the Hamel $\\mathbb{Q}$-vector space structure of $\\mathbb{R}$, so the classification is genuinely linear-algebraic; boundedness above on an interval deletes these by the automatic-continuity theorem for additive functions. Origin: the standard olympiad machinery of one-variable linearizations, bijectivity, and a translation cocycle that conjugates $f$ to an additive involution, followed by a dichotomy $c^2=1$."
-    },
-    {
       "id": "a25",
       "category": "alg",
       "difficulty": "challenging",
       "stars": 4,
+      "rating": 9,
       "confidence": "low",
       "text": "Find all functions $f:\\mathbb{N}\\to\\mathbb{N}$ satisfying $$f(abc)+f(2af(b))+f(2bf(c))+f(2cf(a))=f(a)f(b)f(c)$$ for all $a,b,c\\in\\mathbb{N}$.",
       "why": "The classification runs: a cubic bound forces $f\\ge2$; the three-term identity and its quadratic consequence give the square law $u(n^2)=2u(n)+\\lambda u(n)^2$ - with $v=1\\pm u$ this is exactly the squaring-cocycle $v(n^2)=v(n)^2$ up to sign, so $v$ is determined by the primes, i.e. by the unique-factorization free commutative monoid structure of $\\mathbb{N}^\\times$; $\\lambda=\\pm1$ via a parity obstruction on the Eisenstein norm form $x^{2}+xy+y^{2}=6$ (norms in $\\mathbb{Z}[\\omega]$); the $\\lambda=-1$ case falls to value-rigidity on $\\{0,1,2\\}$ and descent; $\\lambda=1$ has $k\\in\\{2,3\\}$, and for $k=2$ the orbit of the affine map $T\\mapsto4T-3$ (conjugate to $S\\mapsto4S$, a linearized power orbit) collides multiplicatively with the additive branch analysis to produce $96(t-1)^2=0$, while $k=3$ resolves by a parity-spreading induction.",
@@ -618,68 +646,7 @@ window.IMO_SHORTLIST = {
       "category": "cmb",
       "difficulty": "easy",
       "stars": 1,
-      "confidence": "high",
-      "text": "There are $n$ points on a line, with the distance between the two outermost points being $L$. Colour each point with one of $k$ colours, where $n\\ge k+1\\ge3$, and require that every colour is used at least once. The <em>span</em> of a colour is the distance between its two outermost points of that colour (or $0$ if the colour is used once). Prove that there exists a colouring for which the sum of the $k$ spans is at least $L$. Show that the constant $1$ is best possible: for every $k$, exhibit a point set with $n=k+1$ points on which no admissible colouring achieves span-sum exceeding $L$.",
-      "why": "Colour the two extreme points alike: that colour has span exactly $L$, so the span-sum is at least $L$, and the remaining points are spread over the other colours so all $k$ appear. Sharpness at $n=k+1$: the one-point surplus means exactly one colour occurs twice and the other $k-1$ colours are singletons of span $0$, so the span-sum reduces to the distance between the two points carrying the repeated colour, at most $L$ for every placement; no constant larger than $1$ works. The mechanism is the pigeonhole principle carried to its equality configuration.",
-      "hints": [
-        "Colour the two outermost points alike."
-      ],
-      "steps": [
-        "Colour the two outermost points with the same colour. That colour has span exactly $L$, so the sum of all $k$ spans is at least $L$; distribute the remaining points among the colours so that every colour is used.",
-        "For sharpness, fix $k$ and take $n=k+1$ distinct points between the two extremes. Because every one of the $k$ colours must be used, one colour is used twice and each of the other $k-1$ colours is used exactly once.",
-        "All singleton colours have span $0$. Thus the total span-sum is just the distance between the two points carrying the repeated colour, which is at most $L$.",
-        "Therefore on every such $(k+1)$-point configuration no admissible colouring has span-sum greater than $L$, so no universal constant larger than $1$ can replace $1$."
-      ],
-      "remark": "The quantity summed is the total diameter captured by the colour classes; both halves are pigeonhole-style, with the sharpness clause analysed at its equality configuration, where exactly one colour repeats and all others are singletons. The construction grows out of the extremal principle, the classic olympiad move of inspecting the two outermost, maximally separated objects first; the same endpoint-pairing device recurs in diameter and covering problems in metric combinatorics."
-    },
-    {
-      "id": "c2",
-      "category": "cmb",
-      "difficulty": "easy",
-      "stars": 1,
-      "confidence": "medium",
-      "text": "A school has $N\\ge1$ students. A collection of clubs (each club a set of students) satisfies<ul><li>every club has an odd number of members, at least $3$;</li><li>every pair of students is contained in exactly one common club.</li></ul>Prove that $N$ is odd.",
-      "why": "Fix one student $s$: the clubs through $s$ partition the remaining $N-1$ students into classes $C\\setminus\\{s\\}$, each even (odd minus one), forcing $N$ odd; the minimum size 3 is unused, and without oddness the claim fails ($\\{1,2\\},\\{1,3\\},\\{1,4\\},\\{2,3,4\\}$ on four students). Odd $N$ are realized: one club of all students, the Fano lines ($N=7$), the affine plane of order 3 ($N=9$). The count is the replication-integrality condition of a Steiner 2-design $S(2,k,v)$; for uniform $k=3$ it sits inside the Kirkman-Ray-Chaudhuri-Wilson theorem ($v\\equiv1,3\\pmod6$); de Bruijn-Erdos and Fisher bound the number of clubs, a size question, and are not needed.",
-      "hints": [
-        "Fix one student and study the clubs containing him."
-      ],
-      "steps": [
-        "For $N=1$ the conclusion is immediate. Now assume $N\\ge2$ and fix a student $s$. Every other student $y$ forms the pair $\\{s,y\\}$, which by rule 2 lies in exactly one club $C(s,y)$ containing $s$. Call two students equivalent when the same club through $s$ contains them: the classes of this partition are exactly the sets $C\\setminus\\{s\\}$ with $s\\in C$.",
-        "Each class $C\\setminus\\{s\\}$ has size $|C|-1$, which is even because $|C|$ is odd (rule 1). A disjoint union of even classes covers all $N-1$ students other than $s$, so $N-1$ is even and $N$ is odd.",
-        "Gap checks: the classes are disjoint because a student $y$ lying in two clubs through $s$ would put the pair $\\{s,y\\}$ in two clubs, violating rule 2; and every other student lies in some class because the pair $\\{s,y\\}$ has a club. The bound 'at least 3' is never used - oddness alone drives the proof - so the argument also covers degenerate readings of rule 1; the bound merely keeps the intended picture nontrivial. The edge case $N=2$ is impossible anyway (the single pair would need an odd club of size $\\ge3$ among two students), which is consistent with the theorem rather than an exception to it.",
-        "Decorative-rule note (trap): the old variant's extra rule 'no club contains everyone' is unnecessary here - if one club is the whole school, rule 2 forces every other club to have size at most 1, and the count above still yields $N$ odd. Conversely, dropping the oddness of a single club breaks the claim: on 4 students the clubs $\\{1,2\\},\\{1,3\\},\\{1,4\\},\\{2,3,4\\}$ cover every pair exactly once with $N=4$ even. So oddness is the true lever, exactly as the proof says.",
-        "Non-vacuity: $N=3$: one club $\\{1,2,3\\}$; $N=7$: the Fano lines; $N=9$: the 12 lines of the affine plane of order 3 (all of size 3, every pair exactly once, every student in 4 clubs)."
-      ],
-      "remark": "This is the replication parity condition for a pairwise balanced design: through any point the blocks through it partition the rest, and odd block sizes force odd $v$, exactly the numerical condition in the theory of Steiner 2-designs $S(2,k,v)$, with Fano and affine planes as models. The proof grows out of the classical design-theoretic count of blocks through a fixed point, the same opening move behind Fisher's inequality and the de Bruijn-Erdos theorem."
-    },
-    {
-      "id": "c3",
-      "category": "cmb",
-      "difficulty": "easy",
-      "stars": 1,
-      "confidence": "high",
-      "text": "A <em>climb</em> of a positive integer $n$ is a finite sequence of $1$s and $2$s that sums to $n$. Its partial heights are the partial sums. The climb is <em>$3$-shy</em> if no partial height except possibly $n$ itself is a positive multiple of $3$. Determine, for every $n\\ge 1$, the number of $3$-shy climbs of $n$.",
-      "why": "For $n\\ge4$ every legal climb passes through height 2 and jumps $2\\to4$ (a unit step would hit 3), and exactly two prefixes $(2,2)$, $(1,1,2)$ reach 4. Thereafter the walk is confined to corridors between consecutive multiples of 3: each gate $3m+1$ has the unique bridge $3m+1,3m+2$ to the next gate, and the multiple $3(m+1)$ is entered from a gate in exactly two ways ($+2$ or $+1,+1$). Doubling gives $b(n)=2$ if $3\\mid n$ and $b(n)=1$ otherwise for $n\\ge4$, hence $4$ or $2$ climbs, with small values $1,2,3$ at $n=1,2,3$. The constraint is a walk on the finite automaton of residues mod 3 read through gates, a transfer-matrix count whose outcome is eventually periodic with period 3.",
-      "hints": [
-        "Between multiples of $3$ the walk is trapped in a corridor: each gate $3m+1$ has a unique bridge onward.",
-        "Only the final landing at a multiple of $3$ offers two choices, so the count is eventually periodic."
-      ],
-      "steps": [
-        "Direct enumeration gives one $3$-shy climb of $1$, namely $(1)$; two of $2$, namely $(2)$ and $(1,1)$; and three of $3$, namely $(1,2)$, $(2,1)$ and $(1,1,1)$.",
-        "For $n\\ge 4$ every legal climb must pass through $2$ and then step by $2$ to $4$. Indeed a climb that first exceeds $2$ by a step of $1$ lands on $3$ before the end. The two climbs from $0$ to $2$ are $(2)$ and $(1,1)$, so there are exactly two $3$-shy climbs from $0$ to $4$, namely $(2,2)$ and $(1,1,2)$.",
-        "Thus for $n\\ge 4$ the count is twice the number of walks from $4$ to $n$ by steps $1$ and $2$ that visit no positive multiple of $3$ except possibly $n$. Call that number $b(n)$.",
-        "From any position $3m+1$ with $m\\ge 1$, the step $+2$ lands on the multiple $3m+3$, which is legal only as a final position, while $+1$ lands on $3m+2$. From $3m+2$, the step $+1$ lands on that same multiple and $+2$ lands on the next gate $3(m+1)+1$.",
-        "Consequently there is exactly one walk from the gate $4$ to any later gate $3m+1$, namely the concatenation of the bridges $3j+1\\to 3j+2\\to 3(j+1)+1$. There is exactly one continuation from that gate to $3m+2$, and exactly two ways to finish at the multiple $3(m+1)$: gate then $+2$, or gate then $+1$ then $+1$.",
-        "Hence $b(n)=1$ if $3\\nmid n$, and $b(n)=2$ if $3\\mid n$, for every $n\\ge 4$. Doubling gives two $3$-shy climbs when $3\\nmid n$ and four when $3\\mid n$.",
-        "Together with the three small cases, the number is $1,2,3$ for $n=1,2,3$, and for $n\\ge 4$ it is $4$ if $3\\mid n$ and $2$ otherwise."
-      ],
-      "remark": "Formally this is enumeration of walks on the automaton of residues mod $3$: the answer comes from a transfer matrix, an instance of the general principle that languages recognised by finite automata have ultimately periodic or rationally generated counts. The problem grows out of the standard olympiad motif of compositions of $n$ into steps $1$ and $2$, the Fibonacci counting game, modified by forbidding visits to residue classes along the partial sums."
-    },
-    {
-      "id": "c4",
-      "category": "cmb",
-      "difficulty": "easy",
-      "stars": 1,
+      "rating": 3,
       "confidence": "high",
       "text": "Start with one pile of $n\\ge 1$ stones. A move chooses a pile of size $k\\ge 2$ and replaces it by two piles of positive sizes adding to $k$. If a pile of size $k$ is split into piles of sizes $a$ and $b$, that split scores $ab(a+b)$. The process ends when every pile is a single stone. Prove that the total score is independent of the choices, and find it.",
       "why": "When a pile $c$ splits into $a+b=c$, the sum of cubes of pile sizes drops by $c^3-a^3-b^3=3ab(a+b)$, exactly three times the score, by the freshman's dream $(a+b)^3=a^3+b^3+3ab(a+b)$. Telescoping over the whole binary decomposition tree, whose leaves are $n$ piles of size 1, the total score is $\\frac13(n^3-n)=\\frac{n(n^2-1)}3$, independent of choices. The classical $ab$ score is the analogous drop of $\\sum(\\text{size})^2$: for every degree the power sum of the parts decreases by a splitting term, and the cubic term is the first with a nonzero correction, so the invariant is a Newton power-sum symmetric function evaluated on the final partition; the answer is $2\\binom{n+1}{3}$, integral since $3\\mid n^3-n$.",
@@ -696,10 +663,74 @@ window.IMO_SHORTLIST = {
       "remark": "The invariant is a Newton power sum $\\sum(\\text{size})^3$ of the current partition of $n$: refining a partition lowers it by exactly $3ab(a+b)$, the elementary symmetric correction term in the binomial expansion. Such refinement-monotone quantities underlie the theory of symmetric functions. The problem is a cubic cousin of the classical splitting game scored by $ab$, whose invariant is the sum of squares; the olympiad technique is the potential (monovariant) function."
     },
     {
-      "id": "c5",
+      "id": "c2",
       "category": "cmb",
       "difficulty": "easy",
       "stars": 1,
+      "rating": 3,
+      "confidence": "high",
+      "text": "Let $n\\ge 1$. An <em>interval</em> in $\\{1,2,\\dots,n\\}$ is a nonempty set of consecutive integers. Let $\\mathcal{F}$ be a family of intervals such that every two members of $\\mathcal{F}$ intersect, and no member of $\\mathcal{F}$ contains another. Prove that $$|\\mathcal{F}|\\le \\left\\lceil\\frac n2\\right\\rceil,$$ and show that the bound is sharp for every $n$.",
+      "why": "Let $L_*$ be the largest left endpoint and $R_*$ the smallest right endpoint: the two intervals realizing them intersect, so $L_*\\le R_*$, and every interval contains the point $x=L_*$, the Helly property of intervals on a line. Inclusion-freeness forces distinct left endpoints and, after sorting $L_1<\\cdots<L_m$, right endpoints increasing $R_1<\\cdots<R_m$, since $L_i<L_j$ with $R_i\\ge R_j$ gives containment. Hence $m\\le\\min(x,n-x+1)\\le\\lceil n/2\\rceil$, sharp via $[i,\\,m+i-1]$, $1\\le i\\le m=\\lceil n/2\\rceil$, all containing $m$. Containment of intervals is a product order on endpoint pairs, so this is a width bound for antichains in 2-dimensional posets; the common-point step is the one-dimensional Helly theorem.",
+      "hints": [
+        "Show all intervals share one point: max left endpoint $\\le$ min right endpoint.",
+        "Antichain means equal left endpoints are impossible and right endpoints then increase together."
+      ],
+      "steps": [
+        "Write each interval as $[L,R]=\\{L,L+1,\\dots,R\\}$ with $1\\le L\\le R\\le n$. Let $L_\\ast$ be the maximum left endpoint in $\\mathcal{F}$ and $R_\\ast$ the minimum right endpoint. The interval attaining $L_\\ast$ and the interval attaining $R_\\ast$ intersect, so $L_\\ast\\le R_\\ast$. Every member then contains the point $x=L_\\ast$, because its left endpoint is at most $L_\\ast$ and its right endpoint is at least $R_\\ast\\ge L_\\ast$.",
+        "Thus every interval $[L_i,R_i]$ in $\\mathcal{F}$ satisfies $L_i\\le x\\le R_i$. If $L_i=L_j$ and $R_i\\le R_j$, then $[L_i,R_i]\\subseteq[L_j,R_j]$. The antichain hypothesis therefore forces all left endpoints to be distinct, and likewise, after sorting $L_1&lt;\\cdots&lt;L_m$, the right endpoints must satisfy $R_1&lt;\\cdots&lt;R_m$. Otherwise $L_i&lt;L_j$ and $R_i\\ge R_j$ would give a containment.",
+        "The increasing left endpoints are $m$ distinct integers in $\\{1,\\dots,x\\}$, so $m\\le x$. The increasing right endpoints are $m$ distinct integers in $\\{x,\\dots,n\\}$, so $m\\le n-x+1$. Hence $m\\le\\min(x,\\,n-x+1)\\le\\lceil n/2\\rceil$.",
+        "For sharpness let $m=\\lceil n/2\\rceil$ and take the intervals $[i,\\, m+i-1]$ for $i=1,\\dots,m$. Each right endpoint is at most $m+(m-1)=2m-1\\le n$, and each interval contains $m$. If $i&lt;j$, then the $i$-th interval starts further left and ends further left, so neither contains the other. This is an intersecting antichain of size $m$."
+      ],
+      "remark": "The first step is the Helly property of intervals on a line; the second recognises intervals as points of the product order on endpoint pairs, so the family is an antichain and the problem is a two-dimensional case of width bounds in posets, the territory of Sperner, Dilworth and LYM theory. The construction grows out of the Erdos-Ko-Rado theme of intersecting families, with inclusion-freeness supplying the endpoint counting in place of the usual shadow arguments."
+    },
+    {
+      "id": "c3",
+      "category": "cmb",
+      "difficulty": "easy",
+      "stars": 1,
+      "rating": 3,
+      "confidence": "high",
+      "text": "Let $a_n$ be the number of strings of length $n$ with entries in $\\{1,2,3,4\\}$ such that no partial sum is divisible by $3$. Prove that $a_1=3$, $a_2=8$ and $$a_n=2a_{n-1}+a_{n-2}\\qquad(n\\ge 3).$$ Deduce a closed form.",
+      "why": "The running sum mod 3 lives in states 1 and 2 (state 0 is fatal), and the letters $1,2,3,4$ supply residues $1,2,0,1$, so residue 1 is available twice per append. The state vector obeys $\\binom{A_{n+1}}{B_{n+1}}=\\begin{pmatrix}1&1\\\\2&1\\end{pmatrix}\\binom{A_n}{B_n}$ with $A_1=2$, $B_1=1$; eliminating $A_n=a_{n-1}$ for $n\\ge2$ gives $a_n=2a_{n-1}+a_{n-2}$ with $a_1=3$, $a_2=8$, characteristic roots $1\\pm\\sqrt2$, and the closed form $a_n=(1+\\tfrac{\\sqrt2}{4})(1+\\sqrt2)^n+(1-\\tfrac{\\sqrt2}{4})(1-\\sqrt2)^n$. This is enumeration of words accepted by a two-state automaton: the growth rate is the Perron root $1+\\sqrt2$ of the transfer matrix, the dominant pole of the rational function $\\sum a_nz^n$, standard analytic combinatorics of regular languages.",
+      "hints": [
+        "Track the running sum modulo $3$: states $1$ and $2$, state $0$ is fatal."
+      ],
+      "steps": [
+        "A partial sum congruent to $0$ modulo $3$ is forbidden, including after the first letter, so every nonempty prefix has running sum in $\\{1,2\\}$ modulo $3$. Let $A_n$ (respectively $B_n$) be the number of valid strings of length $n$ whose total sum is congruent to $1$ (respectively $2$) modulo $3$, and set $a_n=A_n+B_n$.",
+        "The letters contribute residues $1,2,0,1$ respectively, so residue $1$ can be appended in two ways and residues $0$ and $2$ in one way each. From a string with sum $1$, the legal appendages are: one letter of residue $0$, staying at sum $1$, and two letters of residue $1$, moving to sum $2$. The residue-$2$ letter would reach $0$ and is forbidden. From sum $2$, the legal appendages are one letter of residue $2$, moving to sum $1$, and one letter of residue $0$, staying at sum $2$.",
+        "Therefore $A_{n+1}=A_n+B_n$ and $B_{n+1}=2A_n+B_n$. In particular $A_{n+1}=a_n$ and $a_{n+1}=3A_n+2B_n=2a_n+A_n$. For $n\\ge 2$ one has $A_n=a_{n-1}$, so $a_{n+1}=2a_n+a_{n-1}$. Shifting the index gives the stated recurrence for $n\\ge 3$.",
+        "The initial values are read off directly. Length $1$: the letters $1,2,4$ are legal and $3$ is not, so $a_1=3$, with $A_1=2$ and $B_1=1$. Length $2$: the recurrence for the states gives $A_2=A_1+B_1=3$ and $B_2=2A_1+B_1=5$, so $a_2=8$.",
+        "The characteristic polynomial is $r^2-2r-1=0$, with roots $1\\pm\\sqrt2$. Solving $A(1+\\sqrt2)+B(1-\\sqrt2)=3$ and $A(1+\\sqrt2)^2+B(1-\\sqrt2)^2=8$ yields $A=1+\\sqrt2/4$ and $B=1-\\sqrt2/4$. Hence $$a_n=\\left(1+\\frac{\\sqrt2}{4}\\right)(1+\\sqrt2)^n+\\left(1-\\frac{\\sqrt2}{4}\\right)(1-\\sqrt2)^n.$$"
+      ],
+      "remark": "This is enumeration of words accepted by a two-state automaton: the state vector evolves by a transfer matrix, and the growth rate is its Perron root $1+\\sqrt2$, equivalently the dominant pole of the rational generating function, the standard analytic combinatorics of regular languages. The olympiad origin is the classical modular state method for partial sums, counting compositions while tracking residues to keep a forbidden class empty."
+    },
+    {
+      "id": "c4",
+      "category": "cmb",
+      "difficulty": "easy",
+      "stars": 1,
+      "rating": 3.5,
+      "confidence": "high",
+      "text": "A town has $n$ residents and $m$ clubs, each club being a set of residents, with no two clubs having the same membership. For every club, the number of its members is congruent to $1\\pmod{3}$, and for any two clubs, the number of their common members is congruent to $0\\pmod{3}$. Suppose that $m=n$. Prove that for every resident, the number of clubs containing that resident is congruent to $1\\pmod{3}$.",
+      "why": "Take the club-incidence matrix $M$ over $\\mathbb F_3$: hypotheses read $MM^T=I_m$, diagonal club sizes $\\equiv1$, off-diagonal intersections $\\equiv0$. With $m=n$ the square matrix $M$ has a right inverse, hence $\\det M=\\pm1$ and $M^{-1}$ exists, so $M^T M=I_n$: the $p$-th diagonal entry counts clubs through resident $p$, giving $r(p)\\equiv1\\pmod3$ (the off-diagonals add that two residents share $\\equiv0$ clubs). This Gram flip is the Oddtown linear-algebra method (Berlekamp, Babai-Frankl) over $\\mathbb F_3$; it has no mod-2 analogue, where the same flip loses information. The converse fails: one club $\\{1,2,3,4\\}$ on five residents gives $r(5)=0$; without $m=n$ residents are unconstrained.",
+      "hints": [
+        "The hypotheses say $MM^T=I$; squareness then forces $M^TM=I$."
+      ],
+      "steps": [
+        "Encode membership by the m x n matrix M with M_ij = 1 if resident j belongs to club i, working with all arithmetic modulo 3. The (i,j) entry of MM^T is the size of club i intersect club j for i different from j, and the size of club i for i = j.",
+        "By the hypotheses, MM^T = I_m over mod 3: off-diagonal entries are 0 (common members divisible by 3) and diagonal entries are 1 (club sizes 1 mod 3).",
+        "Assume m = n, so M is square. From MM^T = I take determinants mod 3: det(M)^2 = 1, so det(M) is not 0 mod 3 and M is invertible over the residues mod 3. Multiplying MM^T = I on the right by M gives M(M^T M) = M; cancel M (invertible) to get M^T M = I_n.",
+        "Read the diagonal of M^T M at resident p: it is the sum over clubs i of (M_ip)^2 = sum over clubs of M_ip - squaring changes nothing among 0 and 1 - which is exactly r(p), the number of clubs containing p. So r(p) = 1 mod 3 for every resident p, as claimed. (Bonus, not needed: the off-diagonals say two distinct residents share a number of common clubs divisible by 3 - the hypotheses' club-side rule, mirrored to the resident side by the same inversion.)",
+        "Check necessity of m=n (the converse and its failure): singleton clubs {1},...,{n} satisfy everything with r(p)=1. The system with 5 residents and one club {1,2,3,4} satisfies the two remainder rules with m=1 ≠ 5 and r(5)=0 - the direction claimed is the true direction."
+      ],
+      "remark": "The argument is the Oddtown linear algebra method of Berlekamp and Babai-Frankl: translate intersection data into a Gram matrix, invert it, and read the transpose, here over $\\mathbb F_3$, where $MM^T=I$ with $m=n$ flips to $M^TM=I$; the mod-2 Oddtown argument cannot do this flip. The construction grows out of the classical rank method for set systems with prescribed intersections, with the Fano-plane parity phenomenon as its prototype."
+    },
+    {
+      "id": "c5",
+      "category": "cmb",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4,
       "confidence": "high",
       "text": "One corner square is cut off an $8\\times 8$ chessboard; two remaining squares are adjacent when they share an edge. Maryam fixes a token on some square $s$ of the board - that square counts as visited. Iman then moves the token first, and the players alternate: each move takes the token along an edge to a square not yet visited, which then becomes visited. The player who cannot move loses. Determine exactly the starting squares $s$ from which the first player Iman can force a win.",
       "why": "The game is undirected vertex geography on the grid graph of the mutilated board. The engine is matching theory: the player to move at $s$ wins iff $s$ is covered by every maximum matching. The board has 31 black and 32 white squares when the removed corner is black, so the matching number is 31. A row-by-row serpentine Hamiltonian path through the 63 remaining squares, beginning at the square adjacent to the removed corner, yields a maximum matching covering all 31 black squares; cutting that path at any white square yields a maximum matching missing that white square.",
@@ -721,90 +752,30 @@ window.IMO_SHORTLIST = {
     {
       "id": "c6",
       "category": "cmb",
-      "difficulty": "easy",
-      "stars": 1,
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4,
       "confidence": "high",
-      "text": "Let $n\\ge 1$. An <em>interval</em> in $\\{1,2,\\dots,n\\}$ is a nonempty set of consecutive integers. Let $\\mathcal{F}$ be a family of intervals such that every two members of $\\mathcal{F}$ intersect, and no member of $\\mathcal{F}$ contains another. Prove that $$|\\mathcal{F}|\\le \\left\\lceil\\frac n2\\right\\rceil,$$ and show that the bound is sharp for every $n$.",
-      "why": "Let $L_*$ be the largest left endpoint and $R_*$ the smallest right endpoint: the two intervals realizing them intersect, so $L_*\\le R_*$, and every interval contains the point $x=L_*$, the Helly property of intervals on a line. Inclusion-freeness forces distinct left endpoints and, after sorting $L_1<\\cdots<L_m$, right endpoints increasing $R_1<\\cdots<R_m$, since $L_i<L_j$ with $R_i\\ge R_j$ gives containment. Hence $m\\le\\min(x,n-x+1)\\le\\lceil n/2\\rceil$, sharp via $[i,\\,m+i-1]$, $1\\le i\\le m=\\lceil n/2\\rceil$, all containing $m$. Containment of intervals is a product order on endpoint pairs, so this is a width bound for antichains in 2-dimensional posets; the common-point step is the one-dimensional Helly theorem.",
+      "text": "In a mysterious investigation bureau, there are $m$ detectives and $n$ secret clues, where $n\\ge m\\ge2$. Each detective has access to a distinct combination of these clues. One day, the chief inspector burns exactly one clue from the archives. A clue is called <em>safe</em> if, after its destruction, no two detectives become indistinguishable based on the clues they still possess.<br><br>Show that at least $n-m+1$ clues are safe.",
+      "why": "Identify clue-sets with distinct vertices of the cube $\\{0,1\\}^n$: clue $j$ is unsafe iff two vertices differ only in coordinate $j$, a cube edge in direction $j$. Choosing one such edge per unsafe clue gives a graph $H$ on the $m$ vertices with all direction labels distinct; $H$ is acyclic because the hypercube $Q_n$ is the Cayley graph of $(\\mathbb Z/2\\mathbb Z)^n$, where every closed walk uses each generator an even number of times, so no direction occurs exactly once in a cycle, i.e. $Q_n$ has no rainbow cycle. Hence $H$ is a forest: at most $m-1$ unsafe clues, at least $n-m+1$ safe.",
       "hints": [
-        "Show all intervals share one point: max left endpoint $\\le$ min right endpoint.",
-        "Antichain means equal left endpoints are impossible and right endpoints then increase together."
+        "Read clue-sets as vertices of the cube $\\{0,1\\}^n$; an unsafe clue is a used edge-direction.",
+        "Cube cycles repeat every direction, so the chosen edges form a forest: at most $m-1$ unsafe."
       ],
       "steps": [
-        "Write each interval as $[L,R]=\\{L,L+1,\\dots,R\\}$ with $1\\le L\\le R\\le n$. Let $L_\\ast$ be the maximum left endpoint in $\\mathcal{F}$ and $R_\\ast$ the minimum right endpoint. The interval attaining $L_\\ast$ and the interval attaining $R_\\ast$ intersect, so $L_\\ast\\le R_\\ast$. Every member then contains the point $x=L_\\ast$, because its left endpoint is at most $L_\\ast$ and its right endpoint is at least $R_\\ast\\ge L_\\ast$.",
-        "Thus every interval $[L_i,R_i]$ in $\\mathcal{F}$ satisfies $L_i\\le x\\le R_i$. If $L_i=L_j$ and $R_i\\le R_j$, then $[L_i,R_i]\\subseteq[L_j,R_j]$. The antichain hypothesis therefore forces all left endpoints to be distinct, and likewise, after sorting $L_1&lt;\\cdots&lt;L_m$, the right endpoints must satisfy $R_1&lt;\\cdots&lt;R_m$. Otherwise $L_i&lt;L_j$ and $R_i\\ge R_j$ would give a containment.",
-        "The increasing left endpoints are $m$ distinct integers in $\\{1,\\dots,x\\}$, so $m\\le x$. The increasing right endpoints are $m$ distinct integers in $\\{x,\\dots,n\\}$, so $m\\le n-x+1$. Hence $m\\le\\min(x,\\,n-x+1)\\le\\lceil n/2\\rceil$.",
-        "For sharpness let $m=\\lceil n/2\\rceil$ and take the intervals $[i,\\, m+i-1]$ for $i=1,\\dots,m$. Each right endpoint is at most $m+(m-1)=2m-1\\le n$, and each interval contains $m$. If $i&lt;j$, then the $i$-th interval starts further left and ends further left, so neither contains the other. This is an intersecting antichain of size $m$."
+        "Represent the $m$ distinct clue-sets by their $0$–$1$ incidence vectors in $\\{0,1\\}^n$. A clue $j$ is unsafe exactly when two detectives' vectors differ only in coordinate $j$, so there is a hypercube edge in direction $j$ between two of the $m$ vertices.",
+        "For every unsafe clue choose one such edge. The chosen edges form a graph $H$ on the $m$ detective-vertices, and their edge labels (the corresponding clues) are all distinct.",
+        "The graph $H$ is acyclic. Indeed, in any cycle of a hypercube, each coordinate is flipped an even number of times. But every edge of $H$ has a distinct coordinate label, so a cycle would make each of its labels occur exactly once, impossible.",
+        "Thus $H$ is a forest, so it has at most $m-1$ edges. If $U$ is the number of unsafe clues, then $U\\le m-1$, hence the number of safe clues is at least $n-U\\ge n-m+1$."
       ],
-      "remark": "The first step is the Helly property of intervals on a line; the second recognises intervals as points of the product order on endpoint pairs, so the family is an antichain and the problem is a two-dimensional case of width bounds in posets, the territory of Sperner, Dilworth and LYM theory. The construction grows out of the Erdos-Ko-Rado theme of intersecting families, with inclusion-freeness supplying the endpoint counting in place of the usual shadow arguments."
+      "remark": "The key lemma is that the hypercube $Q_n$, as the Cayley graph of $(\\mathbb Z/2\\mathbb Z)^n$, carries no rainbow cycle: every closed walk uses each generator an even number of times. The proof turns the set system into vertex and edge data of a graph and bounds unsafe clues by the forest edge count, a classical olympiad device of encoding subsets as cube vertices that appears in extremal problems on the Boolean lattice."
     },
     {
       "id": "c7",
       "category": "cmb",
-      "difficulty": "easy",
-      "stars": 1,
-      "confidence": "high",
-      "text": "Let $a_n$ be the number of strings of length $n$ with entries in $\\{1,2,3,4\\}$ such that no partial sum is divisible by $3$. Prove that $a_1=3$, $a_2=8$ and $$a_n=2a_{n-1}+a_{n-2}\\qquad(n\\ge 3).$$ Deduce a closed form.",
-      "why": "The running sum mod 3 lives in states 1 and 2 (state 0 is fatal), and the letters $1,2,3,4$ supply residues $1,2,0,1$, so residue 1 is available twice per append. The state vector obeys $\\binom{A_{n+1}}{B_{n+1}}=\\begin{pmatrix}1&1\\\\2&1\\end{pmatrix}\\binom{A_n}{B_n}$ with $A_1=2$, $B_1=1$; eliminating $A_n=a_{n-1}$ for $n\\ge2$ gives $a_n=2a_{n-1}+a_{n-2}$ with $a_1=3$, $a_2=8$, characteristic roots $1\\pm\\sqrt2$, and the closed form $a_n=(1+\\tfrac{\\sqrt2}{4})(1+\\sqrt2)^n+(1-\\tfrac{\\sqrt2}{4})(1-\\sqrt2)^n$. This is enumeration of words accepted by a two-state automaton: the growth rate is the Perron root $1+\\sqrt2$ of the transfer matrix, the dominant pole of the rational function $\\sum a_nz^n$, standard analytic combinatorics of regular languages.",
-      "hints": [
-        "Track the running sum modulo $3$: states $1$ and $2$, state $0$ is fatal."
-      ],
-      "steps": [
-        "A partial sum congruent to $0$ modulo $3$ is forbidden, including after the first letter, so every nonempty prefix has running sum in $\\{1,2\\}$ modulo $3$. Let $A_n$ (respectively $B_n$) be the number of valid strings of length $n$ whose total sum is congruent to $1$ (respectively $2$) modulo $3$, and set $a_n=A_n+B_n$.",
-        "The letters contribute residues $1,2,0,1$ respectively, so residue $1$ can be appended in two ways and residues $0$ and $2$ in one way each. From a string with sum $1$, the legal appendages are: one letter of residue $0$, staying at sum $1$, and two letters of residue $1$, moving to sum $2$. The residue-$2$ letter would reach $0$ and is forbidden. From sum $2$, the legal appendages are one letter of residue $2$, moving to sum $1$, and one letter of residue $0$, staying at sum $2$.",
-        "Therefore $A_{n+1}=A_n+B_n$ and $B_{n+1}=2A_n+B_n$. In particular $A_{n+1}=a_n$ and $a_{n+1}=3A_n+2B_n=2a_n+A_n$. For $n\\ge 2$ one has $A_n=a_{n-1}$, so $a_{n+1}=2a_n+a_{n-1}$. Shifting the index gives the stated recurrence for $n\\ge 3$.",
-        "The initial values are read off directly. Length $1$: the letters $1,2,4$ are legal and $3$ is not, so $a_1=3$, with $A_1=2$ and $B_1=1$. Length $2$: the recurrence for the states gives $A_2=A_1+B_1=3$ and $B_2=2A_1+B_1=5$, so $a_2=8$.",
-        "The characteristic polynomial is $r^2-2r-1=0$, with roots $1\\pm\\sqrt2$. Solving $A(1+\\sqrt2)+B(1-\\sqrt2)=3$ and $A(1+\\sqrt2)^2+B(1-\\sqrt2)^2=8$ yields $A=1+\\sqrt2/4$ and $B=1-\\sqrt2/4$. Hence $$a_n=\\left(1+\\frac{\\sqrt2}{4}\\right)(1+\\sqrt2)^n+\\left(1-\\frac{\\sqrt2}{4}\\right)(1-\\sqrt2)^n.$$"
-      ],
-      "remark": "This is enumeration of words accepted by a two-state automaton: the state vector evolves by a transfer matrix, and the growth rate is its Perron root $1+\\sqrt2$, equivalently the dominant pole of the rational generating function, the standard analytic combinatorics of regular languages. The olympiad origin is the classical modular state method for partial sums, counting compositions while tracking residues to keep a forbidden class empty."
-    },
-    {
-      "id": "c8",
-      "category": "cmb",
-      "difficulty": "easy",
-      "stars": 1,
-      "confidence": "high",
-      "text": "A dance society has $2n$ members, $n\\ge3$, split into two groups of $n$; no pair of members shakes hands more than once, every handshake is between members of DIFFERENT groups, and each member has shaken hands with strictly more than half of the members of the other group. A full pairing is a set of $n$ pairwise-disjoint handshakes covering all $2n$ members. Prove that the society admits EXACTLY two different full pairings if and only if its entire handshake network is one single closed loop through all $2n$ members (every member shakes hands with exactly two others, and the network is one round trip).",
-      "why": "Bipartite on $n+n$ with minimum degree strictly above $n/2$. Same-side neighbourhoods meet, giving connectedness; Hamiltonicity comes from the edge-maximal counterexample closure: a missing cross edge in a maximal non-Hamiltonian supergraph yields a Hamiltonian path, and a pigeonhole count on the two odd-index endpoint-neighbourhood sets closes that path into a spanning cycle, forcing $K_{n,n}$ - contradiction (the bipartite Dirac / Moon-Moser theorem at its sharp threshold; with degree exactly $n/2$ a spanning loop can fail). The loop's two alternating classes are two perfect matchings; any chord $uw$ pastes with the two odd arcs of the loop (each arc has a near-perfect alternating class covering its internal vertices only) into a third perfect matching. Hence exactly two matchings iff the graph is precisely a cycle $C_{2n}$, which has exactly the two alternating ones and meets the degree bound only for $n=3$: for $n\\ge4$ every such network has at least three. The symmetric-difference-alternating-cycle structure of perfect matchings (Kotzig) underlies the counting.",
-      "hints": [
-        "Prove spanning loops exist: same-side neighbourhoods meet, and bipartite Dirac closes a cycle.",
-        "Every chord pastes with the two near-alternating loop arcs to give a third pairing."
-      ],
-      "steps": [
-        "Lemma A (connectedness): two members of the same group have friend-sets of size greater than n/2 inside the other group of size n, so the two friend-sets intersect and the pair is joined through a common friend; also every member has a friend (degree > n/2 ≥ 1). For u and v in DIFFERENT groups with no road uv: take any friend w of u in v's group; w and v lie in the same group, hence are joined through a common friend; so u reaches v in at most three steps. Hence the network is connected.",
-        "Lemma B (the spanning loop - bipartite Dirac, proved in full). Claim: every balanced bipartite graph with parts $A,B$, $|A|=|B|=n$, and minimum degree at least $\\lfloor n/2\\rfloor+1$ (i.e. strictly more than half of the opposite part) contains a Hamiltonian cycle. Proof by maximal counterexample: if the network $G$ has no Hamiltonian cycle, add missing cross-edges one at a time until an edge-maximal non-Hamiltonian $H$ on the same bipartition is reached (adding edges only raises degrees, so $\\delta(H)\\ge\\lfloor n/2\\rfloor+1$ still holds). Suppose $H$ misses some cross pair $a\\in A$, $b\\in B$: then $H+ab$ IS Hamiltonian, and its Hamiltonian cycle must use the new edge (else $H$ already had one), so deleting $ab$ leaves a Hamiltonian PATH $P=p_1,p_2,\\dots,p_{2n}$ of $H$ from $a=p_1$ to $b=p_{2n}$. All neighbours of $a$ lie on $P$ at EVEN positions $2,4,\\dots,2n-2$ (even by $a\\not\\sim b$), all neighbours of $b$ at ODD positions $3,5,\\dots,2n-1$ (odd by $b\\not\\sim a$). Set $S=\\{\\text{odd } i\\le 2n-3: ap_{i+1}\\in E(H)\\}$ and $T=\\{\\text{odd } i\\ge 3: bp_i\\in E(H)\\}$: the position-neighbor bijections give $|S|=d(a)$ and $|T|=d(b)$, both at least $\\lfloor n/2\\rfloor+1$, living in the common universe of the $n$ odd indices $1,3,\\dots,2n-1$, and $|S|+|T|\\ge2\\lfloor n/2\\rfloor+2>n$; hence some odd $i\\in S\\cap T$, and then $$a=p_1,\\ p_{i+1},\\ p_{i+2},\\ \\dots,\\ p_{2n}=b,\\ p_i,\\ p_{i-1},\\ \\dots,\\ p_2,\\ p_1$$ is a Hamiltonian cycle of $H$ - contradiction (the closing edge $p_2p_1$ is a path edge; $i=1$ and $i=2n-1$ cannot occur since $a\\not\\sim b$). So no cross pair is missing: $H=K_{n,n}$, which is Hamiltonian for $n\\ge2$ ($a_1b_1a_2b_2\\dots a_nb_na_1$), contradiction again. Hence $G$ always contains a Hamiltonian cycle $L$ through all $2n$ members. (The strict inequality is used exactly twice in the count; at degree $n/2$ the claim fails - the counterexample stored in this entry's novelty note shows sharpness. The argument is the bipartite case of the Moon-Moser Ore-type theorem: non-adjacent cross pairs with degree sum $\\ge n+1$.)",
-        "Lemma D (two pairings from the loop): the 2n roads of L split into its two alternating classes; each class is a full pairing, and they differ since 2n ≥ 6. So every admissible network has AT LEAST two full pairings.",
-        "Chord paste (the counting content): suppose the network has a road e = uw that is not a road of L. The two u-w arcs of L each have an odd number of roads (u and w lie in different groups), and an odd-length path on an even number of vertices has exactly two alternating edge classes: the PERFECT one (roads 1st, 3rd, ..., last - it covers every vertex of the arc including both ends) and the NEAR one (roads 2nd, 4th, ..., second-to-last - it covers all internal vertices and misses the two ends). Build $$M_3 = \\{e\\} \\cup \\{\\text{near class of arc 1}\\} \\cup \\{\\text{near class of arc 2}\\}:$$ e covers u and w, each near class covers the internal vertices of its own arc, the three pieces share no vertex and no vertex is missed, so M_3 is a full pairing. Both full pairings coming from L avoid the chord e, so M_3 is genuinely different from both: any network with a chord has AT LEAST THREE full pairings. Consequently, a network with exactly two full pairings has no chord, i.e. its road set is precisely the loop L.",
-        "Converse: the bare loop C_{2n} admits exactly two full pairings. Indeed, let M be any full pairing and look at the loop road e_1 = v_1v_2: if e_1 is in M, then v_2's other loop road is not, so v_3 must pair along e_3 = v_3v_4, and alternation propagates around the whole loop forcing M = the class {e_1,e_3,...}; if e_1 is not in M, the same propagation forces M = {e_2,e_4,...}. Exactly two.",
-        "Membership trap: the bare loop gives every member exactly 2 handshakes, which is strictly more than n/2 only for n = 3 (n=4: 2 > 2 false). So for n ≥ 4 the right-hand side never occurs inside the class, and steps 2 and 4 make the left side never occur either - the ⟺ holds, with the elegant punchline that EXACTLY TWO is an n=3-only phenomenon."
-      ],
-      "remark": "The existence half is the bipartite Dirac theorem of Moon-Moser at its sharp degree threshold, proved by the classical maximal-counterexample and endpoint-sets pigeonhole. The counting half rests on Kotzig's theorem that two perfect matchings differ in alternating cycles, plus the chord-and-arcs pasting that produces a third matching. Together they exemplify how the structure theory of matchings in bipartite graphs converts an existence lemma into exact classification."
-    },
-    {
-      "id": "c9",
-      "category": "cmb",
       "difficulty": "medium",
       "stars": 2,
-      "confidence": "high",
-      "text": "A town has $n$ residents and $m$ clubs, each club being a set of residents, with no two clubs having the same membership. For every club, the number of its members is congruent to $1\\pmod{3}$, and for any two clubs, the number of their common members is congruent to $0\\pmod{3}$. Suppose that $m=n$. Prove that for every resident, the number of clubs containing that resident is congruent to $1\\pmod{3}$.",
-      "why": "Take the club-incidence matrix $M$ over $\\mathbb F_3$: hypotheses read $MM^T=I_m$, diagonal club sizes $\\equiv1$, off-diagonal intersections $\\equiv0$. With $m=n$ the square matrix $M$ has a right inverse, hence $\\det M=\\pm1$ and $M^{-1}$ exists, so $M^T M=I_n$: the $p$-th diagonal entry counts clubs through resident $p$, giving $r(p)\\equiv1\\pmod3$ (the off-diagonals add that two residents share $\\equiv0$ clubs). This Gram flip is the Oddtown linear-algebra method (Berlekamp, Babai-Frankl) over $\\mathbb F_3$; it has no mod-2 analogue, where the same flip loses information. The converse fails: one club $\\{1,2,3,4\\}$ on five residents gives $r(5)=0$; without $m=n$ residents are unconstrained.",
-      "hints": [
-        "The hypotheses say $MM^T=I$; squareness then forces $M^TM=I$."
-      ],
-      "steps": [
-        "Encode membership by the m x n matrix M with M_ij = 1 if resident j belongs to club i, working with all arithmetic modulo 3. The (i,j) entry of MM^T is the size of club i intersect club j for i different from j, and the size of club i for i = j.",
-        "By the hypotheses, MM^T = I_m over mod 3: off-diagonal entries are 0 (common members divisible by 3) and diagonal entries are 1 (club sizes 1 mod 3).",
-        "Assume m = n, so M is square. From MM^T = I take determinants mod 3: det(M)^2 = 1, so det(M) is not 0 mod 3 and M is invertible over the residues mod 3. Multiplying MM^T = I on the right by M gives M(M^T M) = M; cancel M (invertible) to get M^T M = I_n.",
-        "Read the diagonal of M^T M at resident p: it is the sum over clubs i of (M_ip)^2 = sum over clubs of M_ip - squaring changes nothing among 0 and 1 - which is exactly r(p), the number of clubs containing p. So r(p) = 1 mod 3 for every resident p, as claimed. (Bonus, not needed: the off-diagonals say two distinct residents share a number of common clubs divisible by 3 - the hypotheses' club-side rule, mirrored to the resident side by the same inversion.)",
-        "Check necessity of m=n (the converse and its failure): singleton clubs {1},...,{n} satisfy everything with r(p)=1. The system with 5 residents and one club {1,2,3,4} satisfies the two remainder rules with m=1 ≠ 5 and r(5)=0 - the direction claimed is the true direction."
-      ],
-      "remark": "The argument is the Oddtown linear algebra method of Berlekamp and Babai-Frankl: translate intersection data into a Gram matrix, invert it, and read the transpose, here over $\\mathbb F_3$, where $MM^T=I$ with $m=n$ flips to $M^TM=I$; the mod-2 Oddtown argument cannot do this flip. The construction grows out of the classical rank method for set systems with prescribed intersections, with the Fano-plane parity phenomenon as its prototype."
-    },
-    {
-      "id": "c10",
-      "category": "cmb",
-      "difficulty": "medium",
-      "stars": 2,
+      "rating": 4.5,
       "confidence": "high",
       "text": "Eight cities are joined by two-way roads. The road network contains no triangle: no three cities are pairwise joined by roads. Moreover, among every 4 cities, at least two of the six connecting pairs are joined by roads. Prove that no such road network exists.",
       "why": "Triangle-free makes every neighbourhood independent. A city of degree at least 3 owns an independent triple $T$; if all degrees are at most 2, a greedy choice yields one. Each of the five outsiders must send at least two roads into $T$, so at least 10 roads cross into $T$, forcing some $u\\in T$ to have degree at least 4. Then four vertices of $N(u)$ span no roads, contradicting the 4-city condition.",
@@ -821,10 +792,11 @@ window.IMO_SHORTLIST = {
       "remark": "The hypotheses mix triangle-freeness with a lower bound on edges in every 4-set, a Turan-type condition with a Ramsey flavour: the threshold number is honest because the Wagner graph on 8 vertices is the unique triangle-free graph with independence number 3, sitting at the Ramsey boundary $R(3,4)=9$ yet failing the 4-set rule. The proof grows out of the classical olympiad motif of harvesting an independent set from a neighbourhood and double counting edges crossing out of it."
     },
     {
-      "id": "c11",
+      "id": "c8",
       "category": "cmb",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 4.5,
       "confidence": "high",
       "text": "Some towns are connected by $m$ two-way roads meeting at $n$ junctions: each road joins two distinct junctions, no two roads join the same pair of junctions, and one can travel from any junction to any other along roads. Paint each road one of three colors, numbered $0,1,2$; a painting is called \\emph{good} if, at every junction, the sum of the numbers of the roads leading into it leaves remainder $1$ upon division by $3$.<br><br>Determine, in closed form, the number of good paintings, in terms of $n$, $m$, and - if the junctions can be split into two groups $A$ and $B$ such that every road joins a junction of $A$ to a junction of $B$ (networks where this is possible are called \\emph{bipartite}; the split is then unique up to swapping $A,B$) - the sizes $|A|,|B|$.",
       "why": "A painting is a solution over $\\mathbb F_3$ of the vertex-edge incidence system $Bx=\\mathbf 1$, $\\sum_{e\\ni v}x_e\\equiv1$ per junction. A left-kernel weighting satisfies $z_u+z_v\\equiv0$ on every road: connectivity forces alternation $\\pm t$, which exists globally iff the network is bipartite, since an odd cycle gives $2z\\equiv0$ and 2 is invertible mod 3, the exact point where $\\mathbb F_3$ differs from $\\mathbb F_2$. By the Fredholm alternative over finite fields, $\\mathbf 1$ is compatible iff $t(|A|-|B|)\\equiv0$, so the obstruction is a part-size congruence ($K_{2,3}$ admits no painting). Ranks $n-1$ (bipartite) and $n$ (non-bipartite) give counts $3^{m-n+1}$, $3^{m-n}$, or 0; solutions are cosets of the homogeneous kernel, the homology of 1-chains with prescribed boundary over $\\mathbb F_3$, kin to nowhere-zero-flow enumeration except affine, zeros allowed.",
@@ -843,10 +815,33 @@ window.IMO_SHORTLIST = {
       "remark": "This is linear algebra over $\\mathbb F_3$ applied to the graph incidence system, with the Fredholm alternative deciding solvability via the left kernel; conceptually it enumerates 1-chains with prescribed boundary, the affine cousin of nowhere-zero-flow counting in the Tutte theory of flows and tensions. The classical origin is the rank and cycle-space analysis of the incidence matrix, where bipartiteness surfaces exactly as the kernel of the transpose, modified because 2 is invertible modulo 3."
     },
     {
-      "id": "c12",
+      "id": "c9",
       "category": "cmb",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 4.5,
+      "confidence": "high",
+      "text": "$n\\ge3$ teams play a round-robin: every two teams play one match, each match has a winner, no draws. Call a triple of teams a \\emph{loop} if each of its three teams beats exactly one of the other two (a rock-paper-scissors cycle). An \\emph{upset} is a re-run of a single match whose result is the opposite of the original. Saying the upset \\emph{changes the loop count by $\\Delta$} means: after the re-run, the total number of loops is the original number plus $\\Delta$. Prove that the set of all possible values of $\\Delta$ - over every round-robin schedule and every single match re-run - is exactly the whole interval of integers from $-(n-2)$ to $n-2$.",
+      "why": "A re-run of $a$ against $b$ touches only triples $\\{a,b,w\\}$: it gains a loop exactly for $w$ on a directed path $a\\to w\\to b$ and loses one exactly for $w$ with $b\\to w\\to a$, so $\\Delta=\\#\\{w:a\\to w\\to b\\}-\\#\\{w:b\\to w\\to a\\}$, two disjoint sets among $n-2$ teams, giving $|\\Delta|\\le n-2$; the formula is local. Attainment: in the transitive ranking ($i\\to j$ iff $i<j$) re-running team 1 against team $k+1$ creates exactly $k$ loops ($\\Delta=+k$, and $\\Delta=0$ from $1$ vs $2$), and re-running the same match in the new position dissolves them ($\\Delta=-k$); endpoints $\\pm(n-2)$ come from team 1 against team $n$. The spectrum is exactly $[-(n-2),n-2]$. Context: the loop count obeys $c(T)=\\binom n3-\\sum_v\\binom{d_v^+}{2}$, the classical identity behind the Harary-Moser-Moon bounds for cyclic triangles.",
+      "hints": [
+        "Only triples $\\{a,b,w\\}$ through the flipped pair change; $\\Delta$ counts $w$ on paths $a\\to w\\to b$ minus $w$ on $b\\to w\\to a$.",
+        "In the transitive tournament, flip team 1 against team $k+1$ to get $+k$, then flip back for $-k$."
+      ],
+      "steps": [
+        "Fix a team $a$ beating $b$, and consider re-running $a$ vs $b$ with $b$ now winning. A triple not containing both $a$ and $b$ is untouched; the triple $\\{a,b,w\\}$ can change status only through $w$: BEFORE the re-run $\\{a,b,w\\}$ is a loop ⟺ $b$ beats $w$ beats $a$; AFTER, it is a loop ⟺ $a$ beats $w$ beats $b$. Hence $$\\Delta=\\#\\{w: a\\to w\\to b\\}-\\#\\{w: b\\to w\\to a\\},$$ where the two sets are disjoint subsets of the other $n-2$ teams, giving $|\\Delta|\\le n-2$ for every schedule and every re-run.",
+        "Attainability, non-negative half: take the ranked tournament $T$: team $i$ beats team $j$ iff $i&lt;j$. Re-run team 1's match against team $k+2$, where $0\\le k\\le n-2$, and let team $k+2$ now win. Before the re-run, exactly the teams $2,\\dots,k+1$ satisfy $1\\to w\\to k+2$, giving $k$ paths; no team satisfies $k+2\\to w\\to1$ because nobody beats team 1. Therefore $\\Delta=k$. For $k=0$ this is the re-run of the match between teams 1 and 2, which changes no loop count.",
+        "Attainability, negative half: apply the re-run of the previous step to the ranked tournament, producing $S_k$ with $c(S_k)=c(T)+k$, and then RE-RUN THE SAME MATCH back in $S_k$. Its change is the exact opposite, $-k$: in $S_k$ the $k$ loops through the pair $\\{1,k{+}1\\}$ dissolve and none are created (the two path counts of step 1 swap roles), so every $\\Delta\\in\\{-(n-2),\\dots,-1\\}$ occurs.",
+        "Glue: steps 1-3 show the set of possible $\\Delta$ sits inside $[-(n-2),n-2]$ and contains every integer of it; endpoints: $k=n-2$ (re-run team 1 vs team $n$ in the ranking) and its undo.",
+        "Context note (not needed, prior art kept out of the claim): summing loops over triples via 'a non-loop has a unique double-beater' gives $c(T)=\\binom n3-\\sum_i\\binom{d_i^+}{2}$ - the classical identity behind Harary-Moser-type bounds like 'strong $\\Rightarrow c(T)\\ge n-2$'; the shipped statement is the flip-spectrum theorem, which that lane never formulates."
+      ],
+      "remark": "The loop count of a tournament is governed by the classical identity $c(T)=\\binom n3-\\sum_v\\binom{d^+_v}{2}$ behind the Harary-Moser-Moon theory of cyclic triangles, and the change formula $\\Delta=\\#(a\\to w\\to b)-\\#(b\\to w\\to a)$ is the standard local analysis of single-edge flips, the moves connecting score sequences. The extremal configurations, transitive tournaments, supply the ladder attaining the spectrum $[-(n-2),n-2]$."
+    },
+    {
+      "id": "c10",
+      "category": "cmb",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 5,
       "confidence": "high",
       "text": "In a night sky, constellations of three stars are charted such that no two share more than one star. Starlight links two stars whenever they belong to the same constellation. <ol><li>Two constellations form a <em>conjunction</em> if they share a star.</li><li>A trio of stars forms a <em>mirage</em> if they are pairwise linked by starlight, yet form no constellation.</li></ol><br>Prove that the number of mirages is at most $\\dfrac43$ the number of conjunctions.",
       "why": "The constellations form a linear 3-uniform hypergraph: two triples share at most one vertex. The conjunction count is $C=\\sum_v\\binom{d_v}{2}$. Around a star $v$, its $2d_v$ neighbours split into $d_v$ disjoint companion pairs, so at most $4\\binom{d_v}{2}$ starlight edges can join different pairs. Every mirage is counted at its three vertices, giving $M\\le\\frac43C$. The constant is sharp: in the Fano plane, $C=7\\binom32=21$ and the 28 non-line triples are exactly the mirages, so $M/C=4/3$.",
@@ -863,10 +858,11 @@ window.IMO_SHORTLIST = {
       "remark": "The constellations form a linear 3-uniform hypergraph, and the mirages are triangles of its 2-shadow that are not edges; the proof counts, per vertex, the edges between distinct pairs of its link matching, which is exactly the local structure of a partial Steiner triple system. The technique is classical flag counting, an incidence double count between 2- and 3-dimensional faces that pervades extremal hypergraph theory."
     },
     {
-      "id": "c13",
+      "id": "c11",
       "category": "cmb",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5,
       "confidence": "high",
       "text": "Let $\\mathcal{F}$ be a family of $3$-element subsets of a set $X$, $|X|=n\\ge1$, such that any two members of $\\mathcal{F}$ share exactly one point, and no point of $X$ lies in all members. <ol><li>Prove $|\\mathcal{F}|\\le n$.</li><li>Prove $|\\mathcal{F}|=n$ if and only if $n=7$ and $\\mathcal{F}$ is the set of lines of the Fano plane.</li><li>Prove that no such family exists for $n=5$, determine the maximum of $|\\mathcal{F}|$ for $n=6$, and prove the absolute bound $|\\mathcal{F}|\\le 7$ valid for all $n$.</li></ol>",
       "why": "Engine 1 (Fisher-type linear algebra): the characteristic vectors of the members have Gram matrix $2I+J$ (diagonal 3, off-diagonal 1), which is positive definite, so $m\\le n$ with no design theory quoted. Engine 2 (degree cascade): the two counting identities $\\sum r_x=3m$, $\\sum\\binom{r_x}{2}=\\binom m2$ plus the forced cap $r_x\\le3$ (a degree-4 point and a block avoiding it need $\\ge4$ slots) give $\\binom m2\\le3m$, i.e. $m\\le7$ absolutely, and in the equality case $m=n$ everything is squeezed to $r_x\\equiv3$, forcing $n=7$ and the unique STS(7) - the Fano plane $PG(2,2)$. The small orders are rigid by the same bookkeeping: no family at $n=5$ (two blocks already cover $X$), maximum 4 at $n=6$ (a 5-block degree sequence does not exist), realized by the Pasch configuration $\\{123,145,246,356\\}$, maxima 7 for $n\\ge7$. The dual linear-space picture (points$\\leftrightarrow$blocks, de Bruijn-Erdos $b\\ge v$, near-pencil killed by 3-uniformity plus the no-common-point rule, plane order forced to 2) is the same theorem wearing its incidence-geometry clothes.",
@@ -887,30 +883,34 @@ window.IMO_SHORTLIST = {
       "remark": "Part (a) is the linear algebra proof of Fisher's inequality, using that the Gram matrix has diagonal 3 and off-diagonal 1; the equality transport identifies the unique Steiner triple system $S(2,3,7)$, the Fano plane $PG(2,2)$, while the absolute bound is a degree cascade in design-theoretic counting identities. The family grows out of classical block design theory, de Bruijn-Erdos linear spaces and the linear-space picture of near-pencils ruled out by 3-uniformity."
     },
     {
-      "id": "c14",
+      "id": "c12",
       "category": "cmb",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5,
       "confidence": "high",
-      "text": "In a mysterious investigation bureau, there are $m$ detectives and $n$ secret clues, where $n\\ge m\\ge2$. Each detective has access to a distinct combination of these clues. One day, the chief inspector burns exactly one clue from the archives. A clue is called <em>safe</em> if, after its destruction, no two detectives become indistinguishable based on the clues they still possess.<br><br>Show that at least $n-m+1$ clues are safe.",
-      "why": "Identify clue-sets with distinct vertices of the cube $\\{0,1\\}^n$: clue $j$ is unsafe iff two vertices differ only in coordinate $j$, a cube edge in direction $j$. Choosing one such edge per unsafe clue gives a graph $H$ on the $m$ vertices with all direction labels distinct; $H$ is acyclic because the hypercube $Q_n$ is the Cayley graph of $(\\mathbb Z/2\\mathbb Z)^n$, where every closed walk uses each generator an even number of times, so no direction occurs exactly once in a cycle, i.e. $Q_n$ has no rainbow cycle. Hence $H$ is a forest: at most $m-1$ unsafe clues, at least $n-m+1$ safe.",
+      "text": "Let $G=(X\\sqcup Y,E)$ be a bipartite graph with a perfect matching $M$. Contract every edge of $M$ into one vertex, and for every edge $xy\\in E\\setminus M$ with $x\\in X$ and $y\\in Y$, direct the resulting edge from the matched pair containing $x$ to the matched pair containing $y$. Prove that $M$ is the unique perfect matching of $G$ if and only if the resulting directed graph is acyclic. Deduce that every bipartite graph in which every vertex has degree at least $2$ has either no perfect matching or at least two perfect matchings.",
+      "why": "The contraction converts $M$-alternating cycles into directed cycles exactly. Thus another perfect matching exists precisely when an alternating cycle exists. The final deduction is a sharp structural corollary: minimum degree $2$ forces every contracted matched pair to have both an incoming and an outgoing non-matching edge, which makes an acyclic orientation impossible in the finite case.",
       "hints": [
-        "Read clue-sets as vertices of the cube $\\{0,1\\}^n$; an unsafe clue is a used edge-direction.",
-        "Cube cycles repeat every direction, so the chosen edges form a forest: at most $m-1$ unsafe."
+        "The symmetric difference of two perfect matchings is a disjoint union of alternating cycles.",
+        "After contraction, an alternating cycle becomes a directed cycle."
       ],
       "steps": [
-        "Represent the $m$ distinct clue-sets by their $0$–$1$ incidence vectors in $\\{0,1\\}^n$. A clue $j$ is unsafe exactly when two detectives' vectors differ only in coordinate $j$, so there is a hypercube edge in direction $j$ between two of the $m$ vertices.",
-        "For every unsafe clue choose one such edge. The chosen edges form a graph $H$ on the $m$ detective-vertices, and their edge labels (the corresponding clues) are all distinct.",
-        "The graph $H$ is acyclic. Indeed, in any cycle of a hypercube, each coordinate is flipped an even number of times. But every edge of $H$ has a distinct coordinate label, so a cycle would make each of its labels occur exactly once, impossible.",
-        "Thus $H$ is a forest, so it has at most $m-1$ edges. If $U$ is the number of unsafe clues, then $U\\le m-1$, hence the number of safe clues is at least $n-U\\ge n-m+1$."
+        "Fix the perfect matching $M$. Suppose the contracted digraph contains a directed cycle $e_1\\to e_2\\to\\cdots\\to e_k\\to e_1$. Restoring the matched edges represented by its vertices gives an $M$-alternating cycle in $G$.",
+        "Flip the membership of the edges of $M$ along that alternating cycle: remove the $k$ matching edges and insert the $k$ non-matching edges. Every vertex on the cycle is still matched exactly once, while all other vertices are unchanged. Hence a second perfect matching exists.",
+        "Conversely, let $M'$ be a perfect matching different from $M$. Then $M\\triangle M'$ is a nonempty disjoint union of $M$-alternating cycles. Each such alternating cycle becomes a directed cycle after contraction. Therefore the contracted digraph is cyclic.",
+        "Thus $M$ is unique if and only if the contracted digraph is acyclic.",
+        "For the deduction, assume every vertex of $G$ has degree at least $2$ and $M$ is a perfect matching. Each matched edge $xy\\in M$ has at least one non-matching edge incident with $x$ and at least one non-matching edge incident with $y$. Hence every contracted vertex has indegree at least $1$ and outdegree at least $1$.",
+        "A finite directed acyclic graph has a vertex of indegree $0$, so the contracted graph cannot be acyclic. Hence it contains a directed cycle, and by the first part $M$ is not unique. Therefore any such graph with a perfect matching has at least two perfect matchings."
       ],
-      "remark": "The key lemma is that the hypercube $Q_n$, as the Cayley graph of $(\\mathbb Z/2\\mathbb Z)^n$, carries no rainbow cycle: every closed walk uses each generator an even number of times. The proof turns the set system into vertex and edge data of a graph and bounds unsafe clues by the forest edge count, a classical olympiad device of encoding subsets as cube vertices that appears in extremal problems on the Boolean lattice."
+      "remark": "The statement is a deliberately graph-theoretic reformulation of the alternating-cycle principle: a perfect matching becomes unique exactly when all alternating structure can be topologically ordered."
     },
     {
-      "id": "c15",
+      "id": "c13",
       "category": "cmb",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5.5,
       "confidence": "high",
       "text": "For any integer $n\\ge2$, prove that there exists a set $S$ of $2n$ distinct triangular numbers partitionable into two subsets of size $n$ with equal sums.<br><br><em>A triangular number is a positive integer of the form $\\tfrac{k(k+1)}2$ for some positive integer $k$.</em>",
       "why": "Seeds $T_1+T_5=T_3+T_4=16$ and $T_1+T_3+T_6=T_2+T_4+T_5=28$; the inductive identity is $T_m+T_{2m+3}=T_{m+2}+T_{2m+2}$, valid for $m$ larger than all indices used so far, adding four distinct triangular numbers, two per side, preserving equal sums; induction by steps of 2 covers all $n\\ge2$. Via $8T_r+1=(2r+1)^2$ the identity becomes $(2m+1)^2+(4m+7)^2=(2m+5)^2+(4m+5)^2$, a two-against-two equality of sums of squares of the kind parametrized by norms in the Gaussian integers $\\mathbb Z[i]$; the problem itself is a level-1 Prouhet-Tarry-Escott configuration on triangular numbers.",
@@ -927,10 +927,11 @@ window.IMO_SHORTLIST = {
       "remark": "Via $8T_r+1=(2r+1)^2$ the inductive identity converts into a two-versus-two equality of sums of odd squares, the kind of parametric configuration explained by norms in the Gaussian integers $\\mathbb Z[i]$. The task itself is a level-1 instance of the Prouhet-Tarry-Escott problem for the sequence of triangular numbers. The construction grows out of the classical olympiad motif of seeding small cases and extending them by a polynomial identity applied far above the indices already used."
     },
     {
-      "id": "c16",
+      "id": "c14",
       "category": "cmb",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5.5,
       "confidence": "high",
       "text": "Let $X$ be an $n$-element set, and let $A_1,A_2,\\dots,A_n$ be subsets of $X$ such that <ol><li>$|A_i|$ is odd for every $i$;</li><li>$|A_i\\cap A_j|$ is even whenever $i\\ne j$.</li></ol><br>An <em>assignment</em> is a choice of pairwise distinct elements $x_1,\\dots,x_n\\in X$ with $x_i\\in A_i$ for every $i$. Prove that the number of assignments is odd.",
       "why": "The incidence matrix $M$ over $\\mathbb F_2$ satisfies $MM^T=I$: odd sizes on the diagonal, even intersections off it, so $M$ is invertible and $\\det M=1$. An assignment lists $n$ distinct representatives of an $n$-set, hence exhausts $X$ and is a permutation $\\sigma$ with $x_{\\sigma(i)}\\in A_i$; their number is the permanent $\\operatorname{per}M=\\sum_\\sigma\\prod_i m_{i,\\sigma(i)}$, and in characteristic 2 the signs vanish, so $\\operatorname{per}M\\equiv\\det M\\equiv1\\pmod2$: the number is odd. The mechanism is the permanent-determinant congruence over $\\mathbb F_2$ coupled with the Oddtown rank method (Berlekamp), giving a linear-algebraic strengthening of Hall's marriage theorem: not just existence of a system of distinct representatives but its exact parity.",
@@ -948,31 +949,11 @@ window.IMO_SHORTLIST = {
       "remark": "The engine is the permanent-determinant congruence in characteristic 2, married to the Oddtown incidence-matrix rank method: $MM^T=I$ forces invertibility, so the SDR count is odd. This yields a linear-algebraic strengthening of Hall's marriage theorem, upgrading existence to exact parity, a technique in the spirit of the Alon-Tarsi parity approach to list colouring. The problem grows out of the standard combinatorial reading of the permanent as the count of systems of distinct representatives."
     },
     {
-      "id": "c17",
+      "id": "c15",
       "category": "cmb",
       "difficulty": "medium",
       "stars": 2,
-      "confidence": "high",
-      "text": "$n\\ge3$ teams play a round-robin: every two teams play one match, each match has a winner, no draws. Call a triple of teams a \\emph{loop} if each of its three teams beats exactly one of the other two (a rock-paper-scissors cycle). An \\emph{upset} is a re-run of a single match whose result is the opposite of the original. Saying the upset \\emph{changes the loop count by $\\Delta$} means: after the re-run, the total number of loops is the original number plus $\\Delta$. Prove that the set of all possible values of $\\Delta$ - over every round-robin schedule and every single match re-run - is exactly the whole interval of integers from $-(n-2)$ to $n-2$.",
-      "why": "A re-run of $a$ against $b$ touches only triples $\\{a,b,w\\}$: it gains a loop exactly for $w$ on a directed path $a\\to w\\to b$ and loses one exactly for $w$ with $b\\to w\\to a$, so $\\Delta=\\#\\{w:a\\to w\\to b\\}-\\#\\{w:b\\to w\\to a\\}$, two disjoint sets among $n-2$ teams, giving $|\\Delta|\\le n-2$; the formula is local. Attainment: in the transitive ranking ($i\\to j$ iff $i<j$) re-running team 1 against team $k+1$ creates exactly $k$ loops ($\\Delta=+k$, and $\\Delta=0$ from $1$ vs $2$), and re-running the same match in the new position dissolves them ($\\Delta=-k$); endpoints $\\pm(n-2)$ come from team 1 against team $n$. The spectrum is exactly $[-(n-2),n-2]$. Context: the loop count obeys $c(T)=\\binom n3-\\sum_v\\binom{d_v^+}{2}$, the classical identity behind the Harary-Moser-Moon bounds for cyclic triangles.",
-      "hints": [
-        "Only triples $\\{a,b,w\\}$ through the flipped pair change; $\\Delta$ counts $w$ on paths $a\\to w\\to b$ minus $w$ on $b\\to w\\to a$.",
-        "In the transitive tournament, flip team 1 against team $k+1$ to get $+k$, then flip back for $-k$."
-      ],
-      "steps": [
-        "Fix a team $a$ beating $b$, and consider re-running $a$ vs $b$ with $b$ now winning. A triple not containing both $a$ and $b$ is untouched; the triple $\\{a,b,w\\}$ can change status only through $w$: BEFORE the re-run $\\{a,b,w\\}$ is a loop ⟺ $b$ beats $w$ beats $a$; AFTER, it is a loop ⟺ $a$ beats $w$ beats $b$. Hence $$\\Delta=\\#\\{w: a\\to w\\to b\\}-\\#\\{w: b\\to w\\to a\\},$$ where the two sets are disjoint subsets of the other $n-2$ teams, giving $|\\Delta|\\le n-2$ for every schedule and every re-run.",
-        "Attainability, non-negative half: take the ranked tournament $T$: team $i$ beats team $j$ iff $i&lt;j$. Re-run team 1's match against team $k+2$, where $0\\le k\\le n-2$, and let team $k+2$ now win. Before the re-run, exactly the teams $2,\\dots,k+1$ satisfy $1\\to w\\to k+2$, giving $k$ paths; no team satisfies $k+2\\to w\\to1$ because nobody beats team 1. Therefore $\\Delta=k$. For $k=0$ this is the re-run of the match between teams 1 and 2, which changes no loop count.",
-        "Attainability, negative half: apply the re-run of the previous step to the ranked tournament, producing $S_k$ with $c(S_k)=c(T)+k$, and then RE-RUN THE SAME MATCH back in $S_k$. Its change is the exact opposite, $-k$: in $S_k$ the $k$ loops through the pair $\\{1,k{+}1\\}$ dissolve and none are created (the two path counts of step 1 swap roles), so every $\\Delta\\in\\{-(n-2),\\dots,-1\\}$ occurs.",
-        "Glue: steps 1-3 show the set of possible $\\Delta$ sits inside $[-(n-2),n-2]$ and contains every integer of it; endpoints: $k=n-2$ (re-run team 1 vs team $n$ in the ranking) and its undo.",
-        "Context note (not needed, prior art kept out of the claim): summing loops over triples via 'a non-loop has a unique double-beater' gives $c(T)=\\binom n3-\\sum_i\\binom{d_i^+}{2}$ - the classical identity behind Harary-Moser-type bounds like 'strong $\\Rightarrow c(T)\\ge n-2$'; the shipped statement is the flip-spectrum theorem, which that lane never formulates."
-      ],
-      "remark": "The loop count of a tournament is governed by the classical identity $c(T)=\\binom n3-\\sum_v\\binom{d^+_v}{2}$ behind the Harary-Moser-Moon theory of cyclic triangles, and the change formula $\\Delta=\\#(a\\to w\\to b)-\\#(b\\to w\\to a)$ is the standard local analysis of single-edge flips, the moves connecting score sequences. The extremal configurations, transitive tournaments, supply the ladder attaining the spectrum $[-(n-2),n-2]$."
-    },
-    {
-      "id": "c18",
-      "category": "cmb",
-      "difficulty": "hard",
-      "stars": 3,
+      "rating": 5.5,
       "confidence": "high",
       "text": "In a duel league, every pair of the $n\\ge2$ players plays exactly one duel, and every duel has a winner (no draws); write $A\\to B$ when $A$ beat $B$. A player $K$ is a \\emph{king} if every other player $X$ satisfies $K\\to X$ or $K\\to Y\\to X$ for some player $Y$ ($K$ beat someone who beat $X$). A \\emph{victory chain} is a listing of all players $x_1,x_2,\\dots,x_n$ with $x_i\\to x_{i+1}$ for every $i$.<br><br>Prove the following two independent statements.<ol><li>Every king starts a victory chain: if $K$ is a king, some victory chain has $x_1=K$.</li><li>For every $n\\ge5$ and every integer $m$ with $3\\le m\\le n$, some league on $n$ players has exactly $m$ kings.</li></ol>",
       "why": "Claim (1) proves more: a player starts a victory chain iff he reaches every other player by a win-path, so ordering others by shortest path from $v$ and inserting each newcomer after the last chain member he beats (the following member then loses to the newcomer) keeps the head fixed, a fixed-start refinement of Redeis Hamiltonian-path theorem for tournaments. A king reaches everyone within two duels, so he heads a chain; both converses fail, chain-heads need not be kings and kings need not end chains, so no dualization is possible. Claim (2): appending a transitive tail beaten by all core players leaves the king set unchanged, so it suffices to build all-king cores: regular carousels for odd $m$ and a parity-shifted core for even $m\\ge6$; every 4-player league has a non-king, so $m=4$ needs a 5-player seed, and $n\\ge5$ is exact. This pins down the realized king spectrum $\\{3,\\dots,n\\}$ next to Landau's and Maurer's rigidity that a unique king is a dominating player and counts other than 1 and at least 3 are impossible.",
@@ -994,10 +975,59 @@ window.IMO_SHORTLIST = {
       "remark": "Claim (1) refines Redeis theorem that every tournament has a Hamiltonian path, and its exact proof runs through the reachability characterization of path heads. Claim (2) leans on the classical theory of kings: Landau's and Maurer's results on kings and score sequences, with regular cyclic carousel tournaments as all-king cores; the m=4 gap is a known rigidity phenomenon for small tournaments. The techniques, shortest-path splicing and appending dominated transitive tails, are staple olympiad tournament motifs."
     },
     {
-      "id": "c19",
+      "id": "c16",
+      "category": "cmb",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 5.5,
+      "confidence": "high",
+      "text": "Let $G=(X\\sqcup Y,E)$ be a connected simple bipartite graph with $|X|=|Y|$ and minimum degree at least $2$. Suppose that $G$ has exactly two perfect matchings. Prove that $G$ is an even cycle.",
+      "why": "Fix one perfect matching $M$ and contract its edges. Every non-matching edge becomes a directed edge from its $X$-endpoint's matched pair to its $Y$-endpoint's matched pair. Alternating cycles in $G$ are exactly directed cycles in the contracted digraph. The second perfect matching therefore gives one directed cycle, while the assumption that there are exactly two perfect matchings forces that cycle to be unique. Minimum degree $2$ gives every contracted vertex both indegree and outdegree at least $1$; a finite weakly connected digraph with a unique directed cycle cannot contain any vertex outside it. Undoing the contraction gives precisely an even cycle.",
+      "hints": [
+        "Fix one perfect matching and encode every other edge as an arrow between matched pairs.",
+        "An alternating cycle can be flipped to obtain another perfect matching. What does 'exactly two' say about directed cycles?"
+      ],
+      "steps": [
+        "Let $M$ and $M'$ be the two perfect matchings. The symmetric difference $M\\triangle M'$ is a disjoint union of $M$-alternating even cycles. If there were at least two components, flipping the edges on just one component would produce a third perfect matching. Hence $M\\triangle M'$ is a single alternating cycle $C$.",
+        "Contract every edge of $M$ to one vertex. For each edge $xy\\in E\\setminus M$ with $x\\in X$, $y\\in Y$, direct the resulting edge from the contracted vertex containing $x$ to the contracted vertex containing $y$. Call the resulting directed multigraph $D$.",
+        "Every directed cycle in $D$ lifts to an $M$-alternating cycle in $G$, and flipping $M$ along that cycle gives a second perfect matching. Conversely, every $M$-alternating cycle gives a directed cycle. Therefore the cycle $C$ from Step 1 gives a directed cycle in $D$, and $D$ cannot contain any other directed cycle.",
+        "Each vertex of $D$ has indegree at least $1$ and outdegree at least $1$: the contracted vertex represents one edge $xy\\in M$, and since $d_G(x),d_G(y)\\ge2$, there is at least one non-matching edge incident with $x$ and at least one non-matching edge incident with $y$. Because $G$ is connected, $D$ is weakly connected.",
+        "Suppose a vertex $v$ of $D$ lies outside the unique directed cycle $C$. Following outgoing edges from $v$ eventually reaches a directed cycle, which must be $C$. Thus there is a directed path from $v$ to $C$ whose internal vertices are outside $C$. Similarly, following incoming edges backwards from $v$ eventually reaches $C$, giving a directed path from $C$ to $v$ with internal vertices outside $C$.",
+        "Concatenating those two paths gives a directed walk from one vertex of $C$ back to another which passes through $v$. Taking the directed arc of $C$ between the two endpoints produces a directed cycle distinct from $C$, contradiction. Hence every vertex of $D$ lies on $C$.",
+        "Thus $D$ is a directed cycle. Restoring each contracted matching edge inserts one matching edge between consecutive directed edges, so $G$ itself is exactly an even cycle.",
+        "Conversely, an even cycle has exactly two perfect matchings, namely its two alternating edge sets."
+      ],
+      "remark": "The problem turns the uniqueness of a second matching into a purely directed-cycle statement after contracting a fixed matching. The minimum-degree hypothesis is exactly what prevents branches from hanging off the alternating cycle."
+    },
+    {
+      "id": "c17",
+      "category": "cmb",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 5.5,
+      "confidence": "high",
+      "text": "At a club meeting, each pair of members either shook hands once or did not shake hands at all. There were $n$ members and $m$ handshakes. Suppose:<br><ol><li>every member shook hands with an odd number of other members;</li><li>every pair of members had an even number of common acquaintances (members who shook hands with both; the condition applies to every pair, whether or not the two members shook hands with each other).</li></ol>Prove that $m-\\tfrac n2$ is an even integer.",
+      "why": "Double-count wedges, length-2 handshake chains, by center and by ends: $\\sum_v\\binom{d_v}{2}=\\sum_{\\{u,w\\}}\\mathrm{codeg}(u,w)$, where hypothesis (ii) makes every codegree even, including for non-adjacent pairs, which is exactly what the end count over all pairs requires. For odd $d=2k+1$, $\\binom d2=k(2k+1)\\equiv k=\\frac{d-1}{2}\\pmod2$, so $0\\equiv\\sum_v\\frac{d_v-1}{2}=\\frac{2m-n}{2}=m-\\frac n2$, and $n$ is even because $\\sum d_v=2m$ with all summands odd. Non-vacuous: $K_n$ for every even $n$, and the lexicographic product $P_3\\circ K_2$ ($n=6$, $m=11$). The proof is a parity double count on the vertex-wedge incidence structure of $G$, distinct from the Oddtown-style adjacency-matrix rank method over $\\mathbb F_2$, which bounds family sizes rather than edge counts.",
+      "hints": [
+        "Double count wedges, a centre with two partners, by centre and by ends.",
+        "Mod $2$, $\\binom{2k+1}{2}\\equiv k$; summing gives $m-\\frac n2\\equiv0$."
+      ],
+      "steps": [
+        "Notation: $d_v$ = number of handshakes of member $v$ (odd, by (1)); $\\mathrm{codeg}(u,w)$ = number of members who shook hands with both $u$ and $w$ (even, by (2), for EVERY pair $u\\ne w$).",
+        "Warm-up (one line, inside the proof): the number of members $n$ must be even for $m-\\frac n2$ to even be an integer - indeed $\\sum_vd_v=2m$ is even and all $d_v$ are odd, so $n$ is even. (The congruence below gives this again, but record it so the claim is well-typed.)",
+        "Double count WEDGES (length-2 chains: a center member together with two of its handshake partners): choosing a center $v$ and two partners gives $\\binom{d_v}2$ wedges; choosing the two END members $\\{u,w\\}$ and a common acquaintance between them gives $\\mathrm{codeg}(u,w)$. Both count the same set: $$\\sum_{v}\\binom{d_v}{2}=\\sum_{\\{u,w\\}}\\mathrm{codeg}(u,w).$$ (A wedge with center $v$ and ends $u,w$ is exactly a common acquaintance of $u$ and $w$ - the ends are automatically distinct and different from the center.)",
+        "Right side is even by (2): every term $\\mathrm{codeg}(u,w)$ is even.",
+        "Left side mod 2: write $d_v=2k_v+1$; then $\\binom{d_v}{2}=k_v(2k_v+1)\\equiv k_v=\\frac{d_v-1}{2}\\pmod2$. Hence $$0\\equiv\\sum_vk_v=\\frac{\\sum_vd_v-n}{2}=\\frac{2m-n}{2}=m-\\frac n2\\pmod2,$$ which is exactly the claim.",
+        "Non-vacuity: for every even $n$, the complete graph $K_n$ satisfies (1) and (2): every degree is $n-1$, hence odd, every codegree is $n-2$, hence even, and $$m-\\frac n2=\\frac{n(n-1)}2-\\frac n2=\\frac{n(n-2)}2,$$ which is even when $n$ is even."
+      ],
+      "remark": "The proof is a parity double count on the incidence structure of vertices and 2-paths: counting wedges by centre versus by endpoints transfers evenness of codegrees to the degree sum. Graphs with all odd degrees and all even codegrees are exactly the self-orthogonality conditions of adjacency matrices over $\\mathbb F_2$, the same territory as Oddtown and symmetric designs, though here a handshake lemma for 2-paths suffices. The wedge count is a classical olympiad incidence motif."
+    },
+    {
+      "id": "c18",
       "category": "cmb",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 6,
       "confidence": "high",
       "text": "There are $n$ cells arranged in a circle, labelled $1, 2, \\dots, n$ in clockwise order. Initially, a token is placed at cell $1$. Alice and Bob play a game with $n - 1$ rounds. In round $k$ ($1 \\le k \\le n - 1$):<br><ol><li>Alice chooses a step size $s_k \\in \\{1, 2, \\dots, n - 1\\}$ that has not been chosen in any earlier round.</li><li>Bob chooses whether the token moves $s_k$ steps clockwise or $s_k$ steps counter-clockwise.</li></ol><br>Alice wins if, after all $n - 1$ rounds, the token has visited every single cell of the circle at least once (including its initial position at cell $1$). Otherwise, Bob wins. Determine all integers $n \\ge 2$ for which Alice has a winning strategy.",
       "why": "Relabel cells $0,\\dots,n-1$ mod $n$; from $x$ with step $s$ the candidate landings are $x\\pm s$, equal only when $2s\\equiv0$. Bob's strategy is a static ranking function: always take $\\min$ of the two labels. For odd $n\\ge3$ the two labels are always distinct, so the minimum never reaches $n-1$. For even $n=2h$ the labels $n-1$ and $n-2$ are selectable only via $s=h$, the unique element of order 2, whose landing $x+h$ is forced, and Alice may name $h$ once; moreover the pair $\\{n-2,n-1\\}$ can never be $\\{x\\pm s\\}$ since $a+b\\equiv2x\\pmod n$ forces the two candidates to share parity, exactly the quotient $\\mathbb Z/n\\mathbb Z\\to\\mathbb Z/2\\mathbb Z$. Thus at most one of the top cells is visited and Bob wins for all $n\\ge3$; Alice wins only for $n=2$.",
@@ -1017,32 +1047,11 @@ window.IMO_SHORTLIST = {
       "remark": "The proof is a potential-function strategy: Bob's static ranking pins the token below the top labels, and the obstruction to reaching both $n-2$ and $n-1$ is the parity homomorphism $\\mathbb Z/n\\mathbb Z\\to\\mathbb Z/2\\mathbb Z$, since $a+b\\equiv2x$ forces candidate landings to share parity. Structurally this is a two-player game solved by an invariant rather than by strategy stealing, in the classical olympiad family of token games on a cyclic board with signed steps."
     },
     {
-      "id": "c20",
+      "id": "c19",
       "category": "cmb",
       "difficulty": "hard",
       "stars": 3,
-      "confidence": "high",
-      "text": "At a club meeting, each pair of members either shook hands once or did not shake hands at all. There were $n$ members and $m$ handshakes. Suppose:<br><ol><li>every member shook hands with an odd number of other members;</li><li>every pair of members had an even number of common acquaintances (members who shook hands with both; the condition applies to every pair, whether or not the two members shook hands with each other).</li></ol>Prove that $m-\\tfrac n2$ is an even integer.",
-      "why": "Double-count wedges, length-2 handshake chains, by center and by ends: $\\sum_v\\binom{d_v}{2}=\\sum_{\\{u,w\\}}\\mathrm{codeg}(u,w)$, where hypothesis (ii) makes every codegree even, including for non-adjacent pairs, which is exactly what the end count over all pairs requires. For odd $d=2k+1$, $\\binom d2=k(2k+1)\\equiv k=\\frac{d-1}{2}\\pmod2$, so $0\\equiv\\sum_v\\frac{d_v-1}{2}=\\frac{2m-n}{2}=m-\\frac n2$, and $n$ is even because $\\sum d_v=2m$ with all summands odd. Non-vacuous: $K_n$ for every even $n$, and the lexicographic product $P_3\\circ K_2$ ($n=6$, $m=11$). The proof is a parity double count on the vertex-wedge incidence structure of $G$, distinct from the Oddtown-style adjacency-matrix rank method over $\\mathbb F_2$, which bounds family sizes rather than edge counts.",
-      "hints": [
-        "Double count wedges, a centre with two partners, by centre and by ends.",
-        "Mod $2$, $\\binom{2k+1}{2}\\equiv k$; summing gives $m-\\frac n2\\equiv0$."
-      ],
-      "steps": [
-        "Notation: $d_v$ = number of handshakes of member $v$ (odd, by (1)); $\\mathrm{codeg}(u,w)$ = number of members who shook hands with both $u$ and $w$ (even, by (2), for EVERY pair $u\\ne w$).",
-        "Warm-up (one line, inside the proof): the number of members $n$ must be even for $m-\\frac n2$ to even be an integer - indeed $\\sum_vd_v=2m$ is even and all $d_v$ are odd, so $n$ is even. (The congruence below gives this again, but record it so the claim is well-typed.)",
-        "Double count WEDGES (length-2 chains: a center member together with two of its handshake partners): choosing a center $v$ and two partners gives $\\binom{d_v}2$ wedges; choosing the two END members $\\{u,w\\}$ and a common acquaintance between them gives $\\mathrm{codeg}(u,w)$. Both count the same set: $$\\sum_{v}\\binom{d_v}{2}=\\sum_{\\{u,w\\}}\\mathrm{codeg}(u,w).$$ (A wedge with center $v$ and ends $u,w$ is exactly a common acquaintance of $u$ and $w$ - the ends are automatically distinct and different from the center.)",
-        "Right side is even by (2): every term $\\mathrm{codeg}(u,w)$ is even.",
-        "Left side mod 2: write $d_v=2k_v+1$; then $\\binom{d_v}{2}=k_v(2k_v+1)\\equiv k_v=\\frac{d_v-1}{2}\\pmod2$. Hence $$0\\equiv\\sum_vk_v=\\frac{\\sum_vd_v-n}{2}=\\frac{2m-n}{2}=m-\\frac n2\\pmod2,$$ which is exactly the claim.",
-        "Non-vacuity: for every even $n$, the complete graph $K_n$ satisfies (1) and (2): every degree is $n-1$, hence odd, every codegree is $n-2$, hence even, and $$m-\\frac n2=\\frac{n(n-1)}2-\\frac n2=\\frac{n(n-2)}2,$$ which is even when $n$ is even."
-      ],
-      "remark": "The proof is a parity double count on the incidence structure of vertices and 2-paths: counting wedges by centre versus by endpoints transfers evenness of codegrees to the degree sum. Graphs with all odd degrees and all even codegrees are exactly the self-orthogonality conditions of adjacency matrices over $\\mathbb F_2$, the same territory as Oddtown and symmetric designs, though here a handshake lemma for 2-paths suffices. The wedge count is a classical olympiad incidence motif."
-    },
-    {
-      "id": "c21",
-      "category": "cmb",
-      "difficulty": "challenging",
-      "stars": 4,
+      "rating": 6.5,
       "confidence": "low",
       "text": "Let $n&lt;m$ be positive integers. Let $a_{ij}$ be real numbers for $1\\le i\\le n$ and $1\\le j\\le m$. We say a sequence of real numbers $x_1,\\dots,x_m$ is <em>stable</em> if we can choose $n$ pairwise distinct integers $c_1,\\dots,c_n\\in\\{1,\\dots,m\\}$ such that $$a_{i,c_i}-x_{c_i}\\ge a_{ij}-x_j \\quad\\text{for all }1\\le i\\le n\\text{ and }1\\le j\\le m.$$ Prove that if two sequences $y=(y_1,\\dots,y_m)$ and $z=(z_1,\\dots,z_m)$ are stable, then the sequence $u$ defined by $u_j=\\min(y_j,z_j)$ is also stable.",
       "why": "Fix witnessing optimal matchings $M_y,M_z$; in $H=M_y\\cup M_z$ rows have degree 2 and columns at most 2, so components are alternating paths and cycles (a doubled edge is a 2-cycle). If row $i$ uses $p$ in $M_y$ and $q$ in $M_z$, optimality chains $y_p-y_q\\le a_{ip}-a_{iq}\\le z_p-z_q$, i.e. $d_p\\le d_q$ for $d=y-z$: along each path, oriented from its $M_y$ end, $d$ is nondecreasing, and on each cycle constant. Writing $u=\\min(y,z)=y-\\max(d,0)$, the $u$-score is $\\max(\\alpha_j,\\alpha_j+d_j)$ with $\\alpha_j=a_{ij}-y_j$, so each row's $u$-optimum sits at $p$ or $q$; the sign cut of $d$ selects $M_y$ edges below and $M_z$ edges above within each component, matching all rows to distinct $u$-optimal columns without exchange. Conceptually this is valuated-matroid basis exchange for the transversal (assignment) matroid, Murota's M-convexity: Dress-Wenzel dual valuations are closed under componentwise minimum, the defining property of the associated tropical linear space.",
@@ -1062,10 +1071,11 @@ window.IMO_SHORTLIST = {
       "remark": "The statement says stable price vectors are closed under coordinatewise minimum: they are the dual valuations of Dress-Wenzel, the points of the tropical linear space of the transversal matroid, and the argument is Murota's exchange for valuated matroids, the M-convexity of the assignment problem. The proof grows out of the classical symmetric-difference exchange argument for matchings, upgraded so the difference $y-z$ orients each alternating path and the cut lands on an optimal matching."
     },
     {
-      "id": "c22",
+      "id": "c20",
       "category": "cmb",
-      "difficulty": "challenging",
-      "stars": 4,
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6.5,
       "confidence": "low",
       "text": "There are $n$ piles, each with a token of value $1$. In each step, choose two piles with values $A$ and $B$ and merge them into a pile of value $A+B+\\min(A,B)$. Repeat $n-1$ times.<br><br>Prove that the maximum possible value of the final pile equals the number of odd entries in the first $n$ rows of Pascal's triangle, i.e. the number of pairs $(x,y)$ with $0\\le x\\le y&lt;n$ for which $\\binom yx$ is odd.",
       "why": "Every merge history is a binary tree, and $A,B\\mapsto A+B+\\min(A,B)$ is nondecreasing in each argument, so $M(n)=\\max_{1\\le i\\le\\lfloor n/2\\rfloor}\\bigl(M(i)+M(n-i)+\\min(M(i),M(n-i))\\bigr)$; $M$ is strictly increasing, collapsing the recurrence to $M(n)=\\max_i\\bigl(2M(i)+M(n-i)\\bigr)$, $M(1)=1$. For $S(n)=\\sum_{r=0}^{n-1}2^{\\operatorname{popcount}(r)}$, Lucas' theorem mod 2 gives exactly $2^{\\operatorname{popcount}(y)}$ odd entries in row $y$ of Pascal's triangle, and $S$ obeys $S(2t)=3S(t)$, $S(2t+1)=2S(t)+S(t+1)$; the block inequality $S(i+j)\\ge2S(i)+S(j)$ for $i\\le j$ (parity induction on $i+j$), with equality at balanced splits, forces $M=S$ by strong induction. $2^{\\operatorname{popcount}}$ is a 2-regular sequence in the sense of Allouche-Shallit, and the two-step recurrences are the standard divide-and-conquer structure of binary-additive functions.",
@@ -1085,10 +1095,83 @@ window.IMO_SHORTLIST = {
       "remark": "Lucas' theorem identifies row parities of Pascal's triangle with bit inclusion, so the target count is the summatory function of $2^{\\operatorname{popcount}}$, a 2-regular sequence in the sense of Allouche-Shallit obeying divide-and-conquer recurrences $S(2t)=3S(t)$ and $S(2t+1)=2S(t)+S(t+1)$. The proof grows out of the classical olympiad method of matching a game optimum to a candidate sequence via monotonicity plus a block inequality verified by induction on binary expansions."
     },
     {
+      "id": "c21",
+      "category": "cmb",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6.5,
+      "confidence": "high",
+      "text": "Let $W_n$ be a wheel with a marked rim vertex $s$, where $n\\ge3$. Put a number $h\\in\\{0,1,\\dots,n-1\\}$ at the hub and a number in $\\{0,1,2\\}$ at every other rim vertex. Initially only $s$ is lit. Whenever an unlit vertex has more lit neighbors than its number, it becomes lit. Call a labeling successful if all vertices eventually become lit, and let $P_n$ be the number of successful labelings. Let $L_0=2$, $L_1=1$, and $L_{r+2}=L_{r+1}+L_r$ be the Lucas numbers. Prove that $P_3=16$, $P_4=45$, and $P_n=3P_{n-1}-P_{n-2}+2$ for $n\\ge5$, and hence prove $P_n=L_{2n}-2$.",
+      "why": "The key is to fix the hub value $h$ and look at the rim as a path after deleting the marked vertex. Before the hub lights, only zeroes can propagate inward from the two ends; after the hub lights, a rim word is successful exactly when every maximal block of nonzero entries contains at most one $2$. Counting the resulting nonzero-ended cores gives Fibonacci numbers through the rational generating function $\\frac{x(2-x)(1-x)}{1-3x+x^2}$. The hub level contributes a simple linear weight, and summing over $h$ collapses to $L_{2n}-2$. Thus the Lucas number appears from the local light-up dynamics rather than from the Matrix-Tree theorem or any sandpile machinery.",
+      "hints": [
+        "Fix the hub value $h$; before the hub lights, only zeroes propagate from the ends.",
+        "After the hub lights, a maximal nonzero block clears iff it holds at most one $2$.",
+        "Count such blocks via a generating function to get even Fibonacci numbers; sum over $h$."
+      ],
+      "steps": [
+        "Write the nonsink rim as a path $v_1,\\dots,v_{n-1}$ and fix the hub value $h$. Before the hub lights, the only rim vertices that can propagate are vertices labelled $0$, and these $0$'s propagate inward from the two ends of the path, both adjacent to the already-lit vertex $s$. The hub has $s$ as one already-lit rim neighbour, so it lights as soon as $h$ additional rim vertices have lit. Thus, for $h&lt;n-1$, success is equivalent to requiring that the total number of leading and trailing zeroes is at least $h$. For $h=n-1$, all $n-1$ other rim vertices must light before the hub; this happens exactly when all labels are $0$, or exactly one rim vertex has label $1$ and all the others have label $0$. Hence $A_{n,n-1}=n$.",
+        "Let $F_0=0$, $F_1=1$, and $F_{r+2}=F_{r+1}+F_r$ be the Fibonacci numbers. Once the hub is lit, the remaining rim word is successful exactly when every maximal block of nonzero entries contains at most one $2$: if a block contains two $2$'s, propagation becomes trapped between them; conversely, a block with at most one $2$ can be cleared from its two ends, with its unique possible $2$ burning last. Let $C_k$ be the number of such valid words of length $k$ that begin and end nonzero. A positive block has generating function $B(x)=\\frac{x}{1-x}+\\frac{x}{(1-x)^2}=\\frac{x(2-x)}{(1-x)^2}$, while a separating zero-run has $Z(x)=\\frac{x}{1-x}$. Hence $$C(x)=\\frac{B(x)}{1-B(x)Z(x)}=\\frac{x(2-x)(1-x)}{1-3x+x^2}.$$ Therefore $C_1=2$ and $C_k=F_{2k}$ for every $k\\ge2$.",
+        "Let $A_{n,h}$ be the number of successful labelings with hub value $h$, and put $m=n-1$. If $q=m-h\\ge1$, decompose a successful rim word into $s$ leading/trailing zeroes and a nonzero-ended core. There are $s+1$ ways to split the $s$ end zeroes, so $A_{n,h}=1+\\sum_{k=1}^{q}(m-k+1)C_k=1+2m+\\sum_{k=2}^{q}(m-k+1)F_{2k}$. Using $\\sum_{k=2}^{q}F_{2k}=F_{2q+1}-2$, induction on $q$ gives $A_{n,h}=F_{2q+2}+hF_{2q+1}=F_{2(n-h)}+hF_{2(n-h)-1}$. The same formula also holds for $q=0$, since then $A_{n,n-1}=n=F_2+(n-1)F_1$.",
+        "Summing over $h$ and writing $q=n-h$ gives $P_n=\\sum_{q=1}^{n}\\bigl(F_{2q}+(n-q)F_{2q-1}\\bigr)$. Now $\\sum_{q=1}^{n}F_{2q}=F_{2n+1}-1$, $\\sum_{q=1}^{n}F_{2q-1}=F_{2n}$, and $\\sum_{q=1}^{n}qF_{2q-1}=nF_{2n}-F_{2n-1}+1$. Therefore $P_n=F_{2n+1}+F_{2n-1}-2=L_{2n}-2$.",
+        "Finally $L_{2n}$ satisfies $L_{2n}=3L_{2n-2}-L_{2n-4}$, so $P_n=3P_{n-1}-P_{n-2}+2$. The formula gives $P_3=L_6-2=18-2=16$ and $P_4=L_8-2=47-2=45$."
+      ],
+      "remark": "The rule is deterministic threshold spread, i.e. one-dimensional bootstrap percolation on the wheel with the hub as gate. The enumeration of admissible words is a regular-language count through the generating function $\\frac{x(2-x)(1-x)}{1-3x+x^2}$, which produces even-index Fibonacci numbers, and the final sum collapses to $L_{2n}-2$, the Lucas numbers entering through their own second-order recurrence. The motif of constraint words counted by Fibonacci-type recurrences is classical olympiad combinatorics."
+    },
+    {
+      "id": "c22",
+      "category": "cmb",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6.5,
+      "confidence": "high",
+      "text": "Let $G$ be a finite simple graph, with a positive real number $w(v)$ attached to each vertex $v$. A move chooses a vertex $v$, earns $w(v)$, and deletes $v$ together with all its neighbors. For an induced subgraph $H$ define $$\\Phi(H)=\\sum_{v\\in V(H)}\\frac{w(v)^3}{\\sum_{u\\in N_H[v]}w(u)^2},$$ where $N_H[v]$ is the closed neighborhood of $v$ in $H$. Prove that there is a sequence of moves whose total earnings are at least $\\Phi(G)$.",
+      "why": "The key is a surprisingly exact weighted averaging identity. For a current graph $H$, let $D_H(v)=\\sum_{u\\in N_H[v]}w(u)^2$ and let $F_H(v)=w(v)+\\Phi(H-N_H[v])$. We prove $$\\sum_v w(v)^2F_H(v)\\ge\\Bigl(\\sum_v w(v)^2\\Bigr)\\Phi(H).$$ Thus some $v$ has $F_H(v)\\ge\\Phi(H)$. Choosing such a vertex makes the quantity 'earnings so far plus current potential' nondecreasing. The cubic/quadratic form is what makes the cancellation work.",
+      "hints": [
+        "Set a potential $\\Phi$ on the remaining graph and aim to keep earnings plus $\\Phi$ nondecreasing.",
+        "Weight by $w(v)^2$ and average $F(v)=w(v)+\\Phi(H-N_H[v])$, swapping the order of summation."
+      ],
+      "steps": [
+        "For nonempty $H$ put $S=\\sum_{v\\in V(H)}w(v)^2$ and $D(v)=\\sum_{u\\in N_H[v]}w(u)^2$. For each $v$ define $F(v)=w(v)+\\Phi(H-N_H[v])$.",
+        "Consider $\\sum_v w(v)^2F(v)$. The first part is $\\sum_v w(v)^3$. Fix $x$. If $x$ survives after deleting $N_H[v]$, then $v\\notin N_H[x]$, and its denominator in the new potential is at most $D(x)$, so its contribution is at least $w(x)^3/D(x)$. Since $\\sum_{v\\notin N_H[x]}w(v)^2=S-D(x)$, $$\\sum_v w(v)^2\\Phi(H-N_H[v])\\ge\\sum_x\\frac{w(x)^3}{D(x)}\\bigl(S-D(x)\\bigr).$$ Adding $\\sum_x w(x)^3$ gives $$\\sum_v w(v)^2F(v)\\ge S\\sum_x\\frac{w(x)^3}{D(x)}=S\\Phi(H).$$",
+        "Therefore some vertex $v$ satisfies $F(v)\\ge\\Phi(H)$. At every stage choose a vertex maximizing $F(v)$. If $E_k$ is the total earned after $k$ moves and $H_k$ is the remaining graph, then $E_{k+1}+\\Phi(H_{k+1})\\ge E_k+\\Phi(H_k)$.",
+        "The graph eventually becomes empty, so $\\Phi(H_k)=0$. Hence the final earnings satisfy $E_{\\mathrm{final}}\\ge\\Phi(G)$."
+      ],
+      "remark": "The cubic-over-quadratic potential is tuned so that a weighted averaging identity, i.e. a double count of contributions $w(x)^3/D(x)$ over surviving vertices, makes the quantity earnings plus potential monotone; this is the method of conditional expectation, derandomizing the classical random greedy argument. The idea descends from Turan's and Caro-Wei style lower bounds for independence numbers via random or greedy deletion, here made exact and weighted through a potential function."
+    },
+    {
       "id": "c23",
+      "category": "cmb",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 7.5,
+      "confidence": "high",
+      "text": "Let $3\\le k\\le n$. Color each edge of the complete graph $K_n$ red or blue. Call the coloring $k$-odd if every set of $k$ vertices spans an odd number of red edges. Determine exactly for which pairs $(n,k)$ a $k$-odd coloring exists. Moreover, determine the number of such colorings when $n=k$ and $n=k+1$, and, when $n\\ge k+2$, classify all of them.",
+      "why": "The problem hides a rigid parity structure. For $n\\ge k+2$, comparing two $k$-sets differing in one vertex forces, over $\\mathbb F_2$, every red-edge indicator to have the form $x_{ij}=u_i+u_j+c$. The $k$-set condition then collapses according to the parity of $k$: if $k\\equiv2\\pmod4$ the unique coloring is all red; if $k\\equiv3\\pmod4$ the colorings are exactly those obtained from a bipartition, with red edges inside the two parts, giving $2^{n-1}$ colorings; for $k\\equiv0,1\\pmod4$ no coloring exists. The two exceptional layers $n=k$ and $n=k+1$ are governed by the cycle space of $K_n$, producing exact counts.",
+      "hints": [
+        "Write the indicator of a red edge as an element of $\\mathbb F_2$ and compare two $k$-sets which differ in exactly one vertex.",
+        "For $n\\ge k+2$, show that $x_{ij}+x_{i1}+x_{j1}$ is independent of $i,j$, hence $x_{ij}=u_i+u_j+c$.",
+        "For $n=k+1$, view the red edges as a graph and use the parity of its vertex degrees and the dimension of the cycle space."
+      ],
+      "steps": [
+        "For $n=k$, there is only one $k$-set, namely the whole vertex set, so any red graph with an odd number of edges works. Hence the number of colorings is $2^{\\binom{k}{2}-1}$.",
+        "Now let $n=k+1$. Let $G$ be the red graph, let $E=e(G)\\pmod2$, and let $d_v=\\deg_G(v)\\pmod2$. The $k$-set obtained by deleting $v$ has red-edge parity $E+d_v$, so the condition is $$E+d_v=1$$ for every $v$. Thus all $d_v$ are equal to the same value $p=1+E$.",
+        "If $n$ is odd, then $\\sum_v d_v=np=0$ in $\\mathbb F_2$, so $p=0$ and therefore $E=1$. Thus $G$ is Eulerian and has an odd number of edges. The Eulerian subgraphs of $K_n$ form the cycle space of dimension $\\binom n2-n+1$. Since $K_n$ contains a triangle, edge-parity is a nonzero linear functional on that cycle space, so exactly half of its elements have odd size. Hence the number of colorings is $$2^{\\binom n2-n}.$$",
+        "If $n$ is even, the two possibilities are $p=0,E=1$ and $p=1,E=0$. The graphs with degree-parity vector $0$ form the cycle space, while the graphs with degree-parity vector $\\mathbf1$ form its affine coset obtained, for example, by adding a perfect matching. Each class has size $2^{\\binom n2-n+1}$, and adding a triangle preserves all degree parities while reversing edge-parity. Thus exactly half of each class satisfies the required value of $E$, giving $$2^{\\binom n2-n+1}$$ colorings in total.",
+        "Assume now $n\\ge k+2$, and let $x_{ij}\\in\\mathbb F_2$ indicate whether $ij$ is red. Fix distinct vertices $a,b$, and let $T$ be any $(k-1)$-set disjoint from $a,b$. Comparing $T\\cup\\{a\\}$ and $T\\cup\\{b\\}$ gives $$\\sum_{t\\in T}(x_{at}+x_{bt})=0.$$ Since $n-2\\ge k$, any two vertices $p,q$ outside $\\{a,b\\}$ can be completed with the same $(k-2)$-set, so $$x_{ap}+x_{bp}=x_{aq}+x_{bq}.$$ Thus, for every pair $a,b$, the quantity $x_{at}+x_{bt}$ is independent of $t\\notin\\{a,b\\}$.",
+        "Fix a vertex $1$. For distinct $i,j\\ne1$, the preceding relation applied to the pair $(i,1)$ shows that $$x_{ij}+x_{1j}+x_{i1}$$ is independent of $j$, while symmetry shows that it is independent of $i$ as well. Hence there is a constant $c\\in\\mathbb F_2$ such that $$x_{ij}=x_{i1}+x_{j1}+c$$ for all $i,j\\ne1$. Put $u_1=0$ and $u_i=x_{i1}+c$ for $i\\ne1$. Then for every edge $$\\boxed{x_{ij}=u_i+u_j+c}.$$",
+        "For a $k$-set $S$, summing this formula over its $\\binom{k}{2}$ edges gives $$1=(k-1)\\sum_{i\\in S}u_i+\\binom{k}{2}c.$$",
+        "If $k$ is even, then $k-1$ is odd, so the sum $\\sum_{i\\in S}u_i$ must be the same for every $k$-set. Since two $k$-sets may differ in exactly one vertex, all $u_i$ are equal. Their sum over a $k$-set is then $0$ because $k$ is even. Hence $$\\binom{k}{2}c=1.$$ This is possible exactly when $\\binom{k}{2}$ is odd, i.e. $k\\equiv2\\pmod4$. Then $c=1$, all $u_i$ are equal, and therefore every edge is red. So for $k\\equiv2\\pmod4$ there is exactly one coloring.",
+        "If $k$ is odd, then $k-1$ is even and the $u_i$ disappear from the equation, leaving $$\\binom{k}{2}c=1.$$ Thus a coloring exists exactly when $\\binom{k}{2}$ is odd, i.e. $k\\equiv3\\pmod4$, and then $c=1$. Therefore $$x_{ij}=u_i+u_j+1.$$ An edge is red exactly when $u_i=u_j$, so the coloring is determined by a bipartition of the vertices, with all edges inside the two parts red and all edges between the parts blue. Replacing every $u_i$ by $u_i+1$ gives the same coloring, and these are the only duplications. Hence there are exactly $2^{n-1}$ such colorings.",
+        "Thus a $k$-odd coloring exists precisely when $n=k$ or $n=k+1$, or when $k\\equiv2,3\\pmod4$. For $n\\ge k+2$, the classification is: no colorings for $k\\equiv0,1\\pmod4$; the unique all-red coloring for $k\\equiv2\\pmod4$; and exactly the bipartition colorings above, numbering $2^{n-1}$, for $k\\equiv3\\pmod4$."
+      ],
+      "remark": "The central move is a higher-order parity rigidity argument: a uniform condition on every $k$-vertex restriction forces all pair variables into a rank-one-plus-constant form. The exceptional layer $n=k+1$ is controlled by the cycle space of the complete graph. The resulting mod-$4$ dichotomy is not visible from the original local condition and is what makes the problem substantially deeper than a routine parity exercise."
+    },
+    {
+      "id": "c24",
       "category": "cmb",
       "difficulty": "challenging",
       "stars": 4,
+      "rating": 8,
       "confidence": "low",
       "text": "Let $m\\ge3$ be odd. A school has $m$ students and $n\\ge m+2$ clubs; no two clubs have the same membership set. For two clubs, their <em>discord</em> is the number of students in exactly one of them. Let $d_{\\min}$ and $d_{\\max}$ be the minimum and maximum discords. Prove that $$\\frac{d_{\\max}}{d_{\\min}}\\ge\\frac{m+3}{m-1}.$$ Show that the bound is attained for $m=3$ and $m=5$.",
       "why": "Represent clubs by $\\{0,1\\}^m$ vectors, discord by Hamming distance. Coordinate count: coordinate $j$, held by $r_j$ of the $n$ sets, separates $r_j(n-r_j)\\le n^2/4$ pairs, so $\\delta\\binom n2\\le mn^2/4$; with $n\\ge m+2$ and $\\delta,m$ integral, $m$ odd, this gives $\\delta\\le\\frac{m-1}{2}$. Next, $\\Delta\\ge\\delta+2$: if $\\Delta\\le\\delta+1$, translate by one club (a Hamming isometry) so one vector is $0$ and all weights lie in $\\{\\delta,\\delta+1\\}$; splitting by weight parity and moving to $\\{\\pm1\\}$-vectors, the Gram matrix has constant off-diagonal $\\alpha=m-2E$ within classes and $\\beta=m-2O\\ne0$ across them ($m$ odd), whose rank is at least $n-1>m$, impossible. Hence $\\Delta/\\delta\\ge1+\\frac2\\delta\\ge\\frac{m+3}{m-1}$; attained for $m=3$ ($\\varnothing,\\{1\\},\\{2\\},\\{3\\},X$, ratio 3) and $m=5$ (the 7-set construction, ratio 2), impossible for $m=7$. Engines: the Plotkin bound for codes and the rank (Delsarte-Goethals-Seidel) method for two-distance sets.",
@@ -1110,73 +1193,39 @@ window.IMO_SHORTLIST = {
       "remark": "The minimum-distance estimate is a Plotkin-type counting bound for binary codes, while the gap lemma $\\Delta\\ge\\delta+2$ runs the Delsarte-Goethals-Seidel rank argument for sets realizing few distances: two odd-distance classes force a Gram matrix of rank at least $n-1>m$. The translation trick exploiting Hamming isometries and the parity partition are classical in coding theory; the problem grows out of Oddtown-style incidence linear algebra sharpened to two-distance sets."
     },
     {
-      "id": "c24",
-      "category": "cmb",
-      "difficulty": "challenging",
-      "stars": 4,
-      "confidence": "high",
-      "text": "Let $W_n$ be a wheel with a marked rim vertex $s$, where $n\\ge3$. Put a number $h\\in\\{0,1,\\dots,n-1\\}$ at the hub and a number in $\\{0,1,2\\}$ at every other rim vertex. Initially only $s$ is lit. Whenever an unlit vertex has more lit neighbors than its number, it becomes lit. Call a labeling successful if all vertices eventually become lit, and let $P_n$ be the number of successful labelings. Let $L_0=2$, $L_1=1$, and $L_{r+2}=L_{r+1}+L_r$ be the Lucas numbers. Prove that $P_3=16$, $P_4=45$, and $P_n=3P_{n-1}-P_{n-2}+2$ for $n\\ge5$, and hence prove $P_n=L_{2n}-2$.",
-      "why": "The key is to fix the hub value $h$ and look at the rim as a path after deleting the marked vertex. Before the hub lights, only zeroes can propagate inward from the two ends; after the hub lights, a rim word is successful exactly when every maximal block of nonzero entries contains at most one $2$. Counting the resulting nonzero-ended cores gives Fibonacci numbers through the rational generating function $\\frac{x(2-x)(1-x)}{1-3x+x^2}$. The hub level contributes a simple linear weight, and summing over $h$ collapses to $L_{2n}-2$. Thus the Lucas number appears from the local light-up dynamics rather than from the Matrix-Tree theorem or any sandpile machinery.",
-      "hints": [
-        "Fix the hub value $h$; before the hub lights, only zeroes propagate from the ends.",
-        "After the hub lights, a maximal nonzero block clears iff it holds at most one $2$.",
-        "Count such blocks via a generating function to get even Fibonacci numbers; sum over $h$."
-      ],
-      "steps": [
-        "Write the nonsink rim as a path $v_1,\\dots,v_{n-1}$ and fix the hub value $h$. Before the hub lights, the only rim vertices that can propagate are vertices labelled $0$, and these $0$'s propagate inward from the two ends of the path, both adjacent to the already-lit vertex $s$. The hub has $s$ as one already-lit rim neighbour, so it lights as soon as $h$ additional rim vertices have lit. Thus, for $h&lt;n-1$, success is equivalent to requiring that the total number of leading and trailing zeroes is at least $h$. For $h=n-1$, all $n-1$ other rim vertices must light before the hub; this happens exactly when all labels are $0$, or exactly one rim vertex has label $1$ and all the others have label $0$. Hence $A_{n,n-1}=n$.",
-        "Let $F_0=0$, $F_1=1$, and $F_{r+2}=F_{r+1}+F_r$ be the Fibonacci numbers. Once the hub is lit, the remaining rim word is successful exactly when every maximal block of nonzero entries contains at most one $2$: if a block contains two $2$'s, propagation becomes trapped between them; conversely, a block with at most one $2$ can be cleared from its two ends, with its unique possible $2$ burning last. Let $C_k$ be the number of such valid words of length $k$ that begin and end nonzero. A positive block has generating function $B(x)=\\frac{x}{1-x}+\\frac{x}{(1-x)^2}=\\frac{x(2-x)}{(1-x)^2}$, while a separating zero-run has $Z(x)=\\frac{x}{1-x}$. Hence $$C(x)=\\frac{B(x)}{1-B(x)Z(x)}=\\frac{x(2-x)(1-x)}{1-3x+x^2}.$$ Therefore $C_1=2$ and $C_k=F_{2k}$ for every $k\\ge2$.",
-        "Let $A_{n,h}$ be the number of successful labelings with hub value $h$, and put $m=n-1$. If $q=m-h\\ge1$, decompose a successful rim word into $s$ leading/trailing zeroes and a nonzero-ended core. There are $s+1$ ways to split the $s$ end zeroes, so $A_{n,h}=1+\\sum_{k=1}^{q}(m-k+1)C_k=1+2m+\\sum_{k=2}^{q}(m-k+1)F_{2k}$. Using $\\sum_{k=2}^{q}F_{2k}=F_{2q+1}-2$, induction on $q$ gives $A_{n,h}=F_{2q+2}+hF_{2q+1}=F_{2(n-h)}+hF_{2(n-h)-1}$. The same formula also holds for $q=0$, since then $A_{n,n-1}=n=F_2+(n-1)F_1$.",
-        "Summing over $h$ and writing $q=n-h$ gives $P_n=\\sum_{q=1}^{n}\\bigl(F_{2q}+(n-q)F_{2q-1}\\bigr)$. Now $\\sum_{q=1}^{n}F_{2q}=F_{2n+1}-1$, $\\sum_{q=1}^{n}F_{2q-1}=F_{2n}$, and $\\sum_{q=1}^{n}qF_{2q-1}=nF_{2n}-F_{2n-1}+1$. Therefore $P_n=F_{2n+1}+F_{2n-1}-2=L_{2n}-2$.",
-        "Finally $L_{2n}$ satisfies $L_{2n}=3L_{2n-2}-L_{2n-4}$, so $P_n=3P_{n-1}-P_{n-2}+2$. The formula gives $P_3=L_6-2=18-2=16$ and $P_4=L_8-2=47-2=45$."
-      ],
-      "remark": "The rule is deterministic threshold spread, i.e. one-dimensional bootstrap percolation on the wheel with the hub as gate. The enumeration of admissible words is a regular-language count through the generating function $\\frac{x(2-x)(1-x)}{1-3x+x^2}$, which produces even-index Fibonacci numbers, and the final sum collapses to $L_{2n}-2$, the Lucas numbers entering through their own second-order recurrence. The motif of constraint words counted by Fibonacci-type recurrences is classical olympiad combinatorics."
-    },
-    {
       "id": "c25",
       "category": "cmb",
       "difficulty": "challenging",
       "stars": 4,
+      "rating": 8.5,
       "confidence": "high",
-      "text": "Let $G$ be a finite simple graph, with a positive real number $w(v)$ attached to each vertex $v$. A move chooses a vertex $v$, earns $w(v)$, and deletes $v$ together with all its neighbors. For an induced subgraph $H$ define $$\\Phi(H)=\\sum_{v\\in V(H)}\\frac{w(v)^3}{\\sum_{u\\in N_H[v]}w(u)^2},$$ where $N_H[v]$ is the closed neighborhood of $v$ in $H$. Prove that there is a sequence of moves whose total earnings are at least $\\Phi(G)$.",
-      "why": "The key is a surprisingly exact weighted averaging identity. For a current graph $H$, let $D_H(v)=\\sum_{u\\in N_H[v]}w(u)^2$ and let $F_H(v)=w(v)+\\Phi(H-N_H[v])$. We prove $$\\sum_v w(v)^2F_H(v)\\ge\\Bigl(\\sum_v w(v)^2\\Bigr)\\Phi(H).$$ Thus some $v$ has $F_H(v)\\ge\\Phi(H)$. Choosing such a vertex makes the quantity 'earnings so far plus current potential' nondecreasing. The cubic/quadratic form is what makes the cancellation work.",
+      "text": "For $n\\ge2$, identify the vertices of the $n$-dimensional cube with the binary vectors in $\\{0,1\\}^n$. Color every vertex black or white, and call the coloring square-odd if every $2$-dimensional face contains an odd number of black vertices. Determine the minimum possible number of black vertices, and determine the number of square-odd colorings attaining that minimum.",
+      "why": "The local condition forces a global quadratic structure. After subtracting the fixed quadratic function $q(x)=\\sum_{i<j}x_ix_j$ over $\\mathbb F_2$, every valid coloring becomes affine; proving this naturally uses strong induction on Hamming weight. The remaining optimization is a quadratic character-sum problem. A sharp two-step recurrence shows that the relevant Walsh sums have magnitude exactly $2^{\\lceil n/2\\rceil}$, yielding the minimum $2^{n-1}-2^{\\lfloor(n-1)/2\\rfloor}$. The extremal count is $2^n$ for even $n$ and $2^{n-1}$ for odd $n$.",
       "hints": [
-        "Set a potential $\\Phi$ on the remaining graph and aim to keep earnings plus $\\Phi$ nondecreasing.",
-        "Weight by $w(v)^2$ and average $F(v)=w(v)+\\Phi(H-N_H[v])$, swapping the order of summation."
+        "Subtract the coloring $q(x)=\\sum_{i<j}x_ix_j$ modulo $2$; the difference then has even parity on every square.",
+        "Use strong induction on the Hamming weight of a vertex to show that every zero-square-parity function is affine.",
+        "Translate the number of black vertices into a signed character sum and study the pair $W_n(a),W_n(a+\\mathbf1)$ recursively."
       ],
       "steps": [
-        "For nonempty $H$ put $S=\\sum_{v\\in V(H)}w(v)^2$ and $D(v)=\\sum_{u\\in N_H[v]}w(u)^2$. For each $v$ define $F(v)=w(v)+\\Phi(H-N_H[v])$.",
-        "Consider $\\sum_v w(v)^2F(v)$. The first part is $\\sum_v w(v)^3$. Fix $x$. If $x$ survives after deleting $N_H[v]$, then $v\\notin N_H[x]$, and its denominator in the new potential is at most $D(x)$, so its contribution is at least $w(x)^3/D(x)$. Since $\\sum_{v\\notin N_H[x]}w(v)^2=S-D(x)$, $$\\sum_v w(v)^2\\Phi(H-N_H[v])\\ge\\sum_x\\frac{w(x)^3}{D(x)}\\bigl(S-D(x)\\bigr).$$ Adding $\\sum_x w(x)^3$ gives $$\\sum_v w(v)^2F(v)\\ge S\\sum_x\\frac{w(x)^3}{D(x)}=S\\Phi(H).$$",
-        "Therefore some vertex $v$ satisfies $F(v)\\ge\\Phi(H)$. At every stage choose a vertex maximizing $F(v)$. If $E_k$ is the total earned after $k$ moves and $H_k$ is the remaining graph, then $E_{k+1}+\\Phi(H_{k+1})\\ge E_k+\\Phi(H_k)$.",
-        "The graph eventually becomes empty, so $\\Phi(H_k)=0$. Hence the final earnings satisfy $E_{\\mathrm{final}}\\ge\\Phi(G)$."
+        "Identify a vertex with its support $S\\subseteq[n]$. Work modulo $2$. Define $$q(S)=\\binom{|S|}{2}\\pmod2.$$ If a square toggles coordinates $i,j$, its four vertices are $T,T\\cup\\{i\\},T\\cup\\{j\\},T\\cup\\{i,j\\}$ for some $T$ disjoint from $\\{i,j\\}$. Since $$q(T\\cup\\{i\\})=q(T)+|T|,$$ $$q(T\\cup\\{i,j\\})=q(T)+2|T|+1,$$ the sum of the four $q$-values is $1$. Hence $q$ itself is square-odd.",
+        "Let $f(S)\\in\\mathbb F_2$ be the indicator of a black vertex in a square-odd coloring, and put $g=f+q$. Then every square has sum of its four $g$-values equal to $0$. We now prove by STRONG INDUCTION on $r=|S|$ that there are constants $c,a_1,\\dots,a_n\\in\\mathbb F_2$ such that $$g(S)=c+\\sum_{i\\in S}a_i.$$ For $r=0,1$ this is the definition of $c=g(\\varnothing)$ and $a_i=g(\\{i\\})+g(\\varnothing)$. For $r\\ge2$, choose distinct $i,j\\in S$. The zero-parity condition on the corresponding square gives $$g(S)=g(S\\setminus\\{i\\})+g(S\\setminus\\{j\\})+g(S\\setminus\\{i,j\\}).$$ All three sets have smaller cardinality, so the strong induction hypothesis applies and yields exactly $$g(S)=c+\\sum_{i\\in S}a_i.$$",
+        "Therefore every square-odd coloring has the form $$f(S)=\\binom{|S|}{2}+c+\\sum_{i\\in S}a_i\\pmod2.$$ This representation is unique, because $c=f(\\varnothing)$ and each $a_i=f(\\{i\\})+f(\\varnothing)$ since $q(\\varnothing)=q(\\{i\\})=0$.",
+        "For $a=(a_1,\\dots,a_n)\\in\\mathbb F_2^n$, define the signed sum $$W_n(a)=\\sum_{S\\subseteq[n]}(-1)^{\\binom{|S|}{2}+\\sum_{i\\in S}a_i}.$$ If $N_n$ is the number of black vertices, then $$N_n=\\frac{2^n-(-1)^cW_n(a)}2.$$ Thus, for a fixed $a$, the better of the two choices of $c$ gives $$N_n=\\frac{2^n-|W_n(a)|}{2}.$$ Hence the global minimum is determined by the maximum possible value of $|W_n(a)|$.",
+        "Write $a=(b,t)$ with $b\\in\\mathbb F_2^{n-1}$ and $t\\in\\mathbb F_2$, corresponding to the last coordinate. If $S\\subseteq[n-1]$, then adding the last coordinate changes $\\binom{|S|}{2}$ by $|S|$. Therefore $$W_n(b,t)=W_{n-1}(b)+(-1)^tW_{n-1}(b+\\mathbf1),$$ where $\\mathbf1=(1,\\dots,1)\\in\\mathbb F_2^{n-1}$.",
+        "We prove the following dichotomy by induction on $n$. If $n$ is odd, then for every $a$, exactly one of $W_n(a)$ and $W_n(a+\\mathbf1)$ is $0$, while the other has absolute value $2^{(n+1)/2}$. If $n$ is even, then both have absolute value $2^{n/2}$. For $n=1$, $$W_1(0)=2,\\qquad W_1(1)=0,$$ so the odd case holds. Suppose first that $n$ is even and the assertion holds for $n$. Then $W_n(b)$ and $W_n(b+\\mathbf1)$ have equal absolute value $M=2^{n/2}$. Their sum and difference are therefore either $0$ or $2M$ in absolute value; applying the recurrence to $b,t$ and to $b+\\mathbf1,t+1$ shows that exactly one of the two new values is zero and the other has absolute value $2M=2^{(n+2)/2}$. This proves the odd case for $n+1$. Conversely, if $n$ is odd, exactly one of $W_n(b),W_n(b+\\mathbf1)$ is nonzero, of magnitude $M=2^{(n+1)/2}$. The recurrence then gives $$|W_{n+1}(b,t)|=M$$ for every $t$, and the same holds for its complementary coefficient vector, proving the even case.",
+        "Consequently, for every $n\\ge2$, $$\\max_{a\\in\\mathbb F_2^n}|W_n(a)|=2^{\\lceil n/2\\rceil}.$$ Substituting into the black-vertex formula gives $$\\boxed{N_n^{\\min}=\\frac{2^n-2^{\\lceil n/2\\rceil}}2=2^{n-1}-2^{\\lfloor(n-1)/2\\rfloor}}.$$",
+        "It remains to count extremal colorings. If $n$ is even, every one of the $2^n$ coefficient vectors $a$ has $|W_n(a)|=2^{n/2}$, and for each $a$ exactly one of the two choices of $c$ realizes the minimum. Hence there are exactly $$\\boxed{2^n}$$ extremal colorings.",
+        "If $n$ is odd, the dichotomy says that among each complementary pair $\\{a,a+\\mathbf1\\}$ exactly one coefficient vector has nonzero $W_n$. There are $2^{n-1}$ such pairs, so exactly $2^{n-1}$ choices of $a$ can be extremal, and again each determines exactly one optimal $c$. Hence the number of extremal colorings is $$\\boxed{2^{n-1}}.$$",
+        "Thus the final answer is $$\\boxed{2^{n-1}-2^{\\lfloor(n-1)/2\\rfloor}}$$ black vertices at minimum, attained by exactly $2^n$ colorings when $n$ is even and exactly $2^{n-1}$ colorings when $n$ is odd."
       ],
-      "remark": "The cubic-over-quadratic potential is tuned so that a weighted averaging identity, i.e. a double count of contributions $w(x)^3/D(x)$ over surviving vertices, makes the quantity earnings plus potential monotone; this is the method of conditional expectation, derandomizing the classical random greedy argument. The idea descends from Turan's and Caro-Wei style lower bounds for independence numbers via random or greedy deletion, here made exact and weighted through a potential function."
+      "remark": "The problem begins as a purely local condition on every square of a hypercube, yet forces a quadratic Boolean function globally. The strong-induction step is the discrete integrability argument turning zero square-sums into affine functions; the second half is a sharp character-sum calculation whose even/odd dichotomy controls the exact extremal count. The construction is closely related in spirit to quadratic forms over $\\mathbb F_2$, but the statement is phrased entirely as an olympiad coloring problem."
     },
     {
       "id": "g1",
       "category": "geo",
       "difficulty": "easy",
       "stars": 1,
-      "confidence": "high",
-      "text": "Three circles $\\omega_1,\\omega_2,\\omega_3$ with distinct centres are pairwise externally tangent; the circles $\\omega_i$ and $\\omega_j$ touch at $T_{ij}$. Prove that the circle through the three points of tangency $T_{12},T_{23},T_{31}$ meets each of the three given circles at right angles. (Two circles meet at right angles if their tangent lines at a common point are perpendicular.)",
-      "why": "Subtracting circle equations shows the common tangent at $T_{ij}$ is the radical axis of $\\omega_i,\\omega_j$: power functions are quadratic with affine differences, so the three contact tangents concur at the radical centre $X$, and equal tangent lengths give $XT_{12}=XT_{23}=XT_{31}$ - $X$ is the centre of the contact circle $\\Omega$ (contact points non-collinear: Menelaus gives internal ratio product $+1$, never $-1$). Since $O_1T_{12}\\perp XT_{12}$, the tangent to $\\Omega$ at $T_{12}$ is parallel to $O_1T_{12}$, hence perpendicular to the tangent to $\\omega_1$; cyclically. So $\\Omega$ is the unique circle orthogonal to all three - inversion in $\\Omega$ preserves each $\\omega_i$ - the conformally invariant relation of Mobius geometry.",
-      "hints": [
-        "The common tangent at $T_{ij}$ is the radical axis of $\\omega_i$ and $\\omega_j$."
-      ],
-      "steps": [
-        "Radical-axis lemma: for two externally tangent circles the common tangent at the touching point IS the radical axis: subtracting the squared-distance equations $|Z-O_i|^2-r_i^2=|Z-O_j|^2-r_j^2$ gives a line perpendicular to $O_iO_j$, and $T_{ij}$ lies on both circles, hence on it.",
-        "Centres non-collinear: if $O_2$ lay between $O_1$ and $O_3$ on a line, then $|O_1O_3|=(r_1+r_2)+(r_2+r_3)>r_1+r_3=|O_1O_3|$, a contradiction; the orders with one centre outside force $r=0$. So $O_1O_2O_3$ is a genuine triangle.",
-        "The contact tangents at $T_{12}$ and $T_{23}$ are perpendicular to $O_1O_2$ and $O_2O_3$ respectively: non-∥, they meet at a point $X$; $X$ has equal power to $\\omega_1,\\omega_2,\\omega_3$, so $X$ also lies on the third contact tangent: the three contact tangents concur at the radical centre $X$.",
-        "Equal tangents: $XT_{12}$ is a tangent segment from $X$ to both $\\omega_1$ and $\\omega_2$, so $XT_{12}^2=\\mathrm{Pow}_{\\omega_1}(X)=\\mathrm{Pow}_{\\omega_2}(X)=XT_{31}^2$ and cyclically; lengths are positive, so $XT_{12}=XT_{23}=XT_{31}=\\rho$.",
-        "Contact points non-collinear: they lie strictly inside the three sides of triangle $O_1O_2O_3$ with internal ratios $O_1T_{12}:T_{12}O_2=r_1:r_2$ etc.; Menelaus would require the product of directed ratios to be $-1$, but all three points are internal and the product of absolute ratios is $(r_1/r_2)(r_2/r_3)(r_3/r_1)=+1$. Hence a unique circle $\\Omega$ through $T_{12},T_{23},T_{31}$ exists, and by step 4 its centre is $X$.",
-        "Orthogonality at $T_{12}$: $XT_{12}$ lies along the common tangent of $\\omega_1,\\omega_2$ at $T_{12}$, so $XT_{12}\\perp O_1T_{12}$; the tangent to $\\Omega$ at $T_{12}$ is perpendicular to $XT_{12}$, hence ∥ to $O_1T_{12}$ - so the tangent to $\\Omega$ is perpendicular to the tangent to $\\omega_1$ at $T_{12}$: the circles meet at right angles there (and, since $\\Omega$ meets $\\omega_1$ also at $T_{31}$, orthogonality holds at both common points; one already implies the other). Cyclically for $\\omega_2$ and $\\omega_3$."
-      ],
-      "remark": "The key lemma, that the common tangent at a contact point is the radical axis, belongs to the classical theory of coaxal systems and radical centres, where the circle orthogonal to three given circles is the standard dual object of the coaxal family; orthogonality is also Mobius-invariant, since inversion in $\\Omega$ preserves each $\\omega_i$. The problem grows out of the classical concurrence of the three common tangents of pairwise tangent circles at the radical centre, combined with equal tangent lengths, the same mechanism behind circles of antisimilitude."
-    },
-    {
-      "id": "g2",
-      "category": "geo",
-      "difficulty": "easy",
-      "stars": 1,
+      "rating": 1.5,
       "confidence": "high",
       "text": "Two circles $\\omega_1,\\omega_2$ with centres $O_1,O_2$ intersect in the points $A$ and $B$. A line $\\ell$ through $A$ meets $\\omega_1$ again at $C$ and $\\omega_2$ again at $D$, with $C\\ne D$; let $M$ be the midpoint of $CD$. Prove that $M$ lies on the circle with diameter $O_1O_2$ if and only if $\\omega_1$ and $\\omega_2$ meet at right angles. (Two circles meet at right angles if their tangent lines at a common point are perpendicular.)",
       "why": "Let $N$ be the midpoint of $O_1O_2$. Projection onto $\\ell$ is affine, so the feet from $O_1,O_2,N$ bisect $AC,AD,AM$; the foot of $N$ is the midpoint of $AM$ with $NW\\perp AM$, giving the rotation-invariant $NM=NA=NB$ - $M$ always runs on the fixed circle $\\odot(N,NA)$. Then $M$ lies on the circle with diameter $O_1O_2$ iff these two concentric circles coincide, i.e. $NA=NO_1$, which by Thales is $\\angle O_1AO_2=90^\\circ$: radii and tangents perpendicular at $A$. The excluded $C=D$ is $\\ell$ the common tangent at $A$ (or $\\ell=AB$). Orthogonality is Mobius-invariant: $\\omega_1\\perp\\omega_2$ iff inversion in either preserves the other.",
@@ -1195,31 +1244,11 @@ window.IMO_SHORTLIST = {
       "remark": "The invariant $NM=NA$ exploits the fact that orthogonal projection onto a line is affine, so midpoints of chords slide along fixed loci; the criterion then rests on the Mobius-invariance of orthogonality, $\\omega_1\\perp\\omega_2$ meaning inversion in either circle preserves the other. The setup is the classic two-intersecting-circles-with-a-secant-through-an-intersection motif, whose standard lemma, that the midpoint of the cut segment lies on a circle centred at the midpoint of $O_1O_2$, is a frequent competition workhorse."
     },
     {
-      "id": "g3",
+      "id": "g2",
       "category": "geo",
       "difficulty": "easy",
       "stars": 1,
-      "confidence": "high",
-      "text": "Let $ABC$ be an acute triangle with circumcircle $\\omega$, and let $P$ be a point strictly inside $\\angle BAC$, not on $AB$ or $AC$, with $P\\ne A,H$, where $H$ is the orthocentre. Reflect $P$ in the lines $AB$ and $AC$, obtaining $X$ and $Y$. Prove that the circumcircle of triangle $AXY$ is tangent to $\\omega$ at $A$ if and only if $AP\\perp BC$.",
-      "why": "The reflections fix $A$, so $AX=AY=AP$ and the centre of $(AXY)$ lies on $AM$, where $M$ is the midpoint of $XY$. The line $AM$ is the isogonal image of $AP$. The only coincidence $(AXY)=\\omega$ occurs at the excluded case $P=H$ (then necessarily $A=60^\\circ$); hence, for the remaining configurations, tangency at $A$ is exactly the centre-collinearity condition $\\text{line }AM=AO$. The isogonal image of $AO$ is the altitude $AH$, so tangency is equivalent to $AP\\perp BC$.",
-      "hints": [
-        "Reflections give $AX=AY=AP$, so the centre of $(AXY)$ lies on the median to $XY$.",
-        "Show $AM$ is the isogonal line of $AP$ in $\\angle A$."
-      ],
-      "steps": [
-        "Mirrors through $A$ fix $A$: $AX=AP=AY$, so triangle $AXY$ is isosceles with apex $A$; the median $AM$ to the base $XY$ is the perpendicular bisector of $XY$, hence the centre of $(AXY)$ lies on the line $AM$.",
-        "Complex coordinates: $A$ at the origin, the internal bisector of $\\angle BAC$ as real axis; the sides are the lines at angles $-A/2$ and $+A/2$, and reflection in a line through $0$ at ∠ $t$ is $z\\mapsto e^{2it}\\overline{z}$. Then $X=e^{-iA}\\overline{p}$, $Y=e^{iA}\\overline{p}$, so $M=(X+Y)/2=\\cos A\\,\\overline{p}$. Since $A$ is acute, $\\cos A\\neq0$ and $M\\neq A$; $\\overline{p}$ is the mirror image of $p$ in the bisector, so line $AM$ is the isogonal of line $AP$: $\\angle MAB=\\angle PAC$.",
-        "Tangency test: two distinct circles through $A$ are tangent at $A$ if and only if their centres and $A$ are collinear. The two circles here are distinct: if $(AXY)=\\omega$, then $X,Y\\in\\omega$, so $AP=AX=AY=R$ and the centre-line $AM$ is $AO$. By Step 2, $AP$ is then the isogonal of $AO$, hence the altitude $AH$; since $AH=2R\\cos A$, the equality $AP=R$ gives $A=60^\\circ$ and $P=H$, contrary to the hypothesis. Therefore tangency at $A$ is equivalent to $\\text{line }AM=AO$.",
-        "Classical lemma (the isogonal conjugate of the circumcentre is the orthocentre): in isosceles triangle $OAB$, $\\angle OAB=90^\\circ-C$, and in the right triangle $ADC$ ($D$ the foot of the $A$-altitude) $\\angle DAC=90^\\circ-C$; so the altitude from $A$ is exactly the isogonal image of line $AO$.",
-        "Apply the isogonal involution at $A$ to the equality $\\text{line }AM=AO$ from Step 3. By Step 2, the isogonal image of $AM$ is $AP$, while the isogonal image of $AO$ is the altitude $AH$. Hence $\\text{line }AM=AO\\iff\\text{ line }AP=AH\\iff AP\\perp BC$. The hypothesis $P\\ne H$ is exactly what removes the coincident-circle exception."
-      ],
-      "remark": "The line $AP$ going to $AM$ is the isogonal involution at $A$, the restriction to a pencil of the quadratic Cremona transformation of the plane given by isogonal conjugation, under which the circumcentre and orthocentre form the classical conjugate pair. The problem grows out of the standard double-reflection motif: mirroring a point in two lines through $A$ yields an isosceles triangle whose centre-line is the isogonal image, a lemma behind many olympiad problems pairing reflections with the altitude-circumcentre isogonal pair."
-    },
-    {
-      "id": "g4",
-      "category": "geo",
-      "difficulty": "easy",
-      "stars": 1,
+      "rating": 2.5,
       "confidence": "high",
       "text": "Let $ABC$ be an acute triangle with $AB\\ne AC$, and let $D$ and $E$ be two distinct points strictly inside the segment $BC$. Drop the perpendiculars from $D$ to the lines $AB$ and $AC$, with feet $P$ and $Q$, and from $E$ to the lines $AB$ and $AC$, with feet $R$ and $S$. Prove that the lines $PS$ and $QR$ meet on the line $BC$ if and only if $\\angle BAD=\\angle CAE$.",
       "why": "Directed projections give $AP=AD\\cos\\angle BAD$ etc., so the power-of-a-point criterion for $P,Q,R,S$ concyclic is $\\cos\\angle BAD\\cos\\angle BAE=\\cos\\angle CAD\\cos\\angle CAE$; product-to-sums makes this $\\cos(2u+w)=\\cos(2v+w)$ on the sub-angles at $A$, where cosine is injective, leaving $u=v$: the foot-circle exists iff $AD,AE$ are isogonal. In oblique coordinates along the sides the concurrence determinant of $PS$, $QR$, $DE$ - a $3\\times3$ determinant in homogeneous plane coordinates - factors as $\\cos A\\,(p-r)(q-s)(pr-qs)/(\\cos^{2}A-1)$; acuteness and $AB\\ne AC$ kill the other factors, leaving $pr=qs$ again. Isogonal conjugation at $A$ is a projective involution of the pencil of lines through $A$; in the excluded isosceles position $PS\\parallel QR$, concurrence only at infinity.",
@@ -1232,17 +1261,18 @@ window.IMO_SHORTLIST = {
         "Concyclic criterion: $P,R$ lie on line $AB$, $Q,S$ on line $AC$. Two lines through $A$ meet four points $P,R$ and $Q,S$ on a common circle exactly when $AP\\cdot AR=AQ\\cdot AS$ (converse of the intersecting-secants / power-of-a-point theorem; the forward direction is the same identity, so this is an equivalence). Dividing out $AD\\cdot AE$, the criterion is $\\cos\\angle BAD\\,\\cos\\angle BAE=\\cos\\angle DAC\\,\\cos\\angle EAC$. (*).",
         "Trigonometric reading of (*): write $u=\\angle BAD$, $w=\\angle DAE$, $v=\\angle EAC$ (all positive, $u+w+v=\\angle A&lt;90^\\circ$). Then $\\angle BAE=u+w$ and $\\angle DAC=w+v$, and (*) reads $\\cos u\\,\\cos(u+w)=\\cos v\\,\\cos(v+w)$. Product-to-sums: $\\cos(2u+w)+\\cos w=\\cos(2v+w)+\\cos w$, i.e. $\\cos(2u+w)=\\cos(2v+w)$. Both arguments lie in $(0,180^\\circ)$, where $\\cos X=\\cos Y$ forces $X=Y$: $2u+w=2v+w$ gives $u=v$. Hence (*) is equivalent to $\\angle BAD=\\angle CAE$: the foot-circle exists if and only if the cevians are isogonal. [First half of the proof of the ⟺, via the circle.]",
         "Concurrence criterion by oblique coordinates: place $A$ at the origin with the two side-lines as oblique axes, $c=\\cos\\angle A$: $P=(p,0)$, $R=(r,0)$ on $AB$ and $Q=(0,q)$, $S=(0,s)$ on $AC$, so $p=AP$, $q=AQ$, $r=AR$, $s=AS$. A point with oblique coordinates $(x,y)$ has true position $x\\,e_1+y\\,e_2$; solving the two projection equations for $D$ on line $BC$ gives $D=((p-cq),\\,(q-cp))/(1-c^2)$ and $E=((r-cs),\\,(s-cr))/(1-c^2)$.",
-        "Write the three lines $PS$, $QR$, $DE$ as coefficient triples of $ax+by=c_0$ in the oblique frame: $PS: x/p+y/s=1$; $QR: x/r+y/q=1$; $DE$: through $D$ and $E$. Expanding the $3\\times3$ determinant of the coefficients (sympy, recorded in g7-verify output) gives $\\det=c\\,(p-r)(q-s)(pr-qs)/(c^2-1)$ exactly.",
+        "Write the three lines $PS$, $QR$, $DE$ as coefficient triples of $ax+by=c_0$ in the oblique frame: $PS: x/p+y/s=1$; $QR: x/r+y/q=1$; $DE$: through $D$ and $E$. Expanding the $3\\times3$ determinant of the coefficients (sympy, recorded in the verification-script output) gives $\\det=c\\,(p-r)(q-s)(pr-qs)/(c^2-1)$ exactly.",
         "Read the factorisation: the determinant vanishes exactly when $PS$, $QR$, $DE$ are concurrent (including at infinity, i.e. ∥). Guards: $\\angle A$ acute gives $c\\neq0$ and $c^2\\neq1$; $p\\neq r$ and $q\\neq s$ as noted in step 1 (each equality would force $\\angle ABC=90^\\circ$ or $\\angle ACB=90^\\circ$). So concurrence is equivalent to $pr=qs$, which is the identity (*), which is equivalent to isogonality (step 3) and to the foot-circle. Two loose ends: (i) the concurrence must be at a FINITE point of line $BC$: $PS\\parallel QR$ means $rs=pq$, which together with $pr=qs$ forces $q=r$ and $p=s$, making $E$ the mirror image of $D$ in the bisector of $\\angle A$; since both lie on line $BC$, the mirror fixes the line $BC$, which happens exactly when $AB=AC$ - excluded by hypothesis. (ii) The same exclusion shows the shipped forward direction cannot degrade: in scalene position $PS$ and $QR$ genuinely meet at one point, and it is on $BC$ if and only if $pr=qs$.",
         "Conclusion assembly: if lines $PS$ and $QR$ meet (finitely) on line $BC$, the determinant vanishes, so $pr=qs$, so (*), so $\\angle BAD=\\angle CAE$; conversely $\\angle BAD=\\angle CAE$ gives $u=v$, hence $pr=qs$, hence vanishing determinant, and the point is finite and on $BC$ by step 6(i). Both directions gap-free; $D\\neq E$ is used in (i) and in the definition of line $DE$."
       ],
       "remark": "Isogonal conjugation at a vertex is a projective involution of the pencil of lines through $A$, while the criterion $AP\\cdot AR=AQ\\cdot AS$ is the power-of-a-point test for concyclicity of the four feet; the concurrence becomes a determinant condition in oblique homogeneous coordinates, which factors into precisely this relation. The problem builds on the classical isogonal-cevian motif together with the foot-circle that appears whenever two cevians are mirror images in the angle bisector, the isogonal conjugates cutting the opposite side."
     },
     {
-      "id": "g5",
+      "id": "g3",
       "category": "geo",
       "difficulty": "easy",
       "stars": 1,
+      "rating": 3.5,
       "confidence": "high",
       "text": "Let $ABC$ be a triangle with circumcircle $\\omega$ of centre $O$ and radius $R$, and orthocentre $H$. For a point $P$ in the plane, let $P_a,P_b,P_c$ be the reflections of $P$ in the midpoints of $BC,CA,AB$ - that is, the segments $PP_a$, $PP_b$, $PP_c$ are bisected by the midpoints of $BC$, $CA$, $AB$ respectively - and let $\\Gamma_P$ denote the circle through $P_a,P_b,P_c$. Prove that:<ol><li>$\\Gamma_P$ is tangent to the nine-point circle of $ABC$ (the circle through the midpoints of the three sides) if and only if $P$ lies either on the nine-point circle or on the circle with the same centre and three times its radius;</li><li>if $P$ and $Q$ are the endpoints of a diameter of $\\omega$, then the circles $\\Gamma_P$ and $\\Gamma_Q$ are tangent to each other and their point of tangency is $H$.</li></ol>",
       "why": "Vectors at the circumcentre give $H=A+B+C$ and $P_a=H-A-P$, so $|P_a-(H-P)|=|A|=R$: $\\Gamma_P$ is always the circle of radius $R$ centred at $O_P=H-P$, a translate of $\\omega$; at $P=A$ it is exactly the reflection of $\\omega$ in the midpoint of $BC$, so $\\Gamma_A,\\Gamma_B,\\Gamma_C$ are the three Johnson circles through $H$. Since $N=H/2$ and $O_P-N=N-P$, the centre of $\\Gamma_P$ is the half-turn image of $P$ about the nine-point centre, and $|O_P-N|=|P-N|$ conjugates distances exactly. Tangency to the nine-point circle (radius $R/2$, the image of $\\omega$ under the homothety $h(H,\\tfrac12)$) reads $|P-N|=\\tfrac R2$ internally or $\\tfrac{3R}2$ externally - the complete two-branch dichotomy; the one-branch statement is false, missing the external family. Antipodal $P,Q$ give centres $H\\mp P$ straddling $H$ at distance $R$: external tangency exactly at $H$.",
@@ -1264,10 +1294,11 @@ window.IMO_SHORTLIST = {
       "remark": "The identity $\\Gamma_P=(O_P=H-P,R)$ rests on the vector relation $H=A+B+C$ and exhibits a hidden half-turn about the nine-point centre, a symmetry of the Euler-line configuration; the nine-point circle itself is the image of $\\omega$ under the homothety $h(H,\\frac{1}{2})$. The problem grows out of the classical Johnson circles, the three reflections of the circumcircle in the side midpoints, all passing through the orthocentre, here promoted to a one-parameter family indexed by $P$."
     },
     {
-      "id": "g6",
+      "id": "g4",
       "category": "geo",
-      "difficulty": "easy",
-      "stars": 1,
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4,
       "confidence": "high",
       "text": "Let $ABC$ be an acute scalene triangle with circumcircle $\\gamma$ and orthocenter $H$. Let $M$ be the midpoint of $BC$, and let $\\psi$ be the circle with diameter $AM$. Let $D$ be the point on $\\gamma$ diametrically opposite to $A$. A variable circle $\\phi$ passes through $B$ and $C$, intersecting $\\psi$ at two distinct points $X$ and $Y$, and assume points $D$ and $H$ are not on line $XY$. Let $\\omega_1$ be the circumcircle of triangle $DXY$, and let $\\omega_2$ be the circumcircle of triangle $HXY$. Prove that as the circle $\\phi$ varies, both circles $\\omega_1$ and $\\omega_2$ pass through fixed points independent of $\\phi$ (other than $D$ and $H$, respectively).",
       "why": "The circles $\\phi$ through $B,C$ form a coaxal pencil, and the difference of powers w.r.t. two circles is affine-linear: since $\\psi$ meets $BC$ at the midpoint $M$ and altitude foot $K$, the unique point $E$ with $\\overline{EB}\\cdot\\overline{EC}=\\overline{EM}\\cdot\\overline{EK}$ has equal power to every $\\phi$ and to $\\psi$, so every common chord $XY$ passes through $E$ - the radical centre of pencil and $\\psi$. With $\\kappa=EM\\cdot EK>0$, $\\operatorname{Pow}_{(DXY)}(E)=EX\\cdot EY=\\kappa$: each $\\omega_1$ is orthogonal to the fixed circle $\\mathfrak C(E,\\sqrt\\kappa)$, i.e. invariant under inversion in it, and its second fixed point is exactly the inverse $D^*$ of $D$ ($ED\\cdot ED^*=\\kappa$, converse secant-power criterion); likewise $H^*$ for $\\omega_2$. $E$ is finite exactly when $AB\\ne AC$.",
@@ -1288,10 +1319,11 @@ window.IMO_SHORTLIST = {
       "remark": "The pencil of circles through $B,C$ is a coaxal system, and the argument locates the radical centre of the pencil with $\\psi$: all common chords pass through one point $E$, so each $\\omega_1$ is invariant under inversion in the circle $\\mathfrak{C}(E,\\sqrt{\\kappa})$ and its second fixed point is an inverse image, the standard Mobius-geometric mechanism for fixed points of circle families. The construction is the familiar radical-axis fixed-point motif, seeded by the Thales circle on the diameter $AM$ through the midpoint and altitude foot of $BC$."
     },
     {
-      "id": "g7",
+      "id": "g5",
       "category": "geo",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 4,
       "confidence": "high",
       "text": "Let $P$ be a point on the circumcircle $\\omega$ of triangle $ABC$, and let $O$ be the centre of $\\omega$. The line through $P$ parallel to $BC$ meets $\\omega$ again at a point $A'$ (if that line is tangent to $\\omega$, set $A' := P$); the lines through $P$ parallel to $CA$ and to $AB$ define $B'$ and $C'$ likewise. Prove that the midpoints of the segments $AA'$, $BB'$, $CC'$ all lie on one diameter of $\\omega$.",
       "why": "Write arc positions as angles $\\theta$ on $\\omega$: parallel chords cut equal arcs, so $PA'\\parallel BC$ forces $\\theta(A')=\\theta(B)+\\theta(C)-\\theta(P)$ and all three chords share the symmetric arc-sum $S=\\theta(A)+\\theta(B)+\\theta(C)-\\theta(P)$ - bookkeeping in the circle group $\\mathbb R/2\\pi\\mathbb Z$. The diameter at angle $S/2$ perpendicularly bisects $AA',BB',CC'$, so their midpoints lie on it. On the unit circle $A'=bc/p$ etc., and $\\sigma(z)=\\frac{abc}{p}\\bar z$ is the single anti-holomorphic Mobius involution reflecting in that diameter - an orientation-reversing element of the extended Mobius group - so $A'B'C'$ is $ABC$'s mirror image; tangent ($A'=P$) and coincident ($A'=A$) positions obey the same formula.",
@@ -1308,10 +1340,57 @@ window.IMO_SHORTLIST = {
       "remark": "Arc bookkeeping is addition in the circle group $\\mathbb{R}/2\\pi\\mathbb{Z}$, and on the unit circle the map $z\\mapsto\\frac{abc}{p}\\overline{z}$ shows $A'B'C'$ is the mirror image of $ABC$ in a single diameter, an orientation-reversing Mobius involution in the extended Mobius group. The problem grows out of the classical lemma that parallel chords of a circle cut off equal arcs, a workhorse behind many circumcircle configurations with parallels through a point of the circle."
     },
     {
+      "id": "g6",
+      "category": "geo",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4.5,
+      "confidence": "high",
+      "text": "Let $ABC$ be a non-equilateral triangle with circumcenter $O$ and orthocenter $H$. For each vertex $V\\in\\{A,B,C\\}$, let $\\omega_V$ be the circle centered at $V$ and passing through $H$. A line $\\ell$ through $H$ meets $\\omega_A,\\omega_B,\\omega_C$ again at $X,Y,Z$, respectively. Let $M$ be the centroid of $XYZ$. Let $J$ be the point on $OH$ satisfying $OJ=\\frac13OH$ and lying on the ray $OH$. Prove that the locus of $M$ is the circle centered at $J$ with radius $\\frac23OH$.",
+      "why": "The second intersection of a line through $H$ with a circle centered at $A$ and passing through $H$ is obtained by a one-dimensional projection: $\\overrightarrow{HX}=2((\\overrightarrow{HA})\\cdot u)u$, where $u$ is a unit direction of $\\ell$. The centroid therefore depends only on the orthogonal projection of $OH$. The vector identity $\\overrightarrow{OA}+\\overrightarrow{OB}+\\overrightarrow{OC}=\\overrightarrow{OH}$ collapses the three circles to a single fixed-radius locus.",
+      "hints": [
+        "Use a unit vector $u$ along $\\ell$ and write the second intersection of a circle through $H$ with center $A$.",
+        "With $O$ as origin, use $\\vec A+\\vec B+\\vec C=\\vec H$."
+      ],
+      "steps": [
+        "Take $O$ as origin and write the position vectors of $A,B,C,H$ as $a,b,c,h$. Since $(h-a)\\perp BC$, $(h-b)\\perp CA$, and $(h-c)\\perp AB$, the standard vector identity is $$h=a+b+c.$$",
+        "Let $u$ be a unit vector along $\\ell$. A point of $\\ell$ has the form $H+tu$. For $\\omega_A$, the equation $$|h+tu-a|^2=|h-a|^2$$ gives $$t\\bigl(t+2u\\cdot(h-a)\\bigr)=0.$$ Hence the second intersection is $$X=H+2\\bigl((a-h)\\cdot u\\bigr)u.$$ Similarly, $$Y=H+2((b-h)\\cdot u)u,\\qquad Z=H+2((c-h)\\cdot u)u.$$",
+        "Taking the centroid and using $a+b+c=h$ gives $$M=H+\\frac23\\bigl((a+b+c-3h)\\cdot u\\bigr)u=H-\\frac43(h\\cdot u)u.$$",
+        "Since $J$ has vector $j=h/3$, $$M-J=\\frac23\\bigl(h-2(h\\cdot u)u\\bigr).$$ The vector $h-2(h\\cdot u)u$ is the reflection of $h$ in the line through $O$ perpendicular to $u$, so it has the same length as $h$. Therefore $$JM=\\frac23|h|=\\frac23OH$$ for every line $\\ell$.",
+        "Thus the locus is contained in the fixed circle centered at $J$ with radius $2OH/3$.",
+        "To see that the whole circle occurs, choose coordinates with $h=(OH,0)$ and $u=(\\cos\\theta,\\sin\\theta)$. Then $$M-J=\\frac{2OH}{3}(-\\cos2\\theta,-\\sin2\\theta),$$ and as $\\theta$ varies, $2\\theta$ covers a full turn. Hence every point of the circle is attained.",
+        "Therefore the locus is exactly $$\\boxed{\\{P:JP=\\tfrac23OH\\}}.$$"
+      ],
+      "remark": "The construction is a three-circle analogue of the familiar midpoint-locus phenomenon: line-direction dependence enters only through an orthogonal projection, while the orthocenter identity collapses the centroid formula to a constant-distance condition."
+    },
+    {
+      "id": "g7",
+      "category": "geo",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4.5,
+      "confidence": "high",
+      "text": "Let $ABC$ be an acute triangle with circumcircle $\\omega$, and let $P$ be a point strictly inside $\\angle BAC$, not on $AB$ or $AC$, with $P\\ne A,H$, where $H$ is the orthocentre. Reflect $P$ in the lines $AB$ and $AC$, obtaining $X$ and $Y$. Prove that the circumcircle of triangle $AXY$ is tangent to $\\omega$ at $A$ if and only if $AP\\perp BC$.",
+      "why": "The reflections fix $A$, so $AX=AY=AP$ and the centre of $(AXY)$ lies on $AM$, where $M$ is the midpoint of $XY$. The line $AM$ is the isogonal image of $AP$. The only coincidence $(AXY)=\\omega$ occurs at the excluded case $P=H$ (then necessarily $A=60^\\circ$); hence, for the remaining configurations, tangency at $A$ is exactly the centre-collinearity condition $\\text{line }AM=AO$. The isogonal image of $AO$ is the altitude $AH$, so tangency is equivalent to $AP\\perp BC$.",
+      "hints": [
+        "Reflections give $AX=AY=AP$, so the centre of $(AXY)$ lies on the median to $XY$.",
+        "Show $AM$ is the isogonal line of $AP$ in $\\angle A$."
+      ],
+      "steps": [
+        "Mirrors through $A$ fix $A$: $AX=AP=AY$, so triangle $AXY$ is isosceles with apex $A$; the median $AM$ to the base $XY$ is the perpendicular bisector of $XY$, hence the centre of $(AXY)$ lies on the line $AM$.",
+        "Complex coordinates: $A$ at the origin, the internal bisector of $\\angle BAC$ as real axis; the sides are the lines at angles $-A/2$ and $+A/2$, and reflection in a line through $0$ at ∠ $t$ is $z\\mapsto e^{2it}\\overline{z}$. Then $X=e^{-iA}\\overline{p}$, $Y=e^{iA}\\overline{p}$, so $M=(X+Y)/2=\\cos A\\,\\overline{p}$. Since $A$ is acute, $\\cos A\\neq0$ and $M\\neq A$; $\\overline{p}$ is the mirror image of $p$ in the bisector, so line $AM$ is the isogonal of line $AP$: $\\angle MAB=\\angle PAC$.",
+        "Tangency test: two distinct circles through $A$ are tangent at $A$ if and only if their centres and $A$ are collinear. The two circles here are distinct: if $(AXY)=\\omega$, then $X,Y\\in\\omega$, so $AP=AX=AY=R$ and the centre-line $AM$ is $AO$. By Step 2, $AP$ is then the isogonal of $AO$, hence the altitude $AH$; since $AH=2R\\cos A$, the equality $AP=R$ gives $A=60^\\circ$ and $P=H$, contrary to the hypothesis. Therefore tangency at $A$ is equivalent to $\\text{line }AM=AO$.",
+        "Classical lemma (the isogonal conjugate of the circumcentre is the orthocentre): in isosceles triangle $OAB$, $\\angle OAB=90^\\circ-C$, and in the right triangle $ADC$ ($D$ the foot of the $A$-altitude) $\\angle DAC=90^\\circ-C$; so the altitude from $A$ is exactly the isogonal image of line $AO$.",
+        "Apply the isogonal involution at $A$ to the equality $\\text{line }AM=AO$ from Step 3. By Step 2, the isogonal image of $AM$ is $AP$, while the isogonal image of $AO$ is the altitude $AH$. Hence $\\text{line }AM=AO\\iff\\text{ line }AP=AH\\iff AP\\perp BC$. The hypothesis $P\\ne H$ is exactly what removes the coincident-circle exception."
+      ],
+      "remark": "The line $AP$ going to $AM$ is the isogonal involution at $A$, the restriction to a pencil of the quadratic Cremona transformation of the plane given by isogonal conjugation, under which the circumcentre and orthocentre form the classical conjugate pair. The problem grows out of the standard double-reflection motif: mirroring a point in two lines through $A$ yields an isosceles triangle whose centre-line is the isogonal image, a lemma behind many olympiad problems pairing reflections with the altitude-circumcentre isogonal pair."
+    },
+    {
       "id": "g8",
       "category": "geo",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5,
       "confidence": "medium",
       "text": "Let a <em>lune</em> be the region between two internally tangent circles. Given $N$ distinct points in the plane, prove that for any non-negative integers $P,Q,R$ with $P+Q+R=N$, there exists a lune containing exactly $P$ points strictly inside the smaller circle, $Q$ points in the strict interior of the lune, and $R$ points strictly outside the larger circle.",
       "why": "Choose a unit vector $n$ not perpendicular to any difference of two points and put $T=-tn$, $t$ large. The circles centred $T+\\rho n$ of radius $\\rho$ form the parabolic pencil of circles tangent at $T$; $X$ is inside iff $\\rho>\\rho(X)=|X-T|^{2}/(2(X-T)\\cdot n)$. As $t\\to\\infty$, $\\rho(X)-\\rho(Y)\\to((X-Y)\\cdot n)/2$: the pencil degenerates to the parallel-line pencil and the $N$ threshold values become the distinct heights along the generic direction $n$ - a transversality choice. Taking radii $r<R$ with $P$ values below $r$, $Q$ between, the rest above yields the required lune.",
@@ -1332,6 +1411,7 @@ window.IMO_SHORTLIST = {
       "category": "geo",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5,
       "confidence": "high",
       "text": "Let $ABCD$ be a convex cyclic quadrilateral whose diagonals $AC$ and $BD$ meet at $M$, and let $N$ be the midpoint of the side $CD$. Prove that the line $MN$ is perpendicular to the line $AB$ if and only if either the diagonals are perpendicular, $AC\\perp BD$, or the opposite sides are parallel, $AB\\parallel CD$.",
       "why": "Equal orthogonal projections onto $AB$ mean the segment is perpendicular to it, so $MN\\perp AB$ reads $MA^{2}-MB^{2}=NA^{2}-NB^{2}$: the difference of squared distances to two fixed points is an affine-linear function of the point (polarization of the Euclidean norm) with lines $\\perp AB$ as level sets - radical-axis calculus. Signed coordinates on the diagonal cross plus the one cyclicity fact $ac=bd$ (intersecting chords) collapse $\\vec{MN}\\cdot\\vec{AB}$ to $\\tfrac12\\cos\\theta\\,(ad-bc)$: $\\cos\\theta=0$ is perpendicular diagonals (Brahmagupta's theorem), while $ad=bc$ with $ac=bd$ forces $a=b$, $c=d$, the isosceles trapezoid $AB\\parallel CD$. Convexity puts $M$ strictly inside both diagonals; rectangles are the parallel branch refuting the naive converse.",
@@ -1354,6 +1434,7 @@ window.IMO_SHORTLIST = {
       "category": "geo",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5,
       "confidence": "high",
       "text": "Let $ABC$ be an acute, scalene triangle with circumcenter $O$. Let $K$ be the intersection of line $AO$ with side $BC$. Let $L$ be the unique point on line $AO$, distinct from $A$, such that $\\angle ALB=\\angle CLA$. The line through $L$ perpendicular to $AO$ intersects line $BC$ at $M$. Let $N$ be the intersection of the tangents to the circumcircle of $\\triangle ABC$ at $B$ and $C$. Prove that $OM\\perp KN$.",
       "why": "$\\angle ALB=\\angle CLA$ on line $AO$ is, by a cosine comparison with unit vectors, the statement that line $AL$ is the internal bisector line of $\\angle BLC$, so $LM$ is the external one: the bisector theorems give $BK/CK=BM/CM$, the range $(B,C;K,M)$ is harmonic, and coordinates on line $BC$ (origin $U$, unit $UB$) turn this into $k\\cdot m=1$, i.e. directed $UK\\cdot UM=+UB^{2}$. $N$, the intersection of the tangents at $B,C$, is the pole of $BC$ w.r.t. $\\omega$: the tangent equations give $N=(0,-1/h)$ when $O=(0,h)$, i.e. directed $UO\\cdot UN=-UB^{2}$ - the inversion flips sign between the two perpendicular axes through $U$. In these coordinates $K=(k,0)$, $M=(1/k,0)$, $O=(0,h)$, $N=(0,-1/h)$, and $(N-K)\\cdot(M-O)=-1+1=0$ is a one-line dot product: no diagram-side case analysis survives anywhere in the proof.",
@@ -1377,6 +1458,7 @@ window.IMO_SHORTLIST = {
       "category": "geo",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5,
       "confidence": "high",
       "text": "Let the incircle of $\\triangle ABC$ with incenter $I$ touch $BC$, $CA$, $AB$ at $D$, $E$, $F$ respectively, with $CA\\ne CB$. Let $M$ be the intersection of lines $AB$ and $DE$ (which exists exactly when $CA\\ne CB$). The line through $M$ perpendicular to $IM$ meets lines $DF$ and $EF$ at $P$ and $Q$ respectively. Prove that $MP = MQ$.",
       "why": "With the incircle $x^{2}+y^{2}=1$ and parametrization $T(t)=((1-t^{2})/(1+t^{2}),2t/(1+t^{2}))$, the chord $T(r)T(s)$ is $(1-rs)x+(r+s)y=1+rs$; the tangent at $F=(1,0)$ is $x=1$, so $M=(1,m)$, $m=2de/(d+e)$, a harmonic mean of the contact parameters. The line through $M$ perpendicular to $IM$ is $x+my=1+m^{2}$, parallel to the polar $x+my=1$ of $M$: by La Hire that polar joins $F$ to the intersection of the tangents at $D,E$, source of the synthetic harmonic division. Substituting $m=2de/(d+e)$, the offsets $y_Q-m$ and $y_P-m$ are opposite: $MP=MQ$. The excluded $d+e=0$ is exactly $AB\\parallel DE$.",
@@ -1395,8 +1477,9 @@ window.IMO_SHORTLIST = {
     {
       "id": "g12",
       "category": "geo",
-      "difficulty": "medium",
-      "stars": 2,
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6,
       "confidence": "high",
       "text": "Let $ABC$ be a scalene triangle with circumcircle $\\omega$ and with neither $\\angle B$ nor $\\angle C$ a right angle. Let $M$ be the midpoint of $BC$, let $K$ be the foot of the altitude from $A$ to $BC$, and let $\\psi$ be the circle with diameter $AM$. For each admissible point $X\\in\\psi$, meaning that $X\\notin\\{A,M,K\\}$, the circle $\\phi=(XBC)$ is not tangent to $\\psi$ at $X$, its second intersection $Y$ satisfies $Y\\notin\\{A,X\\}$, and the lines $AX,AY$ meet $\\omega$ again at distinct points $D,E\\ne A$, prove that all defined lines $DE$ pass through one fixed point.",
       "why": "Let $K$ be the altitude foot, so $\\psi$ meets $BC$ at $M,K$. For $T$ on $BC$ with $TB\\cdot TC=TM\\cdot TK$ (directed), powers w.r.t. $\\psi$ and any circle $\\phi$ through $B,C$ agree at $T$, so every common chord $XY$ passes through $T$: $X\\leftrightarrow Y$ is the chord involution of $\\psi$ cut by the pencil of lines through $T$. Projection from $A\\in\\psi\\cap\\omega$ is a projectivity between conics, $\\psi\\cong\\mathbb P^{1}\\to\\omega\\cong\\mathbb P^{1}$, carrying it to a Möbius involution $D\\leftrightarrow E$ on $\\omega$; steps 4-5 prove (in a model parametrization, transported by projective equivalence) that every Möbius involution of a nondegenerate conic is a chord-pencil involution, so all lines $DE$ pass through its centre, fixed independently of $X$. The right-angle exclusions at $B,C$ keep $T$ off $\\{B,C\\}$ and the excluded $X$-positions are finite (step 8).",
@@ -1419,8 +1502,9 @@ window.IMO_SHORTLIST = {
     {
       "id": "g13",
       "category": "geo",
-      "difficulty": "medium",
-      "stars": 2,
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6,
       "confidence": "high",
       "text": "Let $ABCD$ be a convex quadrilateral with $E=AC\\cap BD$, $P=AD\\cap BC$, and $Q=AB\\cap CD$. Assume $AD\\not\\parallel BC$ and $AB\\not\\parallel CD$, so $P,Q$ are finite. Erect equilateral triangles $ECX$ and $EDY$ so that $X$ and $B$ lie on the same side of $AC$, and $Y$ and $A$ lie on the same side of $BD$. Let $U$ and $V$ be the points where $AX$ and $BY$ meet the internal bisectors of $\\angle AEX$ and $\\angle BEY$, respectively. Prove that $EU=EV$ if and only if $PE\\perp QE$.",
       "why": "Splitting $[AEX]=[AEU]+[UEX]$ along the $60^\\circ$-bisector of the $120^\\circ$ angle $\\angle AEX$ gives $EU=\\frac{ac}{a+c}$ - a harmonic mean - and $EV=\\frac{bd}{b+d}$, so $EU=EV$ iff $\\frac1a+\\frac1c=\\frac1b+\\frac1d$. In the oblique frame $(\\vec{EA}/a,\\vec{EB}/b)$ of unit vectors the four sides are intercept equations and $P=\\frac{(X_1,Y_1)}{\\Delta_P}$, $Q=\\frac{(-X_1,Y_1)}{\\Delta_Q}$ with $X_1=\\frac1b+\\frac1d$, $Y_1=\\frac1a+\\frac1c$; the $u\\cdot v$ terms cancel by polarization, $\\vec{EP}\\cdot\\vec{EQ}=\\frac{Y_1^{2}-X_1^{2}}{\\Delta_P\\Delta_Q}$, so $PE\\perp QE$ is the same reciprocal-sum identity: one bilinear-form computation proving both directions of the equivalence at once.",
@@ -1444,6 +1528,7 @@ window.IMO_SHORTLIST = {
       "category": "geo",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 6,
       "confidence": "medium",
       "text": "Let $\\triangle ABC$ be scalene with incenter $I$ and $AC>AB$. The incircle touches $CA$ and $AB$ at $E$ and $F$. Let $L=EF\\cap BC$. Let the incircle of $\\triangle LEC$ and the $L$-excircle of $\\triangle LFB$ touch line $EF$ at $M$ and $N$, respectively. Let $K$ be the intersection of the incircle with segment $AI$. Prove that $BN$, $CM$, and the bisector $AI$ are concurrent at $K$.",
       "why": "The asymmetry is real: for $AB>AC$ the cevians still meet $AI$, but off the incircle. With $A$ at the origin and $AI$ the $x$-axis, half-angle coordinates $B=(cu,cv)$, $C=(bu,-bv)$, $E=(tu,-tv)$, $F=(tu,tv)$ ($u=\\cos\\frac A2$, $v=\\sin\\frac A2$) - the algebra of trilinears with the bisector as axis - give one master relation $t(b+c-t)=bc\\,u^{2}$ from an area comparison. The intercepts $EL,LF,BL,LC$ are rational in $b,c,t$; tangent-length formulas $EM=(EL+EC-LC)/2$ (incircle of $LEC$) and $FN=(LB+BF-LF)/2$ ($L$-excircle of $LFB$) fix $M,N$, and both cevian intercepts on $AI$ reduce to $t(1-v)/u$: the point $K$ where the incircle meets segment $AI$.",
@@ -1466,6 +1551,7 @@ window.IMO_SHORTLIST = {
       "category": "geo",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 6,
       "confidence": "high",
       "text": "Let $ABC$ be a scalene triangle with incenter $I$, and assume $\\angle A\\ne90^\\circ$. The incircle touches side $BC$ at $D$; let $AD$ meet the incircle again at $E$. Let $P$ and $Q$ be the intersections of the internal and external bisectors of $\\angle A$ with the line $BC$, respectively. Let the circumcircle of $\\triangle APQ$ meet the median $AM$ again at $N$, where $M$ is the midpoint of $BC$. Let $F$ be the point on the segment $AD$ such that $AE=DF$. Prove that $A,F,I,N$ are concyclic.",
       "why": "The internal and external bisectors from $A$ cut $BC$ in a harmonic range $(B,C;P,Q)=-1$, so the midpoint $M$ satisfies $MP\\cdot MQ=MB^{2}$: $\\operatorname{Pow}_{(APQ)}(M)=MB^{2}$ and $\\overline{MA}\\cdot\\overline{MN}=MB^{2}$. In tangent-length coordinates $u=s-a$, $v=s-b$, $w=s-c$ ($a=v+w$, $\\delta=w-v$), the circle $\\Omega=(AFI)$ has $e=u^{2}$ - since $DF\\cdot DA=AE\\cdot AD$ is the squared tangent length $\\operatorname{Pow}_{\\text{incircle}}(A)$ - and $h=(u^{2}-vw)/\\delta$, so $\\operatorname{Pow}_\\Omega(M)=\\delta^{2}/4-h\\delta+u^{2}=a^{2}/4=MB^{2}$. Metric reading: $\\Omega$ is orthogonal to the circle centred at $M$ through $B,C$; the second intersection of $MA$ with $\\Omega$ is then exactly $N$, and $A,F,I,N$ are concyclic.",
@@ -1488,6 +1574,85 @@ window.IMO_SHORTLIST = {
       "category": "geo",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 6,
+      "confidence": "low",
+      "text": "Let $ABCD$ be a convex cyclic quadrilateral with circumcenter $O$. Assume that all named intersections below are finite. Let $P=AB\\cap CD$ and $Q=AD\\cap BC$. Let $E$ and $F$ be the midpoints of $AB$ and $CD$, respectively. Let $S=EF\\cap AD$ and $T=EF\\cap BC$. Prove that the circumcircles of $\\triangle PEF$ and $\\triangle QST$ are tangent.",
+      "why": "Brocard's theorem: the diagonal triangle of a cyclic quadrilateral is self-polar w.r.t. $\\omega$, so the polar of $R=AC\\cap BD$ is $PQ$; the Brocard-Miquel theorem says the Miquel point $U$ of the four sidelines is the inverse of $R$, hence $U\\in PQ$ with $OU\\perp PQ$, and $P,E,O,F$ lie on the circle with diameter $PO$, which also carries $U$. $U$ is the centre of the direct spiral similarities $A\\mapsto B$, $D\\mapsto C$ and $A\\mapsto D$, $B\\mapsto C$ - multiplication by nonzero complex numbers, the conformal group $\\mathbb C^{*}$ - and similarities preserve directed division ratios, so Menelaus with signed ratios (each midpoint contributing a factor $-1$) forces $S\\mapsto T$ onto $(QSTU)$; tangent-chord angles then coincide at $U$.",
+      "hints": [
+        "Let $U$ be the Miquel point of the four sidelines; use directed angles mod $\\pi$.",
+        "By Brocard, $U$ is the inverse of $AC\\cap BD$, so $P,E,U,F$ lie on a circle.",
+        "Spiral similarities at $U$ send $S\\mapsto T$; match tangent-chord angles at $U$."
+      ],
+      "steps": [
+        "Throughout, all angles are directed modulo $\\pi$ and all length ratios are directed. Let $U$ be the Miquel point of the complete quadrilateral formed by the four lines $AB,BC,CD,DA$: by Miquel's theorem the four circles $(ABQ)$, $(CDQ)$, $(ADP)$, $(BCP)$ of the four triangles cut by these lines share a common point $U$. Two classical facts about a cyclic quadrilateral are invoked, and only these two are used downstream: Brocard's theorem, that the diagonal triangle $PQR$ with $R=AC\\cap BD$ is self-polar with respect to the circumcircle (so the polar of $R$ is the line $PQ$); and the Brocard--Miquel theorem, that the Miquel point $U$ of the four sidelines is the inverse of $R$ in the circumcircle. Since the inverse of $R$ is the foot of the perpendicular from $O$ to the polar of $R$, it follows that $U\\in PQ$ and $OU\\perp PQ$.",
+        "Since $E$ is the midpoint of $AB$, the radius $OE$ is perpendicular to $AB$. As $P,E,A,B$ are collinear, $\\angle PEO=90^\\circ$. Similarly, $OF\\perp CD$ and $P,F,C,D$ are collinear, so $\\angle PFO=90^\\circ$. Therefore $P,E,O,F$ are concyclic; their circle is the circle with diameter $PO$.",
+        "Because $P,U,Q$ are collinear and $OU\\perp PQ$, we have $\\angle PUO=90^\\circ$. Hence $U$ also lies on the circle with diameter $PO$. Consequently $P,E,F,U$ are concyclic; call this circle $\\Omega_1$.",
+        "From the circles $(ADPU)$ and $(BCPU)$, equal angles on the chord $UD$ give $\\angle UAD=\\angle UPD$ and $\\angle UPC=\\angle UBC$, while $D,P,C$ are collinear so $\\angle UPD=\\angle UPC$: hence $\\angle UAD=\\angle UBC$. The second pair comes from the circle $(CDQU)$: equal angles on its chord $UQ$ give $\\angle UDQ=\\angle UCQ$, and $Q\\in AD$, $Q\\in BC$ identify $\\angle UDQ=\\angle UDA$ and $\\angle UCQ=\\angle UCB$. So $\\triangle UAD\\sim\\triangle UBC$ by AA, giving $UA/UB=UD/UC$ and, by subtraction of the equal apex angles, $\\angle AUB=\\angle DUC$ mod $\\pi$. This is the standard Miquel-point characterization: $U$ is the center of a *direct* spiral similarity $\\sigma$ with $A\\mapsto B$, $D\\mapsto C$ (equivalently $(B-U)/(A-U)=(C-U)/(D-U)$ as complex ratios), and a direct similarity carries the line $AD$ onto the line $BC$.",
+        "Use an affine coordinate system with $Q=(0,0)$, $AD$ as the $x$-axis and $BC$ as the $y$-axis. Write $A=(a,0)$, $D=(d,0)$, $B=(0,b)$, $C=(0,c)$, with $a\\ne d$ and $b\\ne c$ because $S,T$ are finite. Then $E=(a/2,b/2)$ and $F=(d/2,c/2)$. Solving for the intersections of $EF$ with the two axes gives $$S=\\left(\\frac{bd-ac}{2(b-c)},0\\right),\\qquad T=\\left(0,\\frac{ac-bd}{2(a-d)}\\right).$$ Consequently $$\\frac{s-a}{d-s}=\\frac{t-b}{c-t}=-\\frac{2ab-ac-bd}{ac+bd-2cd},$$ where $s,t$ are the respective scalar coordinates of $S,T$. Thus the directed affine parameter of $S$ on $AD$ equals that of $T$ on $BC$.",
+        "Let $\\sigma$ be the direct spiral similarity centered at $U$ sending $A\\mapsto B$ and $D\\mapsto C$, and put $T'=\\sigma(S)$. Then $T'\\in BC$. Similarities preserve the directed affine parameter on a line, so the equality of parameters in Step 5 gives $T'=T$. Under the standing hypothesis that $P$ is finite, $Q\\notin EF$: otherwise $Q,E,F$ collinear gives $ac=bd$, while cyclicity at $Q$ gives $ad=bc$; convexity makes these four directed lengths have the same signs, hence $a=b$ and $c=d$, which makes $AB\\parallel CD$, contradicting the finiteness of $P$. Thus $Q,S,T$ are non-collinear. Since $\\sigma(Q)\\in BC=TQ$, the constant rotation angle of $\\sigma$ yields $\\angle(SU,SQ)=\\angle(TU,TQ)\\pmod\\pi$, so $Q,S,T,U$ are concyclic. Call this circle $\\Omega_2$; no continuity argument or degenerate case is needed.",
+        "Now use the second Miquel spiral similarity centered at $U$. From the circle $(ABQU)$, equal angles on chord $UB$ give $\\angle UAB=\\angle UQB$; since $Q\\in BC$ one has $\\angle UQB=\\angle UQC$, and from the circle $(CDQU)$ equal angles on chord $UC$ give $\\angle UQC=\\angle UDC$: so $\\angle UAB=\\angle UDC$. The matching second pair runs along chord $UA$ instead: $\\angle UBA=\\angle UQA$ on $(ABQU)$, $\\angle UQA=\\angle UQD$ since $Q\\in AD$, and $\\angle UQD=\\angle UCD$ on $(CDQU)$. Hence $\\triangle UAB\\sim\\triangle UDC$ by AA, and the corresponding direct similarity $\\sigma_2$ centered at $U$ sends $A\\mapsto D$ and $B\\mapsto C$. Because similarities preserve midpoints, $\\sigma_2$ sends the midpoint $E$ of $AB$ to the midpoint $F$ of $DC$.",
+        "Write $k$ for the scale of $\\sigma_2$: from $D=\\sigma_2(A)$ and $F=\\sigma_2(E)$ one has $UD=k\\,UA$ and $UF=k\\,UE$, so $UD/UA=UF/UE$, i.e. $UA/UE=UD/UF$; and both $A\\mapsto D$, $E\\mapsto F$ are rotations by the same directed angle, so $\\angle(UA,UD)=\\angle(UE,UF)$. Two pairs of sides about $U$ with a common cross-ratio of lengths and equal included directed angles give, by SAS, $$\\triangle UAD\\sim\\triangle UEF$$ (a direct similarity sending $A\\mapsto E$, $D\\mapsto F$). A direct similarity rotates every line by the same angle: applied to line $UA$ (image line $UE$) and line $AD$ (image line $EF$), $$\\angle(AD,EF)=\\angle(UA,UE)=\\angle AUE.$$ Since $S=AD\\cap EF$, this is $$\\angle ASE=\\angle AUE,$$ and therefore $A,E,S,U$ are concyclic.",
+        "It remains only to prove tangency. On $\\Omega_1=(PEFU)$, the tangent at $U$ and the chord $UP=UQ$ satisfy, by the tangent--chord theorem, $$\\angle(\\text{tangent to }\\Omega_1\\text{ at }U,UQ)=\\angle UEP.$$ On $\\Omega_2=(QSTU)$ the corresponding tangent--chord angle is $$\\angle(\\text{tangent to }\\Omega_2\\text{ at }U,UQ)=\\angle USQ.$$ But $A,E,S,U$ are cyclic, so $\\angle USQ=\\angle UEA$. Since $A,E,P$ are collinear, $\\angle UEA=\\angle UEP$ as directed angles. Thus the two tangents at $U$ coincide.",
+        "Hence the circles $(PEF)$ and $(QST)$ are tangent to each other at the Miquel point $U$."
+      ],
+      "remark": "This sits in Miquel theory combined with pole-polar reciprocity: Brocard's theorem makes the diagonal triangle self-polar, the Brocard-Miquel theorem identifies the Miquel point as the inverse of $AC\\cap BD$, and $U$ is the centre of direct spiral similarities carrying the sidelines onto each other, an element of the conformal group $\\mathbb{C}^{*}$. The signed Menelaus computation, where each midpoint contributes a factor $-1$, is the classical directed-ratio discipline that makes Miquel-point concyclicity arguments go through."
+    },
+    {
+      "id": "g17",
+      "category": "geo",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6,
+      "confidence": "high",
+      "text": "Let $ABCD$ be a convex cyclic quadrilateral with circumcenter $O$. Assume that no two opposite sides are parallel and that neither $AC$ nor $BD$ is a diameter of the circumcircle. Let $P=AC\\cap BD$. Let $M\\ne O$ be the second intersection of the circumcircles of triangles $AOC$ and $BOD$. Let $X,Y$ be the perpendicular projections of $M$ onto the lines $AB,CD$, respectively, and let $N$ be the midpoint of $PM$. Prove that $X,Y,N$ are collinear.",
+      "why": "Unit-circle complex numbers ($\\bar a=1/a$): the chord $z+uv\\bar z=u+v$ gives $\\bar p=(a+c-b-d)/(ac-bd)$ for $P=AC\\cap BD$. Inversion in $\\omega$ - a Mobius transformation mapping circles through $O$ to lines - sends $(AOC),(BOD)$ to $AC,BD$, so $M$ is the inverse of $P$: $m=1/\\bar p$. The function $f(Z)=\\vec{ZA}\\cdot\\vec{ZC}-\\vec{ZB}\\cdot\\vec{ZD}$ is the difference of powers w.r.t. the circles on diameters $AC,BD$; the quadratic terms cancel, $f$ is affine-linear with zero set the radical axis $\\ell$, containing $P$ (intersecting chords) and, via the reflection formula $z\\mapsto a+b-ab\\bar z$, the reflections of $M$ in $AB$ and $CD$. The homothety centred $M$ with ratio $\\tfrac12$ carries $\\ell$ through the feet $X,Y$ and $N$: collinear.",
+      "hints": [
+        "Inversion in $\\omega$ maps $(AOC)$ and $(BOD)$ to lines: $M$ is the inverse of $P$.",
+        "Compare powers in the Thales circles of diameters $AC$ and $BD$: a radical axis line $\\ell$.",
+        "$\\ell$ carries $P$ and the reflections of $M$; shrink by $\\frac{1}{2}$ at $M$."
+      ],
+      "steps": [
+        "<b>Coordinates.</b> Take the circumcircle as the unit circle centered at $O=0$, with complex coordinates $a,b,c,d$ of $A,B,C,D$ (so $\\bar a=1/a$, etc.). Put $s=a+c-b-d$. Two facts from the hypotheses: (i) $s\\ne0$, for otherwise the diagonals $AC,BD$ would bisect each other, $ABCD$ would be a parallelogram and $AB\\parallel CD$, which is excluded; (ii) $ac\\ne bd$, because the chords $AC,BD$ meet at $P$ and so are not parallel (chords $ac$ and $bd$ are parallel exactly when $ac=bd$).",
+        "<b>The point $P$.</b> The chord through $u,v$ on the unit circle is $z+uv\\bar z=u+v$. Subtracting the equations for $AC$ and $BD$ gives $(ac-bd)\\bar p=s$, so $$\\bar p=\\frac{s}{ac-bd}\\ne 0.$$ In particular $P\\ne O$; this is also clear geometrically, since $AC$ is not a diameter, so $O\\notin AC$.",
+        "<b>The point $M$.</b> Since $AC$ is not a diameter, $A,O,C$ are not collinear, so $(AOC)$ exists; likewise $(BOD)$. Inversion in the circumcircle sends the circle $(AOC)$ (which passes through $O$) to the line $AC$, and $(BOD)$ to the line $BD$; these lines are distinct and meet only at $P$. Hence the two circles are distinct and their common points are $O$ and the inverse of $P$ (which exists because $P\\ne O$). Two distinct circles share at most two points, so $M$ is the inverse of $P$: $$m=\\frac1{\\bar p}=\\frac{ac-bd}{s},\\qquad \\bar m=\\frac{\\frac1{ac}-\\frac1{bd}}{\\bar s}=\\frac{bd-ac}{abcd\\,\\bar s},$$ where $\\bar s=\\frac1a+\\frac1c-\\frac1b-\\frac1d\\ne0$.",
+        "<b>A linear function.</b> For a point $Z$ write $Z$ also for its position vector and let $\\Omega_1,\\Omega_2$ be the circles with diameters $AC$ and $BD$. For any circle with diameter $UV$, the power of $Z$ is $|Z-\\tfrac{U+V}2|^2-\\tfrac{|U-V|^2}4=(U-Z)\\cdot(V-Z)$. Define $$f(Z)=\\operatorname{Pow}_{\\Omega_1}(Z)-\\operatorname{Pow}_{\\Omega_2}(Z)=(A-Z)\\cdot(C-Z)-(B-Z)\\cdot(D-Z)=A\\cdot C-B\\cdot D-Z\\cdot(A+C-B-D).$$ The $|Z|^2$ terms cancel, so $f$ is affine in $Z$, with gradient $-(A+C-B-D)$, whose complex coordinate is $-s\\ne0$. Hence $\\ell=\\{Z:f(Z)=0\\}$ is a genuine <em>line</em>. In complex form $f(z)=\\operatorname{Re}\\big(a\\bar c-b\\bar d-z\\bar s\\big)$.",
+        "<b>$P\\in\\ell$.</b> $ABCD$ is convex, so $P$ lies strictly inside both segments $AC$ and $BD$; the vectors $A-P,C-P$ are opposite, and likewise $B-P,D-P$. So $f(P)=-PA\\cdot PC+PB\\cdot PD=0$ by the intersecting chords theorem.",
+        "<b>Reflection of $M$ in $AB$ lies on $\\ell$.</b> The reflection of $m$ in the chord line $z+ab\\bar z=a+b$ is $z_1=a+b-ab\\,\\bar m$. Substituting $\\bar m$ from Step 3, $$z_1=a+b-\\frac{bd-ac}{cd\\,\\bar s},\\qquad z_1\\bar s=(a+b)\\bar s-\\frac bc+\\frac ad .$$ Expanding $(a+b)\\bar s=\\frac ac-\\frac ab-\\frac ad+\\frac ba+\\frac bc-\\frac bd$ (the two constant terms $1-1$ cancel), $$a\\bar c-b\\bar d-z_1\\bar s=\\frac ac-\\frac bd-\\Big(\\frac ac-\\frac ab-\\frac ad+\\frac ba+\\frac bc-\\frac bd\\Big)+\\frac bc-\\frac ad=\\frac ab-\\frac ba .$$ Since $|a/b|=1$, $b/a=\\overline{a/b}$, so the right side is $2i\\operatorname{Im}(a/b)$, purely imaginary. Taking real parts, $f(z_1)=0$: the reflection $M_{AB}$ lies on $\\ell$.",
+        "<b>Reflection of $M$ in $CD$ lies on $\\ell$.</b> Rename $(a,b,c,d)\\to(c,d,a,b)$. This leaves $s$, $m$ and $f$ unchanged (each is symmetric under $A\\leftrightarrow C$, $B\\leftrightarrow D$) and turns line $AB$ into line $CD$, so Step 6 applies verbatim: $M_{CD}\\in\\ell$.",
+        "<b>Conclusion.</b> $X$ and $Y$ are the feet of the perpendiculars from $M$, hence the midpoints of $MM_{AB}$ and $MM_{CD}$, and $N$ is the midpoint of $MP$. The homothety with center $M$ and ratio $\\tfrac12$ maps $M_{AB},M_{CD},P$ to $X,Y,N$ and maps the line $\\ell$ to a line $\\ell'$. Since $M_{AB},M_{CD},P\\in\\ell$, we get $X,Y,N\\in\\ell'$, so $$\\boxed{X,Y,N\\text{ are collinear}}.$$ (Coincident points, e.g. $X=Y$, are harmless: they still lie on $\\ell'$.) No converse is asserted, no case of equality arises, and no induction or descent is used."
+      ],
+      "remark": "The proof models the plane by complex numbers on the unit circle, $\\overline{a}=1/a$, where inversion in $\\omega$ is a Mobius transformation carrying circles through $O$ to lines, and the comparison of powers in the two Thales circles is an affine-linear function whose zero set is an explicit radical axis. The closing half-turn-style homothety of ratio $\\frac{1}{2}$, turning reflections into feet, is the standard shadow of Steiner-line theorems, in which reflections of a distinguished point in the sides are collinear."
+    },
+    {
+      "id": "g18",
+      "category": "geo",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6,
+      "confidence": "high",
+      "text": "Let $ABC$ be a scalene triangle with circumcircle $\\omega$ and circumcenter $O$. Let $I$ be the incenter of triangle $ABC$, and let the internal angle bisector of $\\angle BAC$ meet $\\omega$ again at $M$. Let $N$ be the point on $\\omega$ such that $MN$ is a diameter of $\\omega$. The line $NI$ meets $\\omega$ again at $P$. Let $J$ be the reflection of $I$ across the line $BC$. Let $Q$ be the second intersection of the circle through $I,J,P$ with $\\omega$, counted with multiplicity; thus $Q=P$ in the tangency case. Prove that the line $OI$ is the perpendicular bisector of the segment $AQ$.",
+      "why": "The arc-midpoint lemma $MI=MB=MC$ - $M$ is the circumcentre of $\\triangle BIC$ - gives $MI/OA=2\\sin\\tfrac A2=IJ/AI$, and $IJ\\parallel OM$, $\\angle MIJ=\\angle OAI=\\tfrac{|B-C|}{2}$ make $\\triangle MIJ\\sim\\triangle OAI$ a direct SAS similarity. A central-angle chase then puts $M,J,A'$ collinear, where $A'$ is the reflection of $A$ across the line $OI$: that line passes through the centre, so the reflection is an element of $O(2)$ preserving $\\omega$, hence $A'\\in\\omega$; the inscribed-angle criterion gives $A',I,J,P$ concyclic, so $Q=A'$ and $OI$ perpendicularly bisects $AQ$. In the boundary position $A'=P$, intersecting-chords power $IA\\cdot IM=IP\\cdot IN$ forces $OI\\parallel BC$ and tangency at $P$, again giving $Q=P=A'$.",
+      "hints": [
+        "Arc-midpoint lemma: $MI=MB=MC$; compare triangles $MIJ$ and $OAI$.",
+        "A SAS similarity plus angle chase makes $M,J,A'$ collinear, $A'$ reflected over $OI$."
+      ],
+      "steps": [
+        "Throughout, angles between lines are directed modulo $\\pi$, and $\\angle A,\\angle B,\\angle C$ denote the angles of the triangle. Put $D=AM\\cap BC$. Since $M$ is the midpoint of the arc $BC$ not containing $A$, $M$ and $A$ lie on strictly opposite sides of line $BC$, while $I$ is interior, so the bisector line carries the points in the order $A$--$I$--$D$--$M$, and ray $MI$ = ray $MA$.",
+        "$MI=MB$: indeed $\\angle MBC=\\tfrac A2$ (inscribed angle on the half-arc $MC$), and $M$, $I$ are on opposite sides of line $BC$, so ray $BC$ lies between rays $BM$ and $BI$ and $\\angle MBI=\\angle MBC+\\angle CBI=\\tfrac{A+B}2$. Also $M$ and $C$ lie on the same arc cut by chord $AB$, so $\\angle BMI=\\angle BMA=\\angle BCA=C$, hence $\\angle BIM=\\pi-\\tfrac{A+B}2-C=\\tfrac{A+B}2=\\angle MBI$, and triangle $MBI$ is isosceles with $MI=MB$.",
+        "The needed ratios: $MB=2R\\sin\\angle MAB=2R\\sin\\tfrac A2$, so $\\frac{MI}{OA}=\\frac MB R=2\\sin\\tfrac A2$. For the incenter, $d(I,BC)=r$ and reflection in $BC$ doubles the distance, so $IJ=2r$; the foot of the perpendicular from $I$ to $AB$ gives $r=AI\\sin\\tfrac A2$, so $\\frac{IJ}{AI}=2\\sin\\tfrac A2$. Thus $\\frac{MI}{OA}=\\frac{IJ}{AI}$. Finally $IJ\\perp BC$ (reflection) and $OM\\perp BC$ (the radius to the midpoint of arc $BC$ is the perpendicular bisector of chord $BC$), hence $IJ\\parallel OM$.",
+        "Claim: $\\angle MIJ=\\angle OAI$. First $\\angle MIJ$: in right triangle $IFD$ ($F$ the foot from $I$ to $BC$, ray $IJ$ = ray $IF$, ray $IM$ = ray $ID$), so $\\angle MIJ=\\angle DIF=\\frac\\pi2-\\angle IDF$. The positions of $F$ and $D$ on $BC$ obey $BF-BD=(s-b)-\\frac{ac}{b+c}=\\frac{(b-c)(a-b-c)}{2(b+c)}$, so $F$ is on the $B$-side of $D$ iff $b>c$, i.e. iff $B>C$. If $B>C$: $\\angle IDF=\\angle ADB=\\frac A2+C&lt;\\frac\\pi2$, giving $\\angle MIJ=\\frac{B-C}2$; if $C>B$: symmetrically $\\angle IDF=\\angle ADC=B+\\frac A2&lt;\\frac\\pi2$ and $\\angle MIJ=\\frac{C-B}2$. So always $\\angle MIJ=\\frac{|B-C|}2$. Second $\\angle OAI$: isosceles $OAB$ gives $\\angle OAB=|\\frac\\pi2-C|$. If $C&lt;\\frac\\pi2$ then $O$ is on the same side of $AB$ as $C$, inside $\\angle A$, so $\\angle OAI=|\\angle OAB-\\angle IAB|=|\\frac\\pi2-C-\\frac A2|=\\frac{|B-C|}2$; if $C>\\frac\\pi2$ then $O$ is outside the angle at $A$ past side $AB$, so $\\angle OAI=(C-\\frac\\pi2)+\\frac A2=\\frac{C-B}2$ in absolute value, again $\\frac{|B-C|}2$. Hence $\\angle MIJ=\\angle OAI$, and with the side ratio of the previous step, SAS gives $\\triangle MIJ\\sim\\triangle OAI$ with correspondence $M\\leftrightarrow O$, $I\\leftrightarrow A$, $J\\leftrightarrow I$; in particular $\\angle IMJ=\\angle AOI$. The similarity is *direct*: both oriented pairs $(MI,MJ)$ and $(OA,OI)$ have the same sign of orientation, and no scalene configuration flips this sign: a flip needs $J\\in$ line $MI$, i.e. the foot $F$ to lie on bisector $AD$, i.e. line $IF=$ line $AD\\perp BC$, i.e. $AB=AC$), so the sign is constant on each connected chamber of the acute scalene shape space. The chamber of the anchor $(80^\\circ,60^\\circ,40^\\circ)$ gives positive sign; reflecting a labeled triangle in a line reverses BOTH orientation signs ($\\angle(MI,MJ)$ and $\\angle(OA,OI)$) at once, so every mirrored chamber also matches; and the $B&gt;C$/$C&gt;B$ split in the first half of this step covers the two non-mirrored orderings. Hence the directed equality holds in all chambers. Therefore modulo $\\pi$: $\\angle(MI,MJ)\\equiv\\angle(OA,OI)$.",
+        "Collinearity $M$--$J$--$A'$: the reflection in $OI$ sends ray $OA$ to ray $OA'$, so $\\angle(OA,OA')\\equiv2\\angle(OA,OI)\\pmod{2\\pi}$; the inscribed--central-angle theorem on $\\omega$ gives $\\angle(MA,MA')\\equiv\\frac12\\angle(OA,OA')\\equiv\\angle(OA,OI)\\pmod\\pi$. Replacing line $MA$ by the same line $MI$, and combining with $\\angle(MI,MJ)\\equiv\\angle(OA,OI)$ from Step 4: $\\angle(MJ,MA')\\equiv0\\pmod\\pi$, i.e. $M$, $J$, $A'$ are collinear.",
+        "Concyclicity: $MN\\perp BC$ because $M,O,N$ are collinear and $OM\\perp BC$, and $IJ\\perp BC$, so $IJ\\parallel MN$. Also $I$ lies strictly between $N$ and $P$ (inside the disk on the chord $NP$), so line $PI$ = line $PN$. Chases on $\\omega$ and along the parallels, all mod $\\pi$: $$\\angle A'PI=\\angle A'PN=\\angle A'MN=\\angle(MJ,JI)=\\angle A'JI,$$ where the middle equality is the inscribed-angle theorem on chord $A'N$, and the last uses $M$--$J$--$A'$ collinear plus line $JA'=JM$, line $JI$ parallel to line $MN$. Equal angles $\\angle(PA',PI)=\\angle(JA',JI)\\pmod\\pi$ are the criterion for $A',I,J,P$ to be concyclic (or collinear; they are not: line $IJ$ is the perpendicular from $I$ to $BC$, it is parallel to the diameter line $MN$, and $P\\in$ line $IJ$ would force $I\\in MN$, i.e. $IB=IC$, i.e. $AB=AC$, contrary to scalene). Thus $A'\\in\\omega\\cap(IJP)$.",
+        "If $A'\\ne P$, the two distinct circles meet at $P$ and $A'$, so $Q=A'$. If $A'=P$, our multiplicity convention gives $Q=P=A'$. In that boundary case the tangent calculation below shows the second intersection is indeed double at $P$. In either case $Q=A'$, and since $A'$ is the reflection of $A$ in $OI$, the line $OI$ is the perpendicular bisector of $AQ$."
+      ],
+      "remark": "The engine is the arc-midpoint lemma $MI=MB=MC$, the reflection of $I$ in $BC$, and a global symmetry argument: reflection in the line $OI$ is an element of $O(2)$ preserving $\\omega$, so the reflected point $A'$ lies on $\\omega$ and must equal $Q$. Angles are treated as directed modulo $\\pi$, the standard discipline of Miquel-style chases, and the boundary position $A'=P$ is settled by intersecting-chords power, a common endgame in incenter-circumcircle configurations of this type."
+    },
+    {
+      "id": "g19",
+      "category": "geo",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6.5,
       "confidence": "high",
       "text": "Let $ABC$ be a scalene triangle with circumcircle $\\omega$. The tangent at $A$ meets $BC$ at $P$, and let $\\psi$ be the circle centered at $P$ through $A$. For each admissible point $X\\in\\psi$, meaning $X\\ne A$, $X\\notin\\omega\\cup BC$, the circle $(XBC)$ has a second intersection $Y\\ne X,A$ with $\\psi$, and the second intersections $D\\ne A$ and $E\\ne A$ of $AX$ and $AY$ with $\\omega$ exist and satisfy $D\\ne E$. If $M$ is the projection of $P$ onto $DE$, determine the locus of $M$ as $X$ varies over all admissible positions.",
       "why": "$PA^{2}=PB\\cdot PC$ (tangent-secant) is $\\operatorname{Pow}_\\kappa(P)$ for every circle $\\kappa=(XBC)$, and $X,Y$ on the circle $\\psi$ centred $P$ through $A$ give $PX^{2}=PY^{2}=\\operatorname{Pow}_\\kappa(P)$: $PX,PY$ are tangents to $\\kappa$ and $XY$ is the polar of $P$ w.r.t. $\\kappa$. That polar meets the secant $BC$ in the harmonic conjugate $T$ of $P$ - fixed - so $X\\leftrightarrow Y$ is the involution of $\\psi$ cut by the pencil through $T$. Projection from $A$ is a projectivity between conics $\\psi\\cong\\mathbb P^{1}\\to\\omega\\cong\\mathbb P^{1}$ carrying it to an involution $D\\leftrightarrow E$ on $\\omega$; a projective involution on a nondegenerate conic is a chord-pencil, so all $DE$ pass through its centre $K$. Then $\\angle PMK=90^\\circ$: Thales makes the locus exactly the circle with diameter $PK$, minus finitely many excluded points, and the converse runs along the pencil through $K$.",
@@ -1512,37 +1677,11 @@ window.IMO_SHORTLIST = {
       "remark": "The argument is pole-polar machinery: $XY$ is the polar of $P$ with respect to $(XBC)$, meeting the secant $BC$ in the harmonic conjugate of $P$, and a projective involution on a nondegenerate conic is a chord pencil, so Thales' circle on $PK$ carries the locus. The seed $PA^{2}=PB\\cdot PC$ is the tangent-secant power at the point where the $A$-tangent meets $BC$, the symmedian point of the tangent-symmedian lemma, a recurring motif in circle-locus olympiad problems."
     },
     {
-      "id": "g17",
+      "id": "g20",
       "category": "geo",
       "difficulty": "hard",
       "stars": 3,
-      "confidence": "low",
-      "text": "Let $ABCD$ be a convex cyclic quadrilateral with circumcenter $O$. Assume that all named intersections below are finite. Let $P=AB\\cap CD$ and $Q=AD\\cap BC$. Let $E$ and $F$ be the midpoints of $AB$ and $CD$, respectively. Let $S=EF\\cap AD$ and $T=EF\\cap BC$. Prove that the circumcircles of $\\triangle PEF$ and $\\triangle QST$ are tangent.",
-      "why": "Brocard's theorem: the diagonal triangle of a cyclic quadrilateral is self-polar w.r.t. $\\omega$, so the polar of $R=AC\\cap BD$ is $PQ$; the Brocard-Miquel theorem says the Miquel point $U$ of the four sidelines is the inverse of $R$, hence $U\\in PQ$ with $OU\\perp PQ$, and $P,E,O,F$ lie on the circle with diameter $PO$, which also carries $U$. $U$ is the centre of the direct spiral similarities $A\\mapsto B$, $D\\mapsto C$ and $A\\mapsto D$, $B\\mapsto C$ - multiplication by nonzero complex numbers, the conformal group $\\mathbb C^{*}$ - and similarities preserve directed division ratios, so Menelaus with signed ratios (each midpoint contributing a factor $-1$) forces $S\\mapsto T$ onto $(QSTU)$; tangent-chord angles then coincide at $U$.",
-      "hints": [
-        "Let $U$ be the Miquel point of the four sidelines; use directed angles mod $\\pi$.",
-        "By Brocard, $U$ is the inverse of $AC\\cap BD$, so $P,E,U,F$ lie on a circle.",
-        "Spiral similarities at $U$ send $S\\mapsto T$; match tangent-chord angles at $U$."
-      ],
-      "steps": [
-        "Throughout, all angles are directed modulo $\\pi$ and all length ratios are directed. Let $U$ be the Miquel point of the complete quadrilateral formed by the four lines $AB,BC,CD,DA$: by Miquel's theorem the four circles $(ABQ)$, $(CDQ)$, $(ADP)$, $(BCP)$ of the four triangles cut by these lines share a common point $U$. Two classical facts about a cyclic quadrilateral are invoked, and only these two are used downstream: Brocard's theorem, that the diagonal triangle $PQR$ with $R=AC\\cap BD$ is self-polar with respect to the circumcircle (so the polar of $R$ is the line $PQ$); and the Brocard--Miquel theorem, that the Miquel point $U$ of the four sidelines is the inverse of $R$ in the circumcircle. Since the inverse of $R$ is the foot of the perpendicular from $O$ to the polar of $R$, it follows that $U\\in PQ$ and $OU\\perp PQ$.",
-        "Since $E$ is the midpoint of $AB$, the radius $OE$ is perpendicular to $AB$. As $P,E,A,B$ are collinear, $\\angle PEO=90^\\circ$. Similarly, $OF\\perp CD$ and $P,F,C,D$ are collinear, so $\\angle PFO=90^\\circ$. Therefore $P,E,O,F$ are concyclic; their circle is the circle with diameter $PO$.",
-        "Because $P,U,Q$ are collinear and $OU\\perp PQ$, we have $\\angle PUO=90^\\circ$. Hence $U$ also lies on the circle with diameter $PO$. Consequently $P,E,F,U$ are concyclic; call this circle $\\Omega_1$.",
-        "From the circles $(ADPU)$ and $(BCPU)$, equal angles on the chord $UD$ give $\\angle UAD=\\angle UPD$ and $\\angle UPC=\\angle UBC$, while $D,P,C$ are collinear so $\\angle UPD=\\angle UPC$: hence $\\angle UAD=\\angle UBC$. The second pair comes from the circle $(CDQU)$: equal angles on its chord $UQ$ give $\\angle UDQ=\\angle UCQ$, and $Q\\in AD$, $Q\\in BC$ identify $\\angle UDQ=\\angle UDA$ and $\\angle UCQ=\\angle UCB$. So $\\triangle UAD\\sim\\triangle UBC$ by AA, giving $UA/UB=UD/UC$ and, by subtraction of the equal apex angles, $\\angle AUB=\\angle DUC$ mod $\\pi$. This is the standard Miquel-point characterization: $U$ is the center of a *direct* spiral similarity $\\sigma$ with $A\\mapsto B$, $D\\mapsto C$ (equivalently $(B-U)/(A-U)=(C-U)/(D-U)$ as complex ratios), and a direct similarity carries the line $AD$ onto the line $BC$.",
-        "Use an affine coordinate system with $Q=(0,0)$, $AD$ as the $x$-axis and $BC$ as the $y$-axis. Write $A=(a,0)$, $D=(d,0)$, $B=(0,b)$, $C=(0,c)$, with $a\\ne d$ and $b\\ne c$ because $S,T$ are finite. Then $E=(a/2,b/2)$ and $F=(d/2,c/2)$. Solving for the intersections of $EF$ with the two axes gives $$S=\\left(\\frac{bd-ac}{2(b-c)},0\\right),\\qquad T=\\left(0,\\frac{ac-bd}{2(a-d)}\\right).$$ Consequently $$\\frac{s-a}{d-s}=\\frac{t-b}{c-t}=-\\frac{2ab-ac-bd}{ac+bd-2cd},$$ where $s,t$ are the respective scalar coordinates of $S,T$. Thus the directed affine parameter of $S$ on $AD$ equals that of $T$ on $BC$.",
-        "Let $\\sigma$ be the direct spiral similarity centered at $U$ sending $A\\mapsto B$ and $D\\mapsto C$, and put $T'=\\sigma(S)$. Then $T'\\in BC$. Similarities preserve the directed affine parameter on a line, so the equality of parameters in Step 5 gives $T'=T$. Under the standing hypothesis that $P$ is finite, $Q\\notin EF$: otherwise $Q,E,F$ collinear gives $ac=bd$, while cyclicity at $Q$ gives $ad=bc$; convexity makes these four directed lengths have the same signs, hence $a=b$ and $c=d$, which makes $AB\\parallel CD$, contradicting the finiteness of $P$. Thus $Q,S,T$ are non-collinear. Since $\\sigma(Q)\\in BC=TQ$, the constant rotation angle of $\\sigma$ yields $\\angle(SU,SQ)=\\angle(TU,TQ)\\pmod\\pi$, so $Q,S,T,U$ are concyclic. Call this circle $\\Omega_2$; no continuity argument or degenerate case is needed.",
-        "Now use the second Miquel spiral similarity centered at $U$. From the circle $(ABQU)$, equal angles on chord $UB$ give $\\angle UAB=\\angle UQB$; since $Q\\in BC$ one has $\\angle UQB=\\angle UQC$, and from the circle $(CDQU)$ equal angles on chord $UC$ give $\\angle UQC=\\angle UDC$: so $\\angle UAB=\\angle UDC$. The matching second pair runs along chord $UA$ instead: $\\angle UBA=\\angle UQA$ on $(ABQU)$, $\\angle UQA=\\angle UQD$ since $Q\\in AD$, and $\\angle UQD=\\angle UCD$ on $(CDQU)$. Hence $\\triangle UAB\\sim\\triangle UDC$ by AA, and the corresponding direct similarity $\\sigma_2$ centered at $U$ sends $A\\mapsto D$ and $B\\mapsto C$. Because similarities preserve midpoints, $\\sigma_2$ sends the midpoint $E$ of $AB$ to the midpoint $F$ of $DC$.",
-        "Write $k$ for the scale of $\\sigma_2$: from $D=\\sigma_2(A)$ and $F=\\sigma_2(E)$ one has $UD=k\\,UA$ and $UF=k\\,UE$, so $UD/UA=UF/UE$, i.e. $UA/UE=UD/UF$; and both $A\\mapsto D$, $E\\mapsto F$ are rotations by the same directed angle, so $\\angle(UA,UD)=\\angle(UE,UF)$. Two pairs of sides about $U$ with a common cross-ratio of lengths and equal included directed angles give, by SAS, $$\\triangle UAD\\sim\\triangle UEF$$ (a direct similarity sending $A\\mapsto E$, $D\\mapsto F$). A direct similarity rotates every line by the same angle: applied to line $UA$ (image line $UE$) and line $AD$ (image line $EF$), $$\\angle(AD,EF)=\\angle(UA,UE)=\\angle AUE.$$ Since $S=AD\\cap EF$, this is $$\\angle ASE=\\angle AUE,$$ and therefore $A,E,S,U$ are concyclic.",
-        "It remains only to prove tangency. On $\\Omega_1=(PEFU)$, the tangent at $U$ and the chord $UP=UQ$ satisfy, by the tangent--chord theorem, $$\\angle(\\text{tangent to }\\Omega_1\\text{ at }U,UQ)=\\angle UEP.$$ On $\\Omega_2=(QSTU)$ the corresponding tangent--chord angle is $$\\angle(\\text{tangent to }\\Omega_2\\text{ at }U,UQ)=\\angle USQ.$$ But $A,E,S,U$ are cyclic, so $\\angle USQ=\\angle UEA$. Since $A,E,P$ are collinear, $\\angle UEA=\\angle UEP$ as directed angles. Thus the two tangents at $U$ coincide.",
-        "Hence the circles $(PEF)$ and $(QST)$ are tangent to each other at the Miquel point $U$."
-      ],
-      "remark": "This sits in Miquel theory combined with pole-polar reciprocity: Brocard's theorem makes the diagonal triangle self-polar, the Brocard-Miquel theorem identifies the Miquel point as the inverse of $AC\\cap BD$, and $U$ is the centre of direct spiral similarities carrying the sidelines onto each other, an element of the conformal group $\\mathbb{C}^{*}$. The signed Menelaus computation, where each midpoint contributes a factor $-1$, is the classical directed-ratio discipline that makes Miquel-point concyclicity arguments go through."
-    },
-    {
-      "id": "g18",
-      "category": "geo",
-      "difficulty": "hard",
-      "stars": 3,
+      "rating": 6.5,
       "confidence": "high",
       "text": "Let $ABC$ be an acute scalene triangle with circumcircle $\\Gamma$. The tangent to $\\Gamma$ at $A$ meets $BC$ at $T_A$, and let $\\omega_A$ be the circle through $A$ tangent to $BC$ at $T_A$. Let $P\\ne A$ be the second intersection of $\\omega_A$ with $\\Gamma$. Define $Q$ and $R$ cyclically at $B$ and $C$, and assume $P,Q,R$ are pairwise distinct. Let $Z=PQ\\cap AB$, $X=QR\\cap BC$, and $Y=RP\\cap CA$. Prove that $AX,BY,CZ$ are concurrent.",
       "why": "The construction gives the cubic ratios $BP/CP=(AB/AC)^3$ and cyclically. These ratios imply a product-one relation; the chord-intersection formulas then give the absolute values of the three Ceva ratios. The acute-scalene hypotheses also force the three side-line intersections to be finite: the only way one of the corresponding absolute ratios can equal $1$ away from the middle-side case would be a right angle or an isosceles pair. The pairwise-distinct hypothesis is needed because otherwise one of $PQ,QR,RP$ is not a defined line.",
@@ -1575,58 +1714,11 @@ window.IMO_SHORTLIST = {
       "remark": "The cube is the tangent-symmedian ratio $T_AB/T_AC=AB^{2}/AC^{2}$ multiplied by one ordinary similarity ratio, and the inversion centred at $T_A$ is a Mobius involution preserving $\\Gamma$, i.e. a projectivity of $\\Gamma\\cong\\mathbb{P}^{1}$; the concurrency conclusion uses directed Ceva with a careful sign analysis. The construction grows out of the symmedian configuration of a tangent meeting the opposite side, one of the most persistent motifs in triangle geometry, here applied cyclically at all three vertices."
     },
     {
-      "id": "g19",
-      "category": "geo",
-      "difficulty": "hard",
-      "stars": 3,
-      "confidence": "high",
-      "text": "Let $ABCD$ be a convex cyclic quadrilateral with circumcenter $O$. Assume that no two opposite sides are parallel and that neither $AC$ nor $BD$ is a diameter of the circumcircle. Let $P=AC\\cap BD$. Let $M\\ne O$ be the second intersection of the circumcircles of triangles $AOC$ and $BOD$. Let $X,Y$ be the perpendicular projections of $M$ onto the lines $AB,CD$, respectively, and let $N$ be the midpoint of $PM$. Prove that $X,Y,N$ are collinear.",
-      "why": "Unit-circle complex numbers ($\\bar a=1/a$): the chord $z+uv\\bar z=u+v$ gives $\\bar p=(a+c-b-d)/(ac-bd)$ for $P=AC\\cap BD$. Inversion in $\\omega$ - a Mobius transformation mapping circles through $O$ to lines - sends $(AOC),(BOD)$ to $AC,BD$, so $M$ is the inverse of $P$: $m=1/\\bar p$. The function $f(Z)=\\vec{ZA}\\cdot\\vec{ZC}-\\vec{ZB}\\cdot\\vec{ZD}$ is the difference of powers w.r.t. the circles on diameters $AC,BD$; the quadratic terms cancel, $f$ is affine-linear with zero set the radical axis $\\ell$, containing $P$ (intersecting chords) and, via the reflection formula $z\\mapsto a+b-ab\\bar z$, the reflections of $M$ in $AB$ and $CD$. The homothety centred $M$ with ratio $\\tfrac12$ carries $\\ell$ through the feet $X,Y$ and $N$: collinear.",
-      "hints": [
-        "Inversion in $\\omega$ maps $(AOC)$ and $(BOD)$ to lines: $M$ is the inverse of $P$.",
-        "Compare powers in the Thales circles of diameters $AC$ and $BD$: a radical axis line $\\ell$.",
-        "$\\ell$ carries $P$ and the reflections of $M$; shrink by $\\frac{1}{2}$ at $M$."
-      ],
-      "steps": [
-        "<b>Coordinates.</b> Take the circumcircle as the unit circle centered at $O=0$, with complex coordinates $a,b,c,d$ of $A,B,C,D$ (so $\\bar a=1/a$, etc.). Put $s=a+c-b-d$. Two facts from the hypotheses: (i) $s\\ne0$, for otherwise the diagonals $AC,BD$ would bisect each other, $ABCD$ would be a parallelogram and $AB\\parallel CD$, which is excluded; (ii) $ac\\ne bd$, because the chords $AC,BD$ meet at $P$ and so are not parallel (chords $ac$ and $bd$ are parallel exactly when $ac=bd$).",
-        "<b>The point $P$.</b> The chord through $u,v$ on the unit circle is $z+uv\\bar z=u+v$. Subtracting the equations for $AC$ and $BD$ gives $(ac-bd)\\bar p=s$, so $$\\bar p=\\frac{s}{ac-bd}\\ne 0.$$ In particular $P\\ne O$; this is also clear geometrically, since $AC$ is not a diameter, so $O\\notin AC$.",
-        "<b>The point $M$.</b> Since $AC$ is not a diameter, $A,O,C$ are not collinear, so $(AOC)$ exists; likewise $(BOD)$. Inversion in the circumcircle sends the circle $(AOC)$ (which passes through $O$) to the line $AC$, and $(BOD)$ to the line $BD$; these lines are distinct and meet only at $P$. Hence the two circles are distinct and their common points are $O$ and the inverse of $P$ (which exists because $P\\ne O$). Two distinct circles share at most two points, so $M$ is the inverse of $P$: $$m=\\frac1{\\bar p}=\\frac{ac-bd}{s},\\qquad \\bar m=\\frac{\\frac1{ac}-\\frac1{bd}}{\\bar s}=\\frac{bd-ac}{abcd\\,\\bar s},$$ where $\\bar s=\\frac1a+\\frac1c-\\frac1b-\\frac1d\\ne0$.",
-        "<b>A linear function.</b> For a point $Z$ write $Z$ also for its position vector and let $\\Omega_1,\\Omega_2$ be the circles with diameters $AC$ and $BD$. For any circle with diameter $UV$, the power of $Z$ is $|Z-\\tfrac{U+V}2|^2-\\tfrac{|U-V|^2}4=(U-Z)\\cdot(V-Z)$. Define $$f(Z)=\\operatorname{Pow}_{\\Omega_1}(Z)-\\operatorname{Pow}_{\\Omega_2}(Z)=(A-Z)\\cdot(C-Z)-(B-Z)\\cdot(D-Z)=A\\cdot C-B\\cdot D-Z\\cdot(A+C-B-D).$$ The $|Z|^2$ terms cancel, so $f$ is affine in $Z$, with gradient $-(A+C-B-D)$, whose complex coordinate is $-s\\ne0$. Hence $\\ell=\\{Z:f(Z)=0\\}$ is a genuine <em>line</em>. In complex form $f(z)=\\operatorname{Re}\\big(a\\bar c-b\\bar d-z\\bar s\\big)$.",
-        "<b>$P\\in\\ell$.</b> $ABCD$ is convex, so $P$ lies strictly inside both segments $AC$ and $BD$; the vectors $A-P,C-P$ are opposite, and likewise $B-P,D-P$. So $f(P)=-PA\\cdot PC+PB\\cdot PD=0$ by the intersecting chords theorem.",
-        "<b>Reflection of $M$ in $AB$ lies on $\\ell$.</b> The reflection of $m$ in the chord line $z+ab\\bar z=a+b$ is $z_1=a+b-ab\\,\\bar m$. Substituting $\\bar m$ from Step 3, $$z_1=a+b-\\frac{bd-ac}{cd\\,\\bar s},\\qquad z_1\\bar s=(a+b)\\bar s-\\frac bc+\\frac ad .$$ Expanding $(a+b)\\bar s=\\frac ac-\\frac ab-\\frac ad+\\frac ba+\\frac bc-\\frac bd$ (the two constant terms $1-1$ cancel), $$a\\bar c-b\\bar d-z_1\\bar s=\\frac ac-\\frac bd-\\Big(\\frac ac-\\frac ab-\\frac ad+\\frac ba+\\frac bc-\\frac bd\\Big)+\\frac bc-\\frac ad=\\frac ab-\\frac ba .$$ Since $|a/b|=1$, $b/a=\\overline{a/b}$, so the right side is $2i\\operatorname{Im}(a/b)$, purely imaginary. Taking real parts, $f(z_1)=0$: the reflection $M_{AB}$ lies on $\\ell$.",
-        "<b>Reflection of $M$ in $CD$ lies on $\\ell$.</b> Rename $(a,b,c,d)\\to(c,d,a,b)$. This leaves $s$, $m$ and $f$ unchanged (each is symmetric under $A\\leftrightarrow C$, $B\\leftrightarrow D$) and turns line $AB$ into line $CD$, so Step 6 applies verbatim: $M_{CD}\\in\\ell$.",
-        "<b>Conclusion.</b> $X$ and $Y$ are the feet of the perpendiculars from $M$, hence the midpoints of $MM_{AB}$ and $MM_{CD}$, and $N$ is the midpoint of $MP$. The homothety with center $M$ and ratio $\\tfrac12$ maps $M_{AB},M_{CD},P$ to $X,Y,N$ and maps the line $\\ell$ to a line $\\ell'$. Since $M_{AB},M_{CD},P\\in\\ell$, we get $X,Y,N\\in\\ell'$, so $$\\boxed{X,Y,N\\text{ are collinear}}.$$ (Coincident points, e.g. $X=Y$, are harmless: they still lie on $\\ell'$.) No converse is asserted, no case of equality arises, and no induction or descent is used."
-      ],
-      "remark": "The proof models the plane by complex numbers on the unit circle, $\\overline{a}=1/a$, where inversion in $\\omega$ is a Mobius transformation carrying circles through $O$ to lines, and the comparison of powers in the two Thales circles is an affine-linear function whose zero set is an explicit radical axis. The closing half-turn-style homothety of ratio $\\frac{1}{2}$, turning reflections into feet, is the standard shadow of Steiner-line theorems, in which reflections of a distinguished point in the sides are collinear."
-    },
-    {
-      "id": "g20",
-      "category": "geo",
-      "difficulty": "hard",
-      "stars": 3,
-      "confidence": "high",
-      "text": "Let $ABC$ be a scalene triangle with circumcircle $\\omega$ and circumcenter $O$. Let $I$ be the incenter of triangle $ABC$, and let the internal angle bisector of $\\angle BAC$ meet $\\omega$ again at $M$. Let $N$ be the point on $\\omega$ such that $MN$ is a diameter of $\\omega$. The line $NI$ meets $\\omega$ again at $P$. Let $J$ be the reflection of $I$ across the line $BC$. Let $Q$ be the second intersection of the circle through $I,J,P$ with $\\omega$, counted with multiplicity; thus $Q=P$ in the tangency case. Prove that the line $OI$ is the perpendicular bisector of the segment $AQ$.",
-      "why": "The arc-midpoint lemma $MI=MB=MC$ - $M$ is the circumcentre of $\\triangle BIC$ - gives $MI/OA=2\\sin\\tfrac A2=IJ/AI$, and $IJ\\parallel OM$, $\\angle MIJ=\\angle OAI=\\tfrac{|B-C|}{2}$ make $\\triangle MIJ\\sim\\triangle OAI$ a direct SAS similarity. A central-angle chase then puts $M,J,A'$ collinear, where $A'$ is the reflection of $A$ across the line $OI$: that line passes through the centre, so the reflection is an element of $O(2)$ preserving $\\omega$, hence $A'\\in\\omega$; the inscribed-angle criterion gives $A',I,J,P$ concyclic, so $Q=A'$ and $OI$ perpendicularly bisects $AQ$. In the boundary position $A'=P$, intersecting-chords power $IA\\cdot IM=IP\\cdot IN$ forces $OI\\parallel BC$ and tangency at $P$, again giving $Q=P=A'$.",
-      "hints": [
-        "Arc-midpoint lemma: $MI=MB=MC$; compare triangles $MIJ$ and $OAI$.",
-        "A SAS similarity plus angle chase makes $M,J,A'$ collinear, $A'$ reflected over $OI$."
-      ],
-      "steps": [
-        "Throughout, angles between lines are directed modulo $\\pi$, and $\\angle A,\\angle B,\\angle C$ denote the angles of the triangle. Put $D=AM\\cap BC$. Since $M$ is the midpoint of the arc $BC$ not containing $A$, $M$ and $A$ lie on strictly opposite sides of line $BC$, while $I$ is interior, so the bisector line carries the points in the order $A$--$I$--$D$--$M$, and ray $MI$ = ray $MA$.",
-        "$MI=MB$: indeed $\\angle MBC=\\tfrac A2$ (inscribed angle on the half-arc $MC$), and $M$, $I$ are on opposite sides of line $BC$, so ray $BC$ lies between rays $BM$ and $BI$ and $\\angle MBI=\\angle MBC+\\angle CBI=\\tfrac{A+B}2$. Also $M$ and $C$ lie on the same arc cut by chord $AB$, so $\\angle BMI=\\angle BMA=\\angle BCA=C$, hence $\\angle BIM=\\pi-\\tfrac{A+B}2-C=\\tfrac{A+B}2=\\angle MBI$, and triangle $MBI$ is isosceles with $MI=MB$.",
-        "The needed ratios: $MB=2R\\sin\\angle MAB=2R\\sin\\tfrac A2$, so $\\frac{MI}{OA}=\\frac MB R=2\\sin\\tfrac A2$. For the incenter, $d(I,BC)=r$ and reflection in $BC$ doubles the distance, so $IJ=2r$; the foot of the perpendicular from $I$ to $AB$ gives $r=AI\\sin\\tfrac A2$, so $\\frac{IJ}{AI}=2\\sin\\tfrac A2$. Thus $\\frac{MI}{OA}=\\frac{IJ}{AI}$. Finally $IJ\\perp BC$ (reflection) and $OM\\perp BC$ (the radius to the midpoint of arc $BC$ is the perpendicular bisector of chord $BC$), hence $IJ\\parallel OM$.",
-        "Claim: $\\angle MIJ=\\angle OAI$. First $\\angle MIJ$: in right triangle $IFD$ ($F$ the foot from $I$ to $BC$, ray $IJ$ = ray $IF$, ray $IM$ = ray $ID$), so $\\angle MIJ=\\angle DIF=\\frac\\pi2-\\angle IDF$. The positions of $F$ and $D$ on $BC$ obey $BF-BD=(s-b)-\\frac{ac}{b+c}=\\frac{(b-c)(a-b-c)}{2(b+c)}$, so $F$ is on the $B$-side of $D$ iff $b>c$, i.e. iff $B>C$. If $B>C$: $\\angle IDF=\\angle ADB=\\frac A2+C&lt;\\frac\\pi2$, giving $\\angle MIJ=\\frac{B-C}2$; if $C>B$: symmetrically $\\angle IDF=\\angle ADC=B+\\frac A2&lt;\\frac\\pi2$ and $\\angle MIJ=\\frac{C-B}2$. So always $\\angle MIJ=\\frac{|B-C|}2$. Second $\\angle OAI$: isosceles $OAB$ gives $\\angle OAB=|\\frac\\pi2-C|$. If $C&lt;\\frac\\pi2$ then $O$ is on the same side of $AB$ as $C$, inside $\\angle A$, so $\\angle OAI=|\\angle OAB-\\angle IAB|=|\\frac\\pi2-C-\\frac A2|=\\frac{|B-C|}2$; if $C>\\frac\\pi2$ then $O$ is outside the angle at $A$ past side $AB$, so $\\angle OAI=(C-\\frac\\pi2)+\\frac A2=\\frac{C-B}2$ in absolute value, again $\\frac{|B-C|}2$. Hence $\\angle MIJ=\\angle OAI$, and with the side ratio of the previous step, SAS gives $\\triangle MIJ\\sim\\triangle OAI$ with correspondence $M\\leftrightarrow O$, $I\\leftrightarrow A$, $J\\leftrightarrow I$; in particular $\\angle IMJ=\\angle AOI$. The similarity is *direct*: both oriented pairs $(MI,MJ)$ and $(OA,OI)$ have the same sign of orientation, and no scalene configuration flips this sign: a flip needs $J\\in$ line $MI$, i.e. the foot $F$ to lie on bisector $AD$, i.e. line $IF=$ line $AD\\perp BC$, i.e. $AB=AC$), so the sign is constant on each connected chamber of the acute scalene shape space. The chamber of the anchor $(80^\\circ,60^\\circ,40^\\circ)$ gives positive sign; reflecting a labeled triangle in a line reverses BOTH orientation signs ($\\angle(MI,MJ)$ and $\\angle(OA,OI)$) at once, so every mirrored chamber also matches; and the $B&gt;C$/$C&gt;B$ split in the first half of this step covers the two non-mirrored orderings. Hence the directed equality holds in all chambers. Therefore modulo $\\pi$: $\\angle(MI,MJ)\\equiv\\angle(OA,OI)$.",
-        "Collinearity $M$--$J$--$A'$: the reflection in $OI$ sends ray $OA$ to ray $OA'$, so $\\angle(OA,OA')\\equiv2\\angle(OA,OI)\\pmod{2\\pi}$; the inscribed--central-angle theorem on $\\omega$ gives $\\angle(MA,MA')\\equiv\\frac12\\angle(OA,OA')\\equiv\\angle(OA,OI)\\pmod\\pi$. Replacing line $MA$ by the same line $MI$, and combining with $\\angle(MI,MJ)\\equiv\\angle(OA,OI)$ from Step 4: $\\angle(MJ,MA')\\equiv0\\pmod\\pi$, i.e. $M$, $J$, $A'$ are collinear.",
-        "Concyclicity: $MN\\perp BC$ because $M,O,N$ are collinear and $OM\\perp BC$, and $IJ\\perp BC$, so $IJ\\parallel MN$. Also $I$ lies strictly between $N$ and $P$ (inside the disk on the chord $NP$), so line $PI$ = line $PN$. Chases on $\\omega$ and along the parallels, all mod $\\pi$: $$\\angle A'PI=\\angle A'PN=\\angle A'MN=\\angle(MJ,JI)=\\angle A'JI,$$ where the middle equality is the inscribed-angle theorem on chord $A'N$, and the last uses $M$--$J$--$A'$ collinear plus line $JA'=JM$, line $JI$ parallel to line $MN$. Equal angles $\\angle(PA',PI)=\\angle(JA',JI)\\pmod\\pi$ are the criterion for $A',I,J,P$ to be concyclic (or collinear; they are not: line $IJ$ is the perpendicular from $I$ to $BC$, it is parallel to the diameter line $MN$, and $P\\in$ line $IJ$ would force $I\\in MN$, i.e. $IB=IC$, i.e. $AB=AC$, contrary to scalene). Thus $A'\\in\\omega\\cap(IJP)$.",
-        "If $A'\\ne P$, the two distinct circles meet at $P$ and $A'$, so $Q=A'$. If $A'=P$, our multiplicity convention gives $Q=P=A'$. In that boundary case the tangent calculation below shows the second intersection is indeed double at $P$. In either case $Q=A'$, and since $A'$ is the reflection of $A$ in $OI$, the line $OI$ is the perpendicular bisector of $AQ$."
-      ],
-      "remark": "The engine is the arc-midpoint lemma $MI=MB=MC$, the reflection of $I$ in $BC$, and a global symmetry argument: reflection in the line $OI$ is an element of $O(2)$ preserving $\\omega$, so the reflected point $A'$ lies on $\\omega$ and must equal $Q$. Angles are treated as directed modulo $\\pi$, the standard discipline of Miquel-style chases, and the boundary position $A'=P$ is settled by intersecting-chords power, a common endgame in incenter-circumcircle configurations of this type."
-    },
-    {
       "id": "g21",
       "category": "geo",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 6.5,
       "confidence": "high",
       "text": "Let $ABC$ be a scalene triangle with orthocenter $H$, incenter $I$ and circumcenter $O$. The incircle touches sides $BC$, $CA$, $AB$ at $D$, $E$, $F$ respectively. Let $U$, $V$, $W$ be the reflections of $C$, $A$, $B$ in the points $D$, $E$, $F$ respectively, and let $U'$, $V'$, $W'$ be the reflections of $B$, $C$, $A$ in the points $D$, $E$, $F$ respectively. Prove that the area of triangle $HIO$ equals the area of triangle $ABC$ if and only if the points $U$, $V$, $W$ are collinear or the points $U'$, $V'$, $W'$ are collinear.",
       "why": "The collinearity conditions reduce by directed Menelaus to the two equations $(x-y)(y-z)(z-x)=\\mp8xyz$. The area comparison is obtained from an explicit homogeneous-areal determinant for $I,O,H$, valid also in right triangles; no degree-counting or sample-value argument is needed.",
@@ -1658,6 +1750,29 @@ window.IMO_SHORTLIST = {
       "category": "geo",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 6.5,
+      "confidence": "high",
+      "text": "Let $\\triangle ABC$ be a scalene triangle with $A$-excircle touching $BC$ at $D$. Let $M$ be the midpoint of the altitude from $A$. Line $MD$ meets the $A$-excircle again at $T$. Let $S\\ne T$ be the second intersection of line $MD$ with the circumcircle of $\\triangle BCT$. Prove that $$\\boxed{SB=SC}.$$",
+      "why": "The needed first identity is not itself the power of $M$: the power relation is $MD\\cdot MT$. A direct coordinate computation on the secant $MDT$ gives $MD\\cdot DT=hr_a$, while the second identity is the genuine power-of-a-point relation $DS\\cdot DT=DB\\cdot DC$.",
+      "hints": [
+        "Two power identities share the secant $MDT$: $MD\\cdot DT=hr_{a}$ and $DS\\cdot DT=DB\\cdot DC$."
+      ],
+      "steps": [
+        "Let $H$ be the foot of the altitude from $A$ to $BC$, let $h=AH$, and let $I_a,r_a$ be the centre and radius of the $A$-excircle. Since $M$ and $I_a$ lie on opposite sides of $BC$, the order on line $MD$ is $M-D-T$. Put $D$ at the origin and $BC$ on the $x$-axis; then for some real $u$, $$M=(u,h/2),\\qquad I_a=(0,-r_a).$$ Hence $$\\operatorname{Pow}_{\\mathcal E_a}(M)=MI_a^2-r_a^2=u^2+\\frac{h^2}{4}+hr_a=MD^2+hr_a.$$ But the secant $MDT$ gives $\\operatorname{Pow}_{\\mathcal E_a}(M)=MD\\cdot MT=MD(MD+DT)$. Therefore $$\\boxed{MD\\cdot DT=hr_a}.$$",
+        "The point $D$ lies on the line $BC$, which meets the circle $(BCT)$ at $B,C$, and on the line $ST$, whose intersections with that circle are $S,T$. Thus $$\\boxed{DB\\cdot DC=DS\\cdot DT}.$$ Since $DB\\cdot DC>0$ and $T$ lies beyond $D$ on the ray opposite $M$, the other intersection $S$ lies between $M$ and $D$. Dividing by the identity in Step 1 and using $DB=s-c$, $DC=s-b$, together with $$hr_a=\\frac{2s(s-b)(s-c)}a$$ from $\\Delta=ah/2=(s-a)r_a$ and Heron's formula, yields $$\\frac{DS}{MD}=\\frac{DB\\cdot DC}{hr_a}=\\frac a{2s},\\qquad \\frac{MS}{MD}=1-\\frac{a}{2s}=\\frac{b+c}{2s}.$$",
+        "Now place coordinates $B=(0,0)$, $C=(a,0)$, so $D=(s-c,\\,0)$. With the usual formula $x_A=\\dfrac{a^2+c^2-b^2}{2a}$, the foot of the altitude is $H=(x_A,0)$, so $M$, the midpoint of $A$ and $H$, has the *same* $x$-coordinate as $A$: $M=(x_A,\\,y_A/2)$.",
+        "Since $S$ divides $MD$ with $\\dfrac{MS}{MD}=\\dfrac{b+c}{2s}$ (Step 2), its $x$-coordinate is $$S_x=x_A+\\frac{b+c}{2s}\\big((s-c)-x_A\\big)=x_A\\cdot\\frac a{2s}+\\frac{(b+c)(s-c)}{2s}.$$",
+        "Multiply by $4s$ and substitute $x_A=\\frac{a^2+c^2-b^2}{2a}$, so $2ax_A=a^2+c^2-b^2$, and use $s-c=\\frac{a+b-c}2$ so that $2(b+c)(s-c)=(b+c)(a+b-c)=a(b+c)+b^2-c^2$: $$4s\\,S_x=(a^2+c^2-b^2)+\\big(a(b+c)+b^2-c^2\\big)=a^2+a(b+c)=a(a+b+c)=2as.$$ Hence $$\\boxed{S_x=\\frac a2}.$$",
+        "Since $B=(0,0)$ and $C=(a,0)$, the vertical line $x=a/2$ is exactly the perpendicular bisector of $BC$. As $S_x=a/2$, the point $S$ lies on it, so $$\\boxed{SB=SC}.$$ Equivalently: $S$ is the midpoint of an arc $BC$ of the circle $(BCT)$, so line $MD$ (which is line $TS$) bisects $\\angle BTC$ — an unexpected angle-bisection produced entirely by the midpoint-of-the-altitude construction."
+      ],
+      "remark": "The core is a two-circle power-of-a-point computation along the common secant $MDT$, where $MD\\cdot DT=hr_a$ for the $A$-excircle and $DS\\cdot DT=DB\\cdot DC$ for $(BCT)$; dividing with the excircle tangents $DB=s-c$, $DC=s-b$ and Heron's formula collapses everything to a pure side ratio. The hidden consequence, that $S$ is the arc midpoint of $(BCT)$ and $TS$ bisects $\\angle BTC$, connects back to the standard incenter arc-midpoint lemma, an unexpected angle bisection from the altitude-midpoint construction."
+    },
+    {
+      "id": "g23",
+      "category": "geo",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 7.5,
       "confidence": "high",
       "text": "Let $ABCD$ be a convex quadrilateral such that $\\angle B = \\angle A + \\angle C$. The internal angle bisector of $\\angle D$ intersects side $BC$ at point $E$ such that $\\angle AED = 90^\\circ$. Let $H$ be the foot of the perpendicular from $E$ to line $AD$. Let $\\Omega$ be the circumcircle of triangle $CDH$ and $\\Gamma$ be the circumcircle of triangle $ABE$. Suppose $\\Omega$ and $\\Gamma$ intersect at two distinct points, and let the tangents from $C$ to $\\Gamma$ touch the circle at $X$ and $Y$. Prove that line $BC$, line $XY$, and the line passing through the two intersection points of $\\Omega$ and $\\Gamma$ are concurrent.",
       "why": "$\\beta=\\alpha+\\gamma$ forces $\\angle ADE=180^\\circ-\\beta$, opposite $\\angle ABE=\\beta$: $ABED$ is cyclic with diameter $AD$, centre $O'$ the midpoint of $AD$; then $O'E\\parallel CD$, and the circle with diameter $O'E$ carries the midpoint $K$ of $BE$ onto $\\Omega$ (inscribed-angle, or tangent-chord when $H=O'$). Powers on line $BC$ with coordinate $z$ from $K$: $\\operatorname{Pow}_\\Omega=z(z-c)$, $\\operatorname{Pow}_\\Gamma=z^{2}-k^{2}$, differing by the affine function $k^{2}-cz$, so the radical axis meets $BC$ at $T$ with $t=k^{2}/c$, i.e. $KB^{2}=KC\\cdot KT$ - $T$ is the harmonic conjugate of $C$ w.r.t. $B,E$. The chord of contact $XY$ is the polar of $C$ w.r.t. $\\Gamma$, and a pole's polar cuts any secant through it harmonically (La Hire): $BC$, $XY$, and the radical axis concur at $T$.",
@@ -1677,10 +1792,11 @@ window.IMO_SHORTLIST = {
       "remark": "The concurrency point turns out to satisfy $KB^{2}=KC\\cdot KT$, i.e. $T$ is the harmonic conjugate of $C$ with respect to $B,E$; $XY$ is the polar of $C$ with respect to $\\Gamma$, so its passage through $T$ is pole-polar reciprocity with La Hire's theorem, while the radical axis is located by the affine difference of powers along $BC$. The entry point is the classical Thales-motif lemma: the angle condition $\\angle B=\\angle A+\\angle C$ forces $ABED$ to be cyclic with diameter $AD$."
     },
     {
-      "id": "g23",
+      "id": "g24",
       "category": "geo",
-      "difficulty": "hard",
-      "stars": 3,
+      "difficulty": "challenging",
+      "stars": 4,
+      "rating": 8,
       "confidence": "low",
       "text": "Let $ABC$ be a scalene triangle with incenter $I$. Let $P$ be an interior point such that $\\angle PBA=\\angle ICB$ and $\\angle PCA=\\angle IBA$. Let $B'=PB\\cap AI$ and $C'=PC\\cap AI$. Through $B'$ draw the line parallel to $AB$, meeting $BI$ at $X$; through $C'$ draw the line parallel to $AC$, meeting $CI$ at $Y$. Prove that the circumcircle of triangle $IXY$ and the circumcircle of triangle $BPX$ are tangent at $X$.",
       "why": "The angle conditions give $\\angle BPC=\\angle BIC$, so $P$ lies on the circle $(BIC)$ - a constant-inscribed-angle locus. Vectors with origin $I$ in the basis $(\\vec{IB},\\vec{IC})$: barycentric algebra via $aA+bB+cC=0$, and $BI=(s-b)/\\cos\\frac B2$ makes $|B|^{2},|C|^{2},B\\cdot C$ rational in the sides. Homotheties centred at $I$ give $X=\\frac{b-c}{b}B$, $Y=-\\frac{b-c}{c}C$. Tangency of $(IXY)$ and $(BPX)$ at $X$ means the two centres and $X$ are collinear - equivalently the homothety centred at the contact point carries one circle to the other - and comparing dot products against $B,C$ reduces this to one rational identity, $2(B\\cdot C)p_C=t|B|^{2}(1-p_B)$, which cancels exactly.",
@@ -1701,31 +1817,11 @@ window.IMO_SHORTLIST = {
       "remark": "The proof is barycentric vector algebra at the incenter, using $aA+bB+cC=0$ to write all points in the basis $\\vec{IB}$, $\\vec{IC}$, together with the tangency criterion that two circles through a common point are tangent iff their centres and that point are collinear, the centre-collinearity form of the homothety centred at the contact point. The hypothesis on $P$ is the familiar construction of a point on the circle $(BIC)$ by transported half-angles, a motif adjacent to incenter-excenter configurations."
     },
     {
-      "id": "g24",
-      "category": "geo",
-      "difficulty": "hard",
-      "stars": 3,
-      "confidence": "high",
-      "text": "Let $\\triangle ABC$ be a scalene triangle with $A$-excircle touching $BC$ at $D$. Let $M$ be the midpoint of the altitude from $A$. Line $MD$ meets the $A$-excircle again at $T$. Let $S\\ne T$ be the second intersection of line $MD$ with the circumcircle of $\\triangle BCT$. Prove that $$\\boxed{SB=SC}.$$",
-      "why": "The needed first identity is not itself the power of $M$: the power relation is $MD\\cdot MT$. A direct coordinate computation on the secant $MDT$ gives $MD\\cdot DT=hr_a$, while the second identity is the genuine power-of-a-point relation $DS\\cdot DT=DB\\cdot DC$.",
-      "hints": [
-        "Two power identities share the secant $MDT$: $MD\\cdot DT=hr_{a}$ and $DS\\cdot DT=DB\\cdot DC$."
-      ],
-      "steps": [
-        "Let $H$ be the foot of the altitude from $A$ to $BC$, let $h=AH$, and let $I_a,r_a$ be the centre and radius of the $A$-excircle. Since $M$ and $I_a$ lie on opposite sides of $BC$, the order on line $MD$ is $M-D-T$. Put $D$ at the origin and $BC$ on the $x$-axis; then for some real $u$, $$M=(u,h/2),\\qquad I_a=(0,-r_a).$$ Hence $$\\operatorname{Pow}_{\\mathcal E_a}(M)=MI_a^2-r_a^2=u^2+\\frac{h^2}{4}+hr_a=MD^2+hr_a.$$ But the secant $MDT$ gives $\\operatorname{Pow}_{\\mathcal E_a}(M)=MD\\cdot MT=MD(MD+DT)$. Therefore $$\\boxed{MD\\cdot DT=hr_a}.$$",
-        "The point $D$ lies on the line $BC$, which meets the circle $(BCT)$ at $B,C$, and on the line $ST$, whose intersections with that circle are $S,T$. Thus $$\\boxed{DB\\cdot DC=DS\\cdot DT}.$$ Since $DB\\cdot DC>0$ and $T$ lies beyond $D$ on the ray opposite $M$, the other intersection $S$ lies between $M$ and $D$. Dividing by the identity in Step 1 and using $DB=s-c$, $DC=s-b$, together with $$hr_a=\\frac{2s(s-b)(s-c)}a$$ from $\\Delta=ah/2=(s-a)r_a$ and Heron's formula, yields $$\\frac{DS}{MD}=\\frac{DB\\cdot DC}{hr_a}=\\frac a{2s},\\qquad \\frac{MS}{MD}=1-\\frac{a}{2s}=\\frac{b+c}{2s}.$$",
-        "Now place coordinates $B=(0,0)$, $C=(a,0)$, so $D=(s-c,\\,0)$. With the usual formula $x_A=\\dfrac{a^2+c^2-b^2}{2a}$, the foot of the altitude is $H=(x_A,0)$, so $M$, the midpoint of $A$ and $H$, has the *same* $x$-coordinate as $A$: $M=(x_A,\\,y_A/2)$.",
-        "Since $S$ divides $MD$ with $\\dfrac{MS}{MD}=\\dfrac{b+c}{2s}$ (Step 2), its $x$-coordinate is $$S_x=x_A+\\frac{b+c}{2s}\\big((s-c)-x_A\\big)=x_A\\cdot\\frac a{2s}+\\frac{(b+c)(s-c)}{2s}.$$",
-        "Multiply by $4s$ and substitute $x_A=\\frac{a^2+c^2-b^2}{2a}$, so $2ax_A=a^2+c^2-b^2$, and use $s-c=\\frac{a+b-c}2$ so that $2(b+c)(s-c)=(b+c)(a+b-c)=a(b+c)+b^2-c^2$: $$4s\\,S_x=(a^2+c^2-b^2)+\\big(a(b+c)+b^2-c^2\\big)=a^2+a(b+c)=a(a+b+c)=2as.$$ Hence $$\\boxed{S_x=\\frac a2}.$$",
-        "Since $B=(0,0)$ and $C=(a,0)$, the vertical line $x=a/2$ is exactly the perpendicular bisector of $BC$. As $S_x=a/2$, the point $S$ lies on it, so $$\\boxed{SB=SC}.$$ Equivalently: $S$ is the midpoint of an arc $BC$ of the circle $(BCT)$, so line $MD$ (which is line $TS$) bisects $\\angle BTC$ — an unexpected angle-bisection produced entirely by the midpoint-of-the-altitude construction."
-      ],
-      "remark": "The core is a two-circle power-of-a-point computation along the common secant $MDT$, where $MD\\cdot DT=hr_a$ for the $A$-excircle and $DS\\cdot DT=DB\\cdot DC$ for $(BCT)$; dividing with the excircle tangents $DB=s-c$, $DC=s-b$ and Heron's formula collapses everything to a pure side ratio. The hidden consequence, that $S$ is the arc midpoint of $(BCT)$ and $TS$ bisects $\\angle BTC$, connects back to the standard incenter arc-midpoint lemma, an unexpected angle bisection from the altitude-midpoint construction."
-    },
-    {
       "id": "g25",
       "category": "geo",
-      "difficulty": "hard",
-      "stars": 3,
+      "difficulty": "challenging",
+      "stars": 4,
+      "rating": 8.5,
       "confidence": "low",
       "text": "Let $\\Gamma$ be a circle and $S$ a point outside $\\Gamma$. Three distinct lines through $S$ meet $\\Gamma$ at $A,A'$, at $B,B'$, and at $C,C'$. Let $U$ be a point where a tangent from $S$ touches $\\Gamma$. Let $P\\ne S$ be the second intersection of the circumcircle of triangle $SAB$ and the circumcircle of triangle $SA'B'$, and let $R\\ne S$ be the second intersection of the circumcircle of triangle $SC'A$ and the circumcircle of triangle $SCA'$. Prove that the circumcircle of triangle $B'PU$ and the circumcircle of triangle $CRU$ are tangent at $U$.",
       "why": "Invert in the circle centred $S$ of radius $SU$: $SU^{2}=\\operatorname{Pow}_\\Gamma(S)=SA\\cdot SA'$ makes this Mobius involution fix $U$ and $\\Gamma$ and swap $A\\leftrightarrow A'$, $B\\leftrightarrow B'$, $C\\leftrightarrow C'$. Circles through the inversion centre become lines: $P\\mapsto P_1=AB\\cap A'B'$, $R\\mapsto R_1=CA'\\cap C'A$. For the complete quadrangle $A,B,A',B'$ on $\\Gamma$ the diagonal triangle is self-polar, so the polar of $S=AA'\\cap BB'$ joins the other two diagonal points; tangency $SU$ puts $S$ on the polar of $U$, and La Hire returns $U$ on the polar of $S$: $U,P_1$ collinear, likewise $U,R_1$. Tangent-chord angles reduce the inverted tangency to one inscribed angle subtending chord $UA$, $\\angle UBA=\\angle UC'A$; inversion is conformal at $U$, so the original pair is tangent there.",
@@ -1757,128 +1853,28 @@ window.IMO_SHORTLIST = {
       "category": "nt",
       "difficulty": "easy",
       "stars": 1,
+      "rating": 2.5,
       "confidence": "high",
-      "text": "Find all positive integers $n$ such that the triangular number $T_n=1+2+\\cdots+n$ divides both $1^{2}+2^{2}+\\cdots+n^{2}$ and $1^{4}+2^{4}+\\cdots+n^{4}$.",
-      "why": "Faulhaber's formulas give $\\sum k^{2}=T_n(2n+1)/3$ and $\\sum k^{4}=T_n(2n+1)(3n^{2}+3n-1)/15$. The first forces $n\\equiv1\\pmod3$; since $3n^{2}+3n-1\\equiv-1\\pmod3$ the factor $3$ of the second denominator is again paid by $2n+1$, so the new condition is purely mod $5$: either $n\\equiv2\\pmod5$ or $3n^{2}+3n-1\\equiv0$, whose discriminant $21\\equiv1\\pmod5$ splits it exactly at $n\\equiv1,3\\pmod5$. CRT merges the conditions into three classes, $n\\equiv1,7,13\\pmod{15}$.",
+      "text": "Find all pairs of positive integers $(x,y)$ such that $$x+y\\mid xy\\qquad\\text{and}\\qquad (x+y)^{2}\\mid x^{2}y^{2}+x^{2}+y^{2}.$$",
+      "why": "Put $t=x+y$, $u=xy$ — the elementary symmetric coordinates, in which $x^{2}+y^{2}=t^{2}-2u$. The hypotheses read $t\\mid u$ and $t^{2}\\mid u^{2}-2u$; writing $u=tw$ the second becomes $t\\mid2w$, so $t\\le2w$. But $x,y$ are the roots of $X^{2}-tX+tw$, so reality forces nonnegative discriminant $t^{2}-4tw\\ge0$, i.e. $t\\ge4w$. With $w>0$ the squeeze $4w\\le t\\le2w$ contradicts itself: no pairs exist. The boundary $t=4w$ (double root $x=y$, $w=x^{2}/2$) also dies: $t^{2}\\mid x^{2}(x^{2}+2)$ would demand $4\\mid x^{2}+2$, impossible since $x^{2}\\equiv0$ or $1\\pmod4$.",
       "hints": [
-        "Use Faulhaber's closed forms for $\\sum k^2$ and $\\sum k^4$"
+        "Set $t=x+y$, $u=xy$: hypotheses $t\\mid u$, $t^2\\mid u^2-2u$",
+        "$x,y$ are roots of $X^2-tX+tw$: discriminant forces $t\\ge4w$"
       ],
       "steps": [
-        "Use the classical power-sum identities $\\sum_{k\\le n}k^{2}=n(n+1)(2n+1)/6$ and $\\sum_{k\\le n}k^{4}=n(n+1)(2n+1)(3n^{2}+3n-1)/30$; each is machine-routine to prove by induction on $n$, since the difference of consecutive values of the claimed closed form is exactly $n^{2}$, respectively $n^{4}$ (expand to check).",
-        "First divisibility: $\\sum k^{2}/T_n=(2n+1)/3\\in\\mathbb Z\\iff n\\equiv1\\pmod3$.",
-        "Second divisibility $\\sum k^4/T_n\\in\\mathbb Z\\iff 15\\mid(2n+1)(3n^{2}+3n-1)$.",
-        "Mod 3: $3n^{2}+3n-1\\equiv-1$ never $0$; so the $3$ must divide $2n+1$ - the same condition as step 2 (note: no new information from the second divisibility at 3).",
-        "Mod 5: the quadratic has roots $n\\equiv1,3$ (disc $9+12\\equiv1$); linear factor $2n+1$ root $n\\equiv2$. Union $n\\bmod5\\in\\{1,2,3\\}$.",
-        "CRT with $n\\equiv1\\pmod3$: classes $1,7,13\\pmod{15}$."
+        "Rewrite: t = x + y, u = xy. Condition 1: t | u. Condition 2: x^2 + y^2 = t^2 - 2u, so x^2y^2 + x^2 + y^2 = u^2 - 2u + t^2, and t^2 | u^2 - 2u.",
+        "u = tw: t^2 | t^2 w^2 - 2tw iff t | 2w. Hence t &lt;= 2w (both positive).",
+        "The quadratic X^2 - tX + tw has roots x, y: discriminant D = t^2 - 4tw = t(t - 4w) must be a non-negative perfect square: t >= 4w.",
+        "Contradiction: 4w &lt;= t &lt;= 2w forces w = 0, impossible for positive x, y."
       ],
-      "remark": "The problem is an exercise in Faulhaber's formulas, whose coefficients are Bernoulli numbers: the quotient of each power sum by $T_n$ is a polynomial in $n$, and integrality is decided prime by prime. The quadratic $3n^{2}+3n-1$ splits mod 5 exactly when its discriminant is a square in $\\mathbb{F}_5$, and the Chinese remainder theorem then acts as the ring isomorphism $\\mathbb{Z}/15\\cong\\mathbb{Z}/3\\times\\mathbb{Z}/5$. The construction grows out of the standard olympiad motif of reducing divisibility of power sums to congruence conditions on closed factors."
+      "remark": "Working in the elementary symmetric coordinates $t=x+y$, $u=xy$ and then invoking reality of the roots of $X^2-tX+u$ is the same logic that underlies Vieta jumping: the mate root of the quadratic encodes the whole solution set, and sign or discriminant constraints prune it. Here the squeeze $4w\\le t\\le2w$ is a positivity obstruction of the type proving nonexistence in Markov-Hurwitz equations, with the boundary $t=4w$ killed by a mod-4 square check. The construction grows out of the classical $x+y\\mid xy$ family."
     },
     {
       "id": "n2",
       "category": "nt",
       "difficulty": "easy",
       "stars": 1,
-      "confidence": "medium",
-      "text": "Let $n\\ge2$ be an integer such that $$n\\mid a^{\\,n+1}-a\\qquad\\text{for every integer }a.$$<ol><li>Prove that this holds if and only if $n$ is squarefree and $p-1\\mid n$ for every prime $p\\mid n$.</li><li>Find all such $n$ having at most three distinct prime factors.</li><li>Show that $n=1806$ also has the property.</li></ol>",
-      "why": "Necessity: $p^{2}\\mid n$ fails at $a=p$, since $v_{p}(p^{n+1}-p)=1$; then a generator of $\\mathbb{F}_p^{\\times}$ forces $p-1\\mid n$. Sufficiency: Fermat prime by prime, then CRT. With at most three prime factors the condition $q-1\\mid pr$, $q-1<r$ rigidly forces $\\{2\\},\\{2,3\\},\\{2,3,7\\}$, giving $2,6,42$; the next value $1806=2\\cdot3\\cdot7\\cdot43$ shows the list continues past $42$.",
-      "hints": [
-        "Take $a=p$ to show $n$ is squarefree, then take $a$ a primitive root modulo $p$.",
-        "For $n=pqr$ with $p<q<r$, note $q-1\\mid pqr$ and $\\gcd(q-1,q)=\\gcd(q-1,r)=1$, so $q-1\\mid p$."
-      ],
-      "steps": [
-        "Assume the property. If $p^{2}\\mid n$, take $a=p$: $v_p(p^{n+1}-p)=1+v_p(p^{n}-1)=1&lt;v_p(n)$ contradiction. Hence $n$ squarefree.",
-        "Fix a prime $p\\mid n$. For every $a$ with $p\\nmid a$: $a^{n}\\equiv1\\pmod p$; the unit group is cyclic of order $p-1$, so a generator gives $p-1\\mid n$.",
-        "Conversely let $n$ be squarefree with $p-1\\mid n$ for all $p\\mid n$. If $p\\mid a$ then $a^{n+1}-a\\equiv0\\pmod p$; if not, $a^{n}\\equiv1$ by Fermat since $(p-1)\\mid n$. CRT over $\\omega(n)$ distinct primes finishes.",
-        "At most three primes. If $n=p$, then $p-1\\mid p$ forces $p=2$. If $n=pq$ with $p<q$, then $q-1\\mid pq$ and $\\gcd(q-1,q)=1$ give $q-1\\mid p$; since $q-1\\ge p$, $q=p+1$, so $(p,q)=(2,3)$ and $n=6$. If $n=pqr$ with $p<q<r$, then $q-1\\mid pr$ and $\\gcd(q-1,r)=1$ (as $q-1<r$), so $q-1\\mid p$ and again $(p,q)=(2,3)$; then $r-1\\mid 6$ with $r>3$ gives $r=7$ and $n=42$. Checking $1,2,6\\mid 42$ and $1,2\\mid 6$ confirms $n=2,6,42$.",
-        "$1806=2\\cdot3\\cdot7\\cdot43$ is squarefree and $1,2,6,42$ all divide $1806=42\\cdot43$, so the criterion of part 1 holds. Hence the answer to part 2 is $\\{2,6,42\\}$, and the list does not stop at $42$."
-      ],
-      "remark": "This is the mirror image of Korselt's criterion for Carmichael numbers ($p-1\\mid n-1$): here the condition is $p-1\\mid n$. The values $2,6,42,1806$ are products of initial terms of Sylvester's sequence $2,3,7,43,\\dots$; the structure with four or more prime factors is not classified here."
-    },
-    {
-      "id": "n3",
-      "category": "nt",
-      "difficulty": "easy",
-      "stars": 1,
-      "confidence": "high",
-      "text": "Let $G$ be the infinite graph with vertex set $\\mathbb{Z}_{>0}$ where distinct $a,b$ are adjacent iff $\\gcd(a,b)=1$ and $$\\frac{\\operatorname{lcm}(a,b)}{\\gcd(a,b)}>a+b.$$ For $n>2$, let $G_n$ be the subgraph induced on $\\{1,\\dots,n\\}$. Prove that the clique number of $G_n$ equals exactly the number of primes at most $n$.",
-      "why": "Clique vertices are pairwise coprime by adjacency, and $1$ is adjacent to nothing since $\\operatorname{lcm}(1,a)/\\gcd(1,a)=a<a+1$; choosing one prime divisor $p_v\\mid v$ per vertex, coprimality makes the $p_v$ distinct, so every clique injects into the primes $\\le n$. Primes attain the bound: for $p<q$, $pq>p+q$ iff $(p-1)(q-1)>1$. Hence $\\omega(G_n)=\\pi(n)$ exactly — an arithmetic graph whose clique number is the prime-counting function, so the prime number theorem fixes its asymptotic growth, $\\omega(G_n)\\sim n/\\log n$.",
-      "hints": [
-        "Assign one prime divisor $p_v$ per vertex: the primes are distinct"
-      ],
-      "steps": [
-        "In a clique every two vertices are coprime, so the clique vertices are pairwise coprime. Also $1$ cannot be adjacent to any other vertex, so a clique of size $>1$ contains no $1$.",
-        "Choose one prime divisor $p_v$ of each clique vertex $v$. Pairwise coprimality forces these chosen primes to be distinct, and each satisfies $p_v\\le v\\le n$. Hence every clique has size at most $\\pi(n)$.",
-        "Conversely, let $p&lt;q$ be primes at most $n$. Then $\\gcd(p,q)=1$ and $\\operatorname{lcm}(p,q)/\\gcd(p,q)=pq>p+q$ because $(p-1)(q-1)>1$. Thus all primes $\\le n$ form a clique.",
-        "Therefore $\\omega(G_n)=\\pi(n)$."
-      ],
-      "remark": "An arithmetic graph whose clique number is exactly the prime-counting function $\\pi(n)$, so the prime number theorem dictates the asymptotic growth $\\omega(G_n)\\sim n/\\log n$; coprime graphs and their clique and chromatic invariants are a recurring object in algebraic combinatorics on arithmetic structures. The proof runs on unique factorization, which turns pairwise coprimality into an injection into the primes. The construction is the standard olympiad motif of matching an injection bound with an explicit extremal clique."
-    },
-    {
-      "id": "n4",
-      "category": "nt",
-      "difficulty": "easy",
-      "stars": 1,
-      "confidence": "high",
-      "text": "Determine all positive integers $n$ such that $2^n+1$ divides $2^{n^2}+1$.",
-      "why": "Reducing $2^{n^{2}}+1=(2^{n})^{n}+1\\equiv(-1)^{n}+1\\pmod{2^{n}+1}$ shows divisibility holds iff $n$ is odd. Structurally this is the criterion $2^{a}+1\\mid2^{b}+1\\iff b/a$ is an odd integer: writing $b=aq+r$ gives $2^{b}+1\\equiv(-1)^{q}2^{r}+1$, whose vanishing forces $r=0$ and odd $q$. The same fact is the Lifting-The-Exponent lemma applied at odd primes $\\ell\\mid2^{a}+1$, where $v_{\\ell}(x^{m}+y^{m})=v_{\\ell}(x+y)+v_{\\ell}(m)$ for odd $m$.",
-      "hints": [
-        "Reduce mod $2^n+1$: $2^{n^2}=(2^n)^n\\equiv(-1)^n$"
-      ],
-      "steps": [
-        "Lemma. For positive integers $a$ and $b$, the integer $2^a+1$ divides $2^b+1$ if and only if $a\\mid b$ and $b/a$ is odd. Write $b=aq+r$ with $0\\le r&lt;a$. Modulo $2^a+1$ one has $2^a\\equiv -1$, so $2^{aq}=(2^a)^q\\equiv(-1)^q$ and $$2^b+1\\equiv(-1)^q\\,2^r+1.$$",
-        "If $0&lt;r&lt;a$, then $(-1)^q 2^r+1$ is an integer strictly between $-(2^a+1)$ and $2^a+1$, and it is nonzero: the positive sign gives at least $3$, while the negative sign gives $1-2^r=0$ only for $r=0$. A nonzero residue cannot be $0$ modulo $2^a+1$. Thus $r=0$ and $(-1)^q+1\\equiv 0$, so $q$ is odd.",
-        "Conversely, if $b=aq$ with $q$ odd, then $2^{aq}+1=(2^a)^q+1$ is divisible by $2^a+1$ because $q$ is odd.",
-        "Apply the lemma with $a=n$ and $b=n^2$. One has $n\\mid n^2$ automatically, and $n^2/n=n$ is odd if and only if $n$ is odd. Therefore the divisibility holds precisely for the odd positive integers."
-      ],
-      "remark": "Structurally this is the divisibility criterion for $2^a+1$ dividing $2^b+1$, which in cyclotomic language says the values $\\Phi_{2d}(2)$ divide each other only along odd index quotients; the same fact is the lifting-the-exponent lemma at primes dividing $2^a+1$, where $v_\\ell(x^m+y^m)=v_\\ell(x+y)+v_\\ell(m)$ for odd $m$. The entry point is the most elementary olympiad move: reduce the huge power modulo the would-be divisor and read off the parity of the exponent."
-    },
-    {
-      "id": "n5",
-      "category": "nt",
-      "difficulty": "easy",
-      "stars": 1,
-      "confidence": "high",
-      "text": "Find all pairs of primes $(p,q)$ for which $p^{\\,q+1}+q^{\\,p+1}$ is a perfect square.",
-      "why": "For odd primes each summand is $1\\bmod4$, so the sum is $2\\bmod4$, never a square; hence one prime is $2$. With $p=2$: $2^{q+1}+q^{3}=s^{2}$ factors as $q^{3}=(s-2^{(q+1)/2})(s+2^{(q+1)/2})$, two coprime odd factors, hence powers $q^{i}$ and $q^{3-i}$ by unique factorization, whose difference $2^{(q+3)/2}=q^{3-i}-q^{i}$ is impossible: $i=0$ leaves the odd factor $q^{2}+q+1>1$, the Zsigmondy primitive divisor of $q^{3}-1$; $i=1$ leaves the odd factor $q$. Only $p=q=2$ survives: $8+8=16$. The mod-$4$ screen is the $2$-adic square-class criterion — a unit of $\\mathbb{Z}_{2}$ is a square iff $1\\bmod 8$.",
-      "hints": [
-        "Odd primes: both terms $\\equiv1\\pmod4$, sum $\\equiv2$: one prime is 2"
-      ],
-      "steps": [
-        "Both primes odd: p^{q+1} ≡ q^{p+1} ≡ 1 (mod 4), sum ≡ 2 (mod 4) - not a square.",
-        "p=2&lt;q: s^2 = 2^{q+1} + q^3; parity: RHS odd, s odd; write a = 2^{(q+1)/2}; (s-a)(s+a) = q^3.",
-        "Both factors positive odd integers (s > a since s^2 - a^2 = q^3 > 0), multiplying to q^3 with s-a &lt; s+a: (s-a, s+a) ∈ {(1, q^3), (q, q^2)}.",
-        "Case (1,q^3): 2a = q^3 - 1 = (q-1)(q^2+q+1); q^2+q+1 is odd and >1, cannot divide the power of two 2a - contradiction.",
-        "Case (q,q^2): 2a = q^2 - q = q(q-1); odd q > 1 divides the power of two - contradiction.",
-        "p=q=2 gives 16 = 4^2, the only solution."
-      ],
-      "remark": "The mod-4 exclusion is the $2$-adic square-class test: a unit of $\\mathbb{Z}_2$ is a square iff it is $1\\bmod 8$, so squares of odd integers are never $2\\bmod4$. The factorization step leans on unique factorization in $\\mathbb{Z}$, and the odd factor $q^2+q+1$ of $q^3-1$ is a Zsigmondy primitive divisor that cannot divide a power of two. The design is the classical olympiad motif of a difference of squares with coprime factor pairing."
-    },
-    {
-      "id": "n6",
-      "category": "nt",
-      "difficulty": "easy",
-      "stars": 1,
-      "confidence": "high",
-      "text": "Let $n\\ge 2$ be an integer, and let $N(n)$ be the number of residue classes $a$ modulo $n$ satisfying $a^{n}\\equiv a\\pmod n$. Here $\\mathrm{rad}(n)$ denotes the product of the distinct prime divisors of $n$.<ol><li>Find a closed form for $N(n)$ in terms of the prime divisors of $n$.</li><li>Prove that $N(n)\\le \\mathrm{rad}(n)$, with equality if and only if $p-1$ divides $n-1$ for every prime $p\\mid n$. (Squarefreeness is NOT part of this criterion: $n=4$ and $n=9$ are equality cases.)</li><li>Which famous composite integers give $N(n)=n$?</li></ol>",
-      "why": "CRT gives $N(n)=\\prod N(p^{k})$. A non-unit $x\\not\\equiv0$ fails since $x^{n}\\equiv0\\not\\equiv x$; on the cyclic group $(\\mathbb{Z}/p^{k})^{\\times}$ the equation $x^{n-1}=1$ has $\\gcd(n-1,p^{k-1}(p-1))=\\gcd(n-1,p-1)$ solutions because $p\\mid n$ forces $n-1\\equiv-1\\pmod p$, so $N(p^{k})=\\gcd(n-1,p-1)+1$ is independent of $k$; at $2^{k}$ the group $C_{2}\\times C_{2^{k-2}}$ has no odd-order element but $1$, giving $N(2^{k})=2$. Hence $N(n)=\\prod_{p\\mid n}(\\gcd(n-1,p-1)+1)\\le\\operatorname{rad}(n)$; the product depends only on the prime SET of $n$, so exponents are invisible to it and equality with $\\operatorname{rad}(n)$ is exactly the divisibility criterion $p-1\\mid n-1$ for all $p\\mid n$ - squarefreeness NOT required ($n=4,9$ are equality cases). Only the stronger equation $N(n)=n$ forces squarefreeness, after which the same divisibility is precisely Korselt's criterion, so $N(n)=n$ characterizes the primes and the Carmichael numbers ($561,1105,\\dots$).",
-      "hints": [
-        "In the cyclic units, $x^{n-1}=1$ has $\\gcd(n-1,p-1)$ roots; nonunits fail"
-      ],
-      "steps": [
-        "CRT. Writing $n=\\prod p^{k}$, the congruence $x^{n}\\equiv x\\pmod n$ is equivalent to the system modulo each $p^{k}$, so $N(n)=\\prod N(p^{k})$; each local count $N(p^{k})=\\#\\{x\\bmod p^{k}: x^{n}\\equiv x\\}$ depends on $n$, not just $p^{k}$.",
-        "Odd primes. The class $x\\equiv0$ works. For $x\\not\\equiv0$: the units $(\\mathbb Z/p^{k})^{\\times}$ are cyclic of order $p^{k-1}(p-1)$, so $x^{n-1}\\equiv1$ has $\\gcd(n-1,\\,p^{k-1}(p-1))$ solutions; since $p\\mid n$ gives $n-1\\equiv-1\\pmod p$, no factor $p$ divides $n-1$, and this gcd equals $\\gcd(n-1,p-1)$. Non-units: $x=pv\\not\\equiv0$ has $v_{p}(x^{n})=nv\\ge n\\ge k$ (as $k=v_p(n)\\le\\log_2n\\lt n$ for $n\\ge2$), so $x^{n}\\equiv0\\not\\equiv x$. Hence $N(p^{k})=\\gcd(n-1,p-1)+1$ for every $k\\ge1$ - independent of $k$.",
-        "The prime 2. $n$ even forces $n-1$ odd. Modulo $2^{k}$ with $k\\ge2$: an odd $x$ with $x^{n-1}\\equiv1$ has odd order in $C_2\\times C_{2^{k-2}}$, whose only odd-order element is $1$; so among odd classes only $x\\equiv1$ works, and $x\\equiv0$ works, giving $N(2^{k})=2=\\gcd(n-1,1)+1$ (check $k=1$ directly: $N(2)=2$).",
-        "Multiply the local counts: $N(n)=\\prod_{p\\mid n}\\bigl(\\gcd(n-1,p-1)+1\\bigr)$, which proves part 1.",
-        "Part 2: each factor satisfies $\\gcd(n-1,p-1)+1\\le p$, with equality iff $p-1\\mid n-1$. Multiplying over $p\\mid n$: $N(n)\\le\\prod_{p\\mid n}p=\\mathrm{rad}(n)$; equality in a product of positive integers each bounded by a respective bound holds iff every factor attains its bound, i.e. iff $p-1\\mid n-1$ for every $p\\mid n$. Exponents are invisible to the formula, so the criterion does NOT include squarefreeness: $N(4)=\\gcd(3,1)+1=2=\\mathrm{rad}(4)$ and $N(9)=\\gcd(8,2)+1=3=\\mathrm{rad}(9)$ are genuine equality cases with $k\\ge2$. Part 3 bookkeeping starts here: if $N(n)=n$, then $\\mathrm{rad}(n)\\ge n$ with equality only for squarefree $n$, so $n$ is squarefree and $N(n)=\\mathrm{rad}(n)$, and part 2's criterion applies; conversely squarefree $n$ with $p-1\\mid n-1$ for all $p\\mid n$ gives $N(n)=\\prod p=n$.",
-        "Part 3: composite $n$ with $N(n)=n$ are exactly the Carmichael numbers - squarefree with $p-1\\mid n-1$ for all $p\\mid n$ (Korselt's criterion). The smallest, $561=3\\cdot11\\cdot17$, satisfies $2,10,16\\mid560$, so $a^{561}\\equiv a\\pmod{561}$ for every integer $a$: every base is a Fermat liar. The equality composites up to 3000 are exactly $561,1105,1729,2465,2821$ (audit)."
-      ],
-      "remark": "The count $N(n)=\\prod_{p\\mid n}(\\gcd(n-1,p-1)+1)$ is a computation of torsion in the unit groups $(\\mathbb{Z}/p^k\\mathbb{Z})^{\\times}$, using cyclicity for odd $p$ and the decomposition $C_2\\times C_{2^{k-2}}$ at $2^k$, assembled by the Chinese remainder theorem. Part 3 lands on Carmichael numbers: squarefree $n$ with $p-1\\mid n-1$, exactly Korselt's criterion, the condition making every base a Fermat liar. The problem grows out of the standard local-to-global counting of solutions of $x^n\\equiv x$."
-    },
-    {
-      "id": "n7",
-      "category": "nt",
-      "difficulty": "easy",
-      "stars": 1,
+      "rating": 3,
       "confidence": "high",
       "text": "Let $a,b,c,d$ be positive integers and put $S=a+b+c+d$ and $Q=a^2+b^2+c^2+d^2$. Suppose $Q\\mid S^2$. Determine all possible values of the integer $S^2/Q$.",
       "why": "Spectrally $S^{2}=x^{T}Jx$ with $J$ the all-ones matrix (eigenvalues $4,0,0,0$), so Cauchy–Schwarz bounds $Q<S^{2}\\le4Q$ for positive entries, and $Q\\mid S^{2}$ leaves the quotient in $\\{2,3,4\\}$. The upper bracket end is the equality condition: $S^{2}=4Q$ iff $a=b=c=d$, attained by $(1,1,1,1)$. The others occur: $(1,1,1,3)$ gives $3$, and $(1,1,4,12)$ gives $2$ — an integer isotropic vector of the indefinite quadratic form $S^{2}-2Q$ of signature $(1,3)$, reachable by the parametrization $(b-c)^{2}=4a(b+c)$. The full value set is $\\{2,3,4\\}$.",
@@ -1896,10 +1892,11 @@ window.IMO_SHORTLIST = {
       "remark": "Spectrally $S^2=x^{T}Jx$ for the rank-one all-ones matrix $J$, so the squeeze $Q<S^2\\le4Q$ is the eigenvalue form of the inequality between the arithmetic and quadratic means; the case $k=2$ is an integral isotropic vector of the indefinite quadratic form $S^2-2Q$ of signature $(1,3)$, a lattice point on a light cone parametrized by $(b-c)^2=4a(b+c)$. The construction is the classic olympiad pattern of bracketing a divisibility quotient between sharp bounds, then realizing each surviving integer explicitly."
     },
     {
-      "id": "n8",
+      "id": "n3",
       "category": "nt",
       "difficulty": "easy",
       "stars": 1,
+      "rating": 3,
       "confidence": "high",
       "text": "Determine all positive integers $n$ such that $\\sigma(n)=\\varphi(n)+\\tau(n)$, where $\\sigma$ is the sum-of-divisors function, $\\varphi$ is Euler's totient, and $\\tau$ is the number of positive divisors.",
       "why": "Primes satisfy $\\sigma(n)=\\varphi(n)+\\tau(n)$ since $\\sigma(p)=p+1$ and $\\varphi(p)+\\tau(p)=(p-1)+2$; $n=1$ gives $1\\ne2$. For composite $n$, with $p$ the least prime factor, the divisor $n/p$ is distinct from $1$, $p$, $n$ except at prime squares, which the direct check $p^{2}+p+1=p^{2}-p+3$ eliminates; then $\\sigma(n)-\\varphi(n)\\ge\\frac{2n}p+p+1$ dominates $\\tau(n)\\le2\\sqrt n$ by AM–GM on $p$ and $2n/p$. Only primes qualify. In the ring of arithmetic functions under Dirichlet convolution the claim compares $\\sigma=1*\\mathrm{id}$, $\\varphi=\\mu\\cdot\\mathrm{id}$ and $\\tau=1*1$ through the elementary bounds $\\tau(n)\\le2\\sqrt n$ and $\\varphi(n)\\le n-n/p$.",
@@ -1918,10 +1915,11 @@ window.IMO_SHORTLIST = {
       "remark": "The functions sit in the Dirichlet-convolution algebra as $\\sigma=1*\\mathrm{id}$, $\\varphi=\\mu\\cdot\\mathrm{id}$ and $\\tau=1*1$, and the proof is a first exercise in elementary order-of-magnitude estimates: the divisor pairing at $\\sqrt n$ giving $\\tau(n)\\le2\\sqrt n$ is the degenerate form of the Dirichlet hyperbola method, sharpened by AM-GM on $p$ and $2n/p$. The construction is the standard olympiad device of letting a few explicit large divisors overwhelm crude upper bounds for composites."
     },
     {
-      "id": "n9",
+      "id": "n4",
       "category": "nt",
-      "difficulty": "medium",
-      "stars": 2,
+      "difficulty": "easy",
+      "stars": 1,
+      "rating": 3,
       "confidence": "high",
       "text": "Determine all positive integers $n$ for which $$n^2 + 3^n$$ is a perfect square.",
       "why": "Parity makes both $k\\pm n$ odd, so unique factorization turns $k^{2}-n^{2}=3^{n}$ into $k-n=3^{a}$, $k+n=3^{b}$, $a<b$, $a+b=n$; subtracting, $2n=3^{b}-3^{a}\\ge2\\cdot3^{b-1}$ forces $n\\ge3^{b-1}$ against the linear bound $n\\le2b-1$, impossible for $b\\ge3$. The surviving exponent pairs give exactly $n=1$ and $n=3$. This factor-and-compare scheme is the elementary prototype for exponential Diophantine equations of Lebesgue–Nagell type ($x^{2}+D=y^{n}$), whose general instances fall to Baker's theory of linear forms in logarithms rather than to factorization.",
@@ -1938,30 +1936,189 @@ window.IMO_SHORTLIST = {
       "remark": "This is the elementary prototype of Lebesgue-Nagell type exponential Diophantine equations $x^2+D=y^n$: here unique factorization in $\\mathbb{Z}$ suffices because both factors of $3^n$ are powers of 3, while general instances fall to factorization in quadratic orders and ultimately to Baker's theory of linear forms in logarithms. The decisive comparison of $3^{b-1}$ against $2b-1$ is a toy height argument, exponential growth dominating a linear one. The idea is the classical difference-of-squares splitting with coprime factor pairing."
     },
     {
+      "id": "n5",
+      "category": "nt",
+      "difficulty": "easy",
+      "stars": 1,
+      "rating": 3.5,
+      "confidence": "high",
+      "text": "Let $S_n=1^{3}+2^{3}+\\cdots+(n-1)^{3}$.<ol><li>Find all integers $n\\ge2$ such that $n\\mid S_n$.</li><li>Find all integers $n\\ge2$ such that $n^{2}\\mid S_n$.</li></ol>",
+      "why": "Nicomachus's identity: $S_n=\\left(\\frac{n(n-1)}{2}\\right)^{2}$, so both questions reduce to the parity of $v_2$. Part 1: $n\\mid S_n\\iff4\\mid n(n-1)^{2}$ — automatic for odd $n$, and for even $n$ equivalent to $4\\mid n$ since $(n-1)^2$ is odd: $n\\equiv2\\pmod4$ is the exact obstruction. Part 2: $n^{2}\\mid S_n\\iff(n-1)^{2}/4\\in\\mathbb{Z}\\iff n$ odd, a strictly smaller family. Structurally $\\sum k^{3}$ is a polynomial in the triangular number $T_{n-1}$ — Faulhaber's theorem that odd-power sums lie in $\\mathbb{Q}[T]$ — and the divisibility thresholds are pure $2$-adic bookkeeping.",
+      "hints": [
+        "Nicomachus: $S_n=\\left(\\frac{n(n-1)}{2}\\right)^2$"
+      ],
+      "steps": [
+        "Prove $S_n=\\left(\\frac{n(n-1)}{2}\\right)^{2}$ (telescoping or induction).",
+        "Part 1: $n\\mid S_n\\iff n^{2}(n-1)^{2}\\equiv0\\pmod{4n}\\iff 4\\mid n(n-1)^{2}$. If $n$ odd: $4\\mid(n-1)^2$ ✓. If $n\\equiv2\\pmod4$: $n(n-1)^2\\equiv2\\cdot\\text{odd}\\not\\equiv0$. If $4\\mid n$ ✓. Answer: odd or $4\\mid n$.",
+        "Part 2: $n^{2}\\mid S_n\\iff 4\\mid(n-1)^{2}$ after dividing by $n^{2}$: impossible for even $n$ ($(n-1)^2\\equiv1\\pmod4$), automatic for odd $n$ ((n-1)/2 integral squared).",
+        "Cross-check boundaries: $n=2$ fails part 1 ($S=1$); $n=4$: $S=36$, $4\\mid36$ ✓ part 1, $16\\nmid36$ ✗ part 2 ✓; $n=6$: $225$, $6\\nmid225$ ✓ excluded."
+      ],
+      "remark": "The identity $\\sum k^3=T_{n-1}^2$ is the first instance of Faulhaber's theorem that odd power sums are polynomials in the triangular number, a symmetry consequence of the Bernoulli-polynomial formulas; everything after it is $2$-adic bookkeeping on $n^2(n-1)^2/4$. The gap between $n\\mid S_n$ and $n^2\\mid S_n$ is pure parity, decided by a single extra factor of 2, with $n\\equiv2\\pmod4$ the exact obstruction. The construction is the classical power-sum divisibility motif of reducing to congruences on a closed form."
+    },
+    {
+      "id": "n6",
+      "category": "nt",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4,
+      "confidence": "high",
+      "text": "Determine all integers $n&gt;1$ such that $$d^2-1\\mid n^2-1$$ for every divisor $d&gt;1$ of $n$.",
+      "why": "Primes and prime squares pass immediately ($p^2-1\\mid p^4-1$), but every higher prime power fails at the single divisor $d=p^{k-1}$: the elementary lemma $x^a-1\\mid x^b-1\\iff a\\mid b$ (division algorithm in $\\bmod\\,x^a-1$) applies since $k-1\\nmid k$ for $k\\ge3$. If $n$ has at least two distinct prime divisors, take the smallest $p$ and $d=n/p$; then $d>p$, the identity $n^2-1=p^2(d^2-1)+(p^2-1)$ collapses the hypothesis to $d^2-1\\mid p^2-1$, and a positive integer cannot be a multiple of a strictly larger positive integer. Answer: $n$ is prime or the square of a prime.",
+      "hints": [
+        "Check small powers of a single prime first: which of $p,p^2,p^3,p^4$ pass?",
+        "If $n$ has two distinct prime divisors, try $d=n/p$ where $p$ is the smallest prime divisor; also recall when $x^a-1\\mid x^b-1$ holds."
+      ],
+      "steps": [
+        "Prime case: if $n=p$, the only divisor $d>1$ is $n$ itself and $d^2-1=n^2-1$ divides trivially. Every prime satisfies the condition.",
+        "Square case: if $n=p^2$, the divisors $d>1$ are $p$ and $p^2$, and $$p^2-1\\mid p^4-1=(p^2-1)(p^2+1)$$ covers both. Every prime square satisfies the condition.",
+        "Higher prime powers fail. Let $n=p^k$ with $k\\ge3$ and take the divisor $d=p^{k-1}$. The standard lemma says that for an integer $x\\ge2$, $x^a-1\\mid x^b-1$ iff $a\\mid b$: writing $b=qa+r$ with $0\\le r&lt;a$, one has $x^b-1\\equiv x^r-1\\pmod{x^a-1}$ and $0\\le x^r-1&lt;x^a-1$, so divisibility forces $r=0$. With $x=p^2$, $a=k-1$, $b=k$, since $k-1\\ge2$ does not divide $k$, $$d^2-1=p^{2k-2}-1\\nmid p^{2k}-1=n^2-1,$$ a contradiction.",
+        "Non-prime-powers fail. Let $n$ have at least two distinct prime divisors, let $p$ be its smallest prime divisor, and put $d=n/p$. Then $d>1$ divides $n$, and $d&gt;p$: otherwise all prime factors of $d$ are at least $p$ and $d\\le p$ forces $d=p$, i.e. $n=p^2$, excluded.",
+        "By hypothesis $d^2-1\\mid n^2-1=p^2d^2-1=p^2(d^2-1)+(p^2-1)$, hence $d^2-1\\mid p^2-1$.",
+        "But $d&gt;p&gt;1$ gives $0&lt;p^2-1&lt;d^2-1$, and no positive integer is divisible by a strictly larger positive integer - contradiction.",
+        "Therefore the complete set is $$\\boxed{n=p\\ \\text{or}\\ n=p^{2}\\quad(p\\ \\text{prime}).}$$"
+      ],
+      "remark": "The complementary divisor $n/p$ and the near-miss divisor $p^{k-1}$ are the two levers: the first turns a divisibility about $n$ into an impossible one between two strictly ordered quadratic expressions, the second exposes that $p^{2j}-1\\mid p^{2k}-1$ needs $j\\mid k$, so the answer is one notch smaller than 'all prime powers'."
+    },
+    {
+      "id": "n7",
+      "category": "nt",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4.5,
+      "confidence": "high",
+      "text": "Find all positive integers $n$ such that the triangular number $T_n=1+2+\\cdots+n$ divides both $1^{2}+2^{2}+\\cdots+n^{2}$ and $1^{4}+2^{4}+\\cdots+n^{4}$.",
+      "why": "Faulhaber's formulas give $\\sum k^{2}=T_n(2n+1)/3$ and $\\sum k^{4}=T_n(2n+1)(3n^{2}+3n-1)/15$. The first forces $n\\equiv1\\pmod3$; since $3n^{2}+3n-1\\equiv-1\\pmod3$ the factor $3$ of the second denominator is again paid by $2n+1$, so the new condition is purely mod $5$: either $n\\equiv2\\pmod5$ or $3n^{2}+3n-1\\equiv0$, whose discriminant $21\\equiv1\\pmod5$ splits it exactly at $n\\equiv1,3\\pmod5$. CRT merges the conditions into three classes, $n\\equiv1,7,13\\pmod{15}$.",
+      "hints": [
+        "Use Faulhaber's closed forms for $\\sum k^2$ and $\\sum k^4$"
+      ],
+      "steps": [
+        "Use the classical power-sum identities $\\sum_{k\\le n}k^{2}=n(n+1)(2n+1)/6$ and $\\sum_{k\\le n}k^{4}=n(n+1)(2n+1)(3n^{2}+3n-1)/30$; each is machine-routine to prove by induction on $n$, since the difference of consecutive values of the claimed closed form is exactly $n^{2}$, respectively $n^{4}$ (expand to check).",
+        "First divisibility: $\\sum k^{2}/T_n=(2n+1)/3\\in\\mathbb Z\\iff n\\equiv1\\pmod3$.",
+        "Second divisibility $\\sum k^4/T_n\\in\\mathbb Z\\iff 15\\mid(2n+1)(3n^{2}+3n-1)$.",
+        "Mod 3: $3n^{2}+3n-1\\equiv-1$ never $0$; so the $3$ must divide $2n+1$ - the same condition as step 2 (note: no new information from the second divisibility at 3).",
+        "Mod 5: the quadratic has roots $n\\equiv1,3$ (disc $9+12\\equiv1$); linear factor $2n+1$ root $n\\equiv2$. Union $n\\bmod5\\in\\{1,2,3\\}$.",
+        "CRT with $n\\equiv1\\pmod3$: classes $1,7,13\\pmod{15}$."
+      ],
+      "remark": "The problem is an exercise in Faulhaber's formulas, whose coefficients are Bernoulli numbers: the quotient of each power sum by $T_n$ is a polynomial in $n$, and integrality is decided prime by prime. The quadratic $3n^{2}+3n-1$ splits mod 5 exactly when its discriminant is a square in $\\mathbb{F}_5$, and the Chinese remainder theorem then acts as the ring isomorphism $\\mathbb{Z}/15\\cong\\mathbb{Z}/3\\times\\mathbb{Z}/5$. The construction grows out of the standard olympiad motif of reducing divisibility of power sums to congruence conditions on closed factors."
+    },
+    {
+      "id": "n8",
+      "category": "nt",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4.5,
+      "confidence": "high",
+      "text": "Find all pairs of primes $(p,q)$ for which $p^{\\,q+1}+q^{\\,p+1}$ is a perfect square.",
+      "why": "For odd primes each summand is $1\\bmod4$, so the sum is $2\\bmod4$, never a square; hence one prime is $2$. With $p=2$: $2^{q+1}+q^{3}=s^{2}$ factors as $q^{3}=(s-2^{(q+1)/2})(s+2^{(q+1)/2})$, two coprime odd factors, hence powers $q^{i}$ and $q^{3-i}$ by unique factorization, whose difference $2^{(q+3)/2}=q^{3-i}-q^{i}$ is impossible: $i=0$ leaves the odd factor $q^{2}+q+1>1$, the Zsigmondy primitive divisor of $q^{3}-1$; $i=1$ leaves the odd factor $q$. Only $p=q=2$ survives: $8+8=16$. The mod-$4$ screen is the $2$-adic square-class criterion — a unit of $\\mathbb{Z}_{2}$ is a square iff $1\\bmod 8$.",
+      "hints": [
+        "Odd primes: both terms $\\equiv1\\pmod4$, sum $\\equiv2$: one prime is 2"
+      ],
+      "steps": [
+        "Both primes odd: p^{q+1} ≡ q^{p+1} ≡ 1 (mod 4), sum ≡ 2 (mod 4) - not a square.",
+        "p=2&lt;q: s^2 = 2^{q+1} + q^3; parity: RHS odd, s odd; write a = 2^{(q+1)/2}; (s-a)(s+a) = q^3.",
+        "Both factors positive odd integers (s > a since s^2 - a^2 = q^3 > 0), multiplying to q^3 with s-a &lt; s+a: (s-a, s+a) ∈ {(1, q^3), (q, q^2)}.",
+        "Case (1,q^3): 2a = q^3 - 1 = (q-1)(q^2+q+1); q^2+q+1 is odd and >1, cannot divide the power of two 2a - contradiction.",
+        "Case (q,q^2): 2a = q^2 - q = q(q-1); odd q > 1 divides the power of two - contradiction.",
+        "p=q=2 gives 16 = 4^2, the only solution."
+      ],
+      "remark": "The mod-4 exclusion is the $2$-adic square-class test: a unit of $\\mathbb{Z}_2$ is a square iff it is $1\\bmod 8$, so squares of odd integers are never $2\\bmod4$. The factorization step leans on unique factorization in $\\mathbb{Z}$, and the odd factor $q^2+q+1$ of $q^3-1$ is a Zsigmondy primitive divisor that cannot divide a power of two. The design is the classical olympiad motif of a difference of squares with coprime factor pairing."
+    },
+    {
+      "id": "n9",
+      "category": "nt",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4.5,
+      "confidence": "high",
+      "text": "Let $\\mathcal F$ be the set of all bijections $f\\colon\\mathbb N\\to\\mathbb N$ satisfying $f(ab)=f(a)f(b)$ for all $a,b\\in\\mathbb N$. Define $g(n)=\\min_{f\\in\\mathcal F}f(n)$. Prove that $g(g(n))=g(n)$ for all positive integers $n$.",
+      "why": "Unique factorization makes $\\mathbb{N}^{\\times}$ the free commutative monoid on the primes, so $\\mathcal F$ is exactly the group of prime permutations extended multiplicatively ($f(1)=1$; bijectivity preserves primes). For $n=\\prod p_i^{e_i}$ with exponents sorted $e_1\\ge\\cdots\\ge e_k$, two exchange moves — the rearrangement inequality $p^{r}q^{s}\\le p^{s}q^{r}$ for $p<q$, $r\\le s$, plus a transposition replacing a skipped prime by a smaller one — pin the minimum at $g(n)=2^{e_1}3^{e_2}\\cdots p_{(k)}^{e_k}$. Its exponent profile is already nonincreasing, so the sort is idempotent: $g(g(n))=g(n)$.",
+      "hints": [
+        "Multiplicative bijections are just permutations of the primes",
+        "Pair larger exponents with smaller primes: rearrangement inequality"
+      ],
+      "steps": [
+        "A multiplicative bijection fixes $1$: $f(1)=f(1\\cdot1)=f(1)^2$ and $f(1)>0$, so $f(1)=1$. If $p$ is prime then $f(p)$ is prime: $f(p)=f(a)f(b)$ with $a,b>1$ would be impossible, since surjectivity gives $a=f^{-1}(\\cdot)$-preimages of the two factors, i.e. $p$ would factor nontrivially; and $f(p)\\ne 1$ since $f$ is injective with $f(1)=1$. Hence $f$ restricts to a permutation of the primes, and multiplicativity plus $f(1)=1$ shows $f$ is exactly that permutation extended to $\\mathbb{N}$. Conversely every prime permutation is in $\\mathcal F$.",
+        "Write $n=\\prod_{i=1}^k p_i^{e_i}$ with $e_1\\ge\\cdots\\ge e_k>0$ after sorting the exponents. Each $f\\in\\mathcal F$ is a permutation of the primes, so $f(n)=\\prod q_i^{e_i}$ where the $q_i=f(p_i)$ are $k$ distinct primes. Two exchanges pin the minimizer: (i) the set $\\{q_i\\}$ must be the first $k$ primes — if it omits a prime $r$ and contains $s>r$, composing the permutation with the transposition $s\\leftrightarrow r$ replaces $s^{e_j}$ by $r^{e_j}$ for the exponent $e_j>0$ carried by $s$, strictly lowering the product; (ii) among assignments of $2,3,5,\\dots$ to $e_1\\ge\\cdots\\ge e_k$, if $p&lt;q$ but $p$ carries the smaller exponent $r&lt;s$ of $q$, swapping the assignments changes the factor from $p^r q^s$ to $p^s q^r$, and $p^rq^s\\le p^sq^r$, so the minimum pairs larger exponents with smaller primes. Together: $g(n)=2^{e_1}3^{e_2}\\cdots p_{(k)}^{e_k}$.",
+        "Therefore $g(n)=2^{e_1}3^{e_2}\\cdots p_k^{e_k}$, with $g(1)=1$. Its exponents are already nonincreasing on the increasing primes.",
+        "Applying the same rule again changes nothing, so $g(g(n))=g(n)$."
+      ],
+      "remark": "Unique factorization identifies $\\mathbb{N}^{\\times}$ with the free commutative monoid on the primes, so $\\mathcal F$ is literally the group of permutations of the primes extended multiplicatively, and minimizing $f(n)$ over it is the rearrangement inequality for prime factorizations. The map $g$ is the canonical normal form with exponents sorted onto the first $k$ primes, the same shape constraint defining highly composite numbers in the sense of Ramanujan. The idea is the classical smoothing motif of replacing large primes by small ones."
+    },
+    {
       "id": "n10",
       "category": "nt",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 4.5,
       "confidence": "high",
-      "text": "Find all pairs of positive integers $(x,y)$ such that $$x+y\\mid xy\\qquad\\text{and}\\qquad (x+y)^{2}\\mid x^{2}y^{2}+x^{2}+y^{2}.$$",
-      "why": "Put $t=x+y$, $u=xy$ — the elementary symmetric coordinates, in which $x^{2}+y^{2}=t^{2}-2u$. The hypotheses read $t\\mid u$ and $t^{2}\\mid u^{2}-2u$; writing $u=tw$ the second becomes $t\\mid2w$, so $t\\le2w$. But $x,y$ are the roots of $X^{2}-tX+tw$, so reality forces nonnegative discriminant $t^{2}-4tw\\ge0$, i.e. $t\\ge4w$. With $w>0$ the squeeze $4w\\le t\\le2w$ contradicts itself: no pairs exist. The boundary $t=4w$ (double root $x=y$, $w=x^{2}/2$) also dies: $t^{2}\\mid x^{2}(x^{2}+2)$ would demand $4\\mid x^{2}+2$, impossible since $x^{2}\\equiv0$ or $1\\pmod4$.",
+      "text": "Let $p$ be an odd prime, and let us work with the $p$ remainders $0,1,\\dots,p-1$ after division by $p$ (so two quantities are 'equal' when their difference is divisible by $p$). For each remainder $a$, let $N(a)$ be the number of ordered pairs $(x,y)$ of remainders satisfying $$x^{2}+a\\,xy+y^{2}\\equiv 1\\pmod p.$$ Determine the sum $$N(0)+N(1)+\\cdots+N(p-1)$$ in terms of $p$.",
+      "why": "Swap the quantifiers: for $xy\\not\\equiv0$ the equation is linear in $a$ with unique solution $a\\equiv(1-x^{2}-y^{2})(xy)^{-1}$ — $(p-1)^{2}$ triples; on the axes only $(\\pm1,0)$ and $(0,\\pm1)$ qualify, each admitting all $p$ values of $a$, while $(0,0)$ admits none, so the total is $(p-1)^{2}+4p=(p+1)^{2}$. The per-fiber counts, which the double count bypasses, are governed by the discriminant $a^{2}-4$: $a=\\pm2$ degenerate into two affine lines ($2p$ points), and a smooth member is a conic isomorphic to $\\mathbb{P}^{1}$ over $\\mathbb{F}_p$ minus its points at infinity, rational iff $\\left(\\frac{a^{2}-4}{p}\\right)=1$, giving $p-1$ or $p+1$; the character sum $\\sum_a\\left(\\frac{a^{2}-4}{p}\\right)=-1$ recovers the square total.",
       "hints": [
-        "Set $t=x+y$, $u=xy$: hypotheses $t\\mid u$, $t^2\\mid u^2-2u$",
-        "$x,y$ are roots of $X^2-tX+tw$: discriminant forces $t\\ge4w$"
+        "Swap quantifiers: count triples $(a,x,y)$ at once"
       ],
       "steps": [
-        "Rewrite: t = x + y, u = xy. Condition 1: t | u. Condition 2: x^2 + y^2 = t^2 - 2u, so x^2y^2 + x^2 + y^2 = u^2 - 2u + t^2, and t^2 | u^2 - 2u.",
-        "u = tw: t^2 | t^2 w^2 - 2tw iff t | 2w. Hence t &lt;= 2w (both positive).",
-        "The quadratic X^2 - tX + tw has roots x, y: discriminant D = t^2 - 4tw = t(t - 4w) must be a non-negative perfect square: t >= 4w.",
-        "Contradiction: 4w &lt;= t &lt;= 2w forces w = 0, impossible for positive x, y."
+        "Reinterpret the sum as one counting set: $$\\sum_{a=0}^{p-1}N(a)=\\#\\,T,\\qquad T=\\{(a,x,y)\\in\\{0,\\dots,p-1\\}^{3}: x^{2}+axy+y^{2}\\equiv1\\pmod p\\},$$ since summing the per-$a$ fiber sizes counts the whole set $T$.",
+        "Count $T$ by fixing $(x,y)$ - this is where the equation changes role: with $x,y$ fixed it is LINEAR in $a$: $a\\,(xy)\\equiv 1-x^{2}-y^{2}\\pmod p$.",
+        "Case $xy\\not\\equiv0$: the linear congruence has a unique solution $a$ (invert $xy$ mod $p$). Contribution: $(p-1)^2$.",
+        "Case $y\\equiv0$: equation is $x^2\\equiv1$, with exactly the two solutions $x\\equiv\\pm1$; each admits every $a$, contributing $2p$. Symmetrically, $x\\equiv0$, $y\\equiv\\pm1$ contributes another $2p$. The case $xy\\ne0$ is disjoint from both axis cases, while the two axis cases overlap only at $(0,0)$, which contributes nothing.",
+        "Total: $\\#T=(p-1)^2+2p+2p=p^2+2p+1=(p+1)^2$."
       ],
-      "remark": "Working in the elementary symmetric coordinates $t=x+y$, $u=xy$ and then invoking reality of the roots of $X^2-tX+u$ is the same logic that underlies Vieta jumping: the mate root of the quadratic encodes the whole solution set, and sign or discriminant constraints prune it. Here the squeeze $4w\\le t\\le2w$ is a positivity obstruction of the type proving nonexistence in Markov-Hurwitz equations, with the boundary $t=4w$ killed by a mod-4 square check. The construction grows out of the classical $x+y\\mid xy$ family."
+      "remark": "Exchanging the order of counting turns the problem into a fiber count of the family of conics $x^2+axy+y^2=1$ over $\\mathbb{F}_p$; individually, a smooth member is isomorphic to $\\mathbb{P}^1$ minus its points at infinity, so it carries $p-1$ or $p+1$ affine points according as the discriminant $a^2-4$ is a quadratic residue, and the character sum $\\sum_a(a^2-4/p)=-1$ reconciles the fibers with the square total $(p+1)^2$. The construction is the classic double-counting motif of swapping quantifiers in a parametrized congruence."
     },
     {
       "id": "n11",
       "category": "nt",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 4.5,
+      "confidence": "high",
+      "text": "Let $n=p^k$ where $p$ is prime and $k\\ge1$. Determine all prime powers satisfying $$\\sigma(n)=2\\varphi(n)+\\tau(n),$$ where $\\sigma$ is the sum-of-divisors function, $\\varphi$ Euler's totient, and $\\tau$ the number-of-divisors function.",
+      "why": "For a prime power the equation becomes an explicit exponential identity. The case $p=2$ reduces to $2^k=k+2$, the case $p=3$ to $3^{k-1}=2k+3$, and for every $p\\ge5$ the difference $\\sigma(p^k)-2\\varphi(p^k)$ is already negative. The solutions are exactly $4$ and $27$.",
+      "hints": [
+        "Write the three arithmetic functions explicitly for $p^k$.",
+        "Handle $p=2$, $p=3$, and $p\\ge5$ separately."
+      ],
+      "steps": [
+        "For $k=1$, the equation becomes $$p+1=2(p-1)+2,$$ hence $p=1$, impossible. So $k\\ge2$.",
+        "For $p=2$, $$\\sigma(2^k)=2^{k+1}-1,\\qquad \\varphi(2^k)=2^{k-1},\\qquad \\tau(2^k)=k+1.$$ Hence $$2^{k+1}-1=2^k+k+1\\iff2^k=k+2.$$ This has the unique solution $k=2$: for $k=1$ the equation fails, at $k=2$ it is true, and for $k\\ge3$ one has $2^k&gt;k+2$.",
+        "Thus $n=4$ is one solution.",
+        "For $p=3$, $$\\sigma(3^k)=\\frac{3^{k+1}-1}{2},\\qquad \\varphi(3^k)=2\\cdot3^{k-1},\\qquad \\tau(3^k)=k+1.$$ Hence $$\\frac{3^{k+1}-1}{2}=4\\cdot3^{k-1}+k+1\\iff3^{k-1}=2k+3.$$ This holds at $k=3$, and for $k\\ge4$ the left side grows by a factor $3$ while the right side increases only by $2$, so no further solution exists.",
+        "Thus $n=27$ is the second solution.",
+        "Now let $p\\ge5$. Since $$\\sigma(p^k)-2\\varphi(p^k)=-p^k+3p^{k-1}+p^{k-2}+\\cdots+1,$$ we have $$\\sigma(p^k)-2\\varphi(p^k)\\le -p^k+3p^{k-1}+\\frac{p^{k-1}-1}{p-1}&lt;0,$$ because $p\\ge5$. Since $\\tau(p^k)=k+1&gt;0$, the required equality is impossible.",
+        "Therefore the complete set is $$\\boxed{n=4,\\ 27}.$$"
+      ],
+      "remark": "The problem is a compact exponential classification hidden inside the three standard multiplicative functions. The prime $5$ is already too large because the totient term overtakes the divisor sum, leaving only the exceptional bases $2$ and $3$."
+    },
+    {
+      "id": "n12",
+      "category": "nt",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 4.5,
+      "confidence": "high",
+      "text": "Find all pairs of positive integers $(x,y)$ satisfying $$x^{y}-y^{x}=x-y.$$",
+      "why": "The sign of $x^{y}-y^{x}$ equals the sign of $g(x)-g(y)$ for $g(t)=\\ln t/t$, which increases on $[1,e]$ and decreases after; matching it with $\\operatorname{sign}(x-y)$ forces $x=y$, or $\\min(x,y)=1$, or $\\{x,y\\}\\subset\\{2,3\\}$, since $2<e<3$ and $g(2)=g(4)$ creates only the boundary coincidence $(4,2)$, where $x^{y}-y^{x}=0\\ne x-y$. The real solution set of $x^{y}=y^{x}$ is the pair of branches $x=\\exp(-W_{0,-1}(-\\ln y/y))$ of the Lambert $W$ function, joined at the branch point $y=e$; the answer $\\{x=y\\}\\cup\\{\\min=1\\}\\cup\\{(2,3),(3,2)\\}$ is its arithmetic shadow.",
+      "hints": [
+        "Sign of $x^y-y^x$ follows $g(t)=\\ln t/t$: match signs",
+        "$g$ increases up to $e$, decreases after: tiny cases only",
+        "Boundary $g(2)=g(4)$: check $(4,2)$ and $\\{2,3\\}$ directly"
+      ],
+      "steps": [
+        "Check the advertised families: $x=y$ gives $0=0$; $(t,1)$ gives $t-1=t-1$; $(1,t)$ gives $1-t=1-t$; $(2,3)$: $8-9=-1=2-3$; $(3,2)$: $9-8=1=3-2$. All are solutions - the task is to show there are no others.",
+        "Take $2\\le x&lt;y$ (the case $x>y$ is the mirror of the same analysis, not of the equation). Then $x-y&lt;0$, so we need $x^{y}&lt;y^{x}$, i.e. $g(x)&lt;g(y)$ for $g(t)=\\ln t/t$. Since $g$ is strictly decreasing on $[3,\\infty)$ and $g(3)>g(2)=g(4)>g(5)$ is checked by hand ($\\ln3/3\\approx0.366$, $\\ln2/2=\\ln4/4\\approx0.347$, $\\ln5/5\\approx0.322$), the condition $g(x)&lt;g(y)$ with $x&lt;y$ holds only for $x=2$ and $y=3$ ($g(3)>g(2)$) - $y=4$ gives equality $2^4=4^2$, and $y\\ge5$ fails by $2^y>y^2$ (induction: doubling beats the quadratic).",
+        "For $3\\le x&lt;y$: $g(x)>g(y)$, so $x^y>y^x$ and the left side is positive while $x-y&lt;0$ - impossible. This handles all remaining $x&lt;y$ cases.",
+        "Now $2\\le y&lt;x$: we need $x^{y}>y^{x}$, i.e. $g(x)>g(y)$. For $y\\ge3$ the decreasing branch makes this impossible. For $y=2$: $g(x)>g(2)$ forces $2&lt;x&lt;4$, so $x=3$, giving $(3,2)$ - already verified; the boundary $(4,2)$ has difference $0\\ne2$.",
+        "Assemble: $\\min(x,y)=1$ or $x=y$ or $\\{x,y\\}=\\{2,3\\}$.",
+        "Perspective (not needed for the proof): the same sign method solves $x^y=y^x$ completely; the novelty of this problem is that the linear right-hand side converts the classical $\\{x,y\\}=\\{2,4\\}$ boundary into the isolated symmetric pair $\\{2,3\\}$, with the equality $2^4=4^2$ demoted to a near-miss ($x-y$ there is $\\pm2\\ne0$)."
+      ],
+      "remark": "The comparison of $x^y$ and $y^x$ is governed by the monotonicity of $\\ln t/t$, equivalently by the real solution set of $x^y=y^x$, whose two branches are written with the Lambert $W$ function and classically parametrized as $(t^{1/(t-1)},t^{t/(t-1)})$, joined at the branch point $e$. The answer set is the arithmetic shadow of that curve, with the coincidence $2^4=4^2$ demoted to a near miss by the linear term. The idea is the standard olympiad reduction of exponential comparisons to one calculus monotonicity study."
+    },
+    {
+      "id": "n13",
+      "category": "nt",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 5,
       "confidence": "high",
       "text": "Let $q$ be an odd prime such that $p = 2q + 1$ is also prime. Prove that $$p \\mid q^q + 1$$ if and only if $q \\equiv 3 \\pmod 4$.",
       "why": "Since $q=(p-1)/2$, Euler's criterion identifies $q^{q}\\bmod p$ with the Legendre symbol $(q/p)$. Quadratic reciprocity plus $p\\equiv1\\pmod q$ gives $(q/p)=(-1)^{(q-1)/2}(p/q)$, and $(p/q)=(1/q)=1$, so $p\\mid q^{q}+1$ iff $(q/p)=-1$ iff $q\\equiv3\\pmod4$. The pair $(q,\\,2q+1)$ is a Sophie Germain pair; the argument is the first supplement to reciprocity ($-1$ a square mod $q$ iff $q\\equiv1\\pmod4$) carried out in the cyclic group $(\\mathbb{Z}/p\\mathbb{Z})^{\\times}$ of order $2q$.",
@@ -1979,50 +2136,11 @@ window.IMO_SHORTLIST = {
       "remark": "The exponent $q=(p-1)/2$ is precisely Euler's criterion, converting a divisibility question into the Legendre symbol $(q/p)$; quadratic reciprocity with its first supplement ($-1$ a square mod $q$ iff $q\\equiv1\\pmod4$) settles the sign. The pair $(q,2q+1)$ is a Sophie Germain pair, and the argument is a computation in the cyclic group $(\\mathbb{Z}/p\\mathbb{Z})^{\\times}$ of order $2q$. The motif is classical: recognize $a^{(p-1)/2}$ modulo $p$ as a quadratic character."
     },
     {
-      "id": "n12",
-      "category": "nt",
-      "difficulty": "medium",
-      "stars": 2,
-      "confidence": "high",
-      "text": "Let $\\mathcal F$ be the set of all bijections $f\\colon\\mathbb N\\to\\mathbb N$ satisfying $f(ab)=f(a)f(b)$ for all $a,b\\in\\mathbb N$. Define $g(n)=\\min_{f\\in\\mathcal F}f(n)$. Prove that $g(g(n))=g(n)$ for all positive integers $n$.",
-      "why": "Unique factorization makes $\\mathbb{N}^{\\times}$ the free commutative monoid on the primes, so $\\mathcal F$ is exactly the group of prime permutations extended multiplicatively ($f(1)=1$; bijectivity preserves primes). For $n=\\prod p_i^{e_i}$ with exponents sorted $e_1\\ge\\cdots\\ge e_k$, two exchange moves — the rearrangement inequality $p^{r}q^{s}\\le p^{s}q^{r}$ for $p<q$, $r\\le s$, plus a transposition replacing a skipped prime by a smaller one — pin the minimum at $g(n)=2^{e_1}3^{e_2}\\cdots p_{(k)}^{e_k}$. Its exponent profile is already nonincreasing, so the sort is idempotent: $g(g(n))=g(n)$.",
-      "hints": [
-        "Multiplicative bijections are just permutations of the primes",
-        "Pair larger exponents with smaller primes: rearrangement inequality"
-      ],
-      "steps": [
-        "A multiplicative bijection fixes $1$: $f(1)=f(1\\cdot1)=f(1)^2$ and $f(1)>0$, so $f(1)=1$. If $p$ is prime then $f(p)$ is prime: $f(p)=f(a)f(b)$ with $a,b>1$ would be impossible, since surjectivity gives $a=f^{-1}(\\cdot)$-preimages of the two factors, i.e. $p$ would factor nontrivially; and $f(p)\\ne 1$ since $f$ is injective with $f(1)=1$. Hence $f$ restricts to a permutation of the primes, and multiplicativity plus $f(1)=1$ shows $f$ is exactly that permutation extended to $\\mathbb{N}$. Conversely every prime permutation is in $\\mathcal F$.",
-        "Write $n=\\prod_{i=1}^k p_i^{e_i}$ with $e_1\\ge\\cdots\\ge e_k>0$ after sorting the exponents. Each $f\\in\\mathcal F$ is a permutation of the primes, so $f(n)=\\prod q_i^{e_i}$ where the $q_i=f(p_i)$ are $k$ distinct primes. Two exchanges pin the minimizer: (i) the set $\\{q_i\\}$ must be the first $k$ primes — if it omits a prime $r$ and contains $s>r$, composing the permutation with the transposition $s\\leftrightarrow r$ replaces $s^{e_j}$ by $r^{e_j}$ for the exponent $e_j>0$ carried by $s$, strictly lowering the product; (ii) among assignments of $2,3,5,\\dots$ to $e_1\\ge\\cdots\\ge e_k$, if $p&lt;q$ but $p$ carries the smaller exponent $r&lt;s$ of $q$, swapping the assignments changes the factor from $p^r q^s$ to $p^s q^r$, and $p^rq^s\\le p^sq^r$, so the minimum pairs larger exponents with smaller primes. Together: $g(n)=2^{e_1}3^{e_2}\\cdots p_{(k)}^{e_k}$.",
-        "Therefore $g(n)=2^{e_1}3^{e_2}\\cdots p_k^{e_k}$, with $g(1)=1$. Its exponents are already nonincreasing on the increasing primes.",
-        "Applying the same rule again changes nothing, so $g(g(n))=g(n)$."
-      ],
-      "remark": "Unique factorization identifies $\\mathbb{N}^{\\times}$ with the free commutative monoid on the primes, so $\\mathcal F$ is literally the group of permutations of the primes extended multiplicatively, and minimizing $f(n)$ over it is the rearrangement inequality for prime factorizations. The map $g$ is the canonical normal form with exponents sorted onto the first $k$ primes, the same shape constraint defining highly composite numbers in the sense of Ramanujan. The idea is the classical smoothing motif of replacing large primes by small ones."
-    },
-    {
-      "id": "n13",
-      "category": "nt",
-      "difficulty": "medium",
-      "stars": 2,
-      "confidence": "high",
-      "text": "Let $p$ be an odd prime, and let us work with the $p$ remainders $0,1,\\dots,p-1$ after division by $p$ (so two quantities are 'equal' when their difference is divisible by $p$). For each remainder $a$, let $N(a)$ be the number of ordered pairs $(x,y)$ of remainders satisfying $$x^{2}+a\\,xy+y^{2}\\equiv 1\\pmod p.$$ Determine the sum $$N(0)+N(1)+\\cdots+N(p-1)$$ in terms of $p$.",
-      "why": "Swap the quantifiers: for $xy\\not\\equiv0$ the equation is linear in $a$ with unique solution $a\\equiv(1-x^{2}-y^{2})(xy)^{-1}$ — $(p-1)^{2}$ triples; on the axes only $(\\pm1,0)$ and $(0,\\pm1)$ qualify, each admitting all $p$ values of $a$, while $(0,0)$ admits none, so the total is $(p-1)^{2}+4p=(p+1)^{2}$. The per-fiber counts, which the double count bypasses, are governed by the discriminant $a^{2}-4$: $a=\\pm2$ degenerate into two affine lines ($2p$ points), and a smooth member is a conic isomorphic to $\\mathbb{P}^{1}$ over $\\mathbb{F}_p$ minus its points at infinity, rational iff $\\left(\\frac{a^{2}-4}{p}\\right)=1$, giving $p-1$ or $p+1$; the character sum $\\sum_a\\left(\\frac{a^{2}-4}{p}\\right)=-1$ recovers the square total.",
-      "hints": [
-        "Swap quantifiers: count triples $(a,x,y)$ at once"
-      ],
-      "steps": [
-        "Reinterpret the sum as one counting set: $$\\sum_{a=0}^{p-1}N(a)=\\#\\,T,\\qquad T=\\{(a,x,y)\\in\\{0,\\dots,p-1\\}^{3}: x^{2}+axy+y^{2}\\equiv1\\pmod p\\},$$ since summing the per-$a$ fiber sizes counts the whole set $T$.",
-        "Count $T$ by fixing $(x,y)$ - this is where the equation changes role: with $x,y$ fixed it is LINEAR in $a$: $a\\,(xy)\\equiv 1-x^{2}-y^{2}\\pmod p$.",
-        "Case $xy\\not\\equiv0$: the linear congruence has a unique solution $a$ (invert $xy$ mod $p$). Contribution: $(p-1)^2$.",
-        "Case $y\\equiv0$: equation is $x^2\\equiv1$, with exactly the two solutions $x\\equiv\\pm1$; each admits every $a$, contributing $2p$. Symmetrically, $x\\equiv0$, $y\\equiv\\pm1$ contributes another $2p$. The case $xy\\ne0$ is disjoint from both axis cases, while the two axis cases overlap only at $(0,0)$, which contributes nothing.",
-        "Total: $\\#T=(p-1)^2+2p+2p=p^2+2p+1=(p+1)^2$."
-      ],
-      "remark": "Exchanging the order of counting turns the problem into a fiber count of the family of conics $x^2+axy+y^2=1$ over $\\mathbb{F}_p$; individually, a smooth member is isomorphic to $\\mathbb{P}^1$ minus its points at infinity, so it carries $p-1$ or $p+1$ affine points according as the discriminant $a^2-4$ is a quadratic residue, and the character sum $\\sum_a(a^2-4/p)=-1$ reconciles the fibers with the square total $(p+1)^2$. The construction is the classic double-counting motif of swapping quantifiers in a parametrized congruence."
-    },
-    {
       "id": "n14",
       "category": "nt",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5,
       "confidence": "high",
       "text": "Determine all pairs of positive integers $(a,b)$ such that both divisibilities hold: $$b-a \\mid a^{2}+b^{2} \\qquad \\text{and} \\qquad a+b \\mid ab+1.$$",
       "why": "The variables $d=b-a$, $s=a+b$ diagonalize the system: $a^{2}+b^{2}\\equiv2a^{2}\\pmod d$ and $ab+1\\equiv1-a^{2}\\pmod s$, so $d\\mid2a^{2}$ and $s\\mid a^{2}-1$. A common-prime descent with Euclid's lemma gives $\\gcd(a,b)=1$ and forces $d\\in\\{1,2\\}$. For $d=1$, from $4(a^{2}-1)=(s-3)(s+1)$ the invertibility of $4$ modulo odd $s$ leaves $s=3$: the sporadic $(1,2)$ and $(2,1)$. For $d=2$ one needs $2(a+1)\\mid a^{2}-1$, i.e. $a$ odd — the $2$-adic parity is the exact obstruction killing every even shift. Answer: ordered pairs of odd positive integers at distance $2$, plus $(1,2)$, $(2,1)$.",
@@ -2047,27 +2165,74 @@ window.IMO_SHORTLIST = {
       "category": "nt",
       "difficulty": "medium",
       "stars": 2,
-      "confidence": "high",
-      "text": "Find all positive integers $n$ such that $\\sigma(n)=\\varphi(n)+\\tau(n)$, where $\\sigma(n)$ is the sum of the positive divisors of $n$, $\\varphi(n)$ is Euler's totient function, and $\\tau(n)$ is the number of positive divisors of $n$.",
-      "why": "Primes work: $\\sigma(p)=p+1=\\varphi(p)+\\tau(p)$; $n=1$ fails. Let $n$ be composite with least prime factor $p$. The divisors $1,p,n/p,n$ are distinct except at $n=p^{2}$, where the equation reads $p^{2}+p+1=p^{2}-p+3$, i.e. $2p=2$; otherwise $\\sigma(n)\\ge n+\\frac np+p+1$ and $\\varphi(n)\\le n-\\frac np$ (counting multiples of $p$) leave $\\sigma-\\varphi-\\tau\\ge\\frac{2n}p+p+1-2\\sqrt n>0$, using $\\tau(n)\\le2\\sqrt n$ from pairing divisors and AM–GM on $p$ with $2n/p$. Exactly the primes qualify. The functions live in the Dirichlet-convolution algebra as $\\sigma=1*\\mathrm{id}$, $\\varphi=\\mu\\cdot\\mathrm{id}$, $\\tau=1*1$.",
+      "rating": 5,
+      "confidence": "medium",
+      "text": "Let $n\\ge2$ be an integer such that $$n\\mid a^{\\,n+1}-a\\qquad\\text{for every integer }a.$$<ol><li>Prove that this holds if and only if $n$ is squarefree and $p-1\\mid n$ for every prime $p\\mid n$.</li><li>Find all such $n$ having at most three distinct prime factors.</li><li>Show that $n=1806$ also has the property.</li></ol>",
+      "why": "Necessity: $p^{2}\\mid n$ fails at $a=p$, since $v_{p}(p^{n+1}-p)=1$; then a generator of $\\mathbb{F}_p^{\\times}$ forces $p-1\\mid n$. Sufficiency: Fermat prime by prime, then CRT. With at most three prime factors the condition $q-1\\mid pr$, $q-1<r$ rigidly forces $\\{2\\},\\{2,3\\},\\{2,3,7\\}$, giving $2,6,42$; the next value $1806=2\\cdot3\\cdot7\\cdot43$ shows the list continues past $42$.",
       "hints": [
-        "Composite $n\\ne p^2$: $\\sigma(n)\\ge1+p+n/p+n$",
-        "Use $\\varphi(n)\\le n-n/p$, $\\tau(n)\\le2\\sqrt n$, then AM-GM"
+        "Take $a=p$ to show $n$ is squarefree, then take $a$ a primitive root modulo $p$.",
+        "For $n=pqr$ with $p<q<r$, note $q-1\\mid pqr$ and $\\gcd(q-1,q)=\\gcd(q-1,r)=1$, so $q-1\\mid p$."
       ],
       "steps": [
-        "Test small values. $n=1$: $\\sigma(1)=1$ but $\\varphi(1)+\\tau(1)=2$, so $n=1$ fails. For a prime $q$: $\\sigma(q)=q+1$ and $\\varphi(q)+\\tau(q)=(q-1)+2=q+1$, so every prime works. It remains to exclude composite $n$.",
-        "Let $n$ be composite and $p$ its smallest prime divisor. Square case first: if $n=p^{2}$ then $\\sigma=1+p+p^{2}$, $\\varphi=p^{2}-p$, $\\tau=3$, so $\\sigma-\\varphi-\\tau=2p-2>0$; equality is impossible.",
-        "Now $n\\ne p^{2}$. Then $1,\\ p,\\ n/p,\\ n$ are four distinct divisors, hence $\\sigma(n)\\ge 1+p+\\frac np+n$. Also at least the $n/p$ multiples of $p$ in $\\{1,\\dots,n\\}$ fail to be coprime to $n$, so $\\varphi(n)\\le n-\\frac np$.",
-        "Pair each divisor $d\\le\\sqrt n$ with $n/d\\ge\\sqrt n$: $\\tau(n)\\le 2\\sqrt n$. By AM-GM $p+\\frac{2n}{p}\\ge2\\sqrt{2n}>2\\sqrt n$. Combine: $\\sigma(n)-\\varphi(n)-\\tau(n)\\ \\ge\\left(1+p+\\frac np+n\\right)-\\left(n-\\frac np\\right)-2\\sqrt n=1+p+\\frac{2n}{p}-2\\sqrt n>1.$",
-        "Thus every composite has $\\sigma(n)>\\varphi(n)+\\tau(n)$, and the solutions are exactly the primes."
+        "Assume the property. If $p^{2}\\mid n$, take $a=p$: $v_p(p^{n+1}-p)=1+v_p(p^{n}-1)=1&lt;v_p(n)$ contradiction. Hence $n$ squarefree.",
+        "Fix a prime $p\\mid n$. For every $a$ with $p\\nmid a$: $a^{n}\\equiv1\\pmod p$; the unit group is cyclic of order $p-1$, so a generator gives $p-1\\mid n$.",
+        "Conversely let $n$ be squarefree with $p-1\\mid n$ for all $p\\mid n$. If $p\\mid a$ then $a^{n+1}-a\\equiv0\\pmod p$; if not, $a^{n}\\equiv1$ by Fermat since $(p-1)\\mid n$. CRT over $\\omega(n)$ distinct primes finishes.",
+        "At most three primes. If $n=p$, then $p-1\\mid p$ forces $p=2$. If $n=pq$ with $p&lt;q$, then $q-1\\mid pq$ and $\\gcd(q-1,q)=1$ give $q-1\\mid p$; since $q-1\\ge p$, $q=p+1$, so $(p,q)=(2,3)$ and $n=6$. If $n=pqr$ with $p&lt;q&lt;r$, then $q-1\\mid pr$ and $\\gcd(q-1,r)=1$ (as $q-1&lt;r$), so $q-1\\mid p$ and again $(p,q)=(2,3)$; then $r-1\\mid 6$ with $r>3$ gives $r=7$ and $n=42$. Checking $1,2,6\\mid 42$ and $1,2\\mid 6$ confirms $n=2,6,42$.",
+        "$1806=2\\cdot3\\cdot7\\cdot43$ is squarefree and $1,2,6,42$ all divide $1806=42\\cdot43$, so the criterion of part 1 holds. Hence the answer to part 2 is $\\{2,6,42\\}$, and the list does not stop at $42$."
       ],
-      "remark": "In the ring of arithmetic functions under Dirichlet convolution the equation compares $\\sigma=1*\\mathrm{id}$, $\\varphi=\\mu\\cdot\\mathrm{id}$ and $\\tau=1*1$; the solution needs only elementary estimates, the divisor pairing at $\\sqrt n$ for $\\tau(n)\\le2\\sqrt n$ and the count of multiples of the least prime factor $p$ for $\\varphi(n)\\le n-n/p$, with AM-GM on $p$ and $2n/p$ closing the gap. The problem is the well-known olympiad motif of excluding composites by exhibiting a few large divisors whose sum overwhelms all upper bounds."
+      "remark": "This is the mirror image of Korselt's criterion for Carmichael numbers ($p-1\\mid n-1$): here the condition is $p-1\\mid n$. The values $2,6,42,1806$ are products of initial terms of Sylvester's sequence $2,3,7,43,\\dots$; the structure with four or more prime factors is not classified here."
     },
     {
       "id": "n16",
       "category": "nt",
       "difficulty": "medium",
       "stars": 2,
+      "rating": 5,
+      "confidence": "high",
+      "text": "Let $p$ be an odd prime. Let $N_p$ be the number of nonzero residues $x\\pmod p$ such that both $x$ and $1-x$ are nonzero quadratic residues modulo $p$. Determine $N_p$ explicitly according as $p\\equiv1$ or $3\\pmod4$.",
+      "why": "The count is a character sum, but the decisive evaluation reduces to an elementary pair count. The indicator of a nonzero square is $(1+\\chi(x))/2$, while the auxiliary sum $\\sum_y\\chi(y^2-1)$ is found by counting solutions of $t^2=y^2-1$, equivalently $(y-t)(y+t)=1$. This gives an exact closed formula with a parity split.",
+      "hints": [
+        "Use the Legendre symbol $\\chi$, with $\\chi(0)=0$, to write the indicator of a nonzero square.",
+        "Evaluate $\\sum_y\\chi(y^2-1)$ by counting pairs $(y,t)$ satisfying $t^2=y^2-1$."
+      ],
+      "steps": [
+        "Let $\\chi$ be the Legendre symbol modulo $p$, extended by $\\chi(0)=0$. For $x\\ne0$, the indicator that $x$ is a nonzero square is $(1+\\chi(x))/2$. Thus, excluding $x=0,1$, $$N_p=\\frac14\\sum_{x\\in\\mathbb F_p}(1+\\chi(x))(1+\\chi(1-x))-1.$$",
+        "Since $\\sum_x\\chi(x)=\\sum_x\\chi(1-x)=0$, this becomes $$N_p=\\frac{p+S-4}{4},\\qquad S:=\\sum_{x\\in\\mathbb F_p}\\chi(x(1-x)).$$",
+        "Complete the square: $$x(1-x)=-\\frac14\\bigl((2x-1)^2-1\\bigr).$$ Since $x\\mapsto2x-1$ is a bijection of $\\mathbb F_p$, $$S=\\chi(-1)\\sum_{y\\in\\mathbb F_p}\\chi(y^2-1).$$",
+        "Let $S_0=\\sum_y\\chi(y^2-1)$. For each fixed $y$, the number of $t$ satisfying $t^2=y^2-1$ equals $1+\\chi(y^2-1)$. Hence the total number of pairs $(y,t)$ is $p+S_0$.",
+        "But $t^2=y^2-1$ is equivalent to $(y-t)(y+t)=1$. Choosing any nonzero $u=y-t$ determines uniquely $y+t=u^{-1}$, and because $2$ is invertible modulo $p$, this gives exactly $p-1$ pairs. Therefore $$p+S_0=p-1,$$ so $S_0=-1$.",
+        "Consequently $$N_p=\\frac{p-4-\\chi(-1)}4.$$ Since $\\chi(-1)=1$ for $p\\equiv1\\pmod4$ and $\\chi(-1)=-1$ for $p\\equiv3\\pmod4$, $$\\boxed{N_p=\\begin{cases}\\dfrac{p-5}{4},&p\\equiv1\\pmod4,\\\\[4pt]\\dfrac{p-3}{4},&p\\equiv3\\pmod4.\\end{cases}}$$"
+      ],
+      "remark": "The outer count is a quadratic-character computation, but the only nontrivial character sum is converted into a finite-field factorization count. This gives a self-contained olympiad route without invoking general Jacobi-sum machinery."
+    },
+    {
+      "id": "n17",
+      "category": "nt",
+      "difficulty": "medium",
+      "stars": 2,
+      "rating": 5.5,
+      "confidence": "high",
+      "text": "Let $n\\ge 2$ be an integer, and let $N(n)$ be the number of residue classes $a$ modulo $n$ satisfying $a^{n}\\equiv a\\pmod n$. Here $\\mathrm{rad}(n)$ denotes the product of the distinct prime divisors of $n$.<ol><li>Find a closed form for $N(n)$ in terms of the prime divisors of $n$.</li><li>Prove that $N(n)\\le \\mathrm{rad}(n)$, with equality if and only if $p-1$ divides $n-1$ for every prime $p\\mid n$. (Squarefreeness is NOT part of this criterion: $n=4$ and $n=9$ are equality cases.)</li><li>Which famous composite integers give $N(n)=n$?</li></ol>",
+      "why": "CRT gives $N(n)=\\prod N(p^{k})$. A non-unit $x\\not\\equiv0$ fails since $x^{n}\\equiv0\\not\\equiv x$; on the cyclic group $(\\mathbb{Z}/p^{k})^{\\times}$ the equation $x^{n-1}=1$ has $\\gcd(n-1,p^{k-1}(p-1))=\\gcd(n-1,p-1)$ solutions because $p\\mid n$ forces $n-1\\equiv-1\\pmod p$, so $N(p^{k})=\\gcd(n-1,p-1)+1$ is independent of $k$; at $2^{k}$ the group $C_{2}\\times C_{2^{k-2}}$ has no odd-order element but $1$, giving $N(2^{k})=2$. Hence $N(n)=\\prod_{p\\mid n}(\\gcd(n-1,p-1)+1)\\le\\operatorname{rad}(n)$; the product depends only on the prime SET of $n$, so exponents are invisible to it and equality with $\\operatorname{rad}(n)$ is exactly the divisibility criterion $p-1\\mid n-1$ for all $p\\mid n$ - squarefreeness NOT required ($n=4,9$ are equality cases). Only the stronger equation $N(n)=n$ forces squarefreeness, after which the same divisibility is precisely Korselt's criterion, so $N(n)=n$ characterizes the primes and the Carmichael numbers ($561,1105,\\dots$).",
+      "hints": [
+        "In the cyclic units, $x^{n-1}=1$ has $\\gcd(n-1,p-1)$ roots; nonunits fail"
+      ],
+      "steps": [
+        "CRT. Writing $n=\\prod p^{k}$, the congruence $x^{n}\\equiv x\\pmod n$ is equivalent to the system modulo each $p^{k}$, so $N(n)=\\prod N(p^{k})$; each local count $N(p^{k})=\\#\\{x\\bmod p^{k}: x^{n}\\equiv x\\}$ depends on $n$, not just $p^{k}$.",
+        "Odd primes. The class $x\\equiv0$ works. For $x\\not\\equiv0$: the units $(\\mathbb Z/p^{k})^{\\times}$ are cyclic of order $p^{k-1}(p-1)$, so $x^{n-1}\\equiv1$ has $\\gcd(n-1,\\,p^{k-1}(p-1))$ solutions; since $p\\mid n$ gives $n-1\\equiv-1\\pmod p$, no factor $p$ divides $n-1$, and this gcd equals $\\gcd(n-1,p-1)$. Non-units: $x=pv\\not\\equiv0$ has $v_{p}(x^{n})=nv\\ge n\\ge k$ (as $k=v_p(n)\\le\\log_2n\\lt n$ for $n\\ge2$), so $x^{n}\\equiv0\\not\\equiv x$. Hence $N(p^{k})=\\gcd(n-1,p-1)+1$ for every $k\\ge1$ - independent of $k$.",
+        "The prime 2. $n$ even forces $n-1$ odd. Modulo $2^{k}$ with $k\\ge2$: an odd $x$ with $x^{n-1}\\equiv1$ has odd order in $C_2\\times C_{2^{k-2}}$, whose only odd-order element is $1$; so among odd classes only $x\\equiv1$ works, and $x\\equiv0$ works, giving $N(2^{k})=2=\\gcd(n-1,1)+1$ (check $k=1$ directly: $N(2)=2$).",
+        "Multiply the local counts: $N(n)=\\prod_{p\\mid n}\\bigl(\\gcd(n-1,p-1)+1\\bigr)$, which proves part 1.",
+        "Part 2: each factor satisfies $\\gcd(n-1,p-1)+1\\le p$, with equality iff $p-1\\mid n-1$. Multiplying over $p\\mid n$: $N(n)\\le\\prod_{p\\mid n}p=\\mathrm{rad}(n)$; equality in a product of positive integers each bounded by a respective bound holds iff every factor attains its bound, i.e. iff $p-1\\mid n-1$ for every $p\\mid n$. Exponents are invisible to the formula, so the criterion does NOT include squarefreeness: $N(4)=\\gcd(3,1)+1=2=\\mathrm{rad}(4)$ and $N(9)=\\gcd(8,2)+1=3=\\mathrm{rad}(9)$ are genuine equality cases with $k\\ge2$. Part 3 bookkeeping starts here: if $N(n)=n$, then $\\mathrm{rad}(n)\\ge n$ with equality only for squarefree $n$, so $n$ is squarefree and $N(n)=\\mathrm{rad}(n)$, and part 2's criterion applies; conversely squarefree $n$ with $p-1\\mid n-1$ for all $p\\mid n$ gives $N(n)=\\prod p=n$.",
+        "Part 3: composite $n$ with $N(n)=n$ are exactly the Carmichael numbers - squarefree with $p-1\\mid n-1$ for all $p\\mid n$ (Korselt's criterion). The smallest, $561=3\\cdot11\\cdot17$, satisfies $2,10,16\\mid560$, so $a^{561}\\equiv a\\pmod{561}$ for every integer $a$: every base is a Fermat liar. The equality composites up to 3000 are exactly $561,1105,1729,2465,2821$ (audit)."
+      ],
+      "remark": "The count $N(n)=\\prod_{p\\mid n}(\\gcd(n-1,p-1)+1)$ is a computation of torsion in the unit groups $(\\mathbb{Z}/p^k\\mathbb{Z})^{\\times}$, using cyclicity for odd $p$ and the decomposition $C_2\\times C_{2^{k-2}}$ at $2^k$, assembled by the Chinese remainder theorem. Part 3 lands on Carmichael numbers: squarefree $n$ with $p-1\\mid n-1$, exactly Korselt's criterion, the condition making every base a Fermat liar. The problem grows out of the standard local-to-global counting of solutions of $x^n\\equiv x$."
+    },
+    {
+      "id": "n18",
+      "category": "nt",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 6,
       "confidence": "high",
       "text": "Determine all positive integers $n$ for which each of the congruences $$x^2\\equiv1\\pmod n,\\qquad x^2+x+1\\equiv0\\pmod n$$ has exactly $8$ incongruent solutions modulo $n$.",
       "why": "Both congruences count torsion in $(\\mathbb{Z}/n\\mathbb{Z})^{\\times}$ through CRT. $x^{2}\\equiv1$ is the $2$-torsion, $2^{\\omega(n)}$ roots for odd $n$. $x^{2}+x+1=0$ is $\\Phi_{3}(x)=0$: elements of order $3$ exist modulo $p^{e}$ exactly for $p\\equiv1\\pmod3$ (two roots, lifting uniquely since $2x+1$ is a unit at a root) — the primes splitting in the Eisenstein order $\\mathbb{Z}[\\omega]$; modulo $2$ the polynomial is odd, and modulo $9$ it equals $3$ at $x=1+3t$, so neither $2$ nor $3^{2}$ may divide $n$, while $3\\|n$ contributes one root. Eight order-$3$ elements force three $1\\bmod3$ primes, and eight roots of $x^{2}=1$ then exclude the factor $3$: $n=p_1^{e_1}p_2^{e_2}p_3^{e_3}$, $p_i\\equiv1\\pmod3$ distinct.",
@@ -2086,33 +2251,11 @@ window.IMO_SHORTLIST = {
       "remark": "Both congruences count torsion in $(\\mathbb{Z}/n\\mathbb{Z})^{\\times}$: $x^2=1$ is the $2$-torsion, giving $2^{\\omega(n)}$ classes for odd $n$, while $\\Phi_3(x)=0$ detects elements of order 3, present mod $p$ exactly when $3\\mid p-1$, i.e. when $p$ splits in the Eisenstein order $\\mathbb{Z}[\\omega]$. Simple roots lift uniquely to $p^e$ by Hensel's lemma, and the failures at 2 and 9 are the inert and ramified non-liftable cases. The construction mixes standard CRT counting with the splitting of primes in a quadratic extension."
     },
     {
-      "id": "n17",
+      "id": "n19",
       "category": "nt",
       "difficulty": "hard",
       "stars": 3,
-      "confidence": "high",
-      "text": "Find all pairs of positive integers $(x,y)$ satisfying $$x^{y}-y^{x}=x-y.$$",
-      "why": "The sign of $x^{y}-y^{x}$ equals the sign of $g(x)-g(y)$ for $g(t)=\\ln t/t$, which increases on $[1,e]$ and decreases after; matching it with $\\operatorname{sign}(x-y)$ forces $x=y$, or $\\min(x,y)=1$, or $\\{x,y\\}\\subset\\{2,3\\}$, since $2<e<3$ and $g(2)=g(4)$ creates only the boundary coincidence $(4,2)$, where $x^{y}-y^{x}=0\\ne x-y$. The real solution set of $x^{y}=y^{x}$ is the pair of branches $x=\\exp(-W_{0,-1}(-\\ln y/y))$ of the Lambert $W$ function, joined at the branch point $y=e$; the answer $\\{x=y\\}\\cup\\{\\min=1\\}\\cup\\{(2,3),(3,2)\\}$ is its arithmetic shadow.",
-      "hints": [
-        "Sign of $x^y-y^x$ follows $g(t)=\\ln t/t$: match signs",
-        "$g$ increases up to $e$, decreases after: tiny cases only",
-        "Boundary $g(2)=g(4)$: check $(4,2)$ and $\\{2,3\\}$ directly"
-      ],
-      "steps": [
-        "Check the advertised families: $x=y$ gives $0=0$; $(t,1)$ gives $t-1=t-1$; $(1,t)$ gives $1-t=1-t$; $(2,3)$: $8-9=-1=2-3$; $(3,2)$: $9-8=1=3-2$. All are solutions - the task is to show there are no others.",
-        "Take $2\\le x&lt;y$ (the case $x>y$ is the mirror of the same analysis, not of the equation). Then $x-y&lt;0$, so we need $x^{y}&lt;y^{x}$, i.e. $g(x)&lt;g(y)$ for $g(t)=\\ln t/t$. Since $g$ is strictly decreasing on $[3,\\infty)$ and $g(3)>g(2)=g(4)>g(5)$ is checked by hand ($\\ln3/3\\approx0.366$, $\\ln2/2=\\ln4/4\\approx0.347$, $\\ln5/5\\approx0.322$), the condition $g(x)&lt;g(y)$ with $x&lt;y$ holds only for $x=2$ and $y=3$ ($g(3)>g(2)$) - $y=4$ gives equality $2^4=4^2$, and $y\\ge5$ fails by $2^y>y^2$ (induction: doubling beats the quadratic).",
-        "For $3\\le x&lt;y$: $g(x)>g(y)$, so $x^y>y^x$ and the left side is positive while $x-y&lt;0$ - impossible. This handles all remaining $x&lt;y$ cases.",
-        "Now $2\\le y&lt;x$: we need $x^{y}>y^{x}$, i.e. $g(x)>g(y)$. For $y\\ge3$ the decreasing branch makes this impossible. For $y=2$: $g(x)>g(2)$ forces $2&lt;x&lt;4$, so $x=3$, giving $(3,2)$ - already verified; the boundary $(4,2)$ has difference $0\\ne2$.",
-        "Assemble: $\\min(x,y)=1$ or $x=y$ or $\\{x,y\\}=\\{2,3\\}$.",
-        "Perspective (not needed for the proof): the same sign method solves $x^y=y^x$ completely; the novelty of this problem is that the linear right-hand side converts the classical $\\{x,y\\}=\\{2,4\\}$ boundary into the isolated symmetric pair $\\{2,3\\}$, with the equality $2^4=4^2$ demoted to a near-miss ($x-y$ there is $\\pm2\\ne0$)."
-      ],
-      "remark": "The comparison of $x^y$ and $y^x$ is governed by the monotonicity of $\\ln t/t$, equivalently by the real solution set of $x^y=y^x$, whose two branches are written with the Lambert $W$ function and classically parametrized as $(t^{1/(t-1)},t^{t/(t-1)})$, joined at the branch point $e$. The answer set is the arithmetic shadow of that curve, with the coincidence $2^4=4^2$ demoted to a near miss by the linear term. The idea is the standard olympiad reduction of exponential comparisons to one calculus monotonicity study."
-    },
-    {
-      "id": "n18",
-      "category": "nt",
-      "difficulty": "hard",
-      "stars": 3,
+      "rating": 6,
       "confidence": "high",
       "text": "A lattice point is a point $(x,y)$ whose two coordinates are integers. It is called \\emph{visible} from the origin if the open line segment joining it to $(0,0)$ contains no lattice point. For a positive integer $m$, let $C_m$ be the set of lattice points on the circle $x^{2}+y^{2}=m$ centered at the origin.<br><br>Determine, in terms of the prime factorization of $m$, exactly when $C_m$ is nonempty but contains \\emph{no} point visible from the origin.",
       "why": "Visibility is splitting in the Gaussian integers. An inert $q\\equiv3\\pmod4$ dividing $x^{2}+y^{2}$ divides $x+iy$ in $\\mathbb{Z}[i]$, hence both coordinates; and $4\\mid m$ forces both coordinates even by squares mod $4$ — so $\\alpha\\ge2$ or some $b_j\\ge1$ hides every point, while $C_m\\ne\\varnothing$ requires all $q\\equiv3\\pmod4$ exponents even (Fermat's two-square theorem, equivalently unique factorization in the UFD $\\mathbb{Z}[i]$). Conversely, choosing exactly one Gaussian prime above each split $p\\equiv1\\pmod4$ (one-sided splitting), with at most one factor $1+i$, gives $z$ whose coordinates share no rational prime: a visible point. So $C_m$ is nonempty and entirely invisible iff $\\alpha\\ge2$ or $q_j^{2}\\mid m$ for some $q_j\\equiv3\\pmod4$.",
@@ -2130,10 +2273,11 @@ window.IMO_SHORTLIST = {
       "remark": "Visibility is primitivity of $x+iy$ in $\\mathbb{Z}[i]$: inert primes $q\\equiv3\\pmod4$ dividing a norm must divide the element itself, forcing $q\\mid\\gcd(x,y)$, and $4\\mid m$ kills primitivity by squares mod 4; conversely, choosing exactly one prime above each split $p\\equiv1\\pmod4$ in the UFD $\\mathbb{Z}[i]$ produces a visible point. Nonemptiness of $C_m$ is Fermat's two-square theorem, itself a unique-factorization statement. The problem recasts the splitting of primes in $\\mathbb{Q}(i)$ in geometric language."
     },
     {
-      "id": "n19",
+      "id": "n20",
       "category": "nt",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 6.5,
       "confidence": "high",
       "text": "Determine all positive integers $n$ such that for all integers $a$ and $b$, $$n \\mid a^2 b + 1 \\implies n \\mid a^2 + b.$$",
       "why": "If $n\\mid a^{2}b+1$ then $\\gcd(a,n)=1$, for any common prime would leave $a^{2}b+1\\equiv1$; substituting $b\\equiv-a^{-2}$ turns the implication into the single universal congruence $a^{4}\\equiv1\\pmod n$ over all units — the unit group $(\\mathbb{Z}/n\\mathbb{Z})^{\\times}$ has exponent dividing $4$, i.e. $\\lambda(n)\\mid4$ for the Carmichael function. CRT decomposes it into cyclic prime-power groups ($C_2\\times C_{2^{k-2}}$ at $2^k$), forcing $p-1\\mid4$: primes only $2,3,5$ with $v_2(n)\\le4$, $v_3(n),v_5(n)\\le1$. The answer is exactly the $20$ divisors of $240=2^{4}\\cdot3\\cdot5$, each of which works.",
@@ -2156,29 +2300,33 @@ window.IMO_SHORTLIST = {
       "remark": "The hypothesis is exactly that every unit mod $n$ has fourth power 1, i.e. that the exponent of $(\\mathbb{Z}/n\\mathbb{Z})^{\\times}$, the Carmichael function $\\lambda(n)$, divides 4; the Chinese remainder theorem decomposes the group into cyclic prime-power pieces, $C_2\\times C_{2^{k-2}}$ at $2^k$, and reading off $p^{k-1}(p-1)\\mid4$ yields the twenty divisors of 240. The construction grows out of the standard olympiad substitution trick: pick the unique admissible residue of one variable to convert an implication into an identity."
     },
     {
-      "id": "n20",
-      "category": "nt",
-      "difficulty": "hard",
-      "stars": 3,
-      "confidence": "high",
-      "text": "Let $S_n=1^{3}+2^{3}+\\cdots+(n-1)^{3}$.<ol><li>Find all integers $n\\ge2$ such that $n\\mid S_n$.</li><li>Find all integers $n\\ge2$ such that $n^{2}\\mid S_n$.</li></ol>",
-      "why": "Nicomachus's identity: $S_n=\\left(\\frac{n(n-1)}{2}\\right)^{2}$, so both questions reduce to the parity of $v_2$. Part 1: $n\\mid S_n\\iff4\\mid n(n-1)^{2}$ — automatic for odd $n$, and for even $n$ equivalent to $4\\mid n$ since $(n-1)^2$ is odd: $n\\equiv2\\pmod4$ is the exact obstruction. Part 2: $n^{2}\\mid S_n\\iff(n-1)^{2}/4\\in\\mathbb{Z}\\iff n$ odd, a strictly smaller family. Structurally $\\sum k^{3}$ is a polynomial in the triangular number $T_{n-1}$ — Faulhaber's theorem that odd-power sums lie in $\\mathbb{Q}[T]$ — and the divisibility thresholds are pure $2$-adic bookkeeping.",
-      "hints": [
-        "Nicomachus: $S_n=\\left(\\frac{n(n-1)}{2}\\right)^2$"
-      ],
-      "steps": [
-        "Prove $S_n=\\left(\\frac{n(n-1)}{2}\\right)^{2}$ (telescoping or induction).",
-        "Part 1: $n\\mid S_n\\iff n^{2}(n-1)^{2}\\equiv0\\pmod{4n}\\iff 4\\mid n(n-1)^{2}$. If $n$ odd: $4\\mid(n-1)^2$ ✓. If $n\\equiv2\\pmod4$: $n(n-1)^2\\equiv2\\cdot\\text{odd}\\not\\equiv0$. If $4\\mid n$ ✓. Answer: odd or $4\\mid n$.",
-        "Part 2: $n^{2}\\mid S_n\\iff 4\\mid(n-1)^{2}$ after dividing by $n^{2}$: impossible for even $n$ ($(n-1)^2\\equiv1\\pmod4$), automatic for odd $n$ ((n-1)/2 integral squared).",
-        "Cross-check boundaries: $n=2$ fails part 1 ($S=1$); $n=4$: $S=36$, $4\\mid36$ ✓ part 1, $16\\nmid36$ ✗ part 2 ✓; $n=6$: $225$, $6\\nmid225$ ✓ excluded."
-      ],
-      "remark": "The identity $\\sum k^3=T_{n-1}^2$ is the first instance of Faulhaber's theorem that odd power sums are polynomials in the triangular number, a symmetry consequence of the Bernoulli-polynomial formulas; everything after it is $2$-adic bookkeeping on $n^2(n-1)^2/4$. The gap between $n\\mid S_n$ and $n^2\\mid S_n$ is pure parity, decided by a single extra factor of 2, with $n\\equiv2\\pmod4$ the exact obstruction. The construction is the classical power-sum divisibility motif of reducing to congruences on a closed form."
-    },
-    {
       "id": "n21",
       "category": "nt",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 6.5,
+      "confidence": "high",
+      "text": "Find all pairs of positive integers $(a,b)$ such that $$ab\\mid a^{2}+b^{2}+2.$$",
+      "why": "Put $k=(a^{2}+b^{2}+2)/ab$. Vieta's mate $b'$ satisfies $bb'=a^{2}+2>0$, and for $a<b$ one has $0<b'<b$, so descent on the maximum reaches the unique diagonal solution $(1,1)$ and forces $k=4$ for every solution. The complete set is the single forward Vieta orbit generated from $(1,1)$ by $(a,b)\\mapsto(b,4b-a)$: adjacent terms of $1,1,3,11,41,153,571,2131,\\dots$ and their reverses.",
+      "hints": [
+        "Set $k=(a^2+b^2+2)/ab$; the mate root $b'=ka-b$ is positive",
+        "Descend to $a=b$: forces $a=1$ and $k=4$ throughout"
+      ],
+      "steps": [
+        "Set $k=(a^{2}+b^{2}+2)/(ab)\\in\\mathbb Z_{>0}$. Diagonal: $a=b$ gives $a^{2}\\mid 2a^{2}+2$, i.e. $a^{2}\\mid 2$, so $(1,1)$ - with quotient $4$ - is the only diagonal solution.",
+        "Fix $a$ and read the equation as $x^{2}-kax+(a^{2}+2)=0$ at $x=b$. The mate root $b'=ka-b$ is an integer with $bb'=a^{2}+2>0$, hence positive, and $(a,b')$ is again a positive solution with the same $k$.",
+        "For $a&lt;b$: $b\\ge a+1$ gives $b^{2}-a^{2}\\ge 2a+1\\ge 3>2$, so $b^{2}>a^{2}+2=bb'$ and $0&lt;b'&lt;b$. Ordering each pair, descent on the maximum is strict and lands on the diagonal, i.e. at $(1,1)$ with $k=4$. Conclusion: the quotient is always $4$.",
+        "With $k=4$, define $x_0=x_1=1$ and $x_{r+2}=4x_{r+1}-x_r$. Thus $x_0,x_1,x_2,x_3,\\dots=1,1,3,11,41,153,571,2131,\\dots$. The base pair $(x_0,x_1)=(1,1)$ is a solution, and whenever $(u,v)$ is a solution with quotient $4$, its Vieta shift $(v,4v-u)$ is also a solution. Hence every adjacent pair $(x_r,x_{r+1})$ is a solution.",
+        "Conversely, let $a\\le b$ be any solution. If $a=b$, Step 1 gives $(a,b)=(1,1)$. Assume $a&lt;b$. For $a=1$, the equation $1+b^2+2=4b$ gives $(b-1)(b-3)=0$, hence $b=3$. For $a=2$, the equation $b^2-8b+6=0$ has discriminant $40$, so there is no integer $b$. Finally suppose $a\\ge3$. The Vieta mate is $$b'=4a-b=\\frac{a^2+2}{b}>0.$$ Since $b\\ge a+1$, $$b'\\le\\frac{a^2+2}{a+1}&lt;a,$$ because $a>2$. Thus $(b',a)$ is a positive solution with strictly smaller maximum. Induction on the maximum shows $(b',a)=(x_r,x_{r+1})$ for some $r$, and then $a=x_{r+1}$ and $$b=4a-b'=x_{r+2}.$$ Therefore every solution with $a\\le b$ is $(x_r,x_{r+1})$, and symmetry gives the reverses."
+      ],
+      "remark": "The Vieta reflection $(a,b)\\mapsto(a,4a-b)$ is an involution, while the forward map $(a,b)\\mapsto(b,4b-a)$ is its composition with the coordinate swap and is a reversible Vieta shift. All positive solutions form the single chain $1,1,3,11,41,153,571,\\dots$. Equivalently, with $s=a+b$ and $d=a-b$ the equation is the Pell conic $s^2-3d^2=4$."
+    },
+    {
+      "id": "n22",
+      "category": "nt",
+      "difficulty": "hard",
+      "stars": 3,
+      "rating": 7,
       "confidence": "high",
       "text": "Determine all quadruples of positive integers $(a,b,x,y)$ with $a,b$ odd satisfying $$x^2+y^2+1=(a^4+b^4+1)(xy+1).$$",
       "why": "Odd fourth powers are $1\\bmod16$, so $K=a^{4}+b^{4}+1\\equiv3\\pmod{16}$, $K\\ge3$, and the equation is $x^{2}-Kxy+y^{2}+1-K=0$. Vieta's mutation $(x,y)\\mapsto(Ky-x,x)$ preserves the solution set; the mate $x'$ satisfies $xx'=y^{2}+1-K$, negativity is excluded because $x(x-Ky)=K-y^{2}-1$ compares quantities on opposite sides of $K$, and $x'=0$ would demand $y^{2}=a^{4}+b^{4}\\equiv2\\pmod{16}$, never a square — the exact work done by the parity hypothesis. Then $0<x'<y$ descends to $x=y$, where $(2-K)x^{2}=K-1$ has no positive solution: no quadruples exist. The mutation is the Markov–Hurwitz reflection underlying such descents.",
@@ -2197,31 +2345,35 @@ window.IMO_SHORTLIST = {
       "remark": "The equation $x^2-Kxy+y^2=K-1$ is an indefinite binary quadratic form. The Vieta reflection $(x,y)\\mapsto(Ky-x,y)$ is an involution; composing it with the coordinate swap gives the descent map $(x,y)\\mapsto(Ky-x,x)$. Descent along this map is the standard Vieta-jumping mechanism. The parity hypothesis is a quadratic-residue obstruction: $a^4+b^4\\equiv2\\pmod{16}$ is never a square, exactly excluding the degenerate endpoint $x'=0$ of the descent."
     },
     {
-      "id": "n22",
+      "id": "n23",
       "category": "nt",
       "difficulty": "hard",
       "stars": 3,
+      "rating": 7.5,
       "confidence": "high",
-      "text": "Find all pairs of positive integers $(a,b)$ such that $$ab\\mid a^{2}+b^{2}+2.$$",
-      "why": "Put $k=(a^{2}+b^{2}+2)/ab$. Vieta's mate $b'$ satisfies $bb'=a^{2}+2>0$, and for $a<b$ one has $0<b'<b$, so descent on the maximum reaches the unique diagonal solution $(1,1)$ and forces $k=4$ for every solution. The complete set is the single forward Vieta orbit generated from $(1,1)$ by $(a,b)\\mapsto(b,4b-a)$: adjacent terms of $1,1,3,11,41,153,571,2131,\\dots$ and their reverses.",
+      "text": "Determine all infinite strictly increasing sequences of positive integers $a_1&lt;a_2&lt;a_3&lt;\\cdots$ such that $a_n\\mid a_{n+1}$ and $$\\varphi(a_{n+1})=a_n+\\varphi(a_n)$$ for all $n\\ge1$.",
+      "why": "Divisibility makes $\\varphi(a_n)\\mid\\varphi(a_{n+1})$ (adjoining a prime multiplies $\\varphi$ by $p$ or $p-1$), so the recurrence forces $\\varphi(a_n)\\mid a_n$; the form-lemma from $m/\\varphi(m)=\\prod_{q\\mid m}q/(q-1)$ and a $2$-adic count then yields $m=2^{r}3^{s}$ with $r\\ge1$ for every term $>1$. Now $a_n=3\\varphi(a_n)$ and $\\varphi(a_{n+1})=4\\varphi(a_n)$ force $a_{n+1}=4a_n$, giving all $a_n=2^{r}3^{s}4^{n-1}$, $r,s\\ge1$. The head $a_1=1$ branches separately, since the form-lemma needs $m>1$: $\\varphi(a_2)=2$ is solved only by $3,4,6$ and only $6$ extends, producing the exceptional chain $1,6,24,96,\\dots$ a uniform answer would miss.",
       "hints": [
-        "Set $k=(a^2+b^2+2)/ab$; the mate root $b'=ka-b$ is positive",
-        "Descend to $a=b$: forces $a=1$ and $k=4$ throughout"
+        "Divisibility gives $\\varphi(a_n)\\mid\\varphi(a_{n+1})$, so $\\varphi(a_n)\\mid a_n$",
+        "Classify $\\varphi(m)\\mid m$: $v_2$ count forces $m=2^r3^s$",
+        "Then $\\varphi(a_{n+1})=4\\varphi(a_n)$: multiply by 4; handle $a_1=1$"
       ],
       "steps": [
-        "Set $k=(a^{2}+b^{2}+2)/(ab)\\in\\mathbb Z_{>0}$. Diagonal: $a=b$ gives $a^{2}\\mid 2a^{2}+2$, i.e. $a^{2}\\mid 2$, so $(1,1)$ - with quotient $4$ - is the only diagonal solution.",
-        "Fix $a$ and read the equation as $x^{2}-kax+(a^{2}+2)=0$ at $x=b$. The mate root $b'=ka-b$ is an integer with $bb'=a^{2}+2>0$, hence positive, and $(a,b')$ is again a positive solution with the same $k$.",
-        "For $a&lt;b$: $b\\ge a+1$ gives $b^{2}-a^{2}\\ge 2a+1\\ge 3>2$, so $b^{2}>a^{2}+2=bb'$ and $0&lt;b'&lt;b$. Ordering each pair, descent on the maximum is strict and lands on the diagonal, i.e. at $(1,1)$ with $k=4$. Conclusion: the quotient is always $4$.",
-        "With $k=4$, define $x_0=x_1=1$ and $x_{r+2}=4x_{r+1}-x_r$. Thus $x_0,x_1,x_2,x_3,\\dots=1,1,3,11,41,153,571,2131,\\dots$. The base pair $(x_0,x_1)=(1,1)$ is a solution, and whenever $(u,v)$ is a solution with quotient $4$, its Vieta shift $(v,4v-u)$ is also a solution. Hence every adjacent pair $(x_r,x_{r+1})$ is a solution.",
-        "Conversely, let $a\\le b$ be any solution. If $a=b$, Step 1 gives $(a,b)=(1,1)$. Assume $a<b$. For $a=1$, the equation $1+b^2+2=4b$ gives $(b-1)(b-3)=0$, hence $b=3$. For $a=2$, the equation $b^2-8b+6=0$ has discriminant $40$, so there is no integer $b$. Finally suppose $a\\ge3$. The Vieta mate is $$b'=4a-b=\\frac{a^2+2}{b}>0.$$ Since $b\\ge a+1$, $$b'\\le\\frac{a^2+2}{a+1}<a,$$ because $a>2$. Thus $(b',a)$ is a positive solution with strictly smaller maximum. Induction on the maximum shows $(b',a)=(x_r,x_{r+1})$ for some $r$, and then $a=x_{r+1}$ and $$b=4a-b'=x_{r+2}.$$ Therefore every solution with $a\\le b$ is $(x_r,x_{r+1})$, and symmetry gives the reverses."
+        "Because $a_n\\mid a_{n+1}$ we have $\\varphi(a_n)\\mid\\varphi(a_{n+1})$: it suffices to adjoin one prime at a time, since for any prime $p$ the ratio $\\varphi(mp)/\\varphi(m)$ equals $p$ when $p\\mid m$ and $p-1$ when $p\\nmid m$, an integer either way. The recurrence $\\varphi(a_{n+1})=a_n+\\varphi(a_n)$ then implies $\\varphi(a_n)\\mid a_n$ for every $n$, so $a_n/\\varphi(a_n)$ is an integer for every $n$.",
+        "We use the lemma: if $m>1$ and $\\varphi(m)\\mid m$, then $m=2^r3^s$ with $r\\ge1$ and $s\\ge0$. Indeed, $$\\frac{m}{\\varphi(m)}=\\prod_{q\\mid m}\\frac{q}{q-1}.$$ If $m$ were odd, the numerator would be odd while every denominator $q-1$ is even, so the ratio could not be an integer. Thus $2\\mid m$, and the numerator has exactly one factor of $2$. Each distinct odd prime divisor contributes an additional factor of $2$ to the denominator, so there can be at most one distinct odd prime divisor. If there is one, say $p$, then $$\\frac{m}{\\varphi(m)}=\\frac{2p}{p-1}\\in\\mathbb Z,$$ hence $p-1\\mid2p$. Since $\\gcd(p-1,p)=1$, we get $p-1\\mid2$, so $p=3$. Therefore $m=2^r$ or $m=2^r3^s$, with $r\\ge1$.",
+        "The lemma applies only to terms $>1$, so first dispose of $a_1=1$. Then $\\varphi(a_2)=1+\\varphi(1)=2$, whose complete solution set is $a_2\\in\\{3,4,6\\}$. Step 1 gives $\\varphi(a_2)\\mid a_2$, so $a_2=3$ is impossible. If $a_2=4$, then $\\varphi(a_3)=4+2=6$, while Step 1 gives $\\varphi(a_3)\\mid a_3$; hence the lemma gives $a_3=2^R3^S$ with $R\\ge2$ because $4\\mid a_3$. Since $\\varphi(a_3)=6$ is not a power of $2$, we have $S\\ge1$, and $$2^R3^{S-1}=6$$ forces $R=1$, contradicting $R\\ge2$. Hence $a_2=6$. From index $2$ onward every term is $>1$, so the lemma and the subsequent argument apply from there and give $a_{n+1}=4a_n$ for all $n\\ge2$. Thus the exceptional sequence is $$a_1=1,\\qquad a_n=6\\cdot4^{\\,n-2}\\quad(n\\ge2).$$ It satisfies the recurrence, since $\\varphi(6\\cdot4^k)=2\\cdot4^k$ and $\\varphi(6)=2=1+\\varphi(1)$. Henceforth assume $a_1\\ge2$.",
+        "Write $a_n=2^r3^s$ (the lemma applies since in this branch $a_1\\ge2$ and every term is $\\ge a_1$). If $s=0$, then the recurrence gives $$\\varphi(a_{n+1})=a_n+\\varphi(a_n)=2^r+2^{r-1}=3\\cdot2^{r-1}.$$ If $a_{n+1}=2^R$, its totient is a power of $2$, impossible. If $a_{n+1}=2^R3^S$ with $S\\ge1$, its totient is $2^R3^{S-1}$, so equality would force $R=r-1&lt;r$, contradicting $a_n\\mid a_{n+1}$. Hence $s\\ge1$ for every $n$ in this branch.",
+        "Now $a_n=2^r3^s$ with $r,s\\ge1$, so $a_n=3\\varphi(a_n)$. The recurrence becomes $$\\varphi(a_{n+1})=4\\varphi(a_n).$$ Write $a_{n+1}=2^R3^S$ with $R\\ge r$ and $S\\ge s$. Then $$\\frac{\\varphi(a_{n+1})}{\\varphi(a_n)}=2^{R-r}3^{S-s}=4,$$ hence $R=r+2$ and $S=s$. Therefore $a_{n+1}=4a_n$.",
+        "Conversely, for any integers $r,s\\ge1$, the sequence $$a_n=2^r3^s4^{n-1}$$ is strictly increasing, satisfies $a_n\\mid a_{n+1}$, and obeys $\\varphi(a_{n+1})=4\\varphi(a_n)=3\\varphi(a_n)+\\varphi(a_n)=a_n+\\varphi(a_n)$. Taken together with the exceptional chain settled at the start, the complete list of solutions is: all $a_n=2^r3^s4^{n-1}$ with fixed integers $r,s\\ge1$, and the single sequence $a_1=1,\\ a_n=6\\cdot4^{\\,n-2}$ for $n\\ge2$."
       ],
-      "remark": "The Vieta reflection $(a,b)\\mapsto(a,4a-b)$ is an involution, while the forward map $(a,b)\\mapsto(b,4b-a)$ is its composition with the coordinate swap and is a reversible Vieta shift. All positive solutions form the single chain $1,1,3,11,41,153,571,\\dots$. Equivalently, with $s=a+b$ and $d=a-b$ the equation is the Pell conic $s^2-3d^2=4$."
+      "remark": "The condition $\\varphi(m)\\mid m$ is classified from the product formula $m/\\varphi(m)=\\prod_{q\\mid m}q/(q-1)$ by $2$-adic valuation bookkeeping: each odd prime $p\\ge5$ contributes an even denominator factor $p-1$, so only $m=2^r3^s$ survives, a $v_2$ count excluding powers of 3 alone. The recurrence then rigidifies to the geometric growth $a_{n+1}=4a_n$, while the head $a_1=1$ escapes the form-lemma and splits off one exceptional chain. The construction is the standard olympiad totient-shape lemma applied inside a dynamical setting."
     },
     {
-      "id": "n23",
+      "id": "n24",
       "category": "nt",
       "difficulty": "challenging",
       "stars": 4,
+      "rating": 8,
       "confidence": "high",
       "text": "Determine all positive integers $n$ such that $$2^n + 1 \\mid 3^n - 1.$$",
       "why": "Odd $n$: $3\\mid2^{n}+1$ but $3^{n}-1\\equiv-1\\pmod3$, impossible. For $n=2k$: $2^{2k}+1\\equiv2\\pmod3$ forces a prime divisor $q\\equiv2\\pmod3$; then $\\operatorname{ord}_{q}(2)\\mid4k$ but $\\nmid2k$ gives $v_{2}(\\operatorname{ord}_{q}2)=v_{2}(k)+2$, and Lagrange's theorem in $(\\mathbb{F}_{q})^{\\times}$ pushes it into $q-1$, so $q\\equiv1\\pmod4$. Quadratic reciprocity flips $\\left(\\frac{3}{q}\\right)=\\left(\\frac{q}{3}\\right)=-1$, and Euler's criterion then forces $v_{2}(\\operatorname{ord}_{q}3)=v_{2}(q-1)\\ge v_{2}(k)+2$; yet $q\\mid3^{2k}-1$ demands $\\operatorname{ord}_{q}3\\mid2k$, i.e. $v_2\\le v_2(k)+1$ — contradiction. No positive integer $n$ works.",
@@ -2244,33 +2396,11 @@ window.IMO_SHORTLIST = {
       "remark": "The core compares $2$-adic valuations of two multiplicative orders in $\\mathbb{F}_q^{\\times}$: $2^{2k}\\equiv-1$ pins $v_2(\\mathrm{ord}_q 2)=v_2(k)+2$, Lagrange's theorem pushes it into $q-1$, and quadratic reciprocity with Euler's criterion, $(3/q)=(q/3)=-1$ for $q\\equiv1\\pmod4$, forces the same $2$-power into $\\mathrm{ord}_q 3$, contradicting $3^{2k}\\equiv1$. This order-parity machinery is a template appearing in Zsigmondy- and Artin-style arguments. The idea is the classical motif of selecting a prime divisor in a useful residue class."
     },
     {
-      "id": "n24",
-      "category": "nt",
-      "difficulty": "challenging",
-      "stars": 4,
-      "confidence": "high",
-      "text": "Determine all infinite strictly increasing sequences of positive integers $a_1&lt;a_2&lt;a_3&lt;\\cdots$ such that $a_n\\mid a_{n+1}$ and $$\\varphi(a_{n+1})=a_n+\\varphi(a_n)$$ for all $n\\ge1$.",
-      "why": "Divisibility makes $\\varphi(a_n)\\mid\\varphi(a_{n+1})$ (adjoining a prime multiplies $\\varphi$ by $p$ or $p-1$), so the recurrence forces $\\varphi(a_n)\\mid a_n$; the form-lemma from $m/\\varphi(m)=\\prod_{q\\mid m}q/(q-1)$ and a $2$-adic count then yields $m=2^{r}3^{s}$ with $r\\ge1$ for every term $>1$. Now $a_n=3\\varphi(a_n)$ and $\\varphi(a_{n+1})=4\\varphi(a_n)$ force $a_{n+1}=4a_n$, giving all $a_n=2^{r}3^{s}4^{n-1}$, $r,s\\ge1$. The head $a_1=1$ branches separately, since the form-lemma needs $m>1$: $\\varphi(a_2)=2$ is solved only by $3,4,6$ and only $6$ extends, producing the exceptional chain $1,6,24,96,\\dots$ a uniform answer would miss.",
-      "hints": [
-        "Divisibility gives $\\varphi(a_n)\\mid\\varphi(a_{n+1})$, so $\\varphi(a_n)\\mid a_n$",
-        "Classify $\\varphi(m)\\mid m$: $v_2$ count forces $m=2^r3^s$",
-        "Then $\\varphi(a_{n+1})=4\\varphi(a_n)$: multiply by 4; handle $a_1=1$"
-      ],
-      "steps": [
-        "Because $a_n\\mid a_{n+1}$ we have $\\varphi(a_n)\\mid\\varphi(a_{n+1})$: it suffices to adjoin one prime at a time, since for any prime $p$ the ratio $\\varphi(mp)/\\varphi(m)$ equals $p$ when $p\\mid m$ and $p-1$ when $p\\nmid m$, an integer either way. The recurrence $\\varphi(a_{n+1})=a_n+\\varphi(a_n)$ then implies $\\varphi(a_n)\\mid a_n$ for every $n$, so $a_n/\\varphi(a_n)$ is an integer for every $n$.",
-        "We use the lemma: if $m>1$ and $\\varphi(m)\\mid m$, then $m=2^r3^s$ with $r\\ge1$ and $s\\ge0$. Indeed, $$\\frac{m}{\\varphi(m)}=\\prod_{q\\mid m}\\frac{q}{q-1}.$$ If $m$ were odd, the numerator would be odd while every denominator $q-1$ is even, so the ratio could not be an integer. Thus $2\\mid m$, and the numerator has exactly one factor of $2$. Each distinct odd prime divisor contributes an additional factor of $2$ to the denominator, so there can be at most one distinct odd prime divisor. If there is one, say $p$, then $$\\frac{m}{\\varphi(m)}=\\frac{2p}{p-1}\\in\\mathbb Z,$$ hence $p-1\\mid2p$. Since $\\gcd(p-1,p)=1$, we get $p-1\\mid2$, so $p=3$. Therefore $m=2^r$ or $m=2^r3^s$, with $r\\ge1$.",
-        "The lemma applies only to terms $>1$, so first dispose of $a_1=1$. Then $\\varphi(a_2)=1+\\varphi(1)=2$, whose complete solution set is $a_2\\in\\{3,4,6\\}$. Step 1 gives $\\varphi(a_2)\\mid a_2$, so $a_2=3$ is impossible. If $a_2=4$, then $\\varphi(a_3)=4+2=6$, while Step 1 gives $\\varphi(a_3)\\mid a_3$; hence the lemma gives $a_3=2^R3^S$ with $R\\ge2$ because $4\\mid a_3$. Since $\\varphi(a_3)=6$ is not a power of $2$, we have $S\\ge1$, and $$2^R3^{S-1}=6$$ forces $R=1$, contradicting $R\\ge2$. Hence $a_2=6$. From index $2$ onward every term is $>1$, so the lemma and the subsequent argument apply from there and give $a_{n+1}=4a_n$ for all $n\\ge2$. Thus the exceptional sequence is $$a_1=1,\\qquad a_n=6\\cdot4^{\\,n-2}\\quad(n\\ge2).$$ It satisfies the recurrence, since $\\varphi(6\\cdot4^k)=2\\cdot4^k$ and $\\varphi(6)=2=1+\\varphi(1)$. Henceforth assume $a_1\\ge2$.",
-        "Write $a_n=2^r3^s$ (the lemma applies since in this branch $a_1\\ge2$ and every term is $\\ge a_1$). If $s=0$, then the recurrence gives $$\\varphi(a_{n+1})=a_n+\\varphi(a_n)=2^r+2^{r-1}=3\\cdot2^{r-1}.$$ If $a_{n+1}=2^R$, its totient is a power of $2$, impossible. If $a_{n+1}=2^R3^S$ with $S\\ge1$, its totient is $2^R3^{S-1}$, so equality would force $R=r-1&lt;r$, contradicting $a_n\\mid a_{n+1}$. Hence $s\\ge1$ for every $n$ in this branch.",
-        "Now $a_n=2^r3^s$ with $r,s\\ge1$, so $a_n=3\\varphi(a_n)$. The recurrence becomes $$\\varphi(a_{n+1})=4\\varphi(a_n).$$ Write $a_{n+1}=2^R3^S$ with $R\\ge r$ and $S\\ge s$. Then $$\\frac{\\varphi(a_{n+1})}{\\varphi(a_n)}=2^{R-r}3^{S-s}=4,$$ hence $R=r+2$ and $S=s$. Therefore $a_{n+1}=4a_n$.",
-        "Conversely, for any integers $r,s\\ge1$, the sequence $$a_n=2^r3^s4^{n-1}$$ is strictly increasing, satisfies $a_n\\mid a_{n+1}$, and obeys $\\varphi(a_{n+1})=4\\varphi(a_n)=3\\varphi(a_n)+\\varphi(a_n)=a_n+\\varphi(a_n)$. Taken together with the exceptional chain settled at the start, the complete list of solutions is: all $a_n=2^r3^s4^{n-1}$ with fixed integers $r,s\\ge1$, and the single sequence $a_1=1,\\ a_n=6\\cdot4^{\\,n-2}$ for $n\\ge2$."
-      ],
-      "remark": "The condition $\\varphi(m)\\mid m$ is classified from the product formula $m/\\varphi(m)=\\prod_{q\\mid m}q/(q-1)$ by $2$-adic valuation bookkeeping: each odd prime $p\\ge5$ contributes an even denominator factor $p-1$, so only $m=2^r3^s$ survives, a $v_2$ count excluding powers of 3 alone. The recurrence then rigidifies to the geometric growth $a_{n+1}=4a_n$, while the head $a_1=1$ escapes the form-lemma and splits off one exceptional chain. The construction is the standard olympiad totient-shape lemma applied inside a dynamical setting."
-    },
-    {
       "id": "n25",
       "category": "nt",
       "difficulty": "challenging",
       "stars": 4,
+      "rating": 9,
       "confidence": "low",
       "text": "Let $n\\ge2$. A gcd triangle of order $n$ is a triangular array of positive integers $(a_{i,j})_{1\\le j\\le i\\le n}$ satisfying $a_{i,j}=\\gcd(a_{i+1,j},a_{i+1,j+1})$ for $i&lt;n$, with all $\\binom{n+1}{2}$ entries pairwise distinct. Let $L=\\operatorname{lcm}(a_{n,1},\\dots,a_{n,n})$. Determine the minimum possible value of $\\Omega(L)$, counted with multiplicity, and find all gcd triangles attaining it.",
       "why": "Suffix gcds $d_i=\\gcd(b_i,\\dots,b_n)$ are distinct triangle entries forming $d_1\\mid\\cdots\\mid d_n\\mid L$ with $n$ strict steps, since a bottom entry equal to $L$ duplicates its adjacent gcd; the divisibility lattice is graded by the rank function $\\Omega$, so this chain forces $\\Omega(L)\\ge\\Omega(d_1)+n\\ge n$. Equality makes $d_1=1$ with prime successive quotients; the mirrored prefix chain $e_i$ is coprime to $d_i$, and $\\Omega(b_i)\\le n-1$ pins $b_i=\\operatorname{lcm}(d_i,e_i)$ with $L/b_i$ prime. Hence $L=p_1\\cdots p_n$ is squarefree and $b_i=L/p_i$, one omitted prime per bottom position; distinct intervals of primes give distinct entries, so exactly these prime-omission triangles attain $\\Omega(L)=n$.",

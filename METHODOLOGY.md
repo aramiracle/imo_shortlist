@@ -1,6 +1,6 @@
 # METHODOLOGY — how this set was made and how its claims are checked
 
-Version 1.1 · 2026-10-01. This file describes the **stable procedure**: the rules a
+Version 1.2 · 2026-10-01. This file describes the **stable procedure**: the rules a
 problem must pass, and the evidence the repo keeps for each claim. Volatile state —
 run logs, per-problem verdict history, repair notes — does **not** live here; it
 lives in `CHANGELOG.md` (the full 2026-09 production log is archived out-of-repo at
@@ -73,6 +73,7 @@ Every problem carries exactly these fields:
 | `category` | yes | `alg` / `cmb` / `geo` / `nt`, matching the id prefix |
 | `difficulty` | yes | `easy` / `medium` / `hard` / `challenging` |
 | `stars` | yes | the band index 1–4 of `difficulty` — the two must agree |
+| `rating` | yes | numeric difficulty 1–10 in 0.5 steps, calibrated per §7; must sit inside its `difficulty` band's `scale` range, stay ≤ 9.5, and be non-decreasing along the ids |
 | `confidence` | yes | how much the difficulty estimate is trusted: `high` (human re-solved it), `medium` (human estimate with a caveat), `low` (explicitly doubtful) |
 | `text` | yes | the statement, TeX + HTML; `<`/`>` in math written `&lt;`/`&gt;` |
 | `why` | yes | mathematical content only — key ideas, exact facts, higher-math connections; no process chatter |
@@ -80,9 +81,21 @@ Every problem carries exactly these fields:
 | `steps` | yes | at least 3 ordered solution steps, written from the finished proof |
 | `remark` | optional | the idea's lineage in plain words: what classical motif the problem grows out of |
 
-Production-internal metadata (numeric `rating`, separate `answer`, novelty verdicts,
-readiness state) is deliberately **not** in the public file — verify.js rejects it as
-a leak. Answers live inside the final proof steps; the per-problem novelty and proof
+Two injection pipelines, and every field must obey the one it goes through.
+`text` and `steps` are injected into `innerHTML` **raw**: `<`/`>` in math are written
+`&lt;`/`&gt;` there (a bare `<` starts a browser tag and corrupts the card). `why`,
+`hints` and `remark` pass through the viewer's `escapeHtml()` first: writing `&lt;`
+in them double-escapes, so MathJax receives a literal `&lt;` and renders red
+"Misplaced &" boxes — use the TeX macros `\lt`/`\gt` (doubled as `\\lt`/`\\gt` in
+the JS source; a single backslash is eaten by JS string escapes) or a plain `<`.
+V6 in `tools/verify.js` enforces all of this, and the markup of every field was
+checked end-to-end through the page's CDN MathJax bundle (RUN-20261001-09).
+
+Production-internal metadata (separate `answer`, novelty verdicts, readiness state)
+is deliberately **not** in the public file — verify.js rejects it as a leak. The
+numeric `rating` moved into the public file with the 2026-10-01 calibration pass
+(owner decision; it was production-internal before) and is rendered by the viewer.
+Answers live inside the final proof steps; the per-problem novelty and proof
 record lives in the production ledgers and the archived CHANGELOG.
 
 Three labels are kept **independent and never merged**: difficulty (what a solver
@@ -253,7 +266,13 @@ solved?, failed approaches, whether the winning move is a named pattern) and fla
 search/proof disagreements. The **human then re-solves or proof-sketches every
 problem and brute-force-checks answers**; the per-category renormalization above is
 applied only to that pass, keeps the ordering, caps the top slot at 9.5 (10 is
-reserved for research level), and sets the shipped `confidence`. Ids are renumbered
+reserved for research level), and sets the shipped `confidence`. The shipped public
+`rating` follows the same ladder under two set-level constraints (owner calibration
+rule, verify.js V9): each category's 25 ratings must average in [5.0, 5.5], and the
+four category standard deviations must stay within 0.15 of one another; each rating
+also sits inside its difficulty band's `scale` range and is non-decreasing along the
+ids. `tools/calibrate_ratings.js` regenerates the shipped grid deterministically
+under exactly these constraints. Ids are renumbered
 into rating order **only at wave boundaries**, remapping every ledger reference by
 identity; mid-wave monotonicity is tolerated, then repaired. Blind contestant timing
 is the declared upgrade path: until it exists, ratings are honestly labeled
@@ -267,12 +286,13 @@ human-estimated, not contestant-derived.
 |---|---|
 | V1 | structure: exactly 4 × 25, ids `a1..a25` etc. in order, prefix matches category, no duplicates |
 | V2 | field contract: required fields present; no stray fields; **no internal production fields leaked into the public file** |
-| V3 | labels: `difficulty` and `confidence` from their enums; `stars` equals the difficulty band index |
+| V3 | labels: `difficulty` and `confidence` from their enums; `stars` equals the band index; `rating` on the 0.5 grid within 1–9.5 and inside its band's `scale` range |
 | V4 | content: non-empty `text` and `why`; ≥1 `hints`; ≥3 non-empty `steps` |
-| V5 | order: difficulty bands non-decreasing along ids inside each category |
-| V6 | markup: balanced `$…$` TeX in every rendered field; no raw `<` outside a known tag |
+| V5 | order: difficulty bands **and numeric ratings** non-decreasing along ids inside each category |
+| V6 | markup: balanced `$…$` TeX in every rendered field; no raw `<` outside a known tag in the raw-injected fields; no HTML entities in the escapeHtml'd fields; no lone-backslash TeX commands or control chars |
 | V7 | waves ledger: `tools/waves.json` assigns the 100 ids to W1–W4 exactly once |
 | V8 | signature ledger: `tools/signatures.json` keys are real ids; no (primary, secondary) pair twice |
+| V9 | set stats: each category's rating mean in [5, 5.5]; the four set standard deviations within 0.15 of one another (similar variance) |
 
 Run it before and after every edit; anything non-zero means the repo is broken.
 
