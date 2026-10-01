@@ -45,66 +45,67 @@ function problemNumber(id) {
     return parseInt(String(id).replace(/\D/g, ''), 10) || 0;
 }
 
-function formatRating(r) {
-    if (r == null || r === '') return null;
-    const n = Number(r);
-    if (Number.isNaN(n)) return String(r);
-    return (Math.round(n * 2) / 2).toFixed(1);
-}
-
 function stepsHtml(p) {
     const steps = Array.isArray(p.steps)
         ? p.steps.map(s => String(s).trim()).filter(Boolean)
         : [];
-    const answer = p.answer && String(p.answer).trim()
-        ? `<div class="sol-answer"><span class="sol-answer-lbl">Answer</span><p>${escapeHtml(p.answer)}</p></div>`
-        : '';
     if (!steps.length) {
-        return answer || '<span class="sol-empty">No steps yet — add a <code>steps</code> array of hints in problems.js.</span>';
+        return '<span class="sol-empty">No steps yet — add a <code>steps</code> array in problems.js.</span>';
     }
-    return answer + steps.map((s, i) => `
+    return steps.map((s, i) => `
                     <details class="hint">
                         <summary>Step ${i + 1}</summary>
                         <div class="hint-body">${s}</div>
                     </details>`).join('');
 }
 
+function hintsHtml(p) {
+    const hints = Array.isArray(p.hints)
+        ? p.hints.map(h => String(h).trim()).filter(Boolean)
+        : [];
+    if (!hints.length) {
+        return '<span class="sol-empty">No hints yet — add a <code>hints</code> array in problems.js.</span>';
+    }
+    return hints.map((h, i) => `
+                    <details class="hint">
+                        <summary>Hint ${i + 1}</summary>
+                        <div class="hint-body">${escapeHtml(h)}</div>
+                    </details>`).join('');
+}
+
 function problemCard(p, index) {
     const delay = Math.min(index * 0.03, 0.6);
     const diff = p.difficulty || 'medium';
-    const rating = formatRating(p.rating);
-    const pct = Math.max(0, Math.min(100, (Number(p.rating) || 0) * 10));
-    const STATUS_LABEL = { false: 'False as written', open: 'Open / not ISL' };
-
-    const ratingHtml = rating
-        ? `<span class="rscore ${escapeHtml(diff)}" title="Estimated difficulty ${rating} / 10">${rating}<small>/10</small></span>`
-        : '';
-    const meterHtml = rating
-        ? `<div class="rmeter ${escapeHtml(diff)}" title="${rating} / 10"><span style="width:${pct}%"></span></div>`
-        : '';
-    const statusBadge = p.status && STATUS_LABEL[p.status]
-        ? `<span class="dbadge ${escapeHtml(p.status)}">${STATUS_LABEL[p.status]}</span>`
-        : '';
 
     const conf = p.confidence ? escapeHtml(p.confidence) : '';
     const whyBody = p.why
         ? `<p>${escapeHtml(p.why)}</p>`
         : '<span class="sol-empty">No content note yet.</span>';
+    const remarkBody = p.remark
+        ? `<p class="remark">${escapeHtml(p.remark)}</p>`
+        : '';
     const analysisHtml = `
             <details class="sol">
                 <summary>Mathematical content</summary>
                 <div class="sol-body">
                     <div class="why-meta">
-                        ${rating ? `<span>Rating <b>${rating}</b> / 10</span>` : ''}
                         ${conf ? `<span>Confidence <b>${conf}</b></span>` : ''}
                         <span>Tier <b>${escapeHtml(DIFF_LABEL[diff] || diff)}</b></span>
                     </div>
                     ${whyBody}
                 </div>
             </details>`;
+    const hintsCount = Array.isArray(p.hints) ? p.hints.filter(h => String(h).trim()).length : 0;
+    const remarkHtml = p.remark
+        ? `
+            <details class="sol">
+                <summary>Remark</summary>
+                <div class="sol-body">${remarkBody}</div>
+            </details>`
+        : '';
 
     return `
-        <div id="${escapeHtml(p.id)}" class="pcard ${escapeHtml(p.category)}" data-diff="${escapeHtml(diff)}" data-rating="${escapeHtml(rating || '')}" style="animation-delay:${delay.toFixed(2)}s">
+        <div id="${escapeHtml(p.id)}" class="pcard ${escapeHtml(p.category)}" data-diff="${escapeHtml(diff)}" style="animation-delay:${delay.toFixed(2)}s">
             <div class="phd">
                 <div class="pid">
                     <span class="pnum">${escapeHtml(p.id.toUpperCase())}</span>
@@ -112,14 +113,16 @@ function problemCard(p, index) {
                     <div class="stars">${starsHtml(diff, p.stars)}</div>
                 </div>
                 <div class="phd-right">
-                    ${ratingHtml}
-                    ${statusBadge}
                     <span class="dbadge ${escapeHtml(diff)}">${DIFF_LABEL[diff] || diff}</span>
                 </div>
             </div>
-            ${meterHtml}
             <div class="pbody"><div class="ptxt">${p.text}</div></div>
             ${analysisHtml}
+            <details class="sol">
+                <summary>Hints${hintsCount ? ` <span class="hcount">${hintsCount}</span>` : ''}</summary>
+                <div class="sol-body steps">${hintsHtml(p)}</div>
+            </details>
+            ${remarkHtml}
             <details class="sol">
                 <summary>Solution steps</summary>
                 <div class="sol-body${Array.isArray(p.steps) && p.steps.some(s => String(s).trim()) ? ' steps' : ''}">${stepsHtml(p)}</div>
@@ -139,11 +142,11 @@ function render() {
     for (const p of problems) {
         if (byCat[p.category]) byCat[p.category].push(p);
     }
-    // easiest -> hardest (stable; problems without a rating keep their order)
+    // easiest -> hardest: ids are assigned in difficulty order inside a category
     for (const id in byCat) {
         byCat[id] = byCat[id]
             .map((p, i) => ({ p, i }))
-            .sort((a, b) => ((a.p.rating ?? 0) - (b.p.rating ?? 0)) || a.i - b.i)
+            .sort((a, b) => (problemNumber(a.p.id) - problemNumber(b.p.id)) || a.i - b.i)
             .map(x => x.p);
     }
 
@@ -174,9 +177,9 @@ function render() {
 
     document.getElementById('nav-cats').innerHTML = categories.map(c => {
         const dots = byCat[c.id].slice().sort((a, b) => problemNumber(a.id) - problemNumber(b.id)).map(p => {
-            const r = formatRating(p.rating);
             const label = escapeHtml(p.id.toUpperCase());
-            const tip = r ? `${label} · ${r}/10` : label;
+            const tier = escapeHtml(DIFF_LABEL[p.difficulty] || p.difficulty || '');
+            const tip = tier ? `${label} · ${tier}` : label;
             return `<a class="ndot ${escapeHtml(c.id)}" href="#${escapeHtml(p.id)}" title="${tip}" onclick="navTo(event,'${escapeHtml(c.id)}','${escapeHtml(p.id)}')">${label}</a>`;
         }).join('');
         return `
@@ -207,7 +210,7 @@ function render() {
     document.getElementById('header-pills').innerHTML = `
         <span class="pill">${total} problems</span>
         <span class="pill">${catCount} categories</span>
-        <span class="pill">Rated 1–10</span>`;
+        <span class="pill">Easy – Challenging</span>`;
 
     document.getElementById('tabs').innerHTML = categories.map((c, i) => {
         const n = byCat[c.id].length;

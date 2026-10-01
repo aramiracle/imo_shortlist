@@ -1,4 +1,6 @@
-import sqlite3, json, re, collections, math, sys
+import sqlite3, json, re, collections, math, sys, os
+
+DB = os.environ.get('CORPUS_DB', '/tmp/kilo/corpus.db')
 
 GREEK = dict([('alpha','a'),('beta','b'),('gamma','g'),('delta','d'),('epsilon','e'),('varepsilon','e'),('zeta','z'),('eta','h'),('theta','th'),('iota','i'),('kappa','k'),('lambda','l'),('mu','m'),('nu','n'),('xi','x'),('pi','p'),('rho','r'),('sigma','s'),('tau','t'),('phi','f'),('varphi','f'),('chi','c'),('psi','y'),('omega','w'),('Gamma','G'),('Delta','D'),('Theta','Th'),('Lambda','L'),('Xi','X'),('Pi','P'),('Sigma','S'),('Phi','F'),('Psi','Y'),('Omega','W')])
 
@@ -22,7 +24,7 @@ def norm(t):
 
 STOP=set('the a an of and or to for all is are be such that prove find determine let which with in on if there where when every any it its this these those show i i i i n k x y z s t u v w p q a b c d e f g h l m o r j'.split())
 
-con=sqlite3.connect('/tmp/kilo/corpus.db')
+con=sqlite3.connect(DB)
 cur=con.cursor()
 
 def toks(t): return norm(t).split()

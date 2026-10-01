@@ -11,7 +11,9 @@ The screening corpus (~230 MB text, SQLite FTS5 at `$CORPUS_DB`, default
    parquet) + PutnamBench informal statements (`amitayusht/PutnamBench/putnam.csv`).
 3. Official shortlist PDFs 2006–2009, 2011–2024 from `imo-official.org/problems/IMO{Y}SL.pdf`
    → `pdftotext`. (2025 shortlist not yet posted as of 2026-09-29.)
-4. Build: `python3 ../build_index.py` (chunking + normalization + FTS5; ~11 min, 187k chunks).
+4. Build: `python3 ../build_index.py` (chunking + normalization + FTS5; ~11 min,
+   187k chunks). Reads fetched sources under `$CORPUS_ROOT` (default `/tmp/kilo`),
+   writes `$CORPUS_DB`.
 5. Optional (China TST/CMO coverage is thin): `aimo/China` holds LFS pointers only;
    real files via `curl -L https://huggingface.co/datasets/AI-MO/olympiads/resolve/main/<path>`.
 

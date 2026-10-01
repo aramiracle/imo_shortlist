@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# tools/screen.py — D-lane evidence generator (METHODOLOGY.md, flow step 5)
+# tools/screen.py — D-lane evidence generator (METHODOLOGY.md, §6).
 # Honest rule (POLICY): a clean screen is NEVER proof of originality.
 # Output: per-problem JSON evidence packs; tierEstimate is a mechanical estimate
 # to be adjudicated by a human/orchestrator before any readiness verdict changes.
@@ -84,6 +84,9 @@ def main():
     args=sys.argv[1:]
     ids=args[1:] if args and args[0]=='--id' else None
     everything='--all' in args
+    if not os.path.exists(DB):
+        sys.exit('corpus DB not found at %s.\nBuild it first: see tools/corpus/README.md '
+                 '(fetch sources, then `python3 tools/build_index.py`), or point CORPUS_DB at an existing DB.'%DB)
     con=sqlite3.connect(DB)
     problems=load_problems()
     os.makedirs(OUT,exist_ok=True)
@@ -94,10 +97,13 @@ def main():
             bundle[p['id']]=screen_one(con,p,fragmap=fm)
             print('.',end='',flush=True)
         print()
-        json.dump(bundle,open(os.path.join(HERE,'baseline_20260929.json'),'w'),indent=1)
-        print('wrote tools/baseline_20260929.json')
+        out=os.path.join(HERE,'baseline_%s.json'%__import__('datetime').date.today().strftime('%Y%m%d'))
+        json.dump(bundle,open(out,'w'),indent=1)
+        print('wrote',out)
     else:
         sel=[p for p in problems if (ids and p['id'] in ids)]
+        unknown=set(ids or [])-{p['id'] for p in problems}
+        if unknown: print('unknown ids (skipped):',' '.join(sorted(unknown)))
         for p in sel:
             rec=screen_one(con,p)
             json.dump(rec,open(os.path.join(OUT,p['id']+'.json'),'w'),indent=1)

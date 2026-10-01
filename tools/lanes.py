@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-# tools/lanes.py — N/A lane completion driver (METHODOLOGY.md, flow step 5).
+# tools/lanes.py — N/A lane completion driver (METHODOLOGY.md, §6).
 # For each transformed record with lanesComplete=false, runs the SE daily-reset
 # quota on 8 exact-form (N) + 8 paraphrase (A) queries, prints verdicts for
 # orchestrator review, and NEVER edits problems.js itself.
 import json, subprocess, sys, time, urllib.request, urllib.parse, html, os
 
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(HERE)
+
 def problems():
     js = 'global.window={};require(process.argv[1]);const P=window.IMO_SHORTLIST.problems.map(p=>({id:p.id,t:p.text,n:p.novelty||{}}));process.stdout.write(JSON.stringify(P));'
-    out = subprocess.run(['node', '-e', js, os.path.abspath('../problems.js') if False else os.path.join(os.getcwd(), 'problems.js')], capture_output=True, text=True, check=True)
+    out = subprocess.run(['node', '-e', js, os.path.join(REPO, 'problems.js')], capture_output=True, text=True, check=True)
     return json.loads(out.stdout)
 
 def se(q):
@@ -46,16 +49,23 @@ def variants(p):
     gA = [' '.join(dict.fromkeys(alpha[i:i+8])) for i in range(0, max(1, len(alpha)-6), 4)]
     for g in gA:
         if len(qA) >= 12: break
-        qA.append(g + ' ' + p['id'].upper() + ' variant' if False else g)
+        qA.append(g)
     qA = list(dict.fromkeys(q for q in qA if q.strip()))[:8]
     return qN, qA
 
 def main():
     ids = sys.argv[1:]
     P = problems()
+    if not any(p['n'] for p in P):
+        print('Nothing to do: the N/A web-lane driver targets transformed records in the '
+              'production dataset (per-problem `novelty` ledgers). The public problems.js '
+              'ships without them; its screening record lives in METHODOLOGY.md + the ledger files.')
+        return
     pend = [p for p in P if p['n'].get('transformedFrom') and not p['n'].get('lanesComplete')]
     if ids:
         pend = [p for p in pend if p['id'] in ids]
+        unknown = set(ids) - {p['id'] for p in P}
+        if unknown: print('unknown ids (skipped):', ' '.join(sorted(unknown)))
     report = []
     for p in pend:
         qN, qA = variants(p)

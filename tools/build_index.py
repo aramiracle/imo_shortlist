@@ -1,6 +1,7 @@
 import os, re, json, sqlite3, sys
 
-DB='/tmp/kilo/corpus.db'
+DB=os.environ.get('CORPUS_DB','/tmp/kilo/corpus.db')
+ROOT=os.environ.get('CORPUS_ROOT','/tmp/kilo')
 os.path.exists(DB) and os.remove(DB)
 con=sqlite3.connect(DB)
 con.execute('CREATE TABLE chunks(id INTEGER PRIMARY KEY, src TEXT, ord INTEGER, raw TEXT, norm TEXT)')

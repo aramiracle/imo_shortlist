@@ -1,105 +1,152 @@
 #!/usr/bin/env node
-/* tools/verify.js — hard gates V1-V8 (METHODOLOGY.md, flow step 8).
- * ERROR = must fix before wave exit. WARN = recorded, deferred (e.g. renumbering
- * happens only at wave boundaries, so mid-wave rating order may lag). */
-const fs=require('fs'),path=require('path'),vm=require('vm');
-const repo=path.resolve(__dirname,'..');
-const ctx={window:{},console};vm.createContext(ctx);
-vm.runInContext(fs.readFileSync(path.join(repo,'problems.js'),'utf8'),ctx);
-const I=ctx.window.IMO_SHORTLIST;
-const probs=I.problems;
-const waves=JSON.parse(fs.readFileSync(path.join(repo,'tools/waves.json'),'utf8'));
-const sigs=JSON.parse(fs.readFileSync(path.join(repo,'tools/signatures.json'),'utf8'));
-const CAT={a:'alg',c:'cmb',g:'geo',n:'nt'};
-let errs=[],warns=[];
-const bandOf=r=>r<4?'easy':r<6?'medium':r<8?'hard':'challenging';
+/* tools/verify.js — hard gates V0–V8 for the shipped public dataset.
+ * Run after every edit to problems.js or the tools/ ledgers (METHODOLOGY.md §8.1).
+ * ERROR = must fix before anything ships. WARN = recorded, non-blocking.
+ * The validator checks ONLY what this repo ships: 4 categories x 25 problems,
+ * public fields, and the waves/signatures ledgers. Production-internal fields
+ * (rating, answer, novelty, readiness, proofStatus, sourceNote) must NOT appear
+ * in the public file — their absence is itself a gate (V2). */
+const fs = require('fs'), path = require('path'), vm = require('vm');
+const repo = path.resolve(__dirname, '..');
 
-// V1a structure
-for(const [pre,cat] of Object.entries(CAT)){
-  const ps=probs.filter(p=>p.category===cat);
-  const want=Array.from({length:25},(_,i)=>pre+(i+1));
-  if(ps.length!==25) errs.push(`V1 ${cat}: ${ps.length} problems`);
-  ps.forEach((p,i)=>{ if(p.id!==want[i]) errs.push(`V1 ${cat}: id order ${p.id} expected ${want[i]}`); });
-}
-// V1b monotonicity (WARN mid-wave, ERROR at wave exit with --strict)
-const strict=process.argv.includes('--strict');
-for(const [pre,cat] of Object.entries(CAT)){
-  const ps=probs.filter(p=>p.category===cat);
-  for(let i=1;i<ps.length;i++) if(ps[i].rating<ps[i-1].rating-1e-9){
-    const m=`V1b order: ${ps[i].id}(${ps[i].rating}) < ${ps[i-1].id}(${ps[i-1].rating})`;
-    strict?errs.push(m):warns.push(m);
+let errs = [], warns = [];
+const err = m => errs.push(m);
+const warn = m => warns.push(m);
+
+/* ---- load dataset (fail fast and loud) ---- */
+let I;
+try {
+  const ctx = { window: {}, console }; vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(repo, 'problems.js'), 'utf8'), ctx);
+  I = ctx.window.IMO_SHORTLIST;
+} catch (e) { err(`V0 problems.js failed to load: ${e.message}`); }
+if (!I) { report(); process.exit(1); }
+if (!Array.isArray(I.problems)) err('V0 problems.js: `problems` is not an array');
+if (!Array.isArray(I.categories)) err('V0 problems.js: `categories` is not an array');
+if (!I.criterion) err('V0 problems.js: missing `criterion` (the difficulty claim this set makes)');
+if (!errs.length) check(I);
+report();
+process.exit(errs.length ? 1 : 0);
+
+/* ---- gates ---- */
+function check(I) {
+  const probs = I.problems;
+  const CAT = { a: 'alg', c: 'cmb', g: 'geo', n: 'nt' };
+  const BAND = { easy: 1, medium: 2, hard: 3, challenging: 4 };
+  const REQUIRED = ['id', 'category', 'difficulty', 'stars', 'confidence', 'text', 'why', 'hints', 'steps'];
+  const OPTIONAL = ['remark'];
+  const INTERNAL = ['rating', 'answer', 'novelty', 'readiness', 'proofStatus', 'sourceNote', 'status'];
+  const ALLOWED = new Set([...REQUIRED, ...OPTIONAL]);
+  const catIds = new Set(I.categories.map(c => c.id));
+
+  /* V1 structure: 4x25, ids exactly a1..a25 etc. in order, prefix matches category */
+  for (const cat of catIds) {
+    if (!Object.values(CAT).includes(cat)) err(`V1 unknown category id "${cat}" in categories`);
   }
-}
-// V1c difficulty derived from rating
-for(const p of probs) if(p.difficulty!==bandOf(p.rating))
-  warns.push(`V1c ${p.id}: difficulty ${p.difficulty} vs rating ${p.rating} → ${bandOf(p.rating)}`);
-// V2 sourceNote <=> prior-art
-for(const p of probs){
-  const st=(p.novelty||{}).status;
-  if(st==='prior-art' && !p.sourceNote) errs.push(`V2 ${p.id}: prior-art without sourceNote`);
-  if(st!=='prior-art' && p.sourceNote) errs.push(`V2 ${p.id}: sourceNote on status=${st}`);
-}
-// V3 answer + steps completeness
-for(const p of probs){
-  if(!p.answer||!String(p.answer).trim()) errs.push(`V3 ${p.id}: missing answer`);
-  if(!Array.isArray(p.steps)||p.steps.length<3) errs.push(`V3 ${p.id}: steps<3`);
-}
-// V4 transformed => seam && signature && verdict recorded
-for(const p of probs){
-  const nv=p.novelty||{};
-  if(nv.transformedFrom){
-    if(!nv.seam) errs.push(`V4 ${p.id}: transformed without seam`);
-    if(!nv.signature) errs.push(`V4 ${p.id}: transformed without signature`);
-    const v=(p.readiness||{}).novelty||{};
-    if(!v.verdict||v.verdict==='T0') errs.push(`V4 ${p.id}: transformed but verdict ${v.verdict}`);
+  for (const [pre, cat] of Object.entries(CAT)) {
+    const ps = probs.filter(p => p.category === cat);
+    if (ps.length !== 25) err(`V1 ${cat}: ${ps.length} problems, expected 25`);
+    ps.forEach((p, i) => {
+      const want = pre + (i + 1);
+      if (p.id !== want) err(`V1 ${cat}: slot ${i + 1} has id ${p.id}, expected ${want}`);
+    });
   }
-}
-// V5 signature pair collisions (planned/confirmed entries only)
-const pair=new Map();
-for(const [id,s] of Object.entries(sigs.items||{})){
-  if(s.status==='screen-extract') continue;
-  const k=[s.primary,s.secondary||'-'].join('+');
-  if(pair.has(k)) errs.push(`V5 collision: ${id} and ${pair.get(k)} share (${k})`);
-  pair.set(k,id);
-}
-const recPair=new Map();
-for(const p of probs){
-  const nv=p.novelty||{};
-  if(nv.transformedFrom && nv.signature && !sigs.items[p.id])
-    warns.push(`V5 ${p.id}: signature in problems.js not mirrored in tools/signatures.json`);
-  if(typeof nv.signature==='string'){
-    if(recPair.has(nv.signature)) errs.push(`V5 record collision: ${p.id} and ${recPair.get(nv.signature)} share string ${nv.signature}`);
-    recPair.set(nv.signature,p.id);
-    const li=(sigs.items||{})[p.id];
-    if(li&&li.status==='confirmed'&&li.raw&&li.raw!==nv.signature)
-      errs.push(`V5 drift ${p.id}: record ${nv.signature} != ledger ${li.raw}`);
+  const seen = new Set();
+  for (const p of probs) {
+    if (seen.has(p.id)) err(`V1 duplicate id ${p.id}`);
+    seen.add(p.id);
   }
-}
-// V6 T3 lanes
-for(const p of probs){
-  const v=((p.readiness||{}).novelty)||{};
-  if(v.verdict==='T3'){
-    for(const lane of ['N','A','D']){
-      const s=String(v.lanes&&v.lanes[lane]||'not-recorded');
-      const ok = lane==='D' ? /screen pack|evidence-present/.test(s)
-                            : /not-recorded/.test(s)===false && +(((s.match(/(\d+)\s*queries/)||[])[1])||0)>=8;
-      if(!ok) errs.push(`V6 ${p.id}: T3 but lane ${lane}="${s}"`);
+
+  /* V2 field contract: required present, no strays, no internal-production fields leaked */
+  for (const p of probs) {
+    for (const f of REQUIRED) {
+      if (!(f in p)) err(`V2 ${p.id}: missing required field "${f}"`);
+    }
+    for (const f of Object.keys(p)) {
+      if (INTERNAL.includes(f)) err(`V2 ${p.id}: internal field "${f}" leaked into the public dataset`);
+      else if (!ALLOWED.has(f)) err(`V2 ${p.id}: field "${f}" is outside the contract`);
+    }
+  }
+
+  /* V3 labels: enums + stars == band index (difficulty and stars must agree) */
+  for (const p of probs) {
+    if (!(p.difficulty in BAND)) err(`V3 ${p.id}: difficulty "${p.difficulty}" not in {easy,medium,hard,challenging}`);
+    else if (p.stars !== BAND[p.difficulty]) err(`V3 ${p.id}: stars ${p.stars} != band index of "${p.difficulty}" (${BAND[p.difficulty]})`);
+    if (!['high', 'medium', 'low'].includes(p.confidence)) err(`V3 ${p.id}: confidence "${p.confidence}" not in {high,medium,low}`);
+  }
+
+  /* V4 content: every card renders something; steps are the shipped solution path */
+  for (const p of probs) {
+    if (!str(p.text)) err(`V4 ${p.id}: empty text`);
+    if (!str(p.why)) err(`V4 ${p.id}: empty why`);
+    if (!nonEmptyArr(p.hints)) err(`V4 ${p.id}: needs >=1 non-empty hint`);
+    if (!Array.isArray(p.steps) || p.steps.filter(str).length < 3) err(`V4 ${p.id}: needs >=3 non-empty steps`);
+  }
+
+  /* V5 order: ids are difficulty order inside a category (viewer relies on this) */
+  for (const [pre, cat] of Object.entries(CAT)) {
+    const ps = probs.filter(p => p.category === cat)
+      .sort((x, y) => (+x.id.slice(1)) - (+y.id.slice(1)));
+    for (let i = 1; i < ps.length; i++)
+      if ((BAND[ps[i].difficulty] || 0) < (BAND[ps[i - 1].difficulty] || 0))
+        err(`V5 ${ps[i].id} (${ps[i].difficulty}) ordered below ${ps[i - 1].id} (${ps[i - 1].difficulty})`);
+  }
+
+  /* V6 markup safety: balanced $...$ TeX spans; no raw "<" outside real HTML tags
+   * in fields the viewer renders unescaped (text, steps) — a stray "<" is eaten
+   * by the browser and silently corrupts the statement (write &lt; in math). */
+  const TAG = /<\/?(?:ol|ul|li|br|p|b|i|em|strong|sup|sub|span|code)\b[^>]*>/g;
+  for (const p of probs) {
+    const fields = { text: p.text, steps: (p.steps || []).join('\n'), hints: (p.hints || []).join('\n') };
+    for (const [f, v] of Object.entries(fields)) {
+      if (typeof v !== 'string') continue;
+      const dollars = (v.match(/(?<!\\)\$/g) || []).length;
+      if (dollars % 2) err(`V6 ${p.id}.${f}: odd number of $ — unbalanced TeX`);
+    }
+    for (const f of ['text', 'steps']) {
+      const raw = f === 'steps' ? (p.steps || []).join('\n') : String(p[f] || '');
+      const cleaned = raw.replace(TAG, '').replace(/&lt;|&gt;/g, '');
+      const at = cleaned.indexOf('<');
+      if (at >= 0) err(`V6 ${p.id}.${f}: raw "<" outside a known tag (write &lt;): ${JSON.stringify(cleaned.slice(Math.max(0, at - 24), at + 4))}`);
+    }
+  }
+
+  /* V7 waves ledger: W1..W4 partition the 100 ids exactly (no dupes, no gaps) */
+  const waves = loadJSON('tools/waves.json');
+  if (waves) {
+    const cover = ['W1', 'W2', 'W3', 'W4'].flatMap(k => waves[k] || []);
+    const set = new Set(cover);
+    if (cover.length !== set.size) err('V7 waves.json: a problem id appears in two waves');
+    if (set.size !== probs.length) err(`V7 waves.json covers ${set.size}/${probs.length} ids`);
+    for (const id of set) if (!seen.has(id)) err(`V7 waves.json: unknown id ${id}`);
+    for (const p of probs) if (!set.has(p.id)) err(`V7 ${p.id} assigned to no wave`);
+  }
+
+  /* V8 signature ledger: keys subset of ids; no (primary,secondary) pair twice
+   * among planned/confirmed records (screen-extract entries are legacy, exempt) */
+  const sigs = loadJSON('tools/signatures.json');
+  if (sigs) {
+    const items = sigs.items || {};
+    for (const id of Object.keys(items)) if (!seen.has(id)) err(`V8 signatures.json: unknown id ${id}`);
+    const pair = new Map();
+    for (const [id, s] of Object.entries(items)) {
+      if (s.status === 'screen-extract') continue;
+      if (!['planned', 'confirmed', 'hold'].includes(s.status)) warn(`V8 ${id}: signature status "${s.status}" unrecognized`);
+      const k = [s.primary, s.secondary || '-'].join('+');
+      if (pair.has(k)) err(`V8 signature collision: ${id} and ${pair.get(k)} share (${k})`);
+      pair.set(k, id);
     }
   }
 }
-// V7 original-source requires human approval marker
-for(const p of probs){
-  if(((p.novelty||{}).status)==='original-source' && !((p.readiness||{}).novelty||{}).humanApproved)
-    errs.push(`V7 ${p.id}: original-source without humanApproved`);
+
+function str(v) { return typeof v === 'string' && v.trim() !== ''; }
+function nonEmptyArr(a) { return Array.isArray(a) && a.filter(str).length > 0; }
+function loadJSON(rel) {
+  try { return JSON.parse(fs.readFileSync(path.join(repo, rel), 'utf8')); }
+  catch (e) { err(`ledger ${rel}: ${e.message}`); return null; }
 }
-// V8 plan + baseline + waves coverage partition exactly the 100
-{
-  const cover=[...(waves.W1||[]),...(waves.W2||[]),...(waves.W3||[]),...(waves.W4||[])];
-  const set=new Set(cover);
-  if(cover.length!==100||set.size!==100) errs.push(`V8 waves cover ${set.size}/100 (dupes or gaps)`);
-  for(const p of probs) if(!set.has(p.id)) errs.push(`V8 ${p.id} not assigned to any wave`);
+function report() {
+  for (const w of warns) console.log('WARN ', w);
+  for (const e of errs) console.log('ERROR', e);
+  console.log(`verify.js: ${errs.length} errors, ${warns.length} warnings`);
 }
-for(const w of warns) console.log('WARN ',w);
-for(const e of errs) console.log('ERROR',e);
-console.log(`verify.js: ${errs.length} errors, ${warns.length} warnings ${strict?'(--strict)':''}`);
-process.exit(errs.length?1:0);

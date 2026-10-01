@@ -5,8 +5,9 @@ to a problem's statement, proof, rating or verdict gets one entry, and nothing s
 without its entry. (The full 2026-09 production log — ~1,050 entries of set
 correction, the 46-item redesign waves, calibration and the 2026-09-30 archive
 prunes — was retained outside this repo at `../imo_shortlist.CHANGELOG.full-2026-09.md`
-when the repo was reduced to the worked example; per-problem results themselves live
-in each entry's `novelty`/`readiness` fields in `problems.js`.)
+when the repo was reduced to the worked example; the public `problems.js` ships
+without production-internal fields, and the waves/signature record lives in
+`tools/waves.json` and `tools/signatures.json`.)
 
 ## Entry template
 
@@ -17,8 +18,7 @@ in each entry's `novelty`/`readiness` fields in `problems.js`.)
     - **Verification**: machine check (`tools/proofs/<id>.cpp` + exit status),
       independent re-derivation note, evidence files (`tools/screens/<id>.json`).
     - **Ledgers**: waves/signatures/id-map updates applied by identity; old→new map.
-    - **Gates**: `node tools/verify.js --strict`: 0 errors, 0 warnings; problems.js
-      loads with assertInvariants green.
+    - **Gates**: `node tools/verify.js`: 0 errors, 0 warnings.
 
 ## Rules the log enforces
 
@@ -39,4 +39,4 @@ in each entry's `novelty`/`readiness` fields in `problems.js`.)
       quantifiers and all fields except `text` unchanged → verified rubric unaffected.
     - **Verification**: D-lane pack tools/screens/c9.json regenerated
       (D-clean(lane only), maxCont 0.167, 0 exact fragments).
-    - **Gates**: node tools/verify.js --strict: 0 errors, 0 warnings.
+    - **Gates**: node tools/verify.js: 0 errors, 0 warnings.

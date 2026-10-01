@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* tools/renumber.js — wave-end slot rebalancing (METHODOLOGY.md, flow steps 2 & 7).
+/* tools/renumber.js — wave-end slot rebalancing (METHODOLOGY.md, §7).
  * Usage:  node tools/renumber.js <category-letter a|c|g|n> [--apply] [--map-only]
  * - reorders the category so stored ratings are non-decreasing,
  * - keeps the a1..a25 id convention,
@@ -16,10 +16,17 @@ const DATA = ctx.window.IMO_SHORTLIST;
 const CAT = { a: 'alg', c: 'cmb', g: 'geo', n: 'nt' };
 const letter = (process.argv[2] || '').trim();
 if (!CAT[letter]) { console.error('usage: node tools/renumber.js a|c|g|n [--apply]'); process.exit(2); }
+if (!DATA || !Array.isArray(DATA.problems)) { console.error('problems.js did not expose window.IMO_SHORTLIST.problems'); process.exit(2); }
 const apply = process.argv.includes('--apply');
 const probs = DATA.problems;
 const oldIdx = probs.map((p, i) => ({ p, i }));
 const catIdx = oldIdx.filter(({ p }) => p.category === CAT[letter]);
+if (!catIdx.some(({ p }) => typeof p.rating === 'number')) {
+  console.log(`[${letter}] nothing to do: the public dataset is already ordered by difficulty band ` +
+              `(verify.js V5 enforces this) and carries no numeric \`rating\`. ` +
+              `renumber targets the production dataset, where ids are sorted by continuous rating.`);
+  process.exit(0);
+}
 // stable order by rating then current id number
 catIdx.sort((A, B) => A.p.rating - B.p.rating || (+A.p.id.slice(1)) - (+B.p.id.slice(1)));
 const mapping = {}; // oldId -> newId

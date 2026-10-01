@@ -879,6 +879,26 @@
         color: var(--cream);
     }
 
+    /* Hint count chip in the "Hints" summary */
+    .sol summary .hcount {
+        padding: 1px 6px;
+        border: 1px solid var(--b1);
+        border-radius: 999px;
+        font-size: .56rem;
+        letter-spacing: .06em;
+        color: var(--sec);
+    }
+
+    /* Remark: higher-level context and origin of the idea */
+    .remark {
+        margin: 16px 0 0;
+        padding-left: 15px;
+        border-left: 2px solid var(--gold-d);
+        color: var(--sec);
+    }
+
+    .sol-body .remark:first-child { margin-top: 0; }
+
     @media (max-width: 480px) {
         .sol summary { padding: 10px 14px 10px 18px; }
         .sol-body { padding: 14px 18px 16px; }
