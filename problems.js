@@ -491,7 +491,7 @@ window.IMO_SHORTLIST = {
       "stars": 3,
       "rating": 7,
       "confidence": "high",
-      "text": "Let $T(x)=1-\\dfrac1x$ (so $T(T(T(x)))=x$ for all $x\\notin\\{0,1\\}$). Determine all real polynomials $P$ of degree at most $2$ for which there exists a nonzero polynomial $Q$ with $$P(x)=\\frac{Q(x)}{Q(T(x))}\\qquad\\text{for all real }x\\text{ where both sides are defined.}$$ (Bonus part 1: prove that any such $P$ must satisfy $P(x)\\,P(T(x))\\,P(T(T(x)))\\equiv 1$; part 2 decides which of the resulting candidates actually lift.)",
+      "text": "Let $T(x)=1-\\dfrac1x$. Determine all real polynomials $P$ of degree at most $2$ for which there exists a nonzero polynomial $Q$ with $$P(x)=\\frac{Q(x)}{Q(T(x))}\\qquad\\text{for all real }x\\text{ where both sides are defined.}$$",
       "why": "$T:x\\mapsto1-\\tfrac1x$ has order three on $\\mathbb P^1$. Iterating the lift identity gives the norm condition $$P(x)P(Tx)P(T^2x)\\equiv1.$$ Rather than solving a coefficient system, use its divisor structure: any root of $P$ must lie in the special orbit $\\{0,1,\\infty\\}$, so a polynomial $P$ of degree at most $2$ has the form $C x^r(x-1)^s$ with $r,s\\ge0$ and $r+s\\le2$. Direct computation of the norm gives $N(P)=C^3(-1)^r$, hence $C=(-1)^r$. This yields exactly $$1,\\ x-1,\\ -x,\\ x^2,\\ x-x^2,\\ (x-1)^2.$$ The polynomial lift then has to be checked separately; exactly $1,x^2,x-x^2$ lift.",
       "hints": [
         "Iterate along the cycle: any solution obeys $P(x)P(Tx)P(T^2x)\\equiv1$.",
