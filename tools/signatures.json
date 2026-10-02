@@ -228,9 +228,9 @@
   "n3": {
    "primary": "S15",
    "secondary": "M8",
-   "status": "confirmed",
+   "status": "hold",
    "raw": "S15+M8",
-   "note": "shipped 2026-09-29"
+   "note": "statement replaced 2026-10-02 (RUN-N3FAMILY-20261002-03) by owner-requested redesign: second condition inverted to xy | (x+y)^3 so the empty answer becomes a three-parameter family; gapNote: signature codes stale, seam awaits second reviewer, N/A/D lanes not re-run. Old note: shipped 2026-09-29"
   },
   "g4": {
    "primary": "S45",

@@ -1870,7 +1870,7 @@ window.IMO_SHORTLIST = {
         "Prove $S_n=\\left(\\frac{n(n-1)}{2}\\right)^{2}$ by induction on $n\\ge2$: base $n=2$ reads $1=1$; if it holds at $n$, then $S_{n+1}-S_n=n^{3}$ while the difference of consecutive closed forms is $\\left(\\frac{n(n+1)}{2}\\right)^{2}-\\left(\\frac{n(n-1)}{2}\\right)^{2}=\\frac{n^{2}}{4}\\left((n+1)^{2}-(n-1)^{2}\\right)=n^{3}$ (expand), so the identity holds for all $n\\ge2$.",
         "Part 1: $n\\mid S_n\\iff n^{2}(n-1)^{2}\\equiv0\\pmod{4n}\\iff 4\\mid n(n-1)^{2}$. If $n$ odd: $4\\mid(n-1)^2$ ✓. If $n\\equiv2\\pmod4$: $n(n-1)^2\\equiv2\\cdot\\text{odd}\\not\\equiv0$. If $4\\mid n$ ✓. Answer: odd or $4\\mid n$.",
         "Part 2: $n^{2}\\mid S_n\\iff 4\\mid(n-1)^{2}$ after dividing by $n^{2}$: impossible for even $n$ ($(n-1)^2\\equiv1\\pmod4$), automatic for odd $n$ since then $n-1$ is even and $S_n/n^2=\\left(\\frac{n-1}{2}\\right)^{2}\\in\\mathbb{Z}$. Answer: $n$ odd.",
-        "Cross-check boundaries: $n=2$ fails part 1 ($S=1$); $n=4$: $S=36$, $4\\mid36$ ✓ part 1, $16\\nmid36$ ✗ part 2 ✓; $n=6$: $225$, $6\\nmid225$ ✓ excluded."
+        "Cross-check boundaries: $n=2$ fails part 1 ($S=1$); $n=4$: $S=36$, $4\\mid36$ ✓ part 1, $16\\nmid36$ ✗ part 2 ✓; $n=6$: $225$, $6\\nmid225$ ✓ excluded. Answer: part 1 holds exactly for the odd $n\\ge3$ together with the multiples of $4$; part 2 holds exactly for the odd $n\\ge3$."
       ]
     },
     {
@@ -1879,18 +1879,20 @@ window.IMO_SHORTLIST = {
       "difficulty": "easy",
       "stars": 1,
       "rating": 3,
-      "confidence": "high",
-      "text": "Find all pairs of positive integers $(x,y)$ such that $$x+y\\mid xy\\qquad\\text{and}\\qquad (x+y)^{2}\\mid x^{2}y^{2}+x^{2}+y^{2}.$$",
-      "why": "Put $t=x+y$, $u=xy$ — the elementary symmetric coordinates, in which $x^{2}+y^{2}=t^{2}-2u$. The hypotheses read $t\\mid u$ and $t^{2}\\mid u^{2}-2u$; writing $u=tw$ with $w$ a positive integer, the second is equivalent to $t\\mid2w$, so $t\\le2w$. But $x,y$ are the roots of $X^{2}-tX+tw$, so reality forces nonnegative discriminant $t^{2}-4tw\\ge0$, i.e. $t\\ge4w$. Since $w\\ge1$ the squeeze $4w\\le t\\le2w$ is impossible; its boundary $t=4w$ — the double root $x=y$, where $w=u/t=x/2$ — is included, and there the second hypothesis would independently demand $4\\mid x^{2}+2$, which no square satisfies mod $4$. No pairs exist.",
+      "confidence": "medium",
+      "text": "Find all pairs of positive integers $(x,y)$ such that $$x+y\\mid xy\\qquad\\text{and}\\qquad xy\\mid (x+y)^{3}.$$",
+      "why": "Both hypotheses are divisibilities between $t=x+y$ and $u=xy$ alone - a ladder $t\\mid u\\mid t^{3}$ - and each rung is pure coprimality bookkeeping in the coprime parts of $x,y$. Writing $g=\\gcd(x,y)$, $x=ga$, $y=gb$ with $a,b$ coprime, the first rung reads $(a+b)\\mid gab$, i.e. $(a+b)\\mid g$ since $\\gcd(a+b,ab)=1$: the classical parametrisation of $x+y\\mid xy$. With $g=k(a+b)$ the second rung becomes $ab\\mid k(a+b)^{4}$, i.e. $ab\\mid k$, so the two rungs collapse to the single condition $ab(a+b)\\mid g$, and the answer is the three-parameter family $\\bigl(m\\,a^{2}b(a+b),\\ m\\,a\\,b^{2}(a+b)\\bigr)$; the converse must be checked for arbitrary, not assumed coprime, $a,b$, because common factors of $a,b$ are absorbed into $m$. Mechanically this is divisibility in the gcd-monoid of integer pairs - ideal-factorisation bookkeeping in elementary clothing - and the exponent is a genuine threshold: $u\\mid t^{e}$ reads $ab\\mid k^{e-2}$, so $e=2$ forces $a=b=1$ (the classical lemma $xy\\mid(x+y)^{2}$ implies $x=y$), and $e=3$ is the first rung at which off-diagonal ratios such as $1:2$ appear.",
       "hints": [
-        "Rewrite both hypotheses in $t=x+y$, $u=xy$.",
-        "$x,y$ are the roots of one monic quadratic in $t$ and $u$: its discriminant must be a nonnegative perfect square."
+        "Both hypotheses talk only about $t=x+y$ and $u=xy$: they form a divisibility ladder $t\\mid u\\mid t^{3}$.",
+        "Parametrise the first rung: $g=\\gcd(x,y)$ with coprime parts $a,b$ forces $g=k(a+b)$; substituting into $u\\mid t^{3}$ and using $\\gcd(ab,a+b)=1$ leaves exactly $ab\\mid k$.",
+        "For the converse, verify the family as stated with arbitrary $a,b$ - common factors are absorbed by $m$ - and do not smuggle coprimality into the answer."
       ],
       "steps": [
-        "Put $t=x+y$ and $u=xy$. Then $x^{2}+y^{2}=t^{2}-2u$, so $x^{2}y^{2}+x^{2}+y^{2}=u^{2}-2u+t^{2}$, and since $t^{2}\\mid t^{2}$ the hypotheses are equivalent to $t\\mid u$ and $t^{2}\\mid u^{2}-2u$.",
-        "Write $u=tw$: since $t,u>0$ and $t\\mid u$, $w$ is a positive integer. The second condition becomes $t^{2}\\mid t^{2}w^{2}-2tw$, i.e. $t\\mid2w$, which forces $t\\le2w$.",
-        "$x,y$ are the roots of $X^{2}-tX+tw$: its discriminant $D=t^{2}-4tw=t(t-4w)$ is nonnegative (in fact $D=(x-y)^{2}$), and $t>0$, so $t\\ge4w$.",
-        "Combining: $4w\\le t\\le2w$ gives $2w\\le0$, contradicting $w\\ge1$. Hence no pair $(x,y)$ of positive integers exists."
+        "Put $g=\\gcd(x,y)$, $x=ga$, $y=gb$ with coprime positive integers $a,b$, and write $t=x+y=g(a+b)$, $u=xy=g^{2}ab$. The first hypothesis $t\\mid u$ is $g(a+b)\\mid g^{2}ab$, i.e. $(a+b)\\mid gab$. Coprimality gives $\\gcd(a+b,a)=\\gcd(b,a)=1$ and symmetrically $\\gcd(a+b,b)=1$, hence $\\gcd(a+b,ab)=1$, and Euclid's lemma turns the hypothesis into $(a+b)\\mid g$. Write $g=k(a+b)$ with $k\\ge 1$; then $t=k(a+b)^{2}$, $u=k^{2}ab(a+b)^{2}$, and conversely every $k\\ge 1$ with any coprime $a,b$ satisfies the first hypothesis: this reduction is an equivalence.",
+        "The second hypothesis is $u\\mid t^{3}$: the quotient is $t^{3}/u=k(a+b)^{4}/(ab)$, so the condition reads $ab\\mid k(a+b)^{4}$. Since $\\gcd(ab,a+b)=1$ gives $\\gcd(ab,(a+b)^{4})=1$, Euclid's lemma again collapses it to $ab\\mid k$. Write $k=mab$; then $g=mab(a+b)$ and every solution has the shape $$x=ma^{2}b(a+b),\\qquad y=mab^{2}(a+b)$$ with coprime $a,b$ and $m\\ge 1$, where the triple is unique: $a,b$ are the coprime parts of the pair and $m=k/(ab)$.",
+        "Converse, with the coprimality on $a,b$ dropped: for arbitrary positive integers $m,a,b$ set $x=ma^{2}b(a+b)$, $y=mab^{2}(a+b)$. Then $t=mab(a+b)^{2}$, $u=m^{2}a^{3}b^{3}(a+b)^{2}$, and the two quotients $u/t=ma^{2}b^{2}$ and $t^{3}/u=m(a+b)^{4}$ are integers: both hypotheses hold. Common factors of $a,b$ are harmless here - e.g.\\ $(2,2,m)$ reproduces $(32m,32m)$, already produced by $(1,1,16m)$ - and the uniqueness in step 2 shows the relaxed converse neither misses a pair nor mislabels one.",
+        "Sanity anchors: $a=b=1$ gives the diagonal family $(2m,2m)$, and $\\{a,b\\}=\\{1,2\\}$ gives $(6m,12m)$ with its swap. Check $(6,12)$: $18\\mid 72$ and $72\\mid 18^{3}=5832=81\\cdot 72$. The ladder constrains the scale, not the ratio: $(4,12)$ satisfies the first hypothesis $16\\mid 48$ but fails the second, $48\\nmid 4096$, while the same ratio $1:3$ does occur at the admissible scale $12$: $(12,36)$ has $48\\mid 432$ and $432\\mid 48^{3}=110592=256\\cdot 432$.",
+        "Therefore the complete solution set is $$\\boxed{(x,y)=\\bigl(m\\,a^{2}b\\,(a+b),\\; m\\,a\\,b^{2}\\,(a+b)\\bigr)\\quad\\text{for arbitrary positive integers }m,a,b,}$$ equivalently: a pair $(x,y)$ is a solution if and only if, with $g=\\gcd(x,y)$ and coprime parts $a=x/g$, $b=y/g$, one has $ab(a+b)\\mid g$. No restriction on the ratio $x/y$ is implied."
       ]
     },
     {
@@ -2229,7 +2231,7 @@ window.IMO_SHORTLIST = {
         "Lemma 3 (gap collapse). $\\gcd(d,a)=\\gcd(b-a,a)=\\gcd(b,a)=1$, so $\\gcd(d,a^2)=1$; with $d\\mid 2a^2$ Euclid's lemma yields $d\\mid2$, i.e. $d\\in\\{1,2\\}$.",
         "Case $d=1$: $s=2a+1$ is odd, $s\\mid a^2-1$; multiply by the unit $4$: $4(a^2-1)=(2a)^2-4\\equiv(-1)^2-4=-3\\pmod s$, so $s\\mid3$, forcing $s=3$, $a=1$, $b=2$: the sporadic $(1,2)$ and mirror $(2,1)$.",
         "Case $d=2$: $2\\mid 2a^2$ automatic; $s=2(a+1)\\mid(a-1)(a+1)\\iff 2\\mid a-1\\iff a$ odd. Solutions exactly $(a,a+2)$ with $a$ odd, plus mirrors $(a+2,a)$; direct substitution: $a^2+(a+2)^2$ even and $ab+1=(a+1)^2$ divisible by $2(a+1)$ iff $a$ odd.",
-        "Pitfall (why stopping early is wrong): the relaxed system $d\\mid2a^2\\wedge s\\mid d^2-4$ is necessary for the original (identity $(b-a)^2-4=(a+b)^2-4(ab+1)$) but strictly weaker on even $s$; every $(2k,2k+2)$ passes relaxed ($s\\mid0$) and fails the original since $ab+1=(a+1)^2$ is odd while $a+b$ is even. Completeness: Lemmas 1-3 leave no other branch."
+        "Pitfall (why stopping early is wrong): the relaxed system $d\\mid2a^2\\wedge s\\mid d^2-4$ is necessary for the original (identity $(b-a)^2-4=(a+b)^2-4(ab+1)$) but strictly weaker on even $s$; every $(2k,2k+2)$ passes relaxed ($s\\mid0$) and fails the original since $ab+1=(a+1)^2$ is odd while $a+b$ is even. Completeness: Lemmas 1-3 leave no other branch. The solutions are exactly the pairs $(a,a+2)$ and $(a+2,a)$ with $a\\ge1$ odd, together with $(1,2)$ and $(2,1)$."
       ]
     },
     {
