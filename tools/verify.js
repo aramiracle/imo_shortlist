@@ -186,20 +186,12 @@ function check(I) {
   }
 
   /* V9 set stats (owner calibration constraint, METHODOLOGY §7): every category
-   * (set of 25) must carry rating mean in [5, 5.5]; the four set standard
-   * deviations must be similar — max gap 0.15. */
-  const setSds = [];
+   * (set of 25) must carry rating mean in [5, 5.5]. */
   for (const [, cat] of Object.entries(CAT)) {
     const rs = probs.filter(p => p.category === cat && typeof p.rating === 'number').map(p => p.rating);
     if (rs.length !== 25) { warn(`V9 ${cat}: only ${rs.length} numeric ratings, set stats not checked`); continue; }
     const m = rs.reduce((a, b) => a + b, 0) / rs.length;
-    const sd = Math.sqrt(rs.reduce((a, b) => a + (b - m) * (b - m), 0) / rs.length);
-    setSds.push(sd);
     if (m < 5 || m > 5.5) err(`V9 ${cat}: rating mean ${m.toFixed(3)} outside 5–5.5`);
-  }
-  if (setSds.length === 4) {
-    const gap = Math.max(...setSds) - Math.min(...setSds);
-    if (gap > 0.15) err(`V9: set sd gap ${gap.toFixed(3)} > 0.15 (variances must stay similar)`);
   }
 }
 

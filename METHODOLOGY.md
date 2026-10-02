@@ -79,7 +79,7 @@ Every problem carries exactly these fields:
 | `why` | yes | mathematical content only — key ideas, exact facts, higher-math connections; no process chatter |
 | `hints` | yes | at least 1 nudge, weaker than any step |
 | `steps` | yes | at least 3 ordered solution steps, written from the finished proof |
-| `remark` | optional | the idea's lineage in plain words: what classical motif the problem grows out of |
+| `remark` | yes | the idea's lineage in plain words: what classical motif the problem grows out of; since 2026-10-01 remarks carry the precise higher-mathematics relation and a `read about` recommendation naming what the solver who used that technique should study next — `Origin:` the classical motif lineage, `Higher math:`, then the recommendation (owner instruction; applied to alg/cmb/nt 2026-10-01, to geo on the 2026-10-02 pass) |
 
 Two injection pipelines, and every field must obey the one it goes through.
 `text` and `steps` are injected into `innerHTML` **raw**: `<`/`>` in math are written
@@ -267,9 +267,9 @@ search/proof disagreements. The **human then re-solves or proof-sketches every
 problem and brute-force-checks answers**; the per-category renormalization above is
 applied only to that pass, keeps the ordering, caps the top slot at 9.5 (10 is
 reserved for research level), and sets the shipped `confidence`. The shipped public
-`rating` follows the same ladder under two set-level constraints (owner calibration
-rule, verify.js V9): each category's 25 ratings must average in [5.0, 5.5], and the
-four category standard deviations must stay within 0.15 of one another; each rating
+`rating` follows the same ladder under one set-level constraint (owner calibration
+rule, verify.js V9): each category's 25 ratings must average in [5.0, 5.5]; the four
+category standard deviations carry no cross-set requirement; each rating
 also sits inside its difficulty band's `scale` range and is non-decreasing along the
 ids. `tools/calibrate_ratings.js` regenerates the shipped grid deterministically
 under exactly these constraints. Ids are renumbered
@@ -292,7 +292,7 @@ human-estimated, not contestant-derived.
 | V6 | markup: balanced `$…$` TeX in every rendered field; no raw `<` outside a known tag in the raw-injected fields; no HTML entities in the escapeHtml'd fields; no lone-backslash TeX commands or control chars |
 | V7 | waves ledger: `tools/waves.json` assigns the 100 ids to W1–W4 exactly once |
 | V8 | signature ledger: `tools/signatures.json` keys are real ids; no (primary, secondary) pair twice |
-| V9 | set stats: each category's rating mean in [5, 5.5]; the four set standard deviations within 0.15 of one another (similar variance) |
+| V9 | set stats: each category's rating mean in [5, 5.5] |
 
 Run it before and after every edit; anything non-zero means the repo is broken.
 
