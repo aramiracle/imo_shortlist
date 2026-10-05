@@ -151,9 +151,9 @@ window.IMO_SHORTLIST = {
     {
       "id": "a5",
       "category": "alg",
-      "difficulty": "warmup",
-      "stars": 1,
-      "rating": 2.5,
+      "difficulty": "easy",
+      "stars": 2,
+      "rating": 3,
       "confidence": "high",
       "text": "Let $a,b,c,d>0$. Prove that $$(a^{2}+1)(b^{2}+1)(c^{2}+1)(d^{2}+1)\\ge (a+b)(b+c)(c+d)(d+a),$$ and determine all equality cases.",
       "why": "The engine is the Brahmagupta--Fibonacci identity $(a^{2}+1)(b^{2}+1)=(ab-1)^{2}+(a+b)^{2}$, i.e. multiplicativity of the norm on $\\mathbb{C}$ via $(a+i)(b+i)=(ab-1)+i(a+b)$. Pairing $[(a,b),(c,d)]$ and $[(b,c),(d,a)]$ and multiplying the two squared inequalities gives the claim after taking square roots. Equality forces $ab=bc=cd=da=1$, a one-parameter family $a=c$, $b=d$, $ab=1$. The same norm identity underlies Fermat's two-square theorem through the Gaussian integers $\\mathbb{Z}[i]$, a Euclidean domain.",
@@ -174,30 +174,7 @@ window.IMO_SHORTLIST = {
       "category": "alg",
       "difficulty": "easy",
       "stars": 2,
-      "rating": 4,
-      "confidence": "high",
-      "text": "Let $a,b,c$ be positive real numbers. Prove that $$\\sqrt{\\frac{a+3b}{a+2b+6c}}+\\sqrt{\\frac{b+3c}{b+2c+6a}}+\\sqrt{\\frac{c+3a}{c+2a+6b}}\\ \\ge\\ 2\\,, $$ and determine all equality cases.",
-      "why": "There is a substantially cleaner Hölder certificate. Take the cyclic linear weight $W_1=a+2b$ (and its shifts), rather than $2a+3b$. Two-factor Hölder gives $S^2\\sum W_i^3Y_i/X_i\\ge(\\sum W_i)^3$, so it is enough to prove $27(a+b+c)^3\\ge4\\sum W_i^3Y_i/X_i$. After clearing $X_1X_2X_3$, the resulting sextic has just eight positive cyclic monomial orbits and one negative term: $$F=5[a^5b]+15[a^5c]+6[a^4b^2]+84[a^4bc]+198[a^4c^2]+36[a^3b^3]+133[a^3b^2c]+63[a^3bc^2]-1620a^2b^2c^2.$$ Every cyclic orbit of total degree $6$ satisfies $[a^ib^jc^k]\\ge3a^2b^2c^2$ by AM-GM. The eight coefficients sum to $540$, hence the positive part is at least $1620a^2b^2c^2$, exactly cancelling the negative term. Equality in the AM-GM step forces $a=b=c$. At $a=b=c$, the original inequality has equality and Hölder is tight. Thus the whole proof is short, purely algebraic, and avoids the previous min-variable substitution and large coefficient certificate.",
-      "hints": [
-        "Put $X_1=a+3b$, $Y_1=a+2b+6c$, $W_1=a+2b$, and take cyclic shifts.",
-        "Use $(\\sum u_i)^2(\\sum v_i)\\ge(\\sum(u_i^2v_i)^{1/3})^3$ with $u_i=\\sqrt{X_i/Y_i}$ and $v_i=W_i^3Y_i/X_i$.",
-        "Since $W_1+W_2+W_3=3(a+b+c)$, it remains to prove $27(a+b+c)^3\\ge4\\sum W_i^3Y_i/X_i$.",
-        "After multiplying by $X_1X_2X_3$, collect the result into cyclic degree-$6$ orbits. Each such orbit is at least $3a^2b^2c^2$ by AM-GM."
-      ],
-      "steps": [
-        "Write $X_1=a+3b$, $Y_1=a+2b+6c$, $W_1=a+2b$, and define $X_2,Y_2,W_2$ and $X_3,Y_3,W_3$ cyclically. If $S=\\sum_{i=1}^3\\sqrt{X_i/Y_i}$, then Hölder gives $$S^2\\sum_{i=1}^3\\frac{W_i^3Y_i}{X_i}\\ge\\left(\\sum_{i=1}^3W_i\\right)^3=27(a+b+c)^3.$$",
-        "Therefore it suffices to establish $$27(a+b+c)^3\\ge4\\sum_{i=1}^3\\frac{W_i^3Y_i}{X_i}.$$ Multiplying by $X_1X_2X_3&gt;0$, this is equivalent to $F\\ge0$, where $$F=27(a+b+c)^3X_1X_2X_3-4\\sum_{i=1}^3W_i^3Y_iX_jX_k,$$ with $\\{i,j,k\\}=\\{1,2,3\\}$.",
-        "Using $[a^ib^jc^k]:=a^ib^jc^k+b^ic^ja^k+c^ia^jb^k$, direct expansion and cyclic collection give $$F=5[a^5b]+15[a^5c]+6[a^4b^2]+84[a^4bc]+198[a^4c^2]+36[a^3b^3]+133[a^3b^2c]+63[a^3bc^2]-1620a^2b^2c^2.$$",
-        "For every degree-$6$ cyclic orbit, $$[a^ib^jc^k]\\ge3\\sqrt[3]{(a^ib^jc^k)(b^ic^ja^k)(c^ia^jb^k)}=3a^2b^2c^2,$$ because the product of the three cyclic monomials is $(abc)^6$. Since $$5+15+6+84+198+36+133+63=540,$$ we obtain $$F\\ge3\\cdot540\\,a^2b^2c^2-1620a^2b^2c^2=0.$$ Hence $S^2\\ge4$, and therefore $S\\ge2$.",
-        "For equality, the AM-GM equality conditions in the positive cyclic orbits force $a=b=c$ (already the orbit $[a^3b^3]$ gives $a^3b^3=b^3c^3=c^3a^3$). Conversely, when $a=b=c$, every radical equals $\\sqrt{4/9}=2/3$, so $S=2$; the Hölder step is also an equality. Thus equality holds exactly for $a=b=c$."
-      ]
-    },
-    {
-      "id": "a7",
-      "category": "alg",
-      "difficulty": "easy",
-      "stars": 2,
-      "rating": 4,
+      "rating": 3.5,
       "confidence": "high",
       "text": "Let $a,b,c$ be real numbers satisfying $a+b+c=0$ and $abc=1$. Prove that $$a^4+b^4+c^4\\ge \\dfrac{9}{\\sqrt[3]{2}},$$ and determine all equality cases.",
       "why": "The product condition forces the sign pattern: exactly one variable is positive. The other two are then nonnegative numbers with fixed sum and product, so they are the real roots of a quadratic whose discriminant is nonnegative - root-location theory via the discriminant supplies a lower bound on the positive root, and convexity of $t\\mapsto t^{4}$ upgrades that bound to the fourth-power sum by Jensen's inequality, the prototype of majorization arguments (Karamata). The same mechanism - symmetric constraints, extrema on the double-root boundary of the real-rooted region - is the uvw/discriminant principle.",
@@ -215,7 +192,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      "id": "a8",
+      "id": "a7",
       "category": "alg",
       "difficulty": "easy",
       "stars": 2,
@@ -238,7 +215,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      "id": "a9",
+      "id": "a8",
       "category": "alg",
       "difficulty": "easy",
       "stars": 2,
@@ -259,7 +236,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      "id": "a10",
+      "id": "a9",
       "category": "alg",
       "difficulty": "easy",
       "stars": 2,
@@ -280,7 +257,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      "id": "a11",
+      "id": "a10",
       "category": "alg",
       "difficulty": "medium",
       "stars": 3,
@@ -303,7 +280,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      "id": "a12",
+      "id": "a11",
       "category": "alg",
       "difficulty": "medium",
       "stars": 3,
@@ -322,6 +299,31 @@ window.IMO_SHORTLIST = {
         "Compare leading terms in that identity: left, $a(2x^{2})^{n}=a\\,2^{n}x^{2n}$; right, $-2a(-x^{2})^{n}=-2a(-1)^{n}x^{2n}$ (the constant $c^{2}$ is immaterial for $n\\ge1$). So $a\\,2^{n}=-2a(-1)^{n}$; dividing by $2a\\ne0$: $2^{n-1}=(-1)^{n+1}$. For $n$ even the right side is $-1$, impossible since $2^{n-1}>0$; for $n$ odd it is $+1$, and $2^{n-1}=1$ forces $n=1$.",
         "Put $P=px+q$ with $p\\ne0$ and substitute into the ORIGINAL identity: $p(x^{2}+y^{2})+q=(p(x+y)+q)^{2}-2(pxy+q)=p^{2}x^{2}+p^{2}y^{2}+(2p^{2}-2p)xy+2pqx+2pqy+q^{2}-2q$. Comparing $x^{2}$: $p=p^{2}$, so $p=1$; comparing $x$: $0=2pq$, so $q=0$; the $xy$-comparison $0=2p^{2}-2p$ then reads $0=0$, and the constant comparison $q=q^{2}-2q$ is the step-0 condition $q\\in\\{0,3\\}$, satisfied by $q=0$. Hence $P=x$ is the only nonconstant candidate.",
         "Verify all three in the original identity: $P\\equiv0$: $0=0-0$; $P=x$: $x^{2}+y^{2}=(x+y)^{2}-2xy$, an identity; $P\\equiv3$: $3=9-6$. The preceding steps left nothing else, so the answer set is $\\{0,\\ 3,\\ x\\}$."
+      ]
+    },
+    {
+      "id": "a12",
+      "category": "alg",
+      "difficulty": "medium",
+      "stars": 3,
+      "rating": 5.5,
+      "confidence": "high",
+      "text": "Let $a,b,c$ be positive real numbers. Prove that $$\\sqrt{\\frac{a+3b}{a+2b+6c}}+\\sqrt{\\frac{b+3c}{b+2c+6a}}+\\sqrt{\\frac{c+3a}{c+2a+6b}}\\ \\ge\\ 2\\,, $$ and determine all equality cases.",
+      "why": "The three radicals are not independent, and a determinant is the cleanest way to see it. Put $x=\\sqrt{\\frac{a+3b}{a+2b+6c}}$ and cyclically. Clearing each denominator turns the definition into a linear relation in $a,b,c$, namely $(x^{2}-1)a+(2x^{2}-3)b+6x^{2}c=0$ together with its two cyclic shifts. Since $a,b,c\\gt0$ is a nonzero solution, the homogeneous $3\\times3$ system is singular, so its determinant is $0$; expanding yields a single symmetric constraint $$x^{2}+y^{2}+z^{2}+17(x^{2}y^{2}+y^{2}z^{2}+z^{2}x^{2})+189x^{2}y^{2}z^{2}=28.\\qquad(\\ast)$$ Conceptually $(\\ast)$ is a resultant: $(a,b,c)$ is a null vector of a matrix in $x^{2},y^{2},z^{2}$. The inequality is now purely symmetric in $x,y,z$, settled by a $uvw$-type bound: for $x,y,z\\ge0$ with $x+y+z\\le2$ the left side of $(\\ast)$ is at most $28$, with equality only at $x=y=z=\\tfrac23$. Because each monomial has positive degree, homogeneity reduces this to $x+y+z=2$; writing $q=xy+yz+zx$, $r=xyz$, the defect $G=24+2q-17q^{2}+68r-189r^{2}$ is concave in $r$, so for fixed $q$ its minimum sits at an endpoint of the admissible interval, bracketed by AM-GM ($r\\le(q/3)^{3/2}$) and Schur ($r\\ge8(q-1)/9$). Both endpoint branches factor nonnegatively, forcing $q=\\tfrac43$ and hence $x=y=z=\\tfrac23$ at equality. A contradiction with $(\\ast)$ gives $x+y+z\\ge2$, and pulling $x=y=z=\\tfrac23$ back through the linear relations yields $5a+19b=24c$ and its cyclic shifts, whose maximum-variable squeeze forces $a=b=c$. The mechanism is the $pqr/uvw$ principle (symmetric constraints, extremum on the double-root boundary) fed by a determinant relation.",
+      "hints": [
+        "Let $x,y,z$ be the three radicals. Clearing each denominator gives a linear equation in $a,b,c$; since $a,b,c\\gt0$ the $3\\times3$ homogeneous system is singular, so set its determinant to $0$.",
+        "Expanding that determinant leaves one symmetric relation: $x^{2}+y^{2}+z^{2}+17\\sum x^{2}y^{2}+189x^{2}y^{2}z^{2}=28$.",
+        "Prove the contrapositive lemma: if $x,y,z\\ge0$ and $x+y+z\\le2$, that left side is at most $28$, with equality only at $x=y=z=\\tfrac23$.",
+        "By homogeneity it suffices to treat $x+y+z=2$; put $q=xy+yz+zx$, $r=xyz$, and the defect is $G=24+2q-17q^{2}+68r-189r^{2}$, concave in $r$.",
+        "Bound $r$ with AM-GM $r\\le(q/3)^{3/2}$ and Schur $r\\ge8(q-1)/9$; a concave function is minimal at an endpoint, where $G$ factors nonnegatively."
+      ],
+      "steps": [
+        "Substitute $x=\\sqrt{\\frac{a+3b}{a+2b+6c}}$, $y=\\sqrt{\\frac{b+3c}{b+2c+6a}}$, $z=\\sqrt{\\frac{c+3a}{c+2a+6b}}$. Clearing denominators gives three linear relations: $(x^{2}-1)a+(2x^{2}-3)b+6x^{2}c=0$, $6y^{2}a+(y^{2}-1)b+(2y^{2}-3)c=0$, $(2z^{2}-3)a+6z^{2}b+(z^{2}-1)c=0$. Since $a,b,c\\gt0$ is a nonzero solution the determinant of this homogeneous system vanishes, and expanding it gives $$x^{2}+y^{2}+z^{2}+17(x^{2}y^{2}+y^{2}z^{2}+z^{2}x^{2})+189x^{2}y^{2}z^{2}=28.\\qquad(1)$$",
+        "Lemma: for $x,y,z\\ge0$ with $x+y+z\\le2$ the left side of $(1)$ is at most $28$, equality only at $x=y=z=\\tfrac23$. Each monomial $x^{2}$, $x^{2}y^{2}$, $x^{2}y^{2}z^{2}$ has positive degree, so scaling $(x,y,z)\\mapsto\\tfrac{2}{s}(x,y,z)$ (with $s=x+y+z\\lt2$) strictly increases the left side; it is enough to prove the bound when $x+y+z=2$.",
+        "On $x+y+z=2$ put $q=xy+yz+zx$ and $r=xyz$, so $x^{2}+y^{2}+z^{2}=4-2q$ and $\\sum x^{2}y^{2}=q^{2}-4r$. The defect to $28$ is $$G(q,r)=24+2q-17q^{2}+68r-189r^{2},$$ a quadratic in $r$ with leading coefficient $-189\\lt0$, hence concave; for fixed $q$ its minimum on the admissible $r$-interval is attained at an endpoint.",
+        "The endpoints are $r_{\\max}=(q/3)^{3/2}$ (AM-GM on $xy,yz,zx$) and $r_{\\min}=\\max\\{0,8(q-1)/9\\}$ (Schur: $8+9r\\ge8q$), with $0\\le q\\le\\tfrac43$. At $r=0$, $G=24+2q-17q^{2}\\ge9\\gt0$ for $0\\le q\\le1$; at $r=8(q-1)/9$, $G=(4-3q)(499q-418)/9\\ge0$ for $1\\le q\\le\\tfrac43$; at $r=r_{\\max}$, writing $t=\\sqrt{q/3}\\in[0,\\tfrac23]$, $$G(3t^{2},t^{3})=(2-3t)\\left(63t^{5}+42t^{4}+79t^{3}+30t^{2}+18t+12\\right)\\ge0.$$ All factors are nonnegative, and equality holds only when $q=\\tfrac43$, forcing $r=\\tfrac8{27}$ and (from $(x+y+z)^{2}\\ge3q$) $x=y=z=\\tfrac23$. The lemma follows.",
+        "Contradiction: if $x+y+z\\lt2$, the lemma gives the strict bound $x^{2}+y^{2}+z^{2}+17\\sum x^{2}y^{2}+189x^{2}y^{2}z^{2}\\lt28$, contradicting the identity $(1)$. Hence $x+y+z\\ge2$, which is exactly the required inequality.",
+        "Equality requires $x=y=z=\\tfrac23$, i.e. $x^{2}=\\tfrac49$, so $9(a+3b)=4(a+2b+6c)$, that is $5a+19b=24c$, and cyclically $5b+19c=24a$ and $5c+19a=24b$. Let $a=\\max\\{a,b,c\\}$; then $24a=5b+19c\\le24a$, with equality only when $b=c=a$. Conversely $a=b=c$ makes each radical $\\sqrt{\\tfrac49}=\\tfrac23$, so the sum is $2$. Thus equality holds exactly for $a=b=c$."
       ]
     },
     {

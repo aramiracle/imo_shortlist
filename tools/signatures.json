@@ -15,7 +15,7 @@
    "raw": "S12+M1",
    "note": "shipped 2026-09-29"
   },
-  "a10": {
+  "a9": {
    "primary": "S10",
    "secondary": "M12",
    "status": "confirmed",
@@ -113,14 +113,14 @@
    "raw": "S18+M8",
    "note": "shipped 2026-09-29"
   },
-  "a9": {
+  "a8": {
    "primary": "S02",
    "secondary": "M15",
    "status": "confirmed",
    "raw": "S02+M15",
    "note": "shipped 2026-09-29"
   },
-  "a8": {
+  "a7": {
    "primary": "S12",
    "secondary": "M13",
    "status": "confirmed",
@@ -197,7 +197,7 @@
    "raw": "S21+M8",
    "note": "shipped 2026-09-29"
   },
-  "a12": {
+  "a11": {
    "primary": "S12",
    "secondary": "M7",
    "status": "confirmed",
@@ -323,12 +323,12 @@
    "raw": "S41+M15",
    "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
   },
-  "a6": {
+  "a12": {
    "primary": "M16",
    "secondary": "M3",
    "status": "hold",
    "raw": "M16+M3",
-   "note": "proof replaced again 2026-10-05 (RUN-20261005-03) by owner-supplied lighter certificate: same two-factor Holder scheme with weight W1=a+2b (not 2a+3b); the cleared sextic expands to 8 positive cyclic degree-6 orbits (coefficients summing to 540) + single negative term -1620a2b2c2, each orbit >= 3a2b2c2 by AM-GM (orbit monomial product = (abc)^6), exact cancellation. Replaces RUN-20261005-02 min-variable shift certificate (C0..C4, all coefficients >= 0). Codes unchanged: M16 (SOS-style certified identity) primary, M3 secondary; verified exhaustively in tools/proofs/a6.cpp v3 (216000 triples + 7^3 polynomial-identity grids + AM-GM engine checks). gapNote unchanged: N/A/D lanes not re-run, seam not second-reviewed; confidence set to high by owner instruction with this replacement (their re-derivation, not a contestant-timed pass). Prior note: false Lagrange reduction (RUN-20261005-01 step 4) found by owner, dropped"
+   "note": "[2026-10-05 owner recalibration] Slot renumbered a6->a12 and re-banded easy->medium, rating 4->5.5 (full alg recalibration: alg mean 5.34, within the [5,5.5] V9 band; tools/waves.json + this ledger remapped by identity). Public proof replaced again: the certificate shipped in problems.js is now a determinant/uvw argument (set x,y,z to the three radicals; each clears to a linear relation in a,b,c, the homogeneous 3x3 system is singular, its determinant gives x^2+y^2+z^2+17*sum x^2y^2+189 x^2y^2z^2=28; a uvw bound on x+y+z<=2 with defect G=24+2q-17q^2+68r-189r^2, concave in r, endpoint minima at the AM-GM r<=(q/3)^(3/2) and Schur r>=8(q-1)/9 endpoints both factoring nonnegatively forces x=y=z=2/3; contradiction gives sum>=2, equality a=b=c) -- NOT the two-factor Holder scheme described below. The a6.cpp reference below is stale (file absent from the public repo). Codes kept M16+M3 (first move now the singular-system determinant, engine the uvw factorization bound); status hold and the gapNote below unchanged. -- prior record (superseded certificate / pre-recalibration slot) -- proof replaced again 2026-10-05 (RUN-20261005-03) by owner-supplied lighter certificate: same two-factor Holder scheme with weight W1=a+2b (not 2a+3b); the cleared sextic expands to 8 positive cyclic degree-6 orbits (coefficients summing to 540) + single negative term -1620a2b2c2, each orbit >= 3a2b2c2 by AM-GM (orbit monomial product = (abc)^6), exact cancellation. Replaces RUN-20261005-02 min-variable shift certificate (C0..C4, all coefficients >= 0). Codes unchanged: M16 (SOS-style certified identity) primary, M3 secondary; verified exhaustively in tools/proofs/a6.cpp v3 (216000 triples + 7^3 polynomial-identity grids + AM-GM engine checks). gapNote unchanged: N/A/D lanes not re-run, seam not second-reviewed; confidence set to high by owner instruction with this replacement (their re-derivation, not a contestant-timed pass). Prior note: false Lagrange reduction (RUN-20261005-01 step 4) found by owner, dropped"
   },
   "a2": {
    "status": "screen-extract",
@@ -336,13 +336,13 @@
    "primary": null,
    "secondary": null
   },
-  "a11": {
+  "a10": {
    "status": "screen-extract",
    "firstMove": "Write $P(m,n)$ for the stated equation, and set $c=f(1)\\ge 1$. Substituting $n=1$ gives $f",
    "primary": null,
    "secondary": null
   },
-  "a7": {
+  "a6": {
    "status": "screen-extract",
    "firstMove": "The product $abc=1>0$ and the sum $a+b+c=0$ forbid three positive numbers and also forbid ",
    "primary": null,
