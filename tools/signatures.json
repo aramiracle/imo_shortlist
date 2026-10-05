@@ -324,10 +324,11 @@
    "note": "shipped 2026-09-29; claim+proof replaced in redesign wave 2026-09-30 (see CHANGELOG.md wave section)"
   },
   "a6": {
-   "status": "screen-extract",
-   "firstMove": "Set $s=a+b+c$, $t=ab+bc+ca$, $p=abc$. Then $$\\sum_{\\mathrm{cyc}}ab(a+b)=st-3p, \\qquad (a+b",
-   "primary": null,
-   "secondary": null
+   "primary": "M16",
+   "secondary": "M3",
+   "status": "hold",
+   "raw": "M16+M3",
+   "note": "proof replaced again 2026-10-05 (RUN-20261005-03) by owner-supplied lighter certificate: same two-factor Holder scheme with weight W1=a+2b (not 2a+3b); the cleared sextic expands to 8 positive cyclic degree-6 orbits (coefficients summing to 540) + single negative term -1620a2b2c2, each orbit >= 3a2b2c2 by AM-GM (orbit monomial product = (abc)^6), exact cancellation. Replaces RUN-20261005-02 min-variable shift certificate (C0..C4, all coefficients >= 0). Codes unchanged: M16 (SOS-style certified identity) primary, M3 secondary; verified exhaustively in tools/proofs/a6.cpp v3 (216000 triples + 7^3 polynomial-identity grids + AM-GM engine checks). gapNote unchanged: N/A/D lanes not re-run, seam not second-reviewed; confidence set to high by owner instruction with this replacement (their re-derivation, not a contestant-timed pass). Prior note: false Lagrange reduction (RUN-20261005-01 step 4) found by owner, dropped"
   },
   "a2": {
    "status": "screen-extract",

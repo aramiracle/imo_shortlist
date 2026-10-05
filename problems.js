@@ -174,20 +174,22 @@ window.IMO_SHORTLIST = {
       "category": "alg",
       "difficulty": "easy",
       "stars": 2,
-      "rating": 3,
+      "rating": 4,
       "confidence": "high",
-      "text": "Let $a,b,c>0$. Prove that $$32\\!\\left(\\sum_{\\mathrm{cyc}}ab(a+b)\\right)^3 \\ge 27\\!\\left(\\prod_{\\mathrm{cyc}}(a+b)\\right)^2 \\left(\\prod_{\\mathrm{cyc}}(a+b)-4abc\\right).$$",
-      "why": "A homogeneous symmetric inequality in three variables is a polynomial in the elementary symmetric functions $s=a+b+c$, $t=ab+bc+ca$, $p=abc$ by the fundamental theorem of symmetric polynomials. The feasible region in $(s,t,p)$ is carved out by the cubic discriminant $\\Delta\\ge0$ (the condition that $z^{3}-sz^{2}+tz-p$ has three real roots), so the extremum reduces to one-variable analysis on the boundary where two roots coincide. The factorization and equality case are then elementary; this is the uvw method, a quantifier-elimination principle for symmetric polynomial constraints.",
+      "text": "Let $a,b,c$ be positive real numbers. Prove that $$\\sqrt{\\frac{a+3b}{a+2b+6c}}+\\sqrt{\\frac{b+3c}{b+2c+6a}}+\\sqrt{\\frac{c+3a}{c+2a+6b}}\\ \\ge\\ 2\\,, $$ and determine all equality cases.",
+      "why": "There is a substantially cleaner Hölder certificate. Take the cyclic linear weight $W_1=a+2b$ (and its shifts), rather than $2a+3b$. Two-factor Hölder gives $S^2\\sum W_i^3Y_i/X_i\\ge(\\sum W_i)^3$, so it is enough to prove $27(a+b+c)^3\\ge4\\sum W_i^3Y_i/X_i$. After clearing $X_1X_2X_3$, the resulting sextic has just eight positive cyclic monomial orbits and one negative term: $$F=5[a^5b]+15[a^5c]+6[a^4b^2]+84[a^4bc]+198[a^4c^2]+36[a^3b^3]+133[a^3b^2c]+63[a^3bc^2]-1620a^2b^2c^2.$$ Every cyclic orbit of total degree $6$ satisfies $[a^ib^jc^k]\\ge3a^2b^2c^2$ by AM-GM. The eight coefficients sum to $540$, hence the positive part is at least $1620a^2b^2c^2$, exactly cancelling the negative term. Equality in the AM-GM step forces $a=b=c$. At $a=b=c$, the original inequality has equality and Hölder is tight. Thus the whole proof is short, purely algebraic, and avoids the previous min-variable substitution and large coefficient certificate.",
       "hints": [
-        "Rewrite both sides in $s=a+b+c$, $t=ab+bc+ca$, $p=abc$.",
-        "Divide by $p^3$; AM–GM bounds $u=st/p$ below, leaving one variable.",
-        "The difference of the two sides in $u$ factors as a square times a linear term."
+        "Put $X_1=a+3b$, $Y_1=a+2b+6c$, $W_1=a+2b$, and take cyclic shifts.",
+        "Use $(\\sum u_i)^2(\\sum v_i)\\ge(\\sum(u_i^2v_i)^{1/3})^3$ with $u_i=\\sqrt{X_i/Y_i}$ and $v_i=W_i^3Y_i/X_i$.",
+        "Since $W_1+W_2+W_3=3(a+b+c)$, it remains to prove $27(a+b+c)^3\\ge4\\sum W_i^3Y_i/X_i$.",
+        "After multiplying by $X_1X_2X_3$, collect the result into cyclic degree-$6$ orbits. Each such orbit is at least $3a^2b^2c^2$ by AM-GM."
       ],
       "steps": [
-        "Set $s=a+b+c$, $t=ab+bc+ca$, $p=abc$. Then $$\\sum_{\\mathrm{cyc}}ab(a+b)=st-3p, \\qquad (a+b)(b+c)(c+a)=st-p.$$ Hence the claim is $$32(st-3p)^3\\ge 27(st-p)^2(st-5p).$$",
-        "By $$st=(a+b+c)(ab+bc+ca)\\ge 9abc=9p,$$ put $u=st/p\\ge 9$. Dividing by $p^3>0$, it suffices to prove $$32(u-3)^3\\ge 27(u-1)^2(u-5).$$",
-        "Use the exact factorization $$32(u-3)^3-27(u-1)^2(u-5)=(u-9)^2(5u-9)\\ge 0.$$",
-        "Equality requires $u=9$, hence equality in $(a+b+c)(ab+bc+ca)\\ge 9abc$. The equality condition is $a=b=c$."
+        "Write $X_1=a+3b$, $Y_1=a+2b+6c$, $W_1=a+2b$, and define $X_2,Y_2,W_2$ and $X_3,Y_3,W_3$ cyclically. If $S=\\sum_{i=1}^3\\sqrt{X_i/Y_i}$, then Hölder gives $$S^2\\sum_{i=1}^3\\frac{W_i^3Y_i}{X_i}\\ge\\left(\\sum_{i=1}^3W_i\\right)^3=27(a+b+c)^3.$$",
+        "Therefore it suffices to establish $$27(a+b+c)^3\\ge4\\sum_{i=1}^3\\frac{W_i^3Y_i}{X_i}.$$ Multiplying by $X_1X_2X_3&gt;0$, this is equivalent to $F\\ge0$, where $$F=27(a+b+c)^3X_1X_2X_3-4\\sum_{i=1}^3W_i^3Y_iX_jX_k,$$ with $\\{i,j,k\\}=\\{1,2,3\\}$.",
+        "Using $[a^ib^jc^k]:=a^ib^jc^k+b^ic^ja^k+c^ia^jb^k$, direct expansion and cyclic collection give $$F=5[a^5b]+15[a^5c]+6[a^4b^2]+84[a^4bc]+198[a^4c^2]+36[a^3b^3]+133[a^3b^2c]+63[a^3bc^2]-1620a^2b^2c^2.$$",
+        "For every degree-$6$ cyclic orbit, $$[a^ib^jc^k]\\ge3\\sqrt[3]{(a^ib^jc^k)(b^ic^ja^k)(c^ia^jb^k)}=3a^2b^2c^2,$$ because the product of the three cyclic monomials is $(abc)^6$. Since $$5+15+6+84+198+36+133+63=540,$$ we obtain $$F\\ge3\\cdot540\\,a^2b^2c^2-1620a^2b^2c^2=0.$$ Hence $S^2\\ge4$, and therefore $S\\ge2$.",
+        "For equality, the AM-GM equality conditions in the positive cyclic orbits force $a=b=c$ (already the orbit $[a^3b^3]$ gives $a^3b^3=b^3c^3=c^3a^3$). Conversely, when $a=b=c$, every radical equals $\\sqrt{4/9}=2/3$, so $S=2$; the Hölder step is also an equality. Thus equality holds exactly for $a=b=c$."
       ]
     },
     {
