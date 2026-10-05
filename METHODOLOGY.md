@@ -71,8 +71,8 @@ Every problem carries exactly these fields:
 |---|---|---|
 | `id` | yes | `a1..a25`, `c1..c25`, `g1..g25`, `n1..n25`; the number is the difficulty rank inside the category |
 | `category` | yes | `alg` / `cmb` / `geo` / `nt`, matching the id prefix |
-| `difficulty` | yes | `easy` / `medium` / `hard` / `challenging` |
-| `stars` | yes | the band index 1–4 of `difficulty` — the two must agree |
+| `difficulty` | yes | `warmup` / `easy` / `medium` / `hard` / `challenging` |
+| `stars` | yes | the band index 1–5 of `difficulty` — the two must agree |
 | `rating` | yes | numeric difficulty 1–10 in 0.5 steps, calibrated per §7; must sit inside its `difficulty` band's `scale` range, stay ≤ 9.5, and be non-decreasing along the ids |
 | `confidence` | yes | how much the difficulty estimate is trusted: `high` (human re-solved it), `medium` (human estimate with a caveat), `low` (explicitly doubtful) |
 | `text` | yes | the statement, TeX + HTML; `<`/`>` in math written `&lt;`/`&gt;` |

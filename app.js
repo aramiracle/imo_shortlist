@@ -1,7 +1,8 @@
 /* Renders IMO Shortlist UI from window.IMO_SHORTLIST (problems.js) */
 
-const STAR_CLASS = { easy: 'e', medium: 'm', hard: 'h', challenging: 'c' };
+const STAR_CLASS = { warmup: 'w', easy: 'e', medium: 'm', hard: 'h', challenging: 'c' };
 const DIFF_LABEL = {
+    warmup: 'Warm-up',
     easy: 'Easy',
     medium: 'Medium',
     hard: 'Hard',
@@ -34,8 +35,9 @@ function escapeHtml(s) {
 
 function starsHtml(difficulty, count) {
     const cls = STAR_CLASS[difficulty] || '';
+    const max = Object.keys(STAR_CLASS).length;
     let html = '';
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < max; i++) {
         html += `<div class="star${i < count ? ' ' + cls : ''}"></div>`;
     }
     return html;
@@ -196,10 +198,11 @@ function render() {
     }).join('');
 
     const scale = data.scale || [
-        { id: 'easy', label: 'Easy', min: 1, max: 4 },
-        { id: 'medium', label: 'Medium', min: 4, max: 6 },
-        { id: 'hard', label: 'Hard', min: 6, max: 8 },
-        { id: 'challenging', label: 'Challenging', min: 8, max: 10 }
+        { id: 'warmup', label: 'Warm-up', min: 1.5, max: 2.5 },
+        { id: 'easy', label: 'Easy', min: 3, max: 4.5 },
+        { id: 'medium', label: 'Medium', min: 5, max: 6.5 },
+        { id: 'hard', label: 'Hard', min: 7, max: 8 },
+        { id: 'challenging', label: 'Challenging', min: 8.5, max: 9.5 }
     ];
     const legendEl = document.getElementById('legend');
     if (legendEl) {
@@ -216,7 +219,7 @@ function render() {
     document.getElementById('header-pills').innerHTML = `
         <span class="pill">${total} problems</span>
         <span class="pill">${catCount} categories</span>
-        <span class="pill">Easy – Challenging</span>
+        <span class="pill">Warm-up – Challenging</span>
         <span class="pill">Rated 1–10 · set avg 5–5.5</span>`;
 
     document.getElementById('tabs').innerHTML = categories.map((c, i) => {
@@ -248,6 +251,7 @@ function render() {
                 <div class="fbar">
                     <span class="fbar-lbl">Filter:</span>
                     <button class="fbtn f-all" onclick="filt(this,'${escapeHtml(c.id)}','all')">All</button>
+                    <button class="fbtn" onclick="filt(this,'${escapeHtml(c.id)}','warmup')">Warm-up</button>
                     <button class="fbtn" onclick="filt(this,'${escapeHtml(c.id)}','easy')">Easy</button>
                     <button class="fbtn" onclick="filt(this,'${escapeHtml(c.id)}','medium')">Medium</button>
                     <button class="fbtn" onclick="filt(this,'${escapeHtml(c.id)}','hard')">Hard</button>

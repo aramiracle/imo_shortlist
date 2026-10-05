@@ -35,7 +35,7 @@ process.exit(errs.length ? 1 : 0);
 function check(I) {
   const probs = I.problems;
   const CAT = { a: 'alg', c: 'cmb', g: 'geo', n: 'nt' };
-  const BAND = { easy: 1, medium: 2, hard: 3, challenging: 4 };
+  const BAND = { warmup: 1, easy: 2, medium: 3, hard: 4, challenging: 5 };
   const REQUIRED = ['id', 'category', 'difficulty', 'stars', 'rating', 'confidence', 'text', 'why', 'hints', 'steps'];
   const OPTIONAL = ['remark'];
   const INTERNAL = ['answer', 'novelty', 'readiness', 'proofStatus', 'sourceNote', 'status'];
@@ -75,7 +75,7 @@ function check(I) {
   const BAND_RANGE = {};
   for (const s of I.scale || []) BAND_RANGE[s.id] = [s.min, s.max];
   for (const p of probs) {
-    if (!(p.difficulty in BAND)) err(`V3 ${p.id}: difficulty "${p.difficulty}" not in {easy,medium,hard,challenging}`);
+    if (!(p.difficulty in BAND)) err(`V3 ${p.id}: difficulty "${p.difficulty}" not in {warmup,easy,medium,hard,challenging}`);
     else if (p.stars !== BAND[p.difficulty]) err(`V3 ${p.id}: stars ${p.stars} != band index of "${p.difficulty}" (${BAND[p.difficulty]})`);
     if (!['high', 'medium', 'low'].includes(p.confidence)) err(`V3 ${p.id}: confidence "${p.confidence}" not in {high,medium,low}`);
     if (!BAND_RANGE[p.difficulty]) continue; /* band check needs the label; V3 already flagged it */
