@@ -1243,29 +1243,29 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      "id": "g1",
+      "id": "g6",
       "category": "geo",
-      "difficulty": "warmup",
-      "stars": 1,
-      "rating": 1.5,
+      "difficulty": "easy",
+      "stars": 2,
+      "rating": 3.5,
       "confidence": "high",
-      "text": "Two circles $\\omega_1,\\omega_2$ with centres $O_1,O_2$ intersect in the points $A$ and $B$. A line $\\ell$ through $A$ meets $\\omega_1$ again at $C$ and $\\omega_2$ again at $D$, with $C\\ne D$; let $M$ be the midpoint of $CD$. Prove that $M$ lies on the circle with diameter $O_1O_2$ if and only if $\\omega_1$ and $\\omega_2$ meet at right angles. (Two circles meet at right angles if their tangent lines at a common point are perpendicular.)",
-      "why": "The engine is a fixed circle that $M$ never leaves: for every admissible secant $\\ell$ through $A$, the midpoint $M$ of $CD$ lies on the circle $\\Gamma$ with centre $N$ (the midpoint of $O_1O_2$) through $A$ and $B$. Mechanism: the feet $P_1,P_2$ of the perpendiculars from the centres bisect the chords $AC,AD$ (tangent position $C=A$: $P_1=A$); the midline lengths $MP_1=\\tfrac12 AD=AP_2$ and $MP_2=\\tfrac12 AC=AP_1$ make the half-turn about the midpoint $W$ of $P_1P_2$ interchange $A$ and $M$ (the alternative collapses to $P_1=P_2$, i.e. $C=D$, excluded); meanwhile the intercept theorem on the three parallels $O_1P_1\\parallel NW_0\\parallel O_2P_2$ cut by the transversals $O_1O_2$ and $\\ell$ puts the foot $W_0$ of $N$ at the midpoint of $P_1P_2$, so $W_0=W$ and $NW$ is the perpendicular bisector of $AM$: $NM=NA$ (trivial when $M=A$, the position $\\ell\\perp NA$ at $A$, which genuinely occurs). Then $NA=NB$ because $O_1O_2$ is the perpendicular bisector of the common chord $AB$. The circle on diameter $O_1O_2$ is concentric with $\\Gamma$, so $M$ lies on it if and only if $NA=NO_1$, which by Thales (both directions) is $\\angle O_1AO_2=90^\\circ$: radii perpendicular at $A$, hence tangents perpendicular at $A$; orthogonality at $A$ is equivalent to orthogonality at $B$ since $O_1AO_2\\cong O_1BO_2$ by SSS. The clause $C\\ne D$ excludes exactly the secant $\\ell=AB$: two distinct circles have no third common point, and $C=D=A$ would make $\\ell$ a common tangent forcing $A$ onto $O_1O_2$, i.e. $A=B$.",
+      "text": "Let $ABC$ be a non-isosceles triangle. Its incircle $\\omega$ touches $BC$ at $D$, and its $A$-excircle $\\omega_A$ touches $BC$ at $K$. Let $\\Gamma$ be the circle with diameter $DK$. The circle $\\Gamma$ meets $\\omega$ again at $P\\ne D$, and meets $\\omega_A$ again at $Q\\ne K$. Let $X=DP\\cap KQ$. Prove that $AX\\perp BC$.",
+      "why": "The two hidden collinearities drive everything: $A,P,K$ and $A,D,Q$. The homothety $h$ centered at $A$ sending $\\omega$ to $\\omega_A$ maps the touchpoint $D$ of $\\omega$ with the common tangent line $BC$ to the point of $\\omega_A$ antipodal to its touchpoint $K$, hence $h$ sends the antipode $E$ of $D$ on $\\omega$ to $K$; so $A,E,K$ are collinear and the line $AK$ meets $\\omega$ at $E$ and a second point $P'$ (with $E$ closer to $A$). As $E$ is the antipode of $D$, Thales gives $\\angle EP'D=90^\\circ$, i.e. $\\angle AP'D=90^\\circ$ and (since $A,E,K$ are collinear) $\\angle DP'K=90^\\circ$; thus $P'$ lies on the circle $\\Gamma$ of diameter $DK$. Being the second point of $\\Gamma\\cap\\omega$, $P'=P$, so $A,P,K$ are collinear. The same argument applied with the roles of $\\omega,\\omega_A$ exchanged gives $A,D,Q$ collinear. With $X=DP\\cap KQ$ and $D,P,K,Q\\in\\Gamma$, Thales yields $\\angle APX=\\angle KPD=90^\\circ$ and $\\angle AQX=\\angle DQK=90^\\circ$, so $P,Q$ lie on the circle with diameter $AX$: $APXQ$ is cyclic. The closing chase reads $\\angle XAD=\\angle XAQ=\\angle XPQ=\\angle DPQ=\\angle DKQ$ (cyclic $APXQ$, then concyclic $D,P,K,Q$ on $\\Gamma$) and $\\angle ADB=\\angle QDK$ (rays $DA=DQ$ and $DB=DK$ along $BC$); hence $\\angle XAD+\\angle ADB=\\angle DKQ+\\angle QDK=180^\\circ-\\angle DQK=90^\\circ$, which is exactly $AX\\perp BC$. The non-isosceles hypothesis keeps $D\\ne K$, so $\\Gamma$ is a genuine circle.",
       "hints": [
-        "Drop perpendiculars from $O_1$ and $O_2$ to $\\ell$; their feet bisect the chords $AC$ and $AD$.",
-        "Show the midpoint $N$ of $O_1O_2$ satisfies $NM=NA$ for every secant: $M$ never leaves the fixed circle centred at $N$ through $A$.",
-        "The diameter-circle is concentric with it, so compare radii: $NA=NO_1$ is exactly Thales at $A$."
+        "The homothety at $A$ sending $\\omega$ to $\\omega_A$ maps the antipode of $D$ to $K$; deduce $A,P,K$ are collinear.",
+        "Cyclically, $A,D,Q$ are collinear, and Thales on $\\Gamma$ gives $\\angle APX=\\angle AQX=90^\\circ$.",
+        "$APXQ$ is cyclic; chase $\\angle XAD=\\angle DKQ$ and $\\angle ADB=\\angle QDK$ to conclude $AX\\perp BC$."
       ],
       "steps": [
-        "Setup. The two circles meet in $A\\ne B$, so $O_1\\ne O_2$ and their line of centres $O_1O_2$ is the perpendicular bisector of $AB$; let $N$ be its midpoint. Dropping the perpendiculars from $O_1,O_2$ to $\\ell$, the feet $P_1,P_2$ bisect the chords $AC,AD$; they are distinct, since coincident midpoints would reflect one point $A$ in one point to give $C=D$, excluded.",
-        "The foot from $N$ bisects $P_1P_2$. The lines $O_1P_1$, $NW$, $O_2P_2$ (with $W$ the foot from $N$ to $\\ell$) are all perpendicular to $\\ell$, hence parallel, and $P_1\\ne P_2$ keeps them distinct. The intercept theorem on the transversals $O_1O_2$ and $\\ell$, together with $O_1N=NO_2$, gives $P_1W=WP_2$: $W$ is the midpoint of $P_1P_2$.",
-        "The point $W$ bisects $AM$ as well. In triangle $ACD$ the segment $MP_1$ joins the midpoints of $CD,CA$, so $MP_1=\\tfrac12 AD=AP_2$, and symmetrically $MP_2=AP_1$. The half-turn about $W$ fixes $\\ell$ and swaps $P_1\\leftrightarrow P_2$; carrying $A$ to $A'$ it gives $A'P_2=AP_1=MP_2$ and $A'P_1=AP_2=MP_1$, and since $P_1\\ne P_2$ two points of $\\ell$ at equal distances from both agree, so $A'=M$. Hence $W$ is the midpoint of $AM$ too, and $M=A$ exactly when $W=A$.",
-        "Invariant: $M$ runs on a fixed circle. $NW\\perp\\ell$ makes $\\triangle WNA\\cong\\triangle WNM$ (right angle at $W$, $WA=WM$, common $WN$), so $NM=NA$, trivially so when $M=A$. As $N$ lies on the perpendicular bisector of $AB$ one has $NA=NB$, so $M$ always lies on the circle $\\Gamma$ with centre $N$ through $A$ and $B$.",
-        "The equivalence. A quarter-turn about $A$ carries each tangent at $A$ to its radius $AO_i$ (Euclid III.16), so the tangents are perpendicular $\\Longleftrightarrow$ $\\angle O_1AO_2=90^\\circ$ $\\Longleftrightarrow$, $N$ being the midpoint of $O_1O_2$, the median-to-hypotenuse theorem and its converse give $NA=\\tfrac12 O_1O_2=NO_1$. By step 4 $NM=NA$, so this reads $NM=NO_1$, i.e. $M\\in\\Gamma$ with $\\Gamma$ the circle of centre $N$ and radius $\\tfrac12 O_1O_2$, which is the circle with diameter $O_1O_2$. Every link is reversible, so $\\omega_1\\perp\\omega_2\\Longleftrightarrow M$ lies on the diameter-circle. The secant $\\ell=AB$ gives $C=D=B$ and is the only excluded position, since $C=D=A$ would make $\\ell$ tangent to both circles at $A$, forcing $O_1,O_2$ onto the single perpendicular to $\\ell$ at $A$ and hence $A=B$; the equivalence therefore holds for every other line $\\ell$ through $A$."
-      ]
+        "Let $E$ be the point of $\\omega$ antipodal to $D$. The homothety $h$ centered at $A$ sending the incircle $\\omega$ to the $A$-excircle $\\omega_A$ preserves the common tangent line $BC$ and the radii perpendicular to it, so it carries the touchpoint $D$ to the point of $\\omega_A$ antipodal to $K$; equivalently $h(E)=K$. Hence $A$, $E$, $K$ are collinear, and the line $AK$ meets $\\omega$ at $E$ and one further point $P'$, with $E$ closer to $A$.",
+        "Since $E$ is the antipode of $D$ on $\\omega$, $\\angle EP'D=90^\\circ$, i.e. $\\angle AP'D=90^\\circ$ and (as $A,E,K$ are collinear) $\\angle DP'K=90^\\circ$. Thus $P'$ lies on the circle $\\Gamma$ of diameter $DK$; as $P'\\in\\omega$ and $P'\\ne D$ it is the second intersection, so $P'=P$ and $A,P,K$ are collinear. The same argument with $\\omega$ and $\\omega_A$ exchanged (line $AD$ meets $\\omega_A$ again at the point $Q'$ that sees $DK$ under a right angle) shows $A,D,Q$ are collinear.",
+        "Because $X=DP\\cap KQ$, the ray $PX$ is ray $PD$ and the ray $PA$ is ray $PK$; as $P\\in\\Gamma$ with $DK$ a diameter, $\\angle KPD=90^\\circ$, so $\\angle APX=90^\\circ$. Likewise $\\angle AQX=\\angle DQK=90^\\circ$. Hence $P$ and $Q$ both lie on the circle with diameter $AX$, i.e. $A,P,X,Q$ are concyclic.",
+        "It remains to prove $\\angle XAD+\\angle ADB=90^\\circ$. Using $A,P,K$ collinear, $A,D,Q$ collinear and $D,P,K,Q\\in\\Gamma$: $\\angle XAD=\\angle XAQ=\\angle XPQ$ (subtending chord $XQ$ of $(APXQ)$) $=\\angle DPQ=\\angle DKQ$ (subtending chord $DQ$ of $\\Gamma$). Also $\\angle ADB$ is the angle between rays $DA=DQ$ and $DB=DK$, i.e. $\\angle ADB=\\angle QDK$. Therefore $\\angle XAD+\\angle ADB=\\angle DKQ+\\angle QDK=180^\\circ-\\angle DQK=90^\\circ$ since $\\angle DQK=90^\\circ$ ($Q\\in\\Gamma$, $DK$ a diameter). Thus $AX\\perp BC$. $\\blacksquare$"
+      ],
+
     },
     {
-      "id": "g2",
+      "id": "g1",
       "category": "geo",
       "difficulty": "warmup",
       "stars": 1,
@@ -1285,7 +1285,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      "id": "g3",
+      "id": "g2",
       "category": "geo",
       "difficulty": "warmup",
       "stars": 1,
@@ -1305,7 +1305,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      "id": "g4",
+      "id": "g3",
       "category": "geo",
       "difficulty": "warmup",
       "stars": 1,
@@ -1327,7 +1327,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      "id": "g5",
+      "id": "g4",
       "category": "geo",
       "difficulty": "easy",
       "stars": 2,
@@ -1349,7 +1349,7 @@ window.IMO_SHORTLIST = {
       ]
     },
     {
-      "id": "g6",
+      "id": "g5",
       "category": "geo",
       "difficulty": "easy",
       "stars": 2,
