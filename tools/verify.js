@@ -109,21 +109,38 @@ function check(I) {
     }
   }
 
-  /* V6 markup safety — the viewer has TWO injection pipelines and fields must
-   * match their pipeline or the browser corrupts the TeX (verified end-to-end
-   * against the page's CDN tex-mml-chtml bundle, 2026-10-01):
-   *  a) text, steps  -> injected RAW innerHTML: balanced $...$; no raw "<"
-   *     outside real HTML tags (the browser eats it); "<"/">" in math written
-   *     &lt;/&gt; (or \lt/\gt);
-   *  b) why, hints, remark -> passed through escapeHtml(): a source "&lt;"
-   *     double-encodes to "&amp;lt;", so MathJax receives a literal "&lt;" and
-   *     shows red "Misplaced &" boxes — write \lt/\gt (or a plain "<") here;
-   *  c) everywhere: no control chars and no lone "\cmd" in the source — JS
-   *     string escapes silently eat a single backslash ("\lt" -> "lt",
-   *     "\times" -> TAB+"imes"); TeX commands need \\cmd on disk. */
-  const TAG = /<\/?(?:ol|ul|li|br|p|b|i|em|strong|sup|sub|span|code)\b[^>]*>/g;
-  const ENT = /&(?:lt|gt|amp|quot|nbsp|#[A-Za-z0-9]+);/;
+  /* V6 markup safety — problems.js content is pure LaTeX, single backslashes in
+   * String.raw`...` templates; the viewer injects every field through
+   * escapeHtml() and MathJax is configured with $ / $$ delimiters only
+   * (verified end-to-end against the page's CDN tex-mml-chtml bundle, 2026-10-08):
+   *  a) content fields must be String.raw literals — a normal JS string eats
+   *     single backslashes ("\lt" -> "lt", "\times" -> TAB+"imes");
+   *  b) no HTML in the data file at all: no tags, no entities, no raw "<" or
+   *     ">" — write \lt/\gt inside math;
+   *  c) "$" delimiters must balance into $...$ / $$...$$ regions;
+   *  d) "&" is legal in math only inside \begin{env}..\end{env};
+   *  e) \( \) and \[ \] delimiters are disabled in the page config — banned
+   *     (\\[4pt] row spacing inside environments is fine);
+   *  f) no control chars (a backslash silently eaten by a non-raw string). */
+  const NO_HTML = /<\/?[A-Za-z!?]|&(?:lt|gt|amp|quot|nbsp|#[A-Za-z0-9]+)(?:;|(?![A-Za-z0-9]))/;
   const CTRL = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/;
+  const mathRegions = s => {
+    const regs = []; let i = 0;
+    while (i < s.length) {
+      if (s[i] === '$' && s[i - 1] !== '\\') {
+        if (s.startsWith('$$', i)) {
+          const e = s.indexOf('$$', i + 2);
+          if (e < 0) return null;
+          regs.push([i, e + 2]); i = e + 2; continue;
+        }
+        const e = s.indexOf('$', i + 1);
+        if (e < 0) return null;
+        regs.push([i, e + 1]); i = e + 1; continue;
+      }
+      i++;
+    }
+    return regs;
+  };
   for (const p of probs) {
     const fields = { text: p.text, why: p.why, remark: p.remark,
       steps: (p.steps || []).join('\n'), hints: (p.hints || []).join('\n') };
@@ -133,30 +150,49 @@ function check(I) {
       if (dollars % 2) err(`V6 ${p.id}.${f}: odd number of $ — unbalanced TeX`);
       if (CTRL.test(v)) {
         const i = v.search(CTRL);
-        err(`V6 ${p.id}.${f}: control char U+0${v.charCodeAt(i).toString(16)} — a single backslash in the source was eaten by a JS string escape (write \\\\cmd)`);
+        err(`V6 ${p.id}.${f}: control char U+0${v.charCodeAt(i).toString(16)} — backslash eaten by a JS string escape (content must be a String.raw\`...\` literal)`);
       }
-      if (['why', 'hints', 'remark'].includes(f)) {
-        const m = v.match(ENT);
-        if (m) {
-          const i = v.indexOf(m[0]);
-          err(`V6 ${p.id}.${f}: HTML entity "${m[0]}" in an escapeHtml field — double-escapes and MathJax renders "Misplaced &" (write \\lt/\\gt): ${JSON.stringify(v.slice(Math.max(0, i - 24), i + 10))}`);
-        }
+      const h = v.match(NO_HTML);
+      if (h) {
+        const i = v.indexOf(h[0]);
+        err(`V6 ${p.id}.${f}: HTML in data file "${h[0]}" — no HTML allowed; write \\lt/\\gt inside math: ${JSON.stringify(v.slice(Math.max(0, i - 24), i + 10))}`);
       }
-    }
-    for (const f of ['text', 'steps']) {
-      const raw = f === 'steps' ? (p.steps || []).join('\n') : String(p[f] || '');
-      const cleaned = raw.replace(TAG, '').replace(/&lt;|&gt;/g, '');
-      const at = cleaned.indexOf('<');
-      if (at >= 0) err(`V6 ${p.id}.${f}: raw "<" outside a known tag (write &lt;): ${JSON.stringify(cleaned.slice(Math.max(0, at - 24), at + 4))}`);
+      const regs = mathRegions(v);
+      if (!regs) { err(`V6 ${p.id}.${f}: unbalanced $ region`); continue; }
+      for (const [a, b] of regs) {
+        const seg = v.slice(a, b);
+        if (/(?<!\\)\\\(|(?<!\\)\\\)/.test(seg)) err(`V6 ${p.id}.${f}: \\( \\) delimiter in math — use $ $ (page config allows $ only)`);
+        if (/(?<!\\)\\\[|(?<!\\)\\\]/.test(seg)) err(`V6 ${p.id}.${f}: \\[ \\] delimiter in math — use $$ $$ (page config allows $ only)`);
+        const envSpans = [];
+        for (const em of seg.matchAll(/\\begin\{[^}]*\}[\s\S]*?\\end\{[^}]*\}/g)) envSpans.push([em.index, em.index + em[0].length]);
+        for (const am of seg.matchAll(/&/g))
+          if (!envSpans.some(([x, y]) => am.index >= x && am.index < y))
+            err(`V6 ${p.id}.${f}: bare & in math outside \\begin{env} — MathJax renders "Misplaced &": ${JSON.stringify(seg.slice(Math.max(0, am.index - 24), am.index + 16))}`);
+      }
     }
   }
-  /* lone "\cmd" scan on the raw source: one backslash + a TeX command name,
-   * not part of a \\ double backslash */
-  const TEXCMD = /(?<!\\)\\(?:lt|gt|le|ge|ne|mid|nmid|pm|mp|cdot|ast|times|div|frac|dfrac|tfrac|binom|pmod|text|textrm|textit|textbf|begin|end|left|right|big|Big|bigg|Bigg|bigl|bigr|Bigl|Bigr|quad|qquad|ldots|cdots|vdots|ddots|mathbb|mathcal|mathbf|mathrm|mathit|mathsf|boldsymbol|sqrt|cases|array|aligned|align|gather|substack|overline|underline|widehat|widetilde|vec|hat|bar|tilde|dot|ddot|sum|prod|int|oint|lim|gcd|lcm|deg|det|dim|ker|cup|cap|subset|subseteq|supset|supseteq|notin|equiv|approx|cong|sim|simeq|propto|ll|gg|prec|succ|mapsto|rightarrow|longrightarrow|leftarrow|Rightarrow|Leftarrow|iff|implies|forall|exists|emptyset|land|lor|lnot|perp|parallel|triangle|angle|langle|rangle|operatorname|stackrel|overset|underset|underbrace|overbrace|arcsin|arccos|arctan|sinh|cosh|tanh|sec|csc|cot|to|gets|neg|circ|bigcirc|bullet|star|oplus|ominus|otimes|odot|oslash|uplus|sqcup|sqcap|setminus|smallsetminus|lvert|rvert|lVert|rVert|vert|Vert|arrow|leftrightarrow|Leftrightarrow|hookrightarrow|twoheadrightarrow|aleph|beth|nabla|partial|hbar|ell|over|atop|choose|rank|tr|id|hom|Pr|ord|deg|arg|limsup|liminf|mod|pod|bmod|colon|backslash|dagger|ddot|check|breve|acute|grave|dotplus|rtimes|wr|sqrtsign|mathstrut|strut|displaystyle|textstyle|scriptstyle|scriptscriptstyle|limits|nolimits|operatorname)(?![A-Za-z])/g;
-  const lone = SRC.match(TEXCMD);
-  if (lone) err(`V6 problems.js: ${lone.length} lone backslash command(s) in source — JS eats them (write \\\\): ${[...new Set(lone)].slice(0, 5).join(' ')}`);
-  const lonePunct = SRC.match(/(?<!\\)\\[,;:!#$%&.]/g);
-  if (lonePunct) err(`V6 problems.js: ${lonePunct.length} lone backslash+ punctuation in source — JS eats it (write \\\\): ${[...new Set(lonePunct)].slice(0, 5).join(' ')}`);
+  /* source-level: content must live in String.raw`...` literals */
+  for (const key of ['text', 'why', 'remark']) {
+    const re = new RegExp(`"${key}":(?!\\s*String\\.raw\`)`, 'g');
+    if (re.test(SRC)) err(`V6 problems.js: "${key}" is not a String.raw\`...\` literal — TeX backslashes need single-slash raw strings`);
+  }
+  {
+    let inArr = null, inRaw = false;
+    for (const line of SRC.split('\n')) {
+      const ticks = ((line.match(/`/g) || []).length % 2) === 1;
+      const trimmed = line.trim();
+      if (!inRaw) {
+        const start = trimmed.match(/"(hints|steps)":\s*\[/);
+        if (start) { inArr = !/"(?:hints|steps)":\s*\[\s*\]/.test(trimmed); }
+        else if (inArr && /^\]/.test(trimmed)) inArr = null;
+        else if (inArr && trimmed && !/^String\.raw`/.test(trimmed)) {
+          err(`V6 problems.js: a ${inArr} element is not a String.raw\`...\` literal: ${trimmed.slice(0, 40)}`);
+          inArr = null;
+        }
+      }
+      if (ticks) inRaw = !inRaw;
+    }
+  }
 
   /* V7 waves ledger: W1..W4 partition the 100 ids exactly (no dupes, no gaps) */
   const waves = loadJSON('tools/waves.json');

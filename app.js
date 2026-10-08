@@ -57,7 +57,7 @@ function stepsHtml(p) {
     return steps.map((s, i) => `
                     <details class="hint">
                         <summary>Step ${i + 1}</summary>
-                        <div class="hint-body">${s}</div>
+                        <div class="hint-body">${escapeHtml(s)}</div>
                     </details>`).join('');
 }
 
@@ -123,7 +123,7 @@ function problemCard(p, index) {
                 </div>
             </div>${hasRating ? `
             <div class="rmeter ${escapeHtml(diff)}" aria-hidden="true"><span style="width:${(p.rating * 10).toFixed(0)}%"></span></div>` : ''}
-            <div class="pbody"><div class="ptxt">${p.text}</div></div>
+            <div class="pbody"><div class="ptxt">${escapeHtml(p.text)}</div></div>
             ${analysisHtml}
             <details class="sol">
                 <summary>Hints${hintsCount ? ` <span class="hcount">${hintsCount}</span>` : ''}</summary>

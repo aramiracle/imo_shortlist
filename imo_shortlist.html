@@ -13,8 +13,8 @@
     <script>
         window.MathJax = {
             tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
                 processEscapes: true
             },
             chtml: { fontCache: 'global' },
@@ -792,19 +792,8 @@
         font-size: 1.1rem;
         line-height: 1.82;
         color: var(--cream);
+        white-space: pre-line;
     }
-
-    .ptxt em { color: var(--sec); font-size: 1.02rem; }
-
-    .ptxt ol, .ptxt ul {
-        margin: 14px 0 0 1.4em;
-        padding-left: 1.4em;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .ptxt li { line-height: 1.65; }
 
     /* MathJax overflow fix */
     mjx-container[jax="CHTML"][display="true"] {
@@ -900,6 +889,7 @@
         font-size: 1.05rem;
         line-height: 1.75;
         color: var(--cream);
+        white-space: pre-line;
     }
 
     /* Hint count chip in the "Hints" summary */
@@ -1118,7 +1108,6 @@
     .star.w { color: var(--warmup); } .star.e { color: var(--easy); } .star.m { color: var(--medium); }
     .star.h { color: var(--hard); } .star.c { color: var(--challenging); }
     .ptxt { font-size: 1.17rem; line-height: 1.85; }
-    .ptxt li::marker { color: var(--gold); }
 
     .sol summary { border-radius: 0; }
     .sol[open] > summary { border-bottom: 1px solid var(--b0); }
